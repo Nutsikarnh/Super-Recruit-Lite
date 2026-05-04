@@ -927,13 +927,13 @@ function BulkActionBar({
 // ─── Reusable card action button components ──────────────────────────────────
 function CardActionBtn({ label, onClick, variant = "primary" }: { label: string; onClick: () => void; variant?: "primary" | "secondary" | "danger" }) {
   const cls = {
-    primary:   "border-[#127EE3]/60 text-[#127EE3] hover:bg-[#127EE3]/5 hover:border-[#127EE3]",
-    secondary: "border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300",
-    danger:    "border-red-100 text-red-400 hover:bg-red-50 hover:border-red-200",
+    primary:   "bg-[#127EE3] text-white hover:bg-[#0f6cc7] border-transparent shadow-sm",
+    secondary: "border-gray-200 text-gray-600 hover:bg-gray-50 hover:border-gray-300 bg-white",
+    danger:    "border-red-100 text-red-500 hover:bg-red-50 hover:border-red-300 bg-white",
   }[variant];
   return (
     <button onClick={(e) => { e.stopPropagation(); onClick(); }}
-      className={`px-3 py-1.5 rounded-lg text-[11.5px] font-medium border transition-all ${cls}`}
+      className={`px-3.5 py-1.5 rounded-lg text-[12px] font-medium border transition-all ${cls}`}
     >
       {label}
     </button>
@@ -981,19 +981,21 @@ function ApplicantCard({
       case "new":
       case "shortlist":
         return (
-          <div className="mt-2.5 space-y-2">
-            <div className="flex items-center gap-3.5 flex-wrap">
-              <span className="flex items-center gap-1.5 text-[12px] text-gray-400"><Briefcase className="w-3.5 h-3.5 text-gray-300" />{applicant.experience}</span>
-              <span className="flex items-center gap-1.5 text-[12px] text-gray-400"><MapPin className="w-3.5 h-3.5 text-gray-300" />{applicant.location}</span>
-              <span className="flex items-center gap-1.5 text-[12px] text-gray-400"><Banknote className="w-3.5 h-3.5 text-gray-300" />{applicant.salaryExpect}</span>
+          <div className="mt-3 space-y-2.5">
+            <div className="flex items-center gap-4 flex-wrap">
+              <span className="flex items-center gap-1.5 text-[13px] text-gray-500"><Briefcase className="w-3.5 h-3.5 text-gray-400" />{applicant.experience}</span>
+              <span className="flex items-center gap-1.5 text-[13px] text-gray-500"><MapPin className="w-3.5 h-3.5 text-gray-400" />{applicant.location}</span>
+              <span className="flex items-center gap-1.5 text-[13px] text-gray-500"><Banknote className="w-3.5 h-3.5 text-gray-400" />{applicant.salaryExpect}</span>
             </div>
-            <div className="flex items-center gap-1.5 flex-wrap">
-              {applicant.skills.slice(0, 3).map((s) => (
-                <span key={s} className="px-2 py-0.5 rounded-md text-[11px] font-medium bg-gray-50 text-gray-500 border border-gray-100">{s}</span>
+            <div className="flex items-center gap-2 flex-wrap">
+              {applicant.skills.slice(0, 4).map((s) => (
+                <span key={s} className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[12px] font-medium bg-gray-50 text-gray-600 border border-gray-200">
+                  <Zap className="w-3 h-3 text-gray-400" />{s}
+                </span>
               ))}
             </div>
             {stage === "shortlist" && applicant.note && (
-              <p className="text-[11.5px] text-gray-500 bg-gray-50 px-2.5 py-1 rounded-lg border border-gray-100 truncate">{applicant.note}</p>
+              <p className="text-[12px] text-gray-500 bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100 truncate">{applicant.note}</p>
             )}
           </div>
         );
@@ -1093,129 +1095,126 @@ function ApplicantCard({
     const act = (action: CardAction) => () => onAction(applicant.id, action);
     switch (stage) {
       case "new":
-        return (
-          <div className="flex items-center gap-2 mt-3 flex-wrap" onClick={(e) => e.stopPropagation()}>
-            <CardActionBtn label="ชอร์ตลิสต์" onClick={act({ type: "shortlist" })} variant="primary" />
-            <CardActionBtn label="ไม่ผ่านการคัดเลือก" onClick={act({ type: "reject" })} variant="danger" />
-          </div>
-        );
+        return <>
+          <CardActionBtn label="ไม่ผ่านการคัดเลือก" onClick={act({ type: "reject" })} variant="danger" />
+          <CardActionBtn label="ชอร์ตลิสต์" onClick={act({ type: "shortlist" })} variant="primary" />
+        </>;
       case "shortlist":
-        return (
-          <div className="flex items-center gap-2 mt-3 flex-wrap" onClick={(e) => e.stopPropagation()}>
-            <CardActionBtn label="ส่งต่อให้พิจารณา" onClick={act({ type: "forward_review" })} variant="primary" />
-            <CardActionBtn label="ลงตารางนัด" onClick={act({ type: "schedule" })} variant="secondary" />
-            <CardActionBtn label="ไม่ผ่าน" onClick={act({ type: "reject" })} variant="danger" />
-          </div>
-        );
+        return <>
+          <CardActionBtn label="ไม่ผ่าน" onClick={act({ type: "reject" })} variant="danger" />
+          <CardActionBtn label="ลงตารางนัด" onClick={act({ type: "schedule" })} variant="secondary" />
+          <CardActionBtn label="ส่งต่อให้พิจารณา" onClick={act({ type: "forward_review" })} variant="primary" />
+        </>;
       case "review":
-        return (
-          <div className="flex items-center gap-2 mt-3 flex-wrap" onClick={(e) => e.stopPropagation()}>
-            <CardActionBtn label="ลงตารางนัดสัมภาษณ์" onClick={act({ type: "schedule" })} variant="primary" />
-            <CardActionBtn label="ย้ายไปลิสต์ต้องนัด" onClick={act({ type: "to_interview" })} variant="secondary" />
-          </div>
-        );
+        return <>
+          <CardActionBtn label="ย้ายไปลิสต์ต้องนัด" onClick={act({ type: "to_interview" })} variant="secondary" />
+          <CardActionBtn label="ลงตารางนัดสัมภาษณ์" onClick={act({ type: "schedule" })} variant="primary" />
+        </>;
       case "to_interview":
-        return (
-          <div className="flex items-center gap-2 mt-3 flex-wrap" onClick={(e) => e.stopPropagation()}>
-            <CardActionBtn label="ลงตารางนัดสัมภาษณ์" onClick={act({ type: "schedule" })} variant="primary" />
-            <CardActionBtn label="ส่งต่อให้พิจารณา" onClick={act({ type: "forward_review" })} variant="secondary" />
-            <CardActionBtn label="ไม่ผ่าน" onClick={act({ type: "reject" })} variant="danger" />
-          </div>
-        );
+        return <>
+          <CardActionBtn label="ไม่ผ่าน" onClick={act({ type: "reject" })} variant="danger" />
+          <CardActionBtn label="ส่งต่อให้พิจารณา" onClick={act({ type: "forward_review" })} variant="secondary" />
+          <CardActionBtn label="ลงตารางนัดสัมภาษณ์" onClick={act({ type: "schedule" })} variant="primary" />
+        </>;
       case "interview":
-        return (
-          <div className="flex items-center gap-2 mt-3 flex-wrap" onClick={(e) => e.stopPropagation()}>
-            <CardActionBtn label="บันทึกผลสัมภาษณ์" onClick={act({ type: "interview_result" })} variant="primary" />
-            <CardActionBtn label="เปลี่ยนวันนัด" onClick={act({ type: "reschedule" })} variant="secondary" />
-            <CardActionBtn label="ไม่มาสัมภาษณ์" onClick={act({ type: "no_show" })} variant="danger" />
-          </div>
-        );
+        return <>
+          <CardActionBtn label="ไม่มาสัมภาษณ์" onClick={act({ type: "no_show" })} variant="danger" />
+          <CardActionBtn label="เปลี่ยนวันนัด" onClick={act({ type: "reschedule" })} variant="secondary" />
+          <CardActionBtn label="บันทึกผลสัมภาษณ์" onClick={act({ type: "interview_result" })} variant="primary" />
+        </>;
       case "passed":
-        return (
-          <div className="flex items-center gap-2 mt-3 flex-wrap" onClick={(e) => e.stopPropagation()}>
-            <CardActionBtn label="รับเข้าทำงาน" onClick={act({ type: "hire" })} variant="primary" />
-            <CardActionBtn label="รอเปรียบเทียบ" onClick={act({ type: "wait_compare" })} variant="secondary" />
-            <CardActionBtn label="ไม่ผ่าน" onClick={act({ type: "reject" })} variant="danger" />
-          </div>
-        );
+        return <>
+          <CardActionBtn label="ไม่ผ่าน" onClick={act({ type: "reject" })} variant="danger" />
+          <CardActionBtn label="รอเปรียบเทียบ" onClick={act({ type: "wait_compare" })} variant="secondary" />
+          <CardActionBtn label="รับเข้าทำงาน" onClick={act({ type: "hire" })} variant="primary" />
+        </>;
       case "offer":
-        return (
-          <div className="flex items-center gap-2 mt-3 flex-wrap" onClick={(e) => e.stopPropagation()}>
-            <CardActionBtn label="รับเข้าทำงาน" onClick={act({ type: "offer_hire" })} variant="primary" />
-            <CardActionBtn label="ไม่รับข้อเสนอ" onClick={act({ type: "offer_reject" })} variant="danger" />
-          </div>
-        );
+        return <>
+          <CardActionBtn label="ไม่รับข้อเสนอ" onClick={act({ type: "offer_reject" })} variant="danger" />
+          <CardActionBtn label="รับเข้าทำงาน" onClick={act({ type: "offer_hire" })} variant="primary" />
+        </>;
       case "hired":
-        return (
-          <div className="flex items-center gap-1.5 mt-3" onClick={(e) => e.stopPropagation()}>
-            <CardActionBtn label="บันทึก / แก้ไขโน้ต" onClick={act({ type: "hired_note" })} variant="secondary" />
-          </div>
-        );
+        return <CardActionBtn label="บันทึก / แก้ไขโน้ต" onClick={act({ type: "hired_note" })} variant="secondary" />;
       case "rejected":
-        return (
-          <div className="flex items-center gap-2 mt-3 flex-wrap" onClick={(e) => e.stopPropagation()}>
-            <CardActionBtn label="แก้ไขเหตุผล" onClick={act({ type: "edit_reject" })} variant="secondary" />
-            <CardActionBtn label="ย้ายกลับไปชอร์ตลิสต์" onClick={act({ type: "restore_shortlist" })} variant="primary" />
-          </div>
-        );
+        return <>
+          <CardActionBtn label="แก้ไขเหตุผล" onClick={act({ type: "edit_reject" })} variant="secondary" />
+          <CardActionBtn label="ย้ายกลับไปชอร์ตลิสต์" onClick={act({ type: "restore_shortlist" })} variant="primary" />
+        </>;
       default:
         return null;
     }
   };
 
+  const actions = renderActions();
+
   return (
     <div
       onClick={() => onSelect(applicant)}
-      className={`bg-white rounded-xl border cursor-pointer transition-all duration-150 group ${
+      className={`bg-white rounded-2xl border cursor-pointer transition-all duration-150 group ${
         isSelected
-          ? "border-[#127EE3]/40 ring-1 ring-[#127EE3]/15"
-          : "border-gray-200 hover:border-gray-300 hover:shadow-sm"
+          ? "border-[#127EE3]/40 ring-2 ring-[#127EE3]/10"
+          : "border-gray-200 hover:border-gray-300 hover:shadow-md"
       }`}
     >
-      <div className="px-4 py-3.5">
-        <div className="flex items-start gap-3">
-          {/* Checkbox + avatar */}
-          <div className="flex items-start gap-2.5 flex-shrink-0 pt-0.5">
-            {onToggleSelect && (
-              <div
-                className={`flex-shrink-0 ${checkboxDisabled ? "opacity-25" : ""}`}
-                onClick={(e) => e.stopPropagation()}
-                title={checkboxDisabled ? "เลือกได้เฉพาะผู้สมัครที่อยู่สถานะเดียวกัน" : undefined}
-              >
-                <input
-                  type="checkbox"
-                  checked={!!isSelected}
-                  disabled={checkboxDisabled}
-                  onChange={() => !checkboxDisabled && onToggleSelect(applicant.id)}
-                  className={`w-4 h-4 rounded border-gray-300 accent-[#127EE3] ${checkboxDisabled ? "cursor-not-allowed" : "cursor-pointer"}`}
-                />
-              </div>
-            )}
-            <div className="relative">
-              <div
-                className="w-9 h-9 rounded-lg flex items-center justify-center text-white text-[11.5px] font-bold"
-                style={{ backgroundColor: applicant.avatarColor }}
-              >
-                {applicant.initials}
-              </div>
-              {!applicant.isRead && (
-                <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-[#127EE3] rounded-full border-2 border-white" />
-              )}
+      <div className="px-5 pt-5 pb-4">
+        {/* Top row: checkbox + avatar + name/title */}
+        <div className="flex items-start gap-3.5">
+          {onToggleSelect && (
+            <div
+              className={`flex-shrink-0 pt-1 ${checkboxDisabled ? "opacity-25" : ""}`}
+              onClick={(e) => e.stopPropagation()}
+              title={checkboxDisabled ? "เลือกได้เฉพาะผู้สมัครที่อยู่สถานะเดียวกัน" : undefined}
+            >
+              <input
+                type="checkbox"
+                checked={!!isSelected}
+                disabled={checkboxDisabled}
+                onChange={() => !checkboxDisabled && onToggleSelect(applicant.id)}
+                className={`w-4 h-4 rounded border-gray-300 accent-[#127EE3] ${checkboxDisabled ? "cursor-not-allowed" : "cursor-pointer"}`}
+              />
             </div>
+          )}
+          {/* Avatar */}
+          <div className="relative flex-shrink-0">
+            <div
+              className="w-11 h-11 rounded-xl flex items-center justify-center text-white text-[13px] font-bold shadow-sm"
+              style={{ backgroundColor: applicant.avatarColor }}
+            >
+              {applicant.initials}
+            </div>
+            {!applicant.isRead && (
+              <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-[#127EE3] rounded-full border-2 border-white" />
+            )}
           </div>
-          {/* Name + role */}
+          {/* Name + title/company */}
           <div className="flex-1 min-w-0">
-            <p className="text-[14px] font-semibold text-[#111827] leading-snug group-hover:text-[#127EE3] transition-colors truncate">
+            <p className="text-[15px] font-semibold text-[#111827] leading-tight group-hover:text-[#127EE3] transition-colors truncate">
               {applicant.name}
             </p>
-            <p className="text-[12.5px] text-gray-400 mt-0.5 truncate leading-snug">
-              {applicant.currentTitle} · {applicant.currentCompany}
+            <p className="text-[13px] text-gray-500 mt-0.5 truncate leading-snug">
+              <span className="font-medium text-gray-600">{applicant.currentTitle}</span>
+              <span className="text-gray-400"> · {applicant.currentCompany}</span>
             </p>
           </div>
+          {/* Stage badge top-right */}
+          <div className="flex-shrink-0">
+            <StageBadge stage={stage} />
+          </div>
         </div>
+
+        {/* Meta + skills */}
         {renderMeta()}
-        {renderActions()}
       </div>
+
+      {/* Divider + actions bottom bar */}
+      {actions && (
+        <div
+          className="flex items-center justify-end gap-2 px-5 py-3 border-t border-gray-100 bg-gray-50/50 rounded-b-2xl"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {actions}
+        </div>
+      )}
     </div>
   );
 }
