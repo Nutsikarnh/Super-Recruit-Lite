@@ -32,7 +32,7 @@ export default function Header({ activePage, onNavigate }: HeaderProps) {
           <input
             type="text"
             placeholder="ค้นหาผู้สมัครด้วย ชื่อ เบอร์โทร อีเมล"
-            className="w-44 pl-9 pr-4 py-2 text-[13.5px] bg-[#F0F2F5] rounded-full border border-transparent focus:outline-none focus:border-[#0DC2FF] focus:bg-white focus:w-56 transition-all placeholder:text-gray-400"
+            className="w-80 pl-9 pr-4 py-2 text-[13.5px] bg-[#F0F2F5] rounded-full border border-transparent focus:outline-none focus:border-[#0DC2FF] focus:bg-white focus:w-96 transition-all placeholder:text-gray-400"
           />
         </div>
 
