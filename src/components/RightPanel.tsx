@@ -213,7 +213,7 @@ function PackageSection({ onBuyPackage }: { onBuyPackage?: () => void }) {
 
   return (
     <SectionCard className="p-5">
-      <SectionLabel>แพ็กเกจปัจจุบัน</SectionLabel>
+      <SectionLabel>แพ็กเกจ</SectionLabel>
 
       <div className="flex flex-col gap-5">
         {/* Job Quota */}
@@ -234,7 +234,7 @@ function PackageSection({ onBuyPackage }: { onBuyPackage?: () => void }) {
               style={{ width: `${jobPct}%` }}
             />
           </div>
-          <p className="text-[13.5px] text-gray-400 mt-1.5">เหลือ {jobTotal - jobUsed} ตำแหน่ง</p>
+          <p className="text-[13.5px] text-gray-400 mt-1.5">ใช้ไปแล้ว {jobUsed} ตำแหน่ง</p>
         </div>
 
         {/* Talent Credit */}
@@ -255,7 +255,7 @@ function PackageSection({ onBuyPackage }: { onBuyPackage?: () => void }) {
               style={{ width: `${creditPct}%` }}
             />
           </div>
-          <p className="text-[13.5px] text-gray-400 mt-1.5">เหลือ {(creditTotal - creditUsed).toLocaleString()} เครดิต</p>
+          <p className="text-[13.5px] text-gray-400 mt-1.5">ใช้ไปแล้ว {creditUsed.toLocaleString()} เครดิต</p>
         </div>
 
         {/* Expiry */}

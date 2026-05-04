@@ -149,7 +149,7 @@ function ChannelDropdown({
         onClick={() => setOpen((v) => !v)}
         className="flex items-center gap-2 px-3.5 py-2 rounded-xl border border-gray-200 bg-white hover:border-[#127EE3]/40 hover:bg-[#F7F9FC] transition-all text-[14px] font-semibold text-[#1A1A2E] shadow-xs"
       >
-        <span className="text-gray-400 text-[12px] font-medium mr-0.5">ช่องทาง</span>
+        <span className="text-gray-400 text-[12px] font-medium mr-0.5">สถานะ</span>
         {options[value]}
         <span className="ml-0.5 text-[12px] font-bold text-[#127EE3] bg-[#127EE3]/10 px-1.5 py-0.5 rounded-full leading-none">
           {counts[value]}
