@@ -2416,6 +2416,11 @@ function ManageContent({ store, initialStage = "new", onStageChange, applicant, 
                   </div>
                 )}
 
+                {/* ── Move to any stage — always visible ── */}
+                {stage !== "rejected" && stage !== "hired" && (
+                  <MoveToStageDropdown stage={stage} onMove={completeStageChange} />
+                )}
+
                 {/* ── hired ── */}
                 {stage === "hired" && (
                   <div className="space-y-2.5">
@@ -3064,6 +3069,52 @@ function ForwardResumeModal({ onClose }: { onClose: () => void }) {
 }
 
 /* ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */
+/* Move-to-stage dropdown                                               */
+/* ------------------------------------------------------------------ */
+const MOVEABLE_STAGES: { key: PipelineStage; label: string }[] = [
+  { key: "new",          label: "ใหม่" },
+  { key: "shortlist",    label: "คัดกรอง" },
+  { key: "review",       label: "ส่งต่อ" },
+  { key: "to_interview", label: "รอนัด" },
+  { key: "interview",    label: "สัมภาษณ์" },
+  { key: "passed",       label: "ผ่านสัมภาษณ์" },
+  { key: "offer",        label: "Offer" },
+  { key: "hired",        label: "รับเข้าทำงาน" },
+];
+
+function MoveToStageDropdown({ stage, onMove }: { stage: PipelineStage; onMove: (s: PipelineStage) => void }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false); };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [open]);
+  const others = MOVEABLE_STAGES.filter((s) => s.key !== stage);
+  return (
+    <div className="relative" ref={ref}>
+      <button onClick={() => setOpen((v) => !v)}
+        className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-gray-200 text-gray-500 text-[12px] font-medium bg-white hover:border-[#127EE3] hover:text-[#127EE3] transition-colors">
+        <MoreHorizontal className="w-3.5 h-3.5" />ย้ายไปขั้นตอนอื่น
+        <ChevronDown className={`w-3 h-3 transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open && (
+        <div className="absolute left-0 bottom-full mb-1.5 bg-white rounded-xl border border-gray-200 shadow-lg z-50 min-w-[180px] overflow-hidden">
+          <p className="px-3 py-2 text-[10.5px] font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100">ย้ายไปที่</p>
+          {others.map((s) => (
+            <button key={s.key} onClick={() => { onMove(s.key); setOpen(false); }}
+              className="w-full text-left px-3 py-2.5 text-[12.5px] text-gray-700 hover:bg-gray-50 hover:text-[#127EE3] transition-colors flex items-center gap-2">
+              <span>{s.label}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* Root component                                                        */
 /* ------------------------------------------------------------------ */
 export default function ResumePanel({ onClose, job, onContact, isApplicant = false, applicant, onApplicantStageChange }: ResumePanelProps) {
