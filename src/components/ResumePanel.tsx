@@ -25,7 +25,7 @@ interface CandidateDisplay {
   stage?: string;
 }
 
-interface ResumePanelProps { onClose: () => void; job?: JobRow; onContact?: () => void; isApplicant?: boolean; applicant?: ApplicantRow; onApplicantStageChange?: (id: string, stage: PipelineStage) => void; }
+interface ResumePanelProps { onClose: () => void; job?: JobRow; onContact?: () => void; isApplicant?: boolean; isRevealed?: boolean; applicant?: ApplicantRow; onApplicantStageChange?: (id: string, stage: PipelineStage) => void; }
 
 const REVEALED_NAME = "นายอนันต์ สุริยะพร";
 const REVEALED_PHONE = "081-234-5678";
@@ -3117,14 +3117,14 @@ function MoveToStageDropdown({ stage, onMove }: { stage: PipelineStage; onMove: 
 
 /* Root component                                                        */
 /* ------------------------------------------------------------------ */
-export default function ResumePanel({ onClose, job, onContact, isApplicant = false, applicant, onApplicantStageChange }: ResumePanelProps) {
+export default function ResumePanel({ onClose, job, onContact, isApplicant = false, isRevealed = false, applicant, onApplicantStageChange }: ResumePanelProps) {
   const [tab, setTab] = useState<"resume" | "docs" | "ai" | "notes" | "manage" | "timeline">("resume");
   const [contactRevealed, setContactRevealed] = useState(false);
   const [revealLoading, setRevealLoading] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [bottomBarContent, setBottomBarContent] = useState<React.ReactNode>(null);
 
-  const isUnlockedPreview = contactRevealed || isApplicant;
+  const isUnlockedPreview = contactRevealed || isApplicant || isRevealed;
 
   const candidateDisplay: CandidateDisplay | undefined = applicant ? {
     name:        applicant.name,

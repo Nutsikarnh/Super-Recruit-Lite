@@ -1245,8 +1245,11 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
     setActiveFilterChips([]);
   };
 
-  const handleViewProfile = (candidate: Candidate) => {
+  const [isRevealedPanel, setIsRevealedPanel] = useState(false);
+
+  const handleViewProfile = (candidate: Candidate, revealed = false) => {
     setActiveCandidateForModal(candidate);
+    setIsRevealedPanel(revealed);
     setShowResumePanel(true);
   };
 
@@ -1374,6 +1377,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
         <ResumePanel
           onClose={() => setShowResumePanel(false)}
           onContact={activeCandidateForModal ? () => handleContact(activeCandidateForModal) : undefined}
+          isRevealed={isRevealedPanel}
         />
       )}
       {showMessageModal && activeCandidateForModal && (
@@ -1661,7 +1665,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                         bookmarked={bookmarkedIds.has(candidate.id)}
                         selected={bookmarkSelected.has(candidate.id)}
                         onSelect={() => toggleOne(candidate.id)}
-                        onView={() => handleViewProfile(candidate)}
+                        onView={() => handleViewProfile(candidate, OPENED_IDS.includes(candidate.id))}
                         onBookmark={() => handleToggleBookmark(candidate.id)}
                       />
                     ))}
@@ -1781,7 +1785,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                         bookmarked={bookmarkedIds.has(candidate.id)}
                         selected={openedSelected.has(candidate.id)}
                         onSelect={() => toggleOpenedOne(candidate.id)}
-                        onView={() => handleViewProfile(candidate)}
+                        onView={() => handleViewProfile(candidate, true)}
                         onBookmark={() => handleToggleBookmark(candidate.id)}
                       />
                     ))}
