@@ -217,7 +217,7 @@ export default function RecruitmentSummary({
           <div className="w-9 h-9 bg-[#0DC2FF]/10 rounded-xl flex items-center justify-center flex-shrink-0">
             <BarChart2 className="w-5 h-5 text-[#0DC2FF]" />
           </div>
-          <h2 className="text-[#1A1A2E] font-bold text-[20px] tracking-tight">สรุปสถานะการสรรหา</h2>
+          <h2 className="text-[#1A1A2E] font-bold text-[20px] tracking-tight">ตำแหน่งงานล่าสุด</h2>
         </div>
 
         {/* Channel dropdown */}
