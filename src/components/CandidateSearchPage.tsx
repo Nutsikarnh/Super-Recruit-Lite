@@ -453,7 +453,6 @@ function CandidateCard({
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0">
                 <div className="flex items-center gap-2 flex-wrap mb-0.5">
-                  <span className="text-[11px] text-[#127EE3] font-bold font-mono bg-[#EBF5FF] px-1.5 py-0.5 rounded">{candidate.code}</span>
                   {revealed && (
                     <span className="flex items-center gap-1 px-1.5 py-0.5 bg-emerald-50 border border-emerald-100 rounded-full text-[10px] font-bold text-emerald-600">
                       <CheckCircle2 className="w-2.5 h-2.5" />เปิดดูแล้ว
