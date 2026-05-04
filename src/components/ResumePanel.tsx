@@ -2055,21 +2055,18 @@ function ManageContent({ store, initialStage = "new", onStageChange, applicant, 
               const cfg = PIPELINE_STAGES.find((p) => p.key === s.key)!;
               return (
                 <div key={s.key} className="flex items-center flex-shrink-0">
-                  <button
-                    onClick={() => completeStageChange(s.key)}
-                    className={`flex flex-col items-center gap-1 px-2 py-1 rounded-lg transition-all group ${isCurrent ? "cursor-default" : "hover:bg-white/80 cursor-pointer"}`}
-                  >
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-all text-[9px] font-bold ${
+                  <div className="flex flex-col items-center gap-1 px-2 py-1">
+                    <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-[9px] font-bold ${
                       isPast ? "bg-emerald-500 text-white" :
                       isCurrent ? `${cfg.bg} ${cfg.color} ring-2 ring-offset-1 ring-current` :
-                      "bg-gray-200 text-gray-400 group-hover:bg-gray-300"
+                      "bg-gray-200 text-gray-400"
                     }`}>
                       {isPast ? <CheckCircle2 className="w-3.5 h-3.5" /> : <span>{i + 1}</span>}
                     </div>
                     <span className={`text-[9.5px] font-semibold whitespace-nowrap ${
                       isCurrent ? cfg.color : isPast ? "text-emerald-600" : "text-gray-400"
                     }`}>{s.short}</span>
-                  </button>
+                  </div>
                   {i < ALL_STEPPER.length - 1 && (
                     <div className={`w-3 h-px flex-shrink-0 ${isPast ? "bg-emerald-300" : "bg-gray-200"}`} />
                   )}
