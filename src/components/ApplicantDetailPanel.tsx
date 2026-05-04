@@ -851,37 +851,164 @@ function timelineIconAdp(type: ActivityItem["type"], text: string) {
   return <div className="w-8 h-8 rounded-full bg-gray-100 border-2 border-white shadow-sm flex items-center justify-center flex-shrink-0"><MoreHorizontal className="w-3.5 h-3.5 text-gray-400" /></div>;
 }
 
+// ─── Timeline helpers ─────────────────────────────────────────────────────────
+
+const TYPE_COLOR: Record<ActivityItem["type"], string> = {
+  stage:  "#3B82F6",
+  note:   "#F59E0B",
+  file:   "#6B7280",
+  reveal: "#6B7280",
+  email:  "#10B981",
+  chat:   "#10B981",
+};
+
+const TYPE_LABEL: Record<ActivityItem["type"], string> = {
+  stage:  "เปลี่ยนสถานะ",
+  note:   "โน้ต",
+  file:   "ไฟล์",
+  reveal: "ไฟล์",
+  email:  "อีเมล/ส่งต่อ",
+  chat:   "อีเมล/ส่งต่อ",
+};
+
+function groupByDate(items: ActivityItem[]): { label: string; items: ActivityItem[] }[] {
+  const groups: Map<string, ActivityItem[]> = new Map();
+  for (const item of items) {
+    const timeStr = item.time ?? "";
+    let label = "ก่อนหน้า";
+    if (timeStr.startsWith("วันนี้")) label = "วันนี้";
+    else if (timeStr.startsWith("เมื่อวาน")) label = "เมื่อวาน";
+    else {
+      // extract date part like "28 เม.ย." or "25 เม.ย. 2568"
+      const match = timeStr.match(/^(\d{1,2}\s[\u0E00-\u0E7F.]+(?:\s\d{4})?)/);
+      label = match ? match[1] : timeStr.split(" ").slice(0, 2).join(" ");
+    }
+    if (!groups.has(label)) groups.set(label, []);
+    groups.get(label)!.push(item);
+  }
+  return Array.from(groups.entries()).map(([label, items]) => ({ label, items }));
+}
+
+function extractTime(timeStr: string): string {
+  const match = timeStr.match(/(\d{1,2}:\d{2})/);
+  return match ? match[1] : timeStr.includes("เมื่อกี้") ? "เพิ่งเมื่อกี้" : "";
+}
+
 function TimelineContent({ store, applicant }: { store: ActivityStore; applicant: ApplicantRow }) {
   const mockBase: ActivityItem[] = [
-    { id: "tlb3", actor: "สมศรี HR", actorInitials: "สร", actorColor: "bg-[#127EE3]", type: "stage", text: "ย้ายสถานะเป็น ชอร์ตลิสต์", time: "วันนี้ 09:43" },
-    { id: "tlb2", actor: "สมศรี HR", actorInitials: "สร", actorColor: "bg-[#127EE3]", type: "reveal", text: "เปิดดูเรซูเม่", detail: "เปิดดูข้อมูลการติดต่อและเรซูเม่เต็ม", time: "วันนี้ 09:42" },
-    { id: "tlb1", actor: "ระบบ", actorInitials: "ระ", actorColor: "bg-gray-400", type: "chat", text: "ผู้สมัครส่งใบสมัคร", detail: `ตำแหน่ง ${applicant.currentTitle} — ${applicant.location}`, time: "25 เม.ย. 2568" },
+    { id: "tlb4", actor: "สมศรี HR", actorInitials: "สร", actorColor: "bg-[#127EE3]", type: "stage",  text: "เปลี่ยนสถานะเป็น สัมภาษณ์", time: "วันนี้ เพิ่งเมื่อกี้" },
+    { id: "tlb5", actor: "สมศรี HR", actorInitials: "สร", actorColor: "bg-[#127EE3]", type: "email",  text: "ส่งอีเมลนัดสัมภาษณ์", detail: "ถึง anant.suriyaporn@gmail.com", time: "วันนี้ 10:05" },
+    { id: "tlb6", actor: "วิชัย Manager", actorInitials: "วช", actorColor: "bg-emerald-500", type: "note", text: "โน้ตจาก วิชัย Manager", detail: "\"Portfolio ดีมาก น่าสนใจ ลองนัดคุยดู\"", time: "วันนี้ 11:20" },
+    { id: "tlb3", actor: "สมศรี HR", actorInitials: "สร", actorColor: "bg-[#127EE3]", type: "stage",  text: "เปลี่ยนสถานะเป็น ขอร์ตลิสต์", time: "วันนี้ 09:43" },
+    { id: "tlb2", actor: "สมศรี HR", actorInitials: "สร", actorColor: "bg-[#127EE3]", type: "reveal", text: "เปิดดูข้อมูลการติดต่อ", time: "วันนี้ 09:42" },
+    { id: "tlb7", actor: "สมศรี HR", actorInitials: "สร", actorColor: "bg-[#127EE3]", type: "file",   text: "อัปโหลดไฟล์ Portfolio", detail: "Portfolio_Anant_Design.pdf", time: "เมื่อวาน 15:30" },
+    { id: "tlb8", actor: "คุณแพม HR", actorInitials: "พม", actorColor: "bg-sky-500",   type: "email",  text: "ส่งต่อให้ Hiring Manager", detail: "ส่งโปรไฟล์ให้คุณวิชัย Manager เพื่อพิจารณา", time: "28 เม.ย. 14:15" },
+    { id: "tlb1", actor: "ระบบ",       actorInitials: "ระ", actorColor: "bg-gray-400",   type: "chat",   text: "ผู้สมัครส่งใบสมัคร", detail: `ตำแหน่ง ${applicant.currentTitle} — ${applicant.location}`, time: "25 เม.ย. 2568" },
   ];
   const allItems = [...store.activities, ...mockBase];
+  const groups = groupByDate(allItems);
+
+  const legendItems: { type: ActivityItem["type"]; label: string }[] = [
+    { type: "stage", label: "เปลี่ยนสถานะ" },
+    { type: "note",  label: "โน้ต" },
+    { type: "file",  label: "ไฟล์" },
+    { type: "email", label: "อีเมล/ส่งต่อ" },
+  ];
+
   return (
-    <div className="px-7 py-6">
-      <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-5">ประวัติทั้งหมด ({allItems.length} รายการ)</p>
-      <div className="relative">
-        <div className="absolute left-[15px] top-4 bottom-4 w-px bg-gray-200" />
-        <div className="space-y-0">
-          {allItems.map((item, i) => (
-            <div key={item.id} className="relative flex gap-4 pb-5 last:pb-0">
-              <div className="relative z-10">{timelineIconAdp(item.type, item.text)}</div>
-              <div className="flex-1 min-w-0 pt-1">
-                <div className="flex items-start justify-between gap-2">
-                  <p className="text-[13px] font-semibold text-[#1A1A2E] leading-snug">{item.text}</p>
-                  <span className="text-[11px] text-gray-400 whitespace-nowrap flex-shrink-0 mt-0.5">{item.time}</span>
+    <div className="flex flex-col h-full">
+      {/* Progress bar */}
+      <div className="px-6 py-4 border-b border-gray-100 bg-[#F7F9FC] flex-shrink-0">
+        <p className="text-[10.5px] font-bold text-gray-400 uppercase tracking-widest mb-3">ความคืบหน้า</p>
+        <StageProgressBar current={applicant.stage} />
+      </div>
+
+      {/* Timeline list */}
+      <div className="flex-1 overflow-y-auto px-6 py-5">
+        <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-4">
+          ประวัติทั้งหมด ({allItems.length} รายการ)
+        </p>
+
+        <div className="space-y-6">
+          {groups.map((group) => (
+            <div key={group.label}>
+              {/* Date group header */}
+              <div className="flex items-center gap-2.5 mb-3">
+                <span className="text-[12px] font-semibold text-gray-500">{group.label}</span>
+                <div className="flex-1 border-t border-gray-100" />
+              </div>
+
+              {/* Items in group */}
+              <div className="relative">
+                <div className="absolute left-[13px] top-3 bottom-3 w-px bg-gray-100" />
+                <div className="space-y-1">
+                  {group.items.map((item) => {
+                    const dot = TYPE_COLOR[item.type];
+                    const timeLabel = extractTime(item.time);
+                    return (
+                      <div key={item.id} className="relative flex gap-3.5">
+                        {/* Dot */}
+                        <div className="relative z-10 mt-3 flex-shrink-0">
+                          <div
+                            className="w-[11px] h-[11px] rounded-full border-2 border-white shadow-sm flex-shrink-0"
+                            style={{ backgroundColor: dot }}
+                          />
+                        </div>
+                        {/* Card */}
+                        <div className="flex-1 min-w-0 bg-[#F7F9FC] rounded-xl px-3.5 py-2.5 mb-1.5">
+                          <div className="flex items-start justify-between gap-2">
+                            <p className="text-[12.5px] font-semibold text-[#1A1A2E] leading-snug">
+                              {item.type === "stage"
+                                ? <>เปลี่ยนสถานะเป็น{" "}
+                                    <span style={{ color: dot }}>
+                                      {item.text.replace(/.*เป็น\s?/, "")}
+                                    </span>
+                                  </>
+                                : item.text
+                              }
+                            </p>
+                            {timeLabel && (
+                              <span className="text-[11px] text-gray-400 whitespace-nowrap flex-shrink-0 mt-0.5 tabular-nums">
+                                {timeLabel}
+                              </span>
+                            )}
+                          </div>
+                          {item.detail && (
+                            <p className="text-[11.5px] text-gray-500 mt-0.5 leading-relaxed">{item.detail}</p>
+                          )}
+                          {item.emailTo && !item.detail && (
+                            <p className="text-[11.5px] text-gray-400 mt-0.5">ถึง: {item.emailTo}</p>
+                          )}
+                          <p className="text-[11px] text-gray-400 mt-1">โดย {item.actor}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
-                {item.detail && <p className="text-[12px] text-gray-500 mt-0.5 leading-relaxed">{item.detail}</p>}
-                {item.emailTo && !item.detail && <p className="text-[12px] text-gray-400 mt-0.5">ถึง: {item.emailTo}</p>}
-                <p className="text-[11.5px] text-gray-400 mt-1">โดย {item.actor}</p>
-                {i < allItems.length - 1 && <div className="mt-4 border-t border-gray-50" />}
               </div>
             </div>
           ))}
         </div>
+
+        <div className="h-4" />
       </div>
-      <div className="h-4" />
+
+      {/* Legend footer */}
+      <div className="flex-shrink-0 border-t border-gray-100 bg-white px-6 py-3 flex items-center gap-5 flex-wrap">
+        {legendItems.map((l) => (
+          <div key={l.type} className="flex items-center gap-1.5">
+            <div
+              className="w-2 h-2 rounded-full flex-shrink-0"
+              style={{ backgroundColor: TYPE_COLOR[l.type] }}
+            />
+            <span className="text-[11px] text-gray-500">{l.label}</span>
+          </div>
+        ))}
+        <div className="flex-1" />
+        <button className="w-7 h-7 rounded-full border border-gray-200 bg-white flex items-center justify-center text-gray-400 hover:text-gray-600 hover:border-gray-300 transition-all">
+          <ChevronDown className="w-3.5 h-3.5" />
+        </button>
+      </div>
     </div>
   );
 }
