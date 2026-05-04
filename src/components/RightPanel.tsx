@@ -148,7 +148,7 @@ function LearningSection() {
         </div>
       </div>
       <a href="https://www.topgunacademy.com/" target="_blank" rel="noopener noreferrer" className="w-full py-2.5 border border-[#127EE3] text-[#127EE3] hover:bg-[#127EE3] hover:text-white text-[13px] font-semibold rounded-xl transition-all flex items-center justify-center">
-        ไป Up Skill เลย
+        Upskill ฟรีที่นี่
       </a>
     </SectionCard>
   );

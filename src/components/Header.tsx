@@ -31,7 +31,7 @@ export default function Header({ activePage, onNavigate }: HeaderProps) {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
           <input
             type="text"
-            placeholder="ค้นหา..."
+            placeholder="ค้นหาผู้สมัครด้วย ชื่อ เบอร์โทร อีเมล"
             className="w-44 pl-9 pr-4 py-2 text-[13.5px] bg-[#F0F2F5] rounded-full border border-transparent focus:outline-none focus:border-[#0DC2FF] focus:bg-white focus:w-56 transition-all placeholder:text-gray-400"
           />
         </div>
