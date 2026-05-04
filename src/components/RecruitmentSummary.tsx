@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { BarChart2, ArrowRight, Sparkles, Users, Search, Info, Zap, ChevronRight } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { BarChart2, ArrowRight, Sparkles, Users, Search, Info, Zap, ChevronRight, ChevronDown } from "lucide-react";
 
 import type { JobRow } from "../data/jobs";
 
@@ -121,6 +121,68 @@ function TopPickInlinePreview({ onViewTopPicks, jobTitle }: { onViewTopPicks: ()
   );
 }
 
+function ChannelDropdown({
+  options,
+  counts,
+  value,
+  onChange,
+}: {
+  options: string[];
+  counts: number[];
+  value: number;
+  onChange: (i: number) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="flex items-center gap-2 px-3.5 py-2 rounded-xl border border-gray-200 bg-white hover:border-[#127EE3]/40 hover:bg-[#F7F9FC] transition-all text-[14px] font-semibold text-[#1A1A2E] shadow-xs"
+      >
+        <span className="text-gray-400 text-[12px] font-medium mr-0.5">ช่องทาง</span>
+        {options[value]}
+        <span className="ml-0.5 text-[12px] font-bold text-[#127EE3] bg-[#127EE3]/10 px-1.5 py-0.5 rounded-full leading-none">
+          {counts[value]}
+        </span>
+        <ChevronDown className={`w-3.5 h-3.5 text-gray-400 transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+
+      {open && (
+        <div className="absolute right-0 top-full mt-1.5 w-52 bg-white rounded-xl border border-gray-100 shadow-xl shadow-black/8 z-50 overflow-hidden py-1">
+          {options.map((label, i) => (
+            <button
+              key={i}
+              onClick={() => { onChange(i); setOpen(false); }}
+              className={`w-full flex items-center justify-between px-4 py-2.5 text-[14px] font-medium transition-colors ${
+                value === i
+                  ? "bg-[#127EE3]/8 text-[#127EE3] font-semibold"
+                  : "text-gray-700 hover:bg-gray-50"
+              }`}
+            >
+              {label}
+              <span className={`text-[12px] font-bold px-1.5 py-0.5 rounded-full leading-none ${
+                value === i ? "bg-[#127EE3]/15 text-[#127EE3]" : "bg-gray-100 text-gray-400"
+              }`}>
+                {counts[i]}
+              </span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function RecruitmentSummary({
   jobs,
   onViewTopPicks,
@@ -149,45 +211,22 @@ export default function RecruitmentSummary({
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm">
 
-      {/* Heading — generous top padding, breathing room */}
-      <div className="px-7 pt-7 pb-5">
+      {/* Heading row — icon + title left, dropdown right */}
+      <div className="px-7 pt-7 pb-5 flex items-center justify-between border-b-2 border-gray-100">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 bg-[#0DC2FF]/10 rounded-xl flex items-center justify-center flex-shrink-0">
             <BarChart2 className="w-5 h-5 text-[#0DC2FF]" />
           </div>
           <h2 className="text-[#1A1A2E] font-bold text-[20px] tracking-tight">สรุปสถานะการสรรหา</h2>
         </div>
-      </div>
 
-      {/* Tabs — clear border below, more gap between tab items */}
-      <div className="flex border-b-2 border-gray-100 px-7 overflow-x-auto">
-        {tabLabels.map((label, i) => (
-          <button
-            key={i}
-            onClick={() => setActiveTab(i)}
-            className={`relative flex items-center gap-2 py-3.5 px-0.5 mr-8 text-[15px] font-semibold transition-all whitespace-nowrap ${
-              activeTab === i
-                ? "text-[#127EE3]"
-                : "text-gray-400 hover:text-gray-600"
-            }`}
-          >
-            {label}
-            <span
-              className={`text-[12px] px-1.5 py-0.5 rounded-full font-bold min-w-[20px] text-center leading-none ${
-                tabCounts[i] > 0
-                  ? activeTab === i
-                    ? "bg-[#127EE3]/12 text-[#127EE3]"
-                    : "bg-gray-100 text-gray-400"
-                  : "text-gray-300"
-              }`}
-            >
-              {tabCounts[i]}
-            </span>
-            {activeTab === i && (
-              <span className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#127EE3] rounded-t-full" />
-            )}
-          </button>
-        ))}
+        {/* Channel dropdown */}
+        <ChannelDropdown
+          options={tabLabels}
+          counts={tabCounts}
+          value={activeTab}
+          onChange={setActiveTab}
+        />
       </div>
 
       {/* Context banners */}
