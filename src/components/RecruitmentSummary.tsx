@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BarChart2, ArrowRight, Sparkles, Users, Search, Info, Zap, Brain, BookmarkPlus, ChevronRight, Clock, Briefcase, MapPin } from "lucide-react";
+import { BarChart2, ArrowRight, Sparkles, Users, Search, Info, Zap, ChevronRight } from "lucide-react";
 
 import type { JobRow } from "../data/jobs";
 
@@ -46,12 +46,10 @@ function TopPickInlinePreview({ onViewTopPicks, jobTitle }: { onViewTopPicks: ()
       {/* Header */}
       <div className="flex items-center justify-between px-6 py-2.5 border-b border-gray-100">
         <div className="flex items-center gap-2.5">
-          {/* Column reference badge */}
           <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-[#F0F8FF] border border-[#0DC2FF]/20">
             <Sparkles className="w-3 h-3 text-[#0DC2FF]" />
             <span className="text-[10.5px] font-bold text-[#0277a8] tracking-wide uppercase">Top Picks</span>
           </div>
-          {/* Context: which job */}
           <span className="text-[12px] text-gray-500">
             ตัวอย่าง 1 ใน <strong className="text-[#1A1A2E]">142 คน</strong> ที่ AI คัดสำหรับ
             {jobTitle && <span className="ml-1 font-semibold text-[#127EE3]">{jobTitle}</span>}
@@ -65,11 +63,8 @@ function TopPickInlinePreview({ onViewTopPicks, jobTitle }: { onViewTopPicks: ()
         </button>
       </div>
 
-      {/* Card body — exactly 2 columns: left 35%, right 65% */}
       <div className="px-6 pt-4 pb-4 grid grid-cols-[0.9fr_2.1fr] gap-0">
-        {/* LEFT COLUMN: top section (avatar + name/tag) + bottom section (meta + skills) */}
         <div className="flex flex-col gap-4 pr-4">
-          {/* TOP: avatar left, name + tag stacked right */}
           <div className="flex items-start gap-3">
             <div className="w-10 h-10 rounded-xl bg-[#F0F2F5] border border-gray-200 flex items-center justify-center flex-shrink-0">
               <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 text-gray-300" stroke="currentColor" strokeWidth="1.5">
@@ -84,7 +79,6 @@ function TopPickInlinePreview({ onViewTopPicks, jobTitle }: { onViewTopPicks: ()
               </div>
             </div>
           </div>
-          {/* BOTTOM: company/exp/salary + skill tags */}
           <div className="flex flex-col gap-1.5">
             <span className="text-[11.5px] text-gray-500">
               <span className="font-medium">LINE MAN Wongnai</span>
@@ -100,7 +94,6 @@ function TopPickInlinePreview({ onViewTopPicks, jobTitle }: { onViewTopPicks: ()
           </div>
         </div>
 
-        {/* RIGHT COLUMN: title, bullets, CTA button */}
         <div className="flex flex-col gap-3 pl-4 border-l border-[#E5E7EB]">
           <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Why This Candidate Stands Out</p>
           <ul className="space-y-1.5">
@@ -153,76 +146,70 @@ export default function RecruitmentSummary({
   const isSearchTab = activeTab === 2;
   const isJobFairTab = activeTab === 3;
 
-  const firstOnlineJobId = activeTab === 0 ? onlineJobs[0]?.id : undefined;
-
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm">
-      <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-gray-100">
+      {/* Title row — plain heading, no box */}
+      <div className="flex items-center justify-between px-6 pt-6 pb-0">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 bg-[#0DC2FF]/10 rounded-lg flex items-center justify-center">
             <BarChart2 className="w-4 h-4 text-[#0DC2FF]" />
           </div>
-          <h2 className="text-[#1A1A2E] font-semibold text-[16px]">สรุปสถานะการสรรหา</h2>
+          <h2 className="text-[#1A1A2E] font-bold text-[17px] tracking-tight">สรุปสถานะการสรรหา</h2>
         </div>
-        <button
-          onClick={onManageJobs}
-          className="flex items-center gap-1.5 text-[14px] text-[#127EE3] font-medium hover:underline transition-all"
-        >
-          ดูตำแหน่งทั้งหมด
-          <ArrowRight className="w-4 h-4" />
-        </button>
       </div>
 
-      <div className="flex border-b border-gray-100 px-6 overflow-x-auto">
+      {/* Tabs — directly under heading, act as section header */}
+      <div className="flex border-b border-gray-200 px-6 mt-4 overflow-x-auto">
         {tabLabels.map((label, i) => (
           <button
             key={i}
             onClick={() => setActiveTab(i)}
-            className={`relative flex items-center gap-1.5 py-3.5 px-1 mr-6 text-[14px] font-medium transition-all whitespace-nowrap ${
-              activeTab === i ? "text-[#127EE3]" : "text-gray-400 hover:text-gray-600"
+            className={`relative flex items-center gap-1.5 py-3 px-1 mr-7 text-[13.5px] font-semibold transition-all whitespace-nowrap ${
+              activeTab === i
+                ? "text-[#127EE3]"
+                : "text-gray-400 hover:text-gray-600"
             }`}
           >
             {label}
             {tabCounts[i] > 0 ? (
               <span
-                className={`text-[12px] px-1.5 py-0.5 rounded-full font-semibold ${
+                className={`text-[11.5px] px-1.5 py-0.5 rounded-full font-bold min-w-[20px] text-center ${
                   activeTab === i
-                    ? "bg-[#127EE3]/10 text-[#127EE3]"
+                    ? "bg-[#127EE3]/12 text-[#127EE3]"
                     : "bg-gray-100 text-gray-400"
                 }`}
               >
                 {tabCounts[i]}
               </span>
             ) : (
-              <span className="text-[12px] text-gray-300">(0)</span>
+              <span className="text-[11.5px] text-gray-300 font-medium">0</span>
             )}
             {activeTab === i && (
-              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#127EE3] rounded-t-full" />
+              <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#127EE3] rounded-t-full" />
             )}
           </button>
         ))}
       </div>
 
+      {/* Context banners */}
       {activeTab === 1 && offlineJobs.length > 0 && (
-        <div className="mx-6 mt-4 mb-0 flex items-start gap-2.5 bg-red-50 border border-red-100 rounded-xl px-4 py-3">
+        <div className="mx-6 mt-4 flex items-start gap-2.5 bg-red-50 border border-red-100 rounded-xl px-4 py-3">
           <span className="w-2 h-2 mt-1.5 rounded-full bg-red-400 shrink-0" />
           <p className="text-[13px] text-red-700 leading-relaxed">
             ตำแหน่งเหล่านี้ถูก offline ไปแล้ว — ไม่รับสมัครใหม่แล้ว แต่ยังสามารถดูและจัดการผู้สมัครที่ค้างอยู่ได้
           </p>
         </div>
       )}
-
       {activeTab === 2 && searchJobs.length > 0 && (
-        <div className="mx-6 mt-4 mb-0 flex items-start gap-2.5 bg-amber-50 border border-amber-100 rounded-xl px-4 py-3">
+        <div className="mx-6 mt-4 flex items-start gap-2.5 bg-amber-50 border border-amber-100 rounded-xl px-4 py-3">
           <Search className="w-4 h-4 text-amber-600 mt-0.5 shrink-0" />
           <p className="text-[13px] text-amber-800 leading-relaxed">
             ตำแหน่งเหล่านี้ไม่ได้เปิดรับสมัครสาธารณะ — ทีมค้นหาและติดต่อผู้สมัครโดยตรง (Executive / Referral Search) กด <span className="font-semibold">จัดการ</span> เพื่อดู Shortlist ของแต่ละตำแหน่ง
           </p>
         </div>
       )}
-
       {activeTab === 3 && jobFairJobs.length > 0 && (
-        <div className="mx-6 mt-4 mb-0 flex items-start gap-2.5 bg-blue-50 border border-blue-100 rounded-xl px-4 py-3">
+        <div className="mx-6 mt-4 flex items-start gap-2.5 bg-blue-50 border border-blue-100 rounded-xl px-4 py-3">
           <Users className="w-4 h-4 text-[#127EE3] mt-0.5 shrink-0" />
           <p className="text-[13px] text-[#127EE3] leading-relaxed">
             ตำแหน่งที่นำไปเปิดรับสมัครใน <span className="font-semibold">Thailand Tech & Digital Job Fair 2025</span> — ผู้สมัครที่พบในงานสามารถเพิ่มเข้าระบบได้เลย
@@ -230,6 +217,7 @@ export default function RecruitmentSummary({
         </div>
       )}
 
+      {/* Table */}
       <div className="px-6">
         <table className="w-full">
           <thead>
@@ -266,7 +254,7 @@ export default function RecruitmentSummary({
               <>
               <tr
                 key={job.id}
-                className={`border-b border-gray-50 last:border-0 hover:bg-[#F0F2F5]/50 transition-colors`}
+                className="border-b border-gray-50 last:border-0 hover:bg-[#F0F2F5]/50 transition-colors"
               >
                 <td className="py-4">
                   <div className="flex items-center gap-2">
@@ -333,7 +321,6 @@ export default function RecruitmentSummary({
                   </td>
                 )}
               </tr>
-              {/* Inline Top Picks Preview — only for the first online job */}
               {rowIdx === 0 && activeTab === 0 && (
                 <tr key={`${job.id}-toppick`} className="border-b border-gray-100">
                   <td colSpan={3} className="pb-4 pt-2 bg-gray-50 rounded-lg">
@@ -354,6 +341,16 @@ export default function RecruitmentSummary({
         </table>
       </div>
 
+      {/* Footer: ดูตำแหน่งทั้งหมด — bottom-right */}
+      <div className="flex justify-end px-6 pb-5 pt-2">
+        <button
+          onClick={onManageJobs}
+          className="flex items-center gap-1.5 text-[13px] text-[#127EE3] font-semibold hover:text-[#0f6cc7] transition-colors"
+        >
+          ดูตำแหน่งทั้งหมด
+          <ArrowRight className="w-3.5 h-3.5" />
+        </button>
+      </div>
     </div>
   );
 }
