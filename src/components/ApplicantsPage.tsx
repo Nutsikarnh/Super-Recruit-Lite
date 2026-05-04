@@ -2274,28 +2274,35 @@ export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", 
                 <p className="text-[28px] font-black leading-none tracking-tight" style={{ color: isActive ? s.accent : "#1A1A2E" }}>
                   {cnt}
                 </p>
-                {/* Sub-status breakdown dots */}
-                {isActive && s.subLabel && s.stages.length > 1 && (
-                  <div className="flex items-center gap-2 flex-wrap">
+                {/* Sub-status breakdown — always visible */}
+                {s.subLabel && s.stages.length > 1 && (
+                  <div className="flex items-center gap-1.5 flex-wrap">
                     {s.stages.map((ps, i) => {
                       const subCnt = stageStats[ps] ?? 0;
-                      const isSubActive = subStatus === ps;
+                      const isSubActive = isActive && subStatus === ps;
                       return (
                         <button
                           key={ps}
                           onClick={(e) => {
                             e.stopPropagation();
-                            setSubStatus(isSubActive ? "all_sub" : ps);
+                            if (!isActive) {
+                              setMainStage(s.key);
+                              setSubStatus(ps);
+                            } else {
+                              setSubStatus(isSubActive ? "all_sub" : ps);
+                            }
                           }}
-                          className={`flex items-center gap-1 px-2 py-0.5 rounded-full text-[10.5px] font-medium border transition-all ${
+                          className={`flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[10px] font-medium border transition-all ${
                             isSubActive
                               ? "text-white border-transparent"
-                              : "bg-white/60 text-gray-500 border-gray-200 hover:border-gray-300"
+                              : isActive
+                                ? "bg-white/60 text-gray-500 border-gray-200 hover:border-gray-300"
+                                : "bg-gray-50 text-gray-400 border-gray-100 hover:border-gray-200 hover:text-gray-600"
                           }`}
                           style={isSubActive ? { backgroundColor: s.accent, borderColor: s.accent } : {}}
                         >
-                          {s.subLabel![i]}
-                          <span className={`font-bold ${isSubActive ? "text-white/90" : "text-gray-400"}`}>{subCnt}</span>
+                          <span>{s.subLabel![i]}</span>
+                          <span className={`font-bold tabular-nums ${isSubActive ? "text-white/90" : "text-gray-400"}`}>{subCnt}</span>
                         </button>
                       );
                     })}
