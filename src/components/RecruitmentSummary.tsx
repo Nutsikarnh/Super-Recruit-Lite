@@ -238,43 +238,21 @@ export default function RecruitmentSummary({
                 ตำแหน่งงาน
               </th>
               <th className="text-center py-3.5 w-[16%]">
-                {isSearchTab ? (
-                  <span className="text-[12px] font-semibold text-amber-600 uppercase tracking-wider">
-                    Shortlist
+                <div className="relative flex items-center justify-center gap-1.5 group/tpheader">
+                  <Sparkles className="w-3.5 h-3.5 text-[#0DC2FF]" />
+                  <span className="text-[12px] font-bold text-[#0DC2FF] uppercase tracking-wider">
+                    Top Picks
                   </span>
-                ) : (
-                  <div className="relative flex items-center justify-center gap-1.5 group/tpheader">
-                    <Sparkles className="w-3.5 h-3.5 text-[#0DC2FF]" />
-                    <span className="text-[12px] font-bold text-[#0DC2FF] uppercase tracking-wider">
-                      Top Picks
-                    </span>
-                    <Info className="w-3 h-3 text-[#0DC2FF]/60 cursor-default" />
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-[#1A1A2E] text-white text-[12px] leading-relaxed rounded-xl px-3.5 py-3 opacity-0 group-hover/tpheader:opacity-100 transition-all duration-150 pointer-events-none z-50 shadow-xl">
-                      <p className="font-semibold text-[#0DC2FF] mb-1">Top Picks คืออะไร?</p>
-                      <p className="text-gray-300">AI คัดเลือกผู้สมัครที่ตรงกับตำแหน่งงานของคุณมากที่สุด จาก profile, skills, และ experience — เรียงตาม match score สูงสุด</p>
-                      <span className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-[#1A1A2E]" />
-                    </div>
+                  <Info className="w-3 h-3 text-[#0DC2FF]/60 cursor-default" />
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-[#1A1A2E] text-white text-[12px] leading-relaxed rounded-xl px-3.5 py-3 opacity-0 group-hover/tpheader:opacity-100 transition-all duration-150 pointer-events-none z-50 shadow-xl">
+                    <p className="font-semibold text-[#0DC2FF] mb-1">Top Picks คืออะไร?</p>
+                    <p className="text-gray-300">AI คัดเลือกผู้สมัครที่ตรงกับตำแหน่งงานของคุณมากที่สุด จาก profile, skills, และ experience — เรียงตาม match score สูงสุด</p>
+                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-[#1A1A2E]" />
                   </div>
-                )}
+                </div>
               </th>
               <th className="text-center py-3.5 px-4 text-[12px] font-semibold text-gray-400 uppercase tracking-wider">
-                {isSearchTab ? "สัมภาษณ์" : "สมัครเอง"}
-              </th>
-              {!isSearchTab && (
-                <th className="text-center py-3.5 px-4 w-[13%]">
-                  <div className="relative flex items-center justify-center gap-1 group/slheader">
-                    <span className="text-[12px] font-semibold text-emerald-600 uppercase tracking-wider">Shortlist</span>
-                    <Info className="w-3 h-3 text-emerald-500/60 cursor-default" />
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-60 bg-[#1A1A2E] text-white text-[12px] leading-relaxed rounded-xl px-3.5 py-3 opacity-0 group-hover/slheader:opacity-100 transition-all duration-150 pointer-events-none z-50 shadow-xl">
-                      <p className="font-semibold text-emerald-400 mb-1">Shortlist คืออะไร?</p>
-                      <p className="text-gray-300">รวม resume ที่คุณ shortlist ไว้จาก Top Picks และผู้ที่สมัครเองเข้าด้วยกัน — เพื่อ manage pipeline ในที่เดียว</p>
-                      <span className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-[#1A1A2E]" />
-                    </div>
-                  </div>
-                </th>
-              )}
-              <th className="text-center py-3.5 px-4 text-[12px] font-semibold text-gray-400 uppercase tracking-wider">
-                {isSearchTab ? "รับเข้าทำงาน" : "สัมภาษณ์"}
+                สมัครเอง
               </th>
               {isJobFairTab && (
                 <th className="text-right py-3.5 text-[12px] font-semibold text-gray-400 uppercase tracking-wider">
@@ -310,91 +288,40 @@ export default function RecruitmentSummary({
                   </div>
                 </td>
                 <td className="py-4 text-center">
-                  {isSearchTab ? (
+                  <div className="flex items-center justify-center gap-1.5 relative group/tpcell">
                     <button
-                      onClick={() => onViewShortlist(job.id, job.title)}
-                      className={`inline-flex items-center justify-center min-w-[40px] h-8 px-3 rounded-full text-[15px] font-bold transition-all ${
-                        (job.shortlist ?? 0) > 0
-                          ? "bg-amber-50 text-amber-700 hover:bg-amber-100 cursor-pointer"
-                          : "bg-gray-50 text-gray-300 cursor-default"
+                      onClick={(job.topPicks ?? 0) > 0 ? () => onViewJobTopPicks(job.id, job.title) : undefined}
+                      className={`inline-flex items-center justify-center min-w-[40px] h-8 px-3 rounded-full text-[15px] font-bold bg-[#0DC2FF]/12 text-[#0891b2] transition-all ${
+                        (job.topPicks ?? 0) > 0 ? "hover:bg-[#0DC2FF]/25 hover:text-[#0277a8] cursor-pointer" : "cursor-default"
                       }`}
                     >
-                      {job.shortlist ?? 0}
+                      {job.topPicks}
                     </button>
-                  ) : (
-                    <div className="flex items-center justify-center gap-1.5 relative group/tpcell">
-                      <button
-                        onClick={(job.topPicks ?? 0) > 0 ? () => onViewJobTopPicks(job.id, job.title) : undefined}
-                        className={`inline-flex items-center justify-center min-w-[40px] h-8 px-3 rounded-full text-[15px] font-bold bg-[#0DC2FF]/12 text-[#0891b2] transition-all ${
-                          (job.topPicks ?? 0) > 0 ? "hover:bg-[#0DC2FF]/25 hover:text-[#0277a8] cursor-pointer" : "cursor-default"
-                        }`}
-                      >
-                        {job.topPicks}
-                      </button>
-                      {job.topPicksNew && (
-                        <span className="flex items-center gap-0.5 text-[12px] font-bold text-[#0DC2FF]">
-                          <span className="relative flex h-1.5 w-1.5">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0DC2FF] opacity-75" />
-                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#0DC2FF]" />
-                          </span>
-                          +{job.topPicksNew}
+                    {job.topPicksNew && (
+                      <span className="flex items-center gap-0.5 text-[12px] font-bold text-[#0DC2FF]">
+                        <span className="relative flex h-1.5 w-1.5">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0DC2FF] opacity-75" />
+                          <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#0DC2FF]" />
                         </span>
-                      )}
-                      {(job.topPicks ?? 0) > 0 && (
-                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-52 bg-[#1A1A2E] text-white text-[11.5px] leading-relaxed rounded-xl px-3 py-2.5 opacity-0 group-hover/tpcell:opacity-100 transition-all duration-150 pointer-events-none z-50 shadow-xl text-center">
-                          <p className="font-semibold text-[#0DC2FF] mb-0.5">AI คัดไว้แล้ว</p>
-                          <p className="text-gray-300">คลิกเพื่อดูผู้สมัครที่ match กับตำแหน่งนี้มากที่สุด</p>
-                          <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#1A1A2E]" />
-                        </div>
-                      )}
-                    </div>
-                  )}
+                        +{job.topPicksNew}
+                      </span>
+                    )}
+                    {(job.topPicks ?? 0) > 0 && (
+                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-52 bg-[#1A1A2E] text-white text-[11.5px] leading-relaxed rounded-xl px-3 py-2.5 opacity-0 group-hover/tpcell:opacity-100 transition-all duration-150 pointer-events-none z-50 shadow-xl text-center">
+                        <p className="font-semibold text-[#0DC2FF] mb-0.5">AI คัดไว้แล้ว</p>
+                        <p className="text-gray-300">คลิกเพื่อดูผู้สมัครที่ match กับตำแหน่งนี้มากที่สุด</p>
+                        <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#1A1A2E]" />
+                      </div>
+                    )}
+                  </div>
                 </td>
                 <td className="py-4 px-4 text-center">
-                  {isSearchTab ? (
-                    <span className={`text-[14px] font-semibold ${job.interviews > 0 ? "text-amber-600" : "text-gray-300"}`}>
-                      {job.interviews}
-                    </span>
-                  ) : (
-                    <button
-                      onClick={() => onViewApplicants(job.title)}
-                      className="inline-flex items-center justify-center min-w-[40px] h-8 px-3 rounded-full text-[15px] font-bold bg-gray-50 text-gray-500 hover:bg-[#127EE3]/10 hover:text-[#127EE3] transition-all cursor-pointer"
-                    >
-                      {job.applicants}
-                    </button>
-                  )}
-                </td>
-                {!isSearchTab && (
-                  <td className="py-4 px-4 text-center">
-                    <button
-                      onClick={() => (job.shortlist ?? 0) > 0 ? onViewApplicantsShortlist(job.id, job.title) : undefined}
-                      className={`inline-flex items-center justify-center min-w-[40px] h-8 px-3 rounded-full text-[15px] font-bold transition-all ${
-                        (job.shortlist ?? 0) > 0
-                          ? "bg-emerald-50 text-emerald-700 hover:bg-emerald-100 cursor-pointer"
-                          : "bg-gray-50 text-gray-300 cursor-default"
-                      }`}
-                    >
-                      {job.shortlist ?? 0}
-                    </button>
-                  </td>
-                )}
-                <td className="py-4 px-4 text-center">
-                  {isSearchTab ? (
-                    <span className={`text-[14px] font-semibold ${(job.hired ?? 0) > 0 ? "text-emerald-600" : "text-gray-300"}`}>
-                      {job.hired ?? 0}
-                    </span>
-                  ) : (
-                    <button
-                      onClick={() => job.interviews > 0 ? onViewApplicantsInterview(job.id, job.title) : undefined}
-                      className={`inline-flex items-center justify-center min-w-[40px] h-8 px-3 rounded-full text-[15px] font-bold transition-all ${
-                        job.interviews > 0
-                          ? "bg-blue-50 text-[#127EE3] hover:bg-[#127EE3]/20 cursor-pointer"
-                          : "bg-gray-50 text-gray-300 cursor-default"
-                      }`}
-                    >
-                      {job.interviews}
-                    </button>
-                  )}
+                  <button
+                    onClick={() => onViewApplicants(job.title)}
+                    className="inline-flex items-center justify-center min-w-[40px] h-8 px-3 rounded-full text-[15px] font-bold bg-gray-50 text-gray-500 hover:bg-[#127EE3]/10 hover:text-[#127EE3] transition-all cursor-pointer"
+                  >
+                    {job.applicants}
+                  </button>
                 </td>
                 {isJobFairTab && (
                   <td className="py-4 text-right">
@@ -409,7 +336,7 @@ export default function RecruitmentSummary({
               {/* Inline Top Picks Preview — only for the first online job */}
               {rowIdx === 0 && activeTab === 0 && (
                 <tr key={`${job.id}-toppick`} className="border-b border-gray-100">
-                  <td colSpan={5} className="pb-4 pt-2 bg-gray-50 rounded-lg">
+                  <td colSpan={3} className="pb-4 pt-2 bg-gray-50 rounded-lg">
                     <TopPickInlinePreview onViewTopPicks={onViewTopPicks} jobTitle={job.title} />
                   </td>
                 </tr>
