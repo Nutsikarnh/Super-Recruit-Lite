@@ -2328,10 +2328,19 @@ function ManageContent({ store, initialStage = "new", onStageChange, applicant, 
                         className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[13px] font-bold shadow-sm hover:opacity-90 transition-opacity">
                         <FileText className="w-4 h-4" />บันทึกผลสัมภาษณ์
                       </button>
-                      <button onClick={() => setActiveAction("reschedule")}
-                        className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 text-gray-600 text-[13px] font-medium bg-white hover:border-[#127EE3] hover:text-[#127EE3] transition-colors">
-                        <RefreshCw className="w-4 h-4" />เปลี่ยนวันนัด
-                      </button>
+                      <div className="flex flex-col gap-0.5">
+                        <button onClick={() => setActiveAction("reschedule")}
+                          className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 text-gray-600 text-[13px] font-medium bg-white hover:border-[#127EE3] hover:text-[#127EE3] transition-colors">
+                          <RefreshCw className="w-4 h-4" />เปลี่ยนวันนัด
+                        </button>
+                        {(scheduledInfo || applicant?.interviewDate) && (
+                          <p className="text-[11px] text-gray-400 text-center">
+                            {scheduledInfo
+                              ? `${toThaiDate(scheduledInfo.date)} · ${scheduledInfo.time} น.`
+                              : applicant?.interviewDate}
+                          </p>
+                        )}
+                      </div>
                     </div>
                     <div className="flex gap-2 flex-wrap">
                       <button onClick={() => completeTerminalAction("ยกเลิกนัดสัมภาษณ์")}
@@ -2539,7 +2548,20 @@ function ManageContent({ store, initialStage = "new", onStageChange, applicant, 
       {activeAction === "reschedule" && (
         <div className="rounded-2xl border border-gray-200 overflow-hidden">
           <div className="px-4 py-3 bg-gray-50 border-b border-gray-100 flex items-center justify-between">
-            <span className="text-[12.5px] font-bold text-gray-900">เปลี่ยนวันนัดสัมภาษณ์</span>
+            <div>
+              <span className="text-[12.5px] font-bold text-gray-900">เปลี่ยนวันนัดสัมภาษณ์</span>
+              {(scheduledInfo || applicant?.interviewDate) && (
+                <p className="text-[11.5px] text-gray-500 mt-0.5 flex items-center gap-1">
+                  <Calendar className="w-3 h-3 flex-shrink-0" />
+                  นัดเดิม:&nbsp;
+                  <span className="font-semibold text-gray-700">
+                    {scheduledInfo
+                      ? `${toThaiDate(scheduledInfo.date)} · ${scheduledInfo.time} น.${scheduledInfo.duration ? ` · ${scheduledInfo.duration} นาที` : ""}${scheduledInfo.type ? ` · ${typeLabel(scheduledInfo.type)}` : ""}`
+                      : applicant?.interviewDate}
+                  </span>
+                </p>
+              )}
+            </div>
             <button onClick={() => setActiveAction(null)} className="w-6 h-6 flex items-center justify-center rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-200 transition-colors">
               <X className="w-3.5 h-3.5" />
             </button>
