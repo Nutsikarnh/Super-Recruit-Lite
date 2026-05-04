@@ -1764,6 +1764,26 @@ function InterviewCard({
   );
 }
 
+// ─── Main stage groupings ────────────────────────────────────────────────────
+type MainStage = "all" | "new" | "screen" | "interview" | "offer" | "hired" | "rejected";
+
+const MAIN_STAGE_PIPELINE_MAP: Record<Exclude<MainStage, "all">, PipelineStage[]> = {
+  new:       ["new"],
+  screen:    ["shortlist", "review"],
+  interview: ["to_interview", "interview", "passed"],
+  offer:     ["offer"],
+  hired:     ["hired"],
+  rejected:  ["rejected"],
+};
+
+
+function pipelineStageToMainStage(stage: PipelineStage): Exclude<MainStage, "all"> {
+  for (const [main, stages] of Object.entries(MAIN_STAGE_PIPELINE_MAP)) {
+    if ((stages as PipelineStage[]).includes(stage)) return main as Exclude<MainStage, "all">;
+  }
+  return "new";
+}
+
 interface ApplicantsPageProps {
   jobTitle?: string;
   onBack: () => void;
@@ -1784,10 +1804,33 @@ type ActiveModal =
   | { type: "bulk_email"; ids: string[] }
   | { type: "bulk_interview_result"; ids: string[] };
 
+function initMainStage(tab?: PipelineStage | "all"): MainStage {
+  if (!tab || tab === "all") return "all";
+  return pipelineStageToMainStage(tab);
+}
+
+function initSubStatus(tab?: PipelineStage | "all"): PipelineStage | "all_sub" {
+  if (!tab || tab === "all") return "all_sub";
+  const main = pipelineStageToMainStage(tab);
+  if (main === "screen" || main === "interview" || main === "offer") return tab;
+  return "all_sub";
+}
+
 export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", onBack, initialTab }: ApplicantsPageProps) {
-  const [stageFilter, setStageFilter] = useState<PipelineStage | "all">(initialTab ?? "all");
-  useEffect(() => { setStageFilter(initialTab ?? "all"); }, [initialTab]);
-  useEffect(() => { setSelectedIds(new Set()); }, [stageFilter]);
+  const [mainStage, setMainStage] = useState<MainStage>(() => initMainStage(initialTab));
+  const [subStatus, setSubStatus] = useState<PipelineStage | "all_sub">(() => initSubStatus(initialTab));
+
+  const effectiveStages: PipelineStage[] | null = (() => {
+    if (mainStage === "all") return null;
+    if (subStatus !== "all_sub") return [subStatus as PipelineStage];
+    return MAIN_STAGE_PIPELINE_MAP[mainStage as Exclude<MainStage, "all">];
+  })();
+
+  useEffect(() => {
+    setMainStage(initMainStage(initialTab));
+    setSubStatus(initSubStatus(initialTab));
+  }, [initialTab]);
+  useEffect(() => { setSelectedIds(new Set()); }, [mainStage, subStatus]);
 
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState<"appliedAt">("appliedAt");
@@ -1944,7 +1987,7 @@ export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", 
   };
 
   const filtered = applicants.filter((a) => {
-    if (stageFilter !== "all" && a.stage !== stageFilter) return false;
+    if (effectiveStages && !effectiveStages.includes(a.stage)) return false;
     if (search && !a.name.toLowerCase().includes(search.toLowerCase()) && !a.currentTitle.toLowerCase().includes(search.toLowerCase())) return false;
     return true;
   }).sort(() => 0);
@@ -2138,24 +2181,83 @@ export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", 
           </div>
         </div>
 
-        <div className="flex gap-2 mb-5 overflow-x-auto pb-1 scrollbar-hide">
+        {/* ── Main stage tab bar ── */}
+        <div className="flex gap-2 mb-3 overflow-x-auto pb-1 scrollbar-hide">
           {([
-            { label: "ใหม่",             key: "new"          as PipelineStage, icon: <UserPlus      className="w-4 h-4" />, accent: "#3B82F6", iconBg: "bg-blue-50",    iconColor: "text-blue-500"    },
-            { label: "ชอร์ตลิสต์",       key: "shortlist"    as PipelineStage, icon: <Star          className="w-4 h-4" />, accent: "#8B5CF6", iconBg: "bg-violet-50", iconColor: "text-violet-500"  },
-            { label: "ส่งต่อให้พิจารณา", key: "review"       as PipelineStage, icon: <Send          className="w-4 h-4" />, accent: "#6366F1", iconBg: "bg-indigo-50", iconColor: "text-indigo-500"  },
-            { label: "ต้องนัดสัมภาษณ์",  key: "to_interview" as PipelineStage, icon: <CalendarClock className="w-4 h-4" />, accent: "#F59E0B", iconBg: "bg-amber-50",  iconColor: "text-amber-500"   },
-            { label: "สัมภาษณ์",          key: "interview"    as PipelineStage, icon: <CalendarCheck className="w-4 h-4" />, accent: "#F97316", iconBg: "bg-orange-50", iconColor: "text-orange-500"  },
-            { label: "ผ่านสัมภาษณ์",      key: "passed"       as PipelineStage, icon: <CheckCircle2  className="w-4 h-4" />, accent: "#10B981", iconBg: "bg-emerald-50",iconColor: "text-emerald-500" },
-            { label: "Offer",             key: "offer"        as PipelineStage, icon: <Wallet        className="w-4 h-4" />, accent: "#059669", iconBg: "bg-green-50",  iconColor: "text-green-600"   },
-            { label: "รับเข้าทำงาน",      key: "hired"        as PipelineStage, icon: <Award         className="w-4 h-4" />, accent: "#0EA5E9", iconBg: "bg-sky-50",    iconColor: "text-sky-500"     },
-            { label: "ไม่ผ่าน / ยกเลิก",   key: "rejected"     as PipelineStage, icon: <XCircle      className="w-4 h-4" />, accent: "#EF4444", iconBg: "bg-red-50",    iconColor: "text-red-500"     },
+            {
+              key: "new" as MainStage,
+              label: "ใหม่",
+              icon: <UserPlus className="w-4 h-4" />,
+              accent: "#3B82F6",
+              iconBg: "bg-blue-50",
+              iconColor: "text-blue-500",
+              stages: ["new"] as PipelineStage[],
+            },
+            {
+              key: "screen" as MainStage,
+              label: "คัดกรอง",
+              icon: <Star className="w-4 h-4" />,
+              accent: "#0EA5E9",
+              iconBg: "bg-sky-50",
+              iconColor: "text-sky-500",
+              stages: ["shortlist", "review"] as PipelineStage[],
+              subLabel: ["ขอร์ตลิสต์", "ส่งต่อให้พิจารณา"],
+            },
+            {
+              key: "interview" as MainStage,
+              label: "สัมภาษณ์",
+              icon: <CalendarCheck className="w-4 h-4" />,
+              accent: "#F97316",
+              iconBg: "bg-orange-50",
+              iconColor: "text-orange-500",
+              stages: ["to_interview", "interview", "passed"] as PipelineStage[],
+              subLabel: ["รอนัด", "นัดแล้ว", "ผ่านสัมภาษณ์"],
+            },
+            {
+              key: "offer" as MainStage,
+              label: "เสนอ Offer",
+              icon: <Wallet className="w-4 h-4" />,
+              accent: "#10B981",
+              iconBg: "bg-emerald-50",
+              iconColor: "text-emerald-600",
+              stages: ["offer"] as PipelineStage[],
+              subLabel: ["รอตอบรับ", "ตอบรับแล้ว"],
+            },
+            {
+              key: "hired" as MainStage,
+              label: "รับเข้าทำงาน",
+              icon: <Award className="w-4 h-4" />,
+              accent: "#0EA5E9",
+              iconBg: "bg-sky-50",
+              iconColor: "text-sky-500",
+              stages: ["hired"] as PipelineStage[],
+            },
+            {
+              key: "rejected" as MainStage,
+              label: "ไม่ผ่าน / ยกเลิก",
+              icon: <XCircle className="w-4 h-4" />,
+              accent: "#EF4444",
+              iconBg: "bg-red-50",
+              iconColor: "text-red-500",
+              stages: ["rejected"] as PipelineStage[],
+            },
           ]).map((s) => {
-            const isActive = stageFilter === s.key;
-            const cnt = stageStats[s.key] ?? 0;
+            const isActive = mainStage === s.key;
+            const cnt = s.stages.reduce((sum, ps) => sum + (stageStats[ps] ?? 0), 0);
             return (
-              <button key={s.key} onClick={() => setStageFilter(stageFilter === s.key ? "all" : s.key)}
+              <button
+                key={s.key}
+                onClick={() => {
+                  if (mainStage === s.key) {
+                    setMainStage("all");
+                    setSubStatus("all_sub");
+                  } else {
+                    setMainStage(s.key);
+                    setSubStatus("all_sub");
+                  }
+                }}
                 style={isActive ? { borderColor: s.accent } : {}}
-                className={`flex-shrink-0 flex flex-col gap-2 px-4 py-3.5 rounded-2xl border text-left transition-all min-w-[116px] ${
+                className={`flex-shrink-0 flex flex-col gap-2 px-4 py-3.5 rounded-2xl border text-left transition-all min-w-[120px] ${
                   isActive
                     ? "bg-white shadow-sm"
                     : "bg-white border-gray-100 hover:border-gray-200 hover:shadow-sm"
@@ -2165,11 +2267,40 @@ export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", 
                   <span className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${s.iconBg} ${s.iconColor}`}>
                     {s.icon}
                   </span>
-                  <span className="text-[10.5px] font-semibold uppercase tracking-wide leading-none text-gray-400 leading-tight">
+                  <span className="text-[10.5px] font-semibold uppercase tracking-wide text-gray-400 leading-tight">
                     {s.label}
                   </span>
                 </div>
-                <p className="text-[28px] font-black leading-none tracking-tight" style={{ color: isActive ? s.accent : "#1A1A2E" }}>{cnt}</p>
+                <p className="text-[28px] font-black leading-none tracking-tight" style={{ color: isActive ? s.accent : "#1A1A2E" }}>
+                  {cnt}
+                </p>
+                {/* Sub-status breakdown dots */}
+                {isActive && s.subLabel && s.stages.length > 1 && (
+                  <div className="flex items-center gap-2 flex-wrap">
+                    {s.stages.map((ps, i) => {
+                      const subCnt = stageStats[ps] ?? 0;
+                      const isSubActive = subStatus === ps;
+                      return (
+                        <button
+                          key={ps}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSubStatus(isSubActive ? "all_sub" : ps);
+                          }}
+                          className={`flex items-center gap-1 px-2 py-0.5 rounded-full text-[10.5px] font-medium border transition-all ${
+                            isSubActive
+                              ? "text-white border-transparent"
+                              : "bg-white/60 text-gray-500 border-gray-200 hover:border-gray-300"
+                          }`}
+                          style={isSubActive ? { backgroundColor: s.accent, borderColor: s.accent } : {}}
+                        >
+                          {s.subLabel![i]}
+                          <span className={`font-bold ${isSubActive ? "text-white/90" : "text-gray-400"}`}>{subCnt}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
               </button>
             );
           })}
@@ -2195,23 +2326,44 @@ export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", 
                 />
               </div>
               <div className="relative">
-                <select value={stageFilter} onChange={(e) => setStageFilter(e.target.value as PipelineStage | "all")}
+                <select
+                  value={subStatus !== "all_sub" ? subStatus : mainStage}
+                  onChange={(e) => {
+                    const v = e.target.value;
+                    if (v === "all") { setMainStage("all"); setSubStatus("all_sub"); return; }
+                    // check if it's a main stage
+                    if (["new","screen","interview","offer","hired","rejected"].includes(v)) {
+                      setMainStage(v as MainStage); setSubStatus("all_sub");
+                    } else {
+                      // it's a pipeline stage (sub-status)
+                      const ms = pipelineStageToMainStage(v as PipelineStage);
+                      setMainStage(ms); setSubStatus(v as PipelineStage);
+                    }
+                  }}
                   className="appearance-none bg-gray-50 rounded-xl pl-3.5 pr-8 py-2 text-[12.5px] font-medium text-gray-600 focus:outline-none border border-gray-100 focus:border-[#127EE3]/40 focus:ring-2 focus:ring-[#127EE3]/8 transition-all cursor-pointer"
                 >
                   <option value="all">สถานะทั้งหมด</option>
                   <option value="new">ใหม่</option>
-                  <option value="shortlist">ชอร์ตลิสต์</option>
-                  <option value="review">ส่งต่อให้พิจารณา</option>
-                  <option value="to_interview">ลิสต์ต้องนัดสัมภาษณ์</option>
-                  <option value="interview">สัมภาษณ์</option>
-                  <option value="passed">ผ่านสัมภาษณ์</option>
-                  <option value="offer">Offer</option>
+                  <optgroup label="คัดกรอง">
+                    <option value="screen">คัดกรองทั้งหมด</option>
+                    <option value="shortlist">· ขอร์ตลิสต์</option>
+                    <option value="review">· ส่งต่อให้พิจารณา</option>
+                  </optgroup>
+                  <optgroup label="สัมภาษณ์">
+                    <option value="interview">สัมภาษณ์ทั้งหมด</option>
+                    <option value="to_interview">· รอนัด</option>
+                    <option value="interview">· นัดแล้ว</option>
+                    <option value="passed">· ผ่านสัมภาษณ์</option>
+                  </optgroup>
+                  <optgroup label="เสนอ Offer">
+                    <option value="offer">เสนอ Offer</option>
+                  </optgroup>
                   <option value="hired">รับเข้าทำงาน</option>
                   <option value="rejected">ไม่ผ่าน / ยกเลิก</option>
                 </select>
                 <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none" />
               </div>
-              {stageFilter === "interview" ? (
+              {mainStage === "interview" ? (
                 interviewView === "day" ? (
                   <div className="relative">
                     <select value={interviewSort} onChange={(e) => setInterviewSort(e.target.value as "asc" | "desc")}
@@ -2235,7 +2387,7 @@ export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", 
               )}
             </div>
 
-            {stageFilter === "interview" && (() => {
+            {mainStage === "interview" && (() => {
               const thaiMonthsFull = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
               const thaiMonthsShort = ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
 
@@ -2330,7 +2482,7 @@ export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", 
               />
             )}
 
-            {stageFilter === "interview" ? (() => {
+            {mainStage === "interview" ? (() => {
               const interviewApplicants = (filtered as ApplicantRow[]).filter(a => !!a.interviewDateIso);
               const groups: Record<InterviewGroup, ApplicantRow[]> = { today: [], upcoming: [], past: [] };
               for (const a of interviewApplicants) groups[getInterviewGroup(a)].push(a);
