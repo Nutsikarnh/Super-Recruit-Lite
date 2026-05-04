@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Search, Bell, MessageSquare, LogOut, ChevronDown } from "lucide-react";
+import { Search, LogOut, ChevronDown } from "lucide-react";
 import type { AppPage } from "../App";
 
 interface HeaderProps {
@@ -51,19 +51,6 @@ export default function Header({ activePage, onNavigate }: HeaderProps) {
             EN
           </button>
         </div>
-
-        <button
-          onClick={() => onNavigate("messages")}
-          className="relative w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#F0F2F5] transition-colors"
-        >
-          <MessageSquare className={`w-5 h-5 ${activePage === "messages" ? "text-[#127EE3]" : "text-gray-500"}`} />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#127EE3] rounded-full border-2 border-white" />
-        </button>
-
-        <button className="relative w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#F0F2F5] transition-colors">
-          <Bell className="w-5 h-5 text-gray-500" />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white" />
-        </button>
 
         {/* User avatar with dropdown */}
         <div className="relative pl-3 border-l border-gray-100" ref={menuRef}>
