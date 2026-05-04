@@ -78,7 +78,7 @@ function TopPickInlinePreview({ onViewTopPicks, jobTitle }: { onViewTopPicks: ()
             </div>
             <div className="flex flex-col gap-1">
               <p className="text-[13px] text-[#1A1A2E] font-bold leading-snug">Senior Product Designer</p>
-              <div className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[9px] font-bold bg-gradient-to-r from-[#0DC2FF] to-[#127EE3] text-white tracking-wide uppercase w-fit">
+              <div className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[9px] font-bold bg-emerald-50 border border-emerald-200 text-emerald-600 tracking-wide uppercase w-fit">
                 <Zap className="w-2 h-2" />
                 Perfectly Fit
               </div>
@@ -168,7 +168,7 @@ export default function RecruitmentSummary({
           onClick={onManageJobs}
           className="flex items-center gap-1.5 text-[14px] text-[#127EE3] font-medium hover:underline transition-all"
         >
-          ดูประวัติทั้งหมด
+          ดูตำแหน่งทั้งหมด
           <ArrowRight className="w-4 h-4" />
         </button>
       </div>
