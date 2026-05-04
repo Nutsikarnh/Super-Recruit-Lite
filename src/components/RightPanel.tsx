@@ -13,7 +13,7 @@ const accountTeam = [
     email: "siriporn.w@superrecruit.co.th",
     mobile: "081-456-7890",
     initials: "ศว",
-    gradient: "linear-gradient(135deg, #127EE3 0%, #0DC2FF 100%)",
+    gradient: "linear-gradient(135deg, #4B5563 0%, #6B7280 100%)",
   },
   {
     role: "CC",
@@ -22,7 +22,7 @@ const accountTeam = [
     email: "nattawut.c@superrecruit.co.th",
     mobile: "089-321-6540",
     initials: "ณช",
-    gradient: "linear-gradient(135deg, #10b981 0%, #34d399 100%)",
+    gradient: "linear-gradient(135deg, #374151 0%, #4B5563 100%)",
   },
 ];
 
@@ -57,10 +57,7 @@ function AccountTeamSection() {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <span
-                    className="text-[10px] font-bold px-2 py-0.5 rounded-full text-white"
-                    style={{ background: member.gradient }}
-                  >
+                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">
                     {member.role}
                   </span>
                   <span className="text-[11px] text-gray-400">{member.roleLabel}</span>
@@ -220,18 +217,18 @@ function PackageSection({ onBuyPackage }: { onBuyPackage?: () => void }) {
         <div>
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-1.5">
-              <Zap className="w-3.5 h-3.5 text-[#127EE3]" />
+              <Zap className="w-3.5 h-3.5 text-gray-400" />
               <span className="text-[13px] font-medium text-[#0F1724]">Job Quota</span>
             </div>
             <span className="text-[13px] font-semibold text-[#0F1724]">
-              <span className="text-[#127EE3]">{jobUsed}</span>
+              <span className="text-gray-700">{jobUsed}</span>
               <span className="text-gray-300 font-normal"> / {jobTotal}</span>
             </span>
           </div>
           <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
             <div
-              className="h-full rounded-full transition-all"
-              style={{ width: `${jobPct}%`, background: "linear-gradient(90deg, #127EE3, #0DC2FF)" }}
+              className="h-full rounded-full transition-all bg-gray-400"
+              style={{ width: `${jobPct}%` }}
             />
           </div>
           <p className="text-[11.5px] text-gray-400 mt-1.5">เหลือ {jobTotal - jobUsed} ตำแหน่ง</p>
@@ -241,17 +238,17 @@ function PackageSection({ onBuyPackage }: { onBuyPackage?: () => void }) {
         <div>
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-1.5">
-              <Coins className="w-3.5 h-3.5 text-amber-500" />
+              <Coins className="w-3.5 h-3.5 text-gray-400" />
               <span className="text-[13px] font-medium text-[#0F1724]">Talent Credit</span>
             </div>
             <span className="text-[13px] font-semibold text-[#0F1724]">
-              <span className="text-amber-500">{creditUsed.toLocaleString()}</span>
+              <span className="text-gray-700">{creditUsed.toLocaleString()}</span>
               <span className="text-gray-300 font-normal"> / {creditTotal.toLocaleString()}</span>
             </span>
           </div>
           <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-amber-400 to-amber-500 transition-all"
+              className="h-full rounded-full bg-gray-400 transition-all"
               style={{ width: `${creditPct}%` }}
             />
           </div>
@@ -268,10 +265,10 @@ function PackageSection({ onBuyPackage }: { onBuyPackage?: () => void }) {
         <div className="pt-1 border-t border-gray-100">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-1.5">
-              <Award className="w-3.5 h-3.5 text-rose-400" />
+              <Award className="w-3.5 h-3.5 text-gray-400" />
               <span className="text-[13px] font-medium text-[#0F1724]">Employer Branding</span>
             </div>
-            <span className="text-[11px] font-semibold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full">
+            <span className="text-[11px] font-semibold text-gray-500 bg-gray-100 border border-gray-200 px-2 py-0.5 rounded-full">
               Active
             </span>
           </div>
