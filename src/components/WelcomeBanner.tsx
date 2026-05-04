@@ -39,8 +39,6 @@ const SERVICE_MESSAGES = [
 const QUICK_STATS = [
   { icon: TrendingUp, label: "ผู้สมัครใหม่", value: "45", unit: "ราย", color: "text-[#127EE3]", bg: "bg-[#EBF5FF]" },
   { icon: Calendar, label: "สัมภาษณ์วันนี้", value: "3", unit: "ท่าน", color: "text-emerald-600", bg: "bg-emerald-50" },
-  { icon: Users, label: "ตำแหน่งเปิดรับ", value: "4", unit: "ตำแหน่ง", color: "text-[#0DC2FF]", bg: "bg-sky-50" },
-  { icon: Clock, label: "รอพิจารณา", value: "12", unit: "ราย", color: "text-amber-600", bg: "bg-amber-50" },
 ];
 
 export default function WelcomeBanner({ onCreateJob, onSearchTalent }: WelcomeBannerProps) {
@@ -110,7 +108,7 @@ export default function WelcomeBanner({ onCreateJob, onSearchTalent }: WelcomeBa
       </div>
 
       {/* KPI stat row */}
-      <div className="grid grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 gap-3">
         {QUICK_STATS.map((stat) => (
           <div
             key={stat.label}

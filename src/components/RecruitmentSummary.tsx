@@ -4,10 +4,10 @@ import { BarChart2, ArrowRight, Sparkles, Users, Search, Info, Zap, Brain, Bookm
 import type { JobRow } from "../data/jobs";
 
 const tabLabels = [
-  "ประกาศงานออนไลน์",
-  "ประกาศงานออฟไลน์",
-  "ตำแหน่งงาน Search",
-  "ตำแหน่งงานจาก Job Fair",
+  "ออนไลน์",
+  "ออฟไลน์",
+  "Active Search",
+  "Job Fair",
 ];
 
 function DayTag({ days }: { days: number }) {
@@ -306,9 +306,6 @@ export default function RecruitmentSummary({
                     )}
                   </div>
                   <div className="flex items-center gap-1.5 mt-1">
-                    <span className="text-[13px] text-gray-500">{job.location}</span>
-                    <span className="text-gray-300">•</span>
-                    <span className="text-[13px] text-gray-500">{job.type}</span>
                     <DayTag days={job.daysOnline} />
                   </div>
                 </td>
