@@ -2001,761 +2001,466 @@ function ManageContent({ store, initialStage = "new", onStageChange, applicant, 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stage, isResumeTab, isUnlockedPreview, showBottomMore]);
 
+  // ── Pipeline steps definition ──────────────────────────────────────────────
+  type StepKey = "shortlist" | "review" | "to_interview" | "interview" | "passed" | "offer" | "hired";
+  const STEPS: { key: StepKey; label: string; desc: string; icon: React.ReactNode }[] = [
+    { key: "shortlist",    label: "คัดกรอง",         desc: "ตรวจ resume เบื้องต้น เห็นว่าผ่านเกณฑ์",             icon: <ThumbsUp className="w-4 h-4" /> },
+    { key: "review",       label: "ส่งให้พิจารณา",   desc: "ส่งโปรไฟล์ให้ผู้จัดการหรือทีมช่วยตัดสิน",          icon: <Users2 className="w-4 h-4" /> },
+    { key: "to_interview", label: "รอนัดสัมภาษณ์",   desc: "ยืนยันจะเรียกสัมภาษณ์ รอจัดตาราง",                 icon: <Calendar className="w-4 h-4" /> },
+    { key: "interview",    label: "สัมภาษณ์",        desc: "นัดหมายแล้ว กำลังรอสัมภาษณ์หรือสัมภาษณ์เสร็จแล้ว", icon: <Clock className="w-4 h-4" /> },
+    { key: "passed",       label: "ผ่านสัมภาษณ์",    desc: "สัมภาษณ์ผ่าน รอส่ง Offer",                          icon: <CheckCircle2 className="w-4 h-4" /> },
+    { key: "offer",        label: "Offer",            desc: "ส่ง Offer แล้ว รอผู้สมัครตอบรับ",                  icon: <FileText className="w-4 h-4" /> },
+    { key: "hired",        label: "รับเข้าทำงาน",    desc: "ผู้สมัครตอบรับ พร้อมเข้างานแล้ว",                   icon: <Award className="w-4 h-4" /> },
+  ];
+
+  const STAGE_RANK: Record<PipelineStage, number> = {
+    new: -1, shortlist: 0, review: 1, to_interview: 2, interview: 3, passed: 4, offer: 5, hired: 6, rejected: -2,
+  };
+  const currentRank = STAGE_RANK[stage] ?? -1;
+
   return (
     <>
-    <div className="px-7 py-6 space-y-6">
-      {/* Current status */}
-      <div>
-        <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2.5">สถานะปัจจุบัน</p>
-        {(() => {
-          const cfg = getStageConfig(stage);
-          return (
-            <div className="space-y-1.5">
-              <div className="relative inline-block">
-                <button
-                  onClick={() => setStageDropdownOpen((o) => !o)}
-                  className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border text-[13px] font-semibold cursor-pointer transition-opacity hover:opacity-80 ${cfg.bg} ${cfg.color} border-current/20`}
-                >
-                  <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0" />
-                  {cfg.label}
-                  <ChevronDown className="w-3.5 h-3.5 flex-shrink-0 opacity-60" />
-                </button>
-                {stageDropdownOpen && (
-                  <>
-                    <div className="fixed inset-0 z-10" onClick={() => setStageDropdownOpen(false)} />
-                    <div className="absolute left-0 top-full mt-1 z-20 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden min-w-[188px]">
-                      {PIPELINE_STAGES.map((s) => (
-                        <button key={s.key} onClick={() => completeStageChange(s.key)}
-                          className={`w-full text-left flex items-center gap-2 px-3.5 py-2.5 text-[12.5px] font-medium transition-colors ${stage === s.key ? `${s.bg} ${s.color}` : "text-gray-700 hover:bg-gray-50"}`}>
-                          {stage === s.key
-                            ? <CheckCircle2 className="w-3 h-3 flex-shrink-0" />
-                            : <span className="w-3 h-3 flex-shrink-0" />}
-                          {s.label}
-                        </button>
-                      ))}
-                    </div>
-                  </>
-                )}
-              </div>
-              {stage === "rejected" && rejectionReason && (
-                <p className="text-[12px] text-gray-500">เหตุผล: {rejectionReason}</p>
-              )}
-            </div>
-          );
-        })()}
-      </div>
+    <div className="flex flex-col h-full">
 
-      {/* Toast / Alert banner */}
-      {alertMsg && !alertMsg.startsWith("__stage__") && alertMsg !== "__undo__" && (
-        <div className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-white border border-gray-200 shadow-sm text-[12.5px]">
-          <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-emerald-500" />
-          <span className="text-gray-700">{alertMsg}</span>
-        </div>
-      )}
-      {alertMsg && alertMsg.startsWith("__stage__") && (
-        <div className="flex items-center justify-between gap-2 px-4 py-3 rounded-xl bg-white border border-gray-200 shadow-sm text-[12.5px]">
-          <div className="flex items-center gap-2 text-gray-700">
+      {/* ── Toast / Alert banner ── */}
+      {(alertMsg && alertMsg !== "__undo__") && (
+        <div className={`mx-5 mt-4 flex items-center justify-between gap-2 px-4 py-2.5 rounded-xl text-[12.5px] border shadow-sm ${alertMsg.startsWith("__stage__") ? "bg-white border-gray-200" : "bg-emerald-50 border-emerald-200"}`}>
+          <div className="flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-emerald-500" />
-            <span>{alertMsg.replace("__stage__", "")}</span>
+            <span className="text-gray-700">{alertMsg.replace("__stage__", "")}</span>
           </div>
-          {prevStage && (
-            <button onClick={handleUndo} className="shrink-0 text-[12px] font-semibold text-[#127EE3] hover:underline transition-colors">
+          {prevStage && alertMsg.startsWith("__stage__") && (
+            <button onClick={handleUndo} className="shrink-0 text-[12px] font-semibold text-[#127EE3] hover:underline transition-colors whitespace-nowrap">
               ย้อนกลับ
             </button>
           )}
         </div>
       )}
 
-      {/* Workflow detail card — to_interview stage */}
-      {stage === "to_interview" && applicant && (applicant.toInterviewMovedAt || applicant.toInterviewSource || (applicant.toInterviewRecommendedInterviewers?.length ?? 0) > 0 || (applicant.preferredInterviewTimes?.length ?? 0) > 0) && (
-        <div className="rounded-xl border border-gray-200 bg-white divide-y divide-gray-100">
-          <div className="px-4 py-3 bg-gray-50 rounded-t-xl">
-            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">รายละเอียดการนัดสัมภาษณ์</p>
+      {/* ── Rejected / Not started banner ── */}
+      {stage === "rejected" && (
+        <div className="mx-5 mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 flex items-start gap-3">
+          <ThumbsDown className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
+          <div className="flex-1">
+            <p className="text-[13px] font-semibold text-red-700">ไม่ผ่าน / ยกเลิก</p>
+            {rejectionReason && <p className="text-[12px] text-red-500 mt-0.5">{rejectionReason}</p>}
           </div>
-          <div className="px-4 py-3 space-y-2">
-            {applicant.toInterviewMovedAt && (
-              <div className="flex gap-2.5">
-                <span className="text-[11.5px] text-gray-400 w-36 flex-shrink-0">ย้ายเข้าลิสต์เมื่อ</span>
-                <span className="text-[12.5px] text-gray-700 font-medium">{applicant.toInterviewMovedAt}</span>
-              </div>
-            )}
-            {applicant.toInterviewSource && (
-              <div className="flex gap-2.5">
-                <span className="text-[11.5px] text-gray-400 w-36 flex-shrink-0">ที่มา</span>
-                <span className="text-[12.5px] text-gray-700">{applicant.toInterviewSource}</span>
-              </div>
-            )}
-            {(applicant.toInterviewRecommendedInterviewers?.length ?? 0) > 0 && (
-              <div className="flex gap-2.5">
-                <span className="text-[11.5px] text-gray-400 w-36 flex-shrink-0 mt-0.5">ผู้สัมภาษณ์แนะนำ</span>
-                <div className="flex flex-col gap-1">
-                  {applicant.toInterviewRecommendedInterviewers!.map((iv, i) => (
-                    <span key={i} className="text-[12.5px] text-gray-700">{iv}</span>
-                  ))}
-                </div>
-              </div>
-            )}
-            {(applicant.preferredInterviewTimes?.length ?? 0) > 0 && (
-              <div className="flex gap-2.5">
-                <span className="text-[11.5px] text-gray-400 w-36 flex-shrink-0 mt-0.5">วันสะดวกสัมภาษณ์</span>
-                <div className="flex flex-col gap-1">
-                  {applicant.preferredInterviewTimes!.map((t, i) => (
-                    <span key={i} className="inline-flex items-center gap-1 text-[12.5px] text-gray-700"><Clock className="w-3 h-3 text-gray-400 flex-shrink-0" />{t}</span>
-                  ))}
-                </div>
-              </div>
-            )}
+          <div className="flex gap-2 flex-shrink-0">
+            <button onClick={() => { setRejectionReason(null); completeStageChange("shortlist"); }}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-[12px] font-semibold text-gray-700 hover:border-[#127EE3] hover:text-[#127EE3] transition-colors">
+              <ThumbsUp className="w-3 h-3" />ย้ายกลับ
+            </button>
           </div>
         </div>
       )}
 
-      {/* Workflow detail card — passed stage */}
-      {stage === "passed" && applicant && (applicant.passedAt || applicant.passedComments || applicant.passedNextStep) && (
-        <div className="rounded-xl border border-gray-200 bg-white divide-y divide-gray-100">
-          <div className="px-4 py-3 bg-gray-50 rounded-t-xl">
-            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">ผลสัมภาษณ์</p>
-          </div>
-          <div className="px-4 py-3 space-y-2">
-            {applicant.passedAt && (
-              <div className="flex gap-2.5">
-                <span className="text-[11.5px] text-gray-400 w-32 flex-shrink-0">บันทึกเมื่อ</span>
-                <span className="text-[12.5px] text-gray-700 font-medium">{applicant.passedAt}</span>
-              </div>
-            )}
-            {applicant.passedBy && (
-              <div className="flex gap-2.5">
-                <span className="text-[11.5px] text-gray-400 w-32 flex-shrink-0">บันทึกโดย</span>
-                <span className="text-[12.5px] text-gray-700">{applicant.passedBy}</span>
-              </div>
-            )}
-            {applicant.passedComments && (
-              <div className="flex gap-2.5">
-                <span className="text-[11.5px] text-gray-400 w-32 flex-shrink-0 mt-0.5">ความเห็น</span>
-                <p className="text-[12.5px] text-gray-700 leading-relaxed flex-1">{applicant.passedComments}</p>
-              </div>
-            )}
-            {applicant.passedNextStep && (
-              <div className="flex gap-2.5">
-                <span className="text-[11.5px] text-gray-400 w-32 flex-shrink-0 mt-0.5">Next step</span>
-                <p className="text-[12.5px] text-[#127EE3] leading-relaxed flex-1">{applicant.passedNextStep}</p>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+      {/* ── Pipeline steps ── */}
+      <div className="flex-1 overflow-y-auto px-5 py-5 space-y-2">
 
-      {/* Workflow detail card — rejected stage */}
-      {stage === "rejected" && applicant && (applicant.rejectedAt || applicant.rejectionNote) && (
-        <div className="rounded-xl border border-gray-200 bg-white divide-y divide-gray-100">
-          <div className="px-4 py-3 bg-gray-50 rounded-t-xl">
-            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">รายละเอียดการไม่ผ่าน</p>
-          </div>
-          <div className="px-4 py-3 space-y-2">
-            {applicant.rejectionReason && (
-              <div className="flex gap-2.5">
-                <span className="text-[11.5px] text-gray-400 w-28 flex-shrink-0">เหตุผล</span>
-                <span className="text-[12.5px] text-gray-700 font-medium">{applicant.rejectionReason}</span>
-              </div>
-            )}
-            {applicant.rejectedAt && (
-              <div className="flex gap-2.5">
-                <span className="text-[11.5px] text-gray-400 w-28 flex-shrink-0">บันทึกเมื่อ</span>
-                <span className="text-[12.5px] text-gray-700">{applicant.rejectedAt}</span>
-              </div>
-            )}
-            {applicant.rejectedBy && (
-              <div className="flex gap-2.5">
-                <span className="text-[11.5px] text-gray-400 w-28 flex-shrink-0">บันทึกโดย</span>
-                <span className="text-[12.5px] text-gray-700">{applicant.rejectedBy}</span>
-              </div>
-            )}
-            {applicant.rejectionNote && (
-              <div className="flex gap-2.5">
-                <span className="text-[11.5px] text-gray-400 w-28 flex-shrink-0 mt-0.5">หมายเหตุ</span>
-                <p className="text-[12.5px] text-gray-600 leading-relaxed flex-1">{applicant.rejectionNote}</p>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* Workflow detail card — hired stage */}
-      {stage === "hired" && applicant && (applicant.hiredAt || applicant.hiredStartDate) && (
-        <div className="rounded-xl border border-gray-200 bg-white divide-y divide-gray-100">
-          <div className="px-4 py-3 bg-gray-50 rounded-t-xl">
-            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">รายละเอียดการรับเข้าทำงาน</p>
-          </div>
-          <div className="px-4 py-3 space-y-2">
-            {applicant.hiredAt && (
-              <div className="flex gap-2.5">
-                <span className="text-[11.5px] text-gray-400 w-32 flex-shrink-0">รับเข้าทำงานเมื่อ</span>
-                <span className="text-[12.5px] text-gray-700 font-medium">{applicant.hiredAt}</span>
-              </div>
-            )}
-            {applicant.hiredBy && (
-              <div className="flex gap-2.5">
-                <span className="text-[11.5px] text-gray-400 w-32 flex-shrink-0">บันทึกโดย</span>
-                <span className="text-[12.5px] text-gray-700">{applicant.hiredBy}</span>
-              </div>
-            )}
-            {applicant.hiredStartDate && (
-              <div className="flex gap-2.5">
-                <span className="text-[11.5px] text-gray-400 w-32 flex-shrink-0">วันที่เริ่มงาน</span>
-                <span className="text-[12.5px] text-emerald-600 font-semibold">{applicant.hiredStartDate}</span>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* Reviewer status panel — review stage only */}
-      {stage === "review" && (
-        <div>
-          <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2.5">สถานะการพิจารณา</p>
-          {reviewers.length === 0 ? (
-              <div className="rounded-xl border border-gray-200 px-4 py-5 text-[12.5px] text-gray-400 text-center bg-white">ยังไม่มีการส่งต่อให้ผู้พิจารณา</div>
-            ) : (
-              <div className="space-y-3">
-                {reviewers.map((r) => {
-                  const badge =
-                    r.status === "สนใจเรียกสัมภาษณ์"
-                      ? "bg-emerald-50 text-emerald-700 border-emerald-200"
-                      : r.status === "ไม่สนใจเรียกสัมภาษณ์"
-                      ? "bg-red-50 text-red-600 border-red-200"
-                      : "bg-amber-50 text-amber-700 border-amber-200";
-                  const isRecording = recordingId === r.id;
-                  return (
-                    <div key={r.id} className="bg-white rounded-xl border border-gray-200 px-4 py-3.5 space-y-2.5">
-                      {/* Name + badge */}
-                      <div className="flex items-center justify-between gap-2">
-                        <p className="text-[13.5px] font-semibold text-[#1A1A2E] truncate">{r.name}</p>
-                        <span className={`shrink-0 inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${badge}`}>{r.status}</span>
-                      </div>
-                      {/* Meta: email · dept · ส่งเมื่อ · ตอบเมื่อ */}
-                      <p className="text-[11.5px] text-gray-400 leading-relaxed flex flex-wrap items-center gap-x-1.5 gap-y-0">
-                        <Mail className="w-3 h-3 flex-shrink-0" />
-                        <span>{r.email}</span>
-                        <span className="text-gray-300">·</span>
-                        <span>{r.department}</span>
-                        <span className="text-gray-300">·</span>
-                        <span>ส่งเมื่อ <span className="text-gray-500 font-medium">{r.sentAt}</span></span>
-                        <span className="text-gray-300">·</span>
-                        <span>ตอบเมื่อ <span className="text-gray-500 font-medium">{r.respondedAt ?? "ยังไม่ตอบ"}</span></span>
-                      </p>
-                      {/* Note */}
-                      {r.note && (
-                        <p className="text-[12px] text-gray-600 bg-gray-50 rounded-lg px-3 py-2 leading-relaxed border border-gray-100">"{r.note}"</p>
-                      )}
-                      {/* Availability chips */}
-                      {r.status === "สนใจเรียกสัมภาษณ์" && r.availabilitySlots && r.availabilitySlots.length > 0 && (
-                        <div className="space-y-1.5">
-                          <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wide">ช่วงเวลาที่สะดวก</p>
-                          <div className="flex flex-wrap gap-1.5">
-                            {r.availabilitySlots.map((s, i) => (
-                              <span key={i} className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white border border-gray-200 text-[11.5px] font-medium text-gray-600">
-                                <Clock className="w-3 h-3 flex-shrink-0 text-gray-400" />{s.date} {s.time}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                      {/* Action buttons */}
-                      {!isRecording && (
-                        <div className="flex flex-wrap gap-2">
-                          {r.status === "รอพิจารณา" ? (
-                            <>
-                              <button onClick={() => openRecordModal(r.id)}
-                                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#00ADEF] text-[#00ADEF] text-[11.5px] font-semibold hover:bg-sky-50 transition-colors">
-                                <FileText className="w-3.5 h-3.5" />ระบุผล
-                              </button>
-                              <button onClick={() => {
-                                store.addActivity({ id: `a${Date.now()}`, actor: "สมศรี HR", actorInitials: "สร", actorColor: "bg-[#127EE3]", type: "email", text: `ส่งอีเมลเตือนผู้พิจารณา ${r.name}`, time: "เพิ่งเมื่อกี้" });
-                                setAlertMsg("ส่งอีเมลเตือนเรียบร้อยแล้ว");
-                              }} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 text-gray-500 text-[11.5px] font-medium hover:bg-gray-50 transition-colors">
-                                <Send className="w-3.5 h-3.5" />ส่งอีเมลเตือนอีกครั้ง
-                              </button>
-                              <button onClick={() => {
-                                navigator.clipboard.writeText(`https://superrecruit.example.com/review/cand-001/${r.id}`);
-                                setAlertMsg("คัดลอกลิงก์พิจารณาเรียบร้อยแล้ว");
-                              }} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 text-gray-500 text-[11.5px] font-medium hover:bg-gray-50 transition-colors">
-                                <Copy className="w-3.5 h-3.5" />คัดลอกลิงก์พิจารณา
-                              </button>
-                            </>
-                          ) : (
-                            <button onClick={() => openRecordModal(r.id, r)}
-                              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-300 text-gray-600 text-[11.5px] font-semibold hover:bg-gray-50 transition-colors">
-                              <FileText className="w-3.5 h-3.5" />แก้ไขผล
-                            </button>
-                          )}
-                        </div>
-                      )}
-                      {/* Inline record modal */}
-                      {isRecording && (
-                        <div className="rounded-xl border border-gray-200 bg-white overflow-hidden mt-1">
-                          <div className="px-4 py-2.5 bg-gray-50 border-b border-gray-100">
-                            <p className="text-[12.5px] font-bold text-[#1A1A2E]">{recordIsEdit ? "แก้ไขผลการพิจารณา" : "ระบุผลการพิจารณา"} — {r.name}</p>
-                          </div>
-                          <div className="px-4 py-3 space-y-3">
-                            {/* Status select */}
-                            <div>
-                              <p className="text-[11.5px] font-semibold text-gray-500 mb-1.5">ผลการพิจารณา</p>
-                              <div className="flex gap-2">
-                                {(["สนใจเรียกสัมภาษณ์", "ไม่สนใจเรียกสัมภาษณ์"] as const).map((s) => (
-                                  <button key={s} onClick={() => setRecordStatus(s)}
-                                    className={`flex-1 py-2 rounded-xl border text-[12px] font-semibold transition-all ${recordStatus === s
-                                      ? s === "สนใจเรียกสัมภาษณ์" ? "bg-emerald-50 border-emerald-400 text-emerald-700" : "bg-red-50 border-red-400 text-red-600"
-                                      : "border-gray-200 text-gray-500 hover:border-gray-300"}`}>
-                                    {s}
-                                  </button>
-                                ))}
-                              </div>
-                            </div>
-                            {/* Availability slots — shown only when interested */}
-                            {recordStatus === "สนใจเรียกสัมภาษณ์" && (
-                              <div className="space-y-2">
-                                <p className="text-[11.5px] font-semibold text-gray-500">ช่วงเวลาที่สะดวกนัดสัมภาษณ์</p>
-                                {recordSlots.map((slot, i) => (
-                                  <div key={i} className="flex gap-2 items-center">
-                                    <span className="text-[11px] text-gray-400 w-4 shrink-0">{i + 1}.</span>
-                                    <input type="date" value={slot.date}
-                                      onChange={(e) => setRecordSlots((prev) => prev.map((s, idx) => idx === i ? { ...s, date: e.target.value } : s))}
-                                      className="flex-1 px-2.5 py-1.5 text-[12px] bg-[#F0F2F5] rounded-lg border border-transparent focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all" />
-                                    <input type="time" value={slot.time}
-                                      onChange={(e) => setRecordSlots((prev) => prev.map((s, idx) => idx === i ? { ...s, time: e.target.value } : s))}
-                                      className="w-24 px-2.5 py-1.5 text-[12px] bg-[#F0F2F5] rounded-lg border border-transparent focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all" />
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                            {/* Note */}
-                            <div>
-                              <p className="text-[11.5px] font-semibold text-gray-500 mb-1.5">หมายเหตุ <span className="font-normal text-gray-400">(ไม่บังคับ)</span></p>
-                              <textarea value={recordNote} onChange={(e) => setRecordNote(e.target.value)} rows={2}
-                                placeholder="บันทึกข้อความเพิ่มเติม..."
-                                className="w-full px-3 py-2 text-[12px] bg-[#F0F2F5] rounded-xl border border-transparent focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all placeholder:text-gray-400 resize-none" />
-                            </div>
-                          </div>
-                          <div className="flex justify-end gap-2 px-4 py-2.5 bg-gray-50 border-t border-gray-100">
-                            <button onClick={() => setRecordingId(null)}
-                              className="px-3.5 py-1.5 rounded-lg border border-gray-200 text-[12px] text-gray-500 hover:bg-gray-100 transition-colors">ยกเลิก</button>
-                            <button onClick={handleRecordSave} disabled={!recordStatus}
-                              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#127EE3] text-white text-[12px] font-bold hover:bg-[#0f6bc7] transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
-                              <CheckCircle2 className="w-3.5 h-3.5" />บันทึก
-                            </button>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-        </div>
-      )}
-
-      {/* Workflow detail card — interview stage notes */}
-      {stage === "interview" && applicant && (applicant.interviewers?.length || applicant.interviewType || applicant.interviewNote) && (
-        <div className="rounded-xl border border-gray-200 bg-white divide-y divide-gray-100">
-          <div className="px-4 py-3 bg-gray-50 rounded-t-xl">
-            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">รายละเอียดนัดสัมภาษณ์</p>
-          </div>
-          <div className="px-4 py-3 space-y-2">
-            {applicant.interviewDate && (
-              <div className="flex gap-2.5">
-                <span className="text-[11.5px] text-gray-400 w-32 flex-shrink-0">วันที่ / เวลา</span>
-                <span className="text-[12.5px] text-gray-700 font-medium">{applicant.interviewDate}</span>
-              </div>
-            )}
-            {applicant.interviewType && (
-              <div className="flex gap-2.5">
-                <span className="text-[11.5px] text-gray-400 w-32 flex-shrink-0">ช่องทาง</span>
-                <span className="text-[12.5px] text-gray-700">
-                  {applicant.interviewType === "video" ? "Video Call (Zoom / Meet)" : applicant.interviewType === "onsite" ? "Onsite — บริษัท" : applicant.interviewType === "phone" ? "โทรศัพท์" : applicant.interviewType}
-                </span>
-              </div>
-            )}
-            {(applicant.interviewers?.length ?? 0) > 0 && (
-              <div className="flex gap-2.5">
-                <span className="text-[11.5px] text-gray-400 w-32 flex-shrink-0 mt-0.5">ผู้สัมภาษณ์</span>
-                <div className="flex flex-col gap-0.5">
-                  {applicant.interviewers!.map((iv, i) => (
-                    <span key={i} className="text-[12.5px] text-gray-700">{iv}</span>
-                  ))}
-                </div>
-              </div>
-            )}
-            {applicant.interviewEmailSent !== undefined && (
-              <div className="flex gap-2.5">
-                <span className="text-[11.5px] text-gray-400 w-32 flex-shrink-0">แจ้งผู้สมัครแล้ว</span>
-                <span className={`text-[12.5px] font-medium ${applicant.interviewEmailSent ? "text-emerald-600" : "text-amber-600"}`}>
-                  {applicant.interviewEmailSent ? "ส่งอีเมลแล้ว" : "ยังไม่ได้ส่ง"}
-                </span>
-              </div>
-            )}
-            {applicant.interviewNote && (
-              <div className="flex gap-2.5">
-                <span className="text-[11.5px] text-gray-400 w-32 flex-shrink-0 mt-0.5">หมายเหตุ</span>
-                <p className="text-[12.5px] text-gray-700 leading-relaxed flex-1">{applicant.interviewNote}</p>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* Supporting info for to_interview stage */}
-      {stage === "to_interview" && (
-        <div className="space-y-3 mt-1">
-          {reviewers.some((r) => r.status === "สนใจเรียกสัมภาษณ์" && r.availabilitySlots && r.availabilitySlots.length > 0) && (
-            <div className="rounded-xl border border-gray-200 bg-white px-4 py-3 space-y-2">
-              <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">ช่วงเวลาที่ผู้พิจารณาสะดวก</p>
-              {reviewers.filter((r) => r.status === "สนใจเรียกสัมภาษณ์" && r.availabilitySlots && r.availabilitySlots.length > 0).map((r) => (
-                <div key={r.id} className="space-y-1.5">
-                  <p className="text-[11.5px] font-medium text-gray-500">{r.name}</p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {r.availabilitySlots!.map((s, i) => (
-                      <span key={i} className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white border border-gray-200 text-[11.5px] font-medium text-gray-600">
-                        <Clock className="w-3 h-3 flex-shrink-0 text-gray-400" />{s.date} {s.time}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-          <div className="rounded-xl border border-gray-200 bg-white px-4 py-3">
-            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2">ติดต่อผู้สมัคร</p>
-            <p className="text-[13px] font-semibold text-[#1A1A2E] mb-2">{REVEALED_NAME}</p>
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="flex items-center gap-1.5 text-[12.5px] text-gray-700 font-medium">
-                <Phone className="w-3.5 h-3.5 text-[#0DC2FF]" />เบอร์โทร: {REVEALED_PHONE}
-              </span>
-              <button onClick={() => { navigator.clipboard.writeText(REVEALED_PHONE); setAlertMsg("คัดลอกเบอร์โทรเรียบร้อยแล้ว"); }}
-                className="flex items-center gap-1 px-2 py-0.5 rounded-md border border-gray-200 text-[11px] text-gray-400 hover:bg-gray-50 transition-colors">
-                <Copy className="w-3 h-3" />คัดลอก
-              </button>
-              <button onClick={() => {
-                const now = new Date();
-                const label = `${now.toLocaleDateString("th-TH", { day: "numeric", month: "short", year: "numeric" })} ${now.toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit" })}`;
-                setCallLogs((prev) => [{ id: now.getTime(), label }, ...prev]);
-                store.addActivity({
-                  id: `a${Date.now()}`, actor: "สมศรี HR", actorInitials: "สร", actorColor: "bg-[#127EE3]",
-                  type: "note", text: "ติดต่อผู้สมัครไม่ได้ (ไม่รับสาย)", time: "เพิ่งเมื่อกี้",
-                });
-                setAlertMsg("บันทึกแล้ว");
-              }} className="flex items-center gap-1 px-2 py-0.5 rounded-md border border-red-200 text-[11px] text-red-400 hover:bg-red-50 transition-colors">
-                <PhoneOff className="w-3 h-3" />ไม่รับสาย
-              </button>
-            </div>
-            {callLogs.length > 0 && (
-              <div className="mt-3 pt-3 border-t border-gray-100">
-                <p className="text-[10.5px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">ประวัติการติดต่อ</p>
-                <ul className="space-y-1">
-                  {callLogs.map((entry, i) => (
-                    <li key={entry.id} className="flex items-center gap-1.5 text-[11.5px] text-gray-400">
-                      <PhoneOff className="w-3 h-3 flex-shrink-0 text-red-300" />
-                      <span>โทรเมื่อ {entry.label} — <span className="text-red-400">ไม่รับสาย</span> · <button
-                        onClick={() => {
-                          if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
-                          setUndoEntry({ ...entry, index: i });
-                          setCallLogs((prev) => prev.filter((e) => e.id !== entry.id));
-                          setAlertMsg("__undo__");
-                          undoTimerRef.current = setTimeout(() => {
-                            setUndoEntry(null);
-                            setAlertMsg(null);
-                          }, 3000);
-                        }}
-                        className="text-[10.5px] text-gray-400 hover:text-red-500 transition-colors underline-offset-2 hover:underline"
-                      >ลบ</button></span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {undoEntry && alertMsg === "__undo__" && (
-              <div className="mt-2 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-gray-200 shadow-sm text-[11.5px]">
-                <span className="flex-1 text-gray-600">ลบแล้ว</span>
-                <button
-                  onClick={() => {
-                    if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
-                    setCallLogs((prev) => {
-                      const next = [...prev];
-                      next.splice(undoEntry.index, 0, { id: undoEntry.id, label: undoEntry.label });
-                      return next;
-                    });
-                    setUndoEntry(null);
-                    setAlertMsg(null);
-                  }}
-                  className="font-semibold text-[#127EE3] hover:underline transition-colors"
-                >Undo</button>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* Next Actions */}
-      <div>
-        <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-3">Action ถัดไป</p>
-
-        {/* ใหม่ */}
+        {/* Step 0 — ใหม่ (special: only shown if stage === "new") */}
         {stage === "new" && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-            <ActionBtn primary onClick={() => completeStageChange("shortlist")} icon={<ThumbsUp className="w-3.5 h-3.5 flex-shrink-0" />} label="ชอร์ตลิสต์" />
-            <ActionBtn onClick={() => setActiveAction("refer")} icon={<Users2 className="w-3.5 h-3.5 flex-shrink-0" />} label="ส่งต่อให้พิจารณา" />
-            <ActionBtn onClick={() => setActiveAction("schedule")} icon={<Calendar className="w-3.5 h-3.5 flex-shrink-0" />} label="ลงตารางนัดสัมภาษณ์" />
-            <ActionBtn destructive onClick={() => completeStageChange("rejected")} icon={<ThumbsDown className="w-3.5 h-3.5 flex-shrink-0" />} label="ไม่ผ่าน" />
-          </div>
-        )}
-
-        {/* ชอร์ตลิสต์ */}
-        {stage === "shortlist" && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-            <ActionBtn primary onClick={() => setActiveAction("refer")} icon={<Users2 className="w-3.5 h-3.5 flex-shrink-0" />} label="ส่งต่อให้พิจารณา" />
-            <ActionBtn primary onClick={() => completeStageChange("to_interview")} icon={<Calendar className="w-3.5 h-3.5 flex-shrink-0" />} label="ย้ายไปลิสต์ต้องนัดสัมภาษณ์" />
-            <ActionBtn primary onClick={() => setActiveAction("schedule")} icon={<Calendar className="w-3.5 h-3.5 flex-shrink-0" />} label="ลงตารางนัดสัมภาษณ์" />
-            <ActionBtn onClick={() => setActiveAction("hire")} icon={<Award className="w-3.5 h-3.5 flex-shrink-0" />} label="รับเข้าทำงาน" />
-            <ActionBtn destructive onClick={() => completeStageChange("rejected")} icon={<ThumbsDown className="w-3.5 h-3.5 flex-shrink-0" />} label="ไม่ผ่าน" />
-          </div>
-        )}
-
-        {/* ส่งต่อให้พิจารณา */}
-        {stage === "review" && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-            <ActionBtn primary onClick={() => setActiveAction("refer")} icon={<Users2 className="w-3.5 h-3.5 flex-shrink-0" />} label="ส่งต่อให้พิจารณา" />
-            <ActionBtn primary onClick={() => setActiveAction("schedule")} icon={<Calendar className="w-3.5 h-3.5 flex-shrink-0" />} label="ลงตารางนัดสัมภาษณ์" />
-            <ActionBtn primary onClick={() => completeStageChange("to_interview")} icon={<Calendar className="w-3.5 h-3.5 flex-shrink-0" />} label="ย้ายไปลิสต์ต้องนัดสัมภาษณ์" />
-            <ActionBtn onClick={() => setActiveAction("hire")} icon={<Award className="w-3.5 h-3.5 flex-shrink-0" />} label="รับเข้าทำงาน" />
-            <ActionBtn destructive onClick={() => completeStageChange("rejected")} icon={<ThumbsDown className="w-3.5 h-3.5 flex-shrink-0" />} label="ไม่ผ่าน" />
-          </div>
-        )}
-
-        {/* ลิสต์ต้องนัดสัมภาษณ์ */}
-        {stage === "to_interview" && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-            <ActionBtn primary onClick={() => setActiveAction("schedule")} icon={<Calendar className="w-3.5 h-3.5 flex-shrink-0" />} label="ลงตารางนัดสัมภาษณ์" />
-            <ActionBtn destructive onClick={() => completeTerminalAction("ผู้สมัครปฏิเสธนัด")} icon={<Ban className="w-3.5 h-3.5 flex-shrink-0" />} label="ผู้สมัครปฏิเสธนัด" />
-            <ActionBtn destructive onClick={() => completeStageChange("rejected")} icon={<ThumbsDown className="w-3.5 h-3.5 flex-shrink-0" />} label="ไม่ผ่าน" />
-          </div>
-        )}
-
-        {/* สัมภาษณ์ */}
-        {stage === "interview" && (
-          <div className="space-y-3">
-            {!scheduledInfo && applicant?.interviewDate && (
-              <div className="rounded-2xl border border-gray-200 bg-white px-5 py-4">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                  <div className="flex-1">
-                    <p className="text-[13.5px] font-bold text-gray-900">นัดสัมภาษณ์เรียบร้อยแล้ว</p>
-                    <p className="text-[13px] text-gray-600 mt-0.5">{applicant.interviewDate}</p>
-                  </div>
-                </div>
+          <div className="rounded-2xl border-2 border-[#127EE3] bg-blue-50/40 overflow-hidden">
+            <div className="px-4 py-3 flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-[#127EE3] flex items-center justify-center flex-shrink-0">
+                <Star className="w-4 h-4 text-white" />
               </div>
-            )}
-            {scheduledInfo && (() => {
-              const [hh, mm] = scheduledInfo.time.split(":").map(Number);
-              const total = hh * 60 + mm + scheduledInfo.duration;
-              const endTime = `${String(Math.floor(total / 60)).padStart(2, "0")}:${String(total % 60).padStart(2, "0")}`;
-              const googleStart = new Date(scheduledInfo.date);
-              googleStart.setHours(hh, mm, 0, 0);
-              const googleEnd = new Date(googleStart.getTime() + scheduledInfo.duration * 60000);
-              const fmtCal = (d: Date) => d.toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
-              const title = encodeURIComponent(`สัมภาษณ์ — Senior Product Designer`);
-              const details = encodeURIComponent(`สัมภาษณ์ตำแหน่ง LINE MAN Wongnai\nประเภท: ${typeLabel(scheduledInfo.type)}`);
-              const location = encodeURIComponent(scheduledInfo.type === "onsite" ? "บริษัท" : scheduledInfo.type === "video" ? "Google Meet / Zoom" : "โทรศัพท์");
-              const googleLink = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${fmtCal(googleStart)}/${fmtCal(googleEnd)}&details=${details}&location=${location}`;
-              const outlookLink = `https://outlook.live.com/calendar/0/deeplink/compose?subject=${title}&startdt=${googleStart.toISOString()}&enddt=${googleEnd.toISOString()}&body=${details}&location=${location}`;
-              return (
-                <div className="rounded-2xl border border-gray-200 bg-white px-5 py-4">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                    <div className="flex-1">
-                      <p className="text-[13.5px] font-bold text-gray-900">นัดสัมภาษณ์เรียบร้อยแล้ว</p>
-                      <p className="text-[13px] text-gray-600 mt-0.5">
-                        {toThaiDate(scheduledInfo.date)} · {scheduledInfo.time}–{endTime} น. · {scheduledInfo.duration} นาที · {typeLabel(scheduledInfo.type)}
-                      </p>
-                      {scheduledInfo.interviewers.length > 0 && (
-                        <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
-                          <span className="text-[12px] text-gray-500 font-medium">ผู้สัมภาษณ์:</span>
-                          {scheduledInfo.interviewers.map((iv) => (
-                            <span key={iv.id} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium border border-gray-200 bg-gray-50 text-gray-700">
-                              <span className={`w-3.5 h-3.5 rounded-full flex items-center justify-center text-[8px] font-bold ${iv.color}`}>{iv.initials}</span>
-                              {iv.fullName}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                      {scheduledInfo.emailSent && (
-                        <div className="flex items-center gap-1.5 mt-1.5">
-                          <Mail className="w-3.5 h-3.5 text-gray-400" />
-                          <p className="text-[12px] text-gray-500">ส่งอีเมลแล้ว</p>
-                        </div>
-                      )}
-                      <div className="mt-3 flex gap-2 flex-wrap">
-                        <a href={googleLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-[12px] font-medium text-gray-700 hover:border-[#127EE3] hover:text-[#127EE3] transition-colors">
-                          <img src="https://www.google.com/favicon.ico" alt="" className="w-3.5 h-3.5 rounded-sm" />
-                          เพิ่มใน Google Calendar
-                          <ExternalLink className="w-3 h-3" />
-                        </a>
-                        <a href={outlookLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-[12px] font-medium text-gray-700 hover:border-blue-500 hover:text-blue-600 transition-colors">
-                          <svg viewBox="0 0 32 32" className="w-3.5 h-3.5" fill="none"><rect width="32" height="32" rx="4" fill="#0078D4" /><path d="M6 10h12v12H6z" fill="white" opacity="0.9" /><path d="M20 8h6v16h-6z" fill="white" opacity="0.6" /></svg>
-                          เพิ่มใน Outlook
-                          <ExternalLink className="w-3 h-3" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })()}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-              <ActionBtn primary onClick={() => handleOpenResult()} icon={<FileText className="w-3.5 h-3.5 flex-shrink-0" />} label="บันทึกผลสัมภาษณ์" />
-              <ActionBtn onClick={() => setActiveAction("reschedule")} icon={<RefreshCw className="w-3.5 h-3.5 flex-shrink-0" />} label="เปลี่ยนวันนัด" />
-              <ActionBtn destructive onClick={() => completeTerminalAction("ยกเลิกนัดสัมภาษณ์")} icon={<X className="w-3.5 h-3.5 flex-shrink-0" />} label="ยกเลิกนัด" />
-              <ActionBtn destructive onClick={() => completeTerminalAction("ไม่มาสัมภาษณ์")} icon={<UserX className="w-3.5 h-3.5 flex-shrink-0" />} label="ไม่มาสัมภาษณ์" />
-              <ActionBtn destructive onClick={() => completeTerminalAction("ไม่ผ่านสัมภาษณ์")} icon={<ThumbsDown className="w-3.5 h-3.5 flex-shrink-0" />} label="ไม่ผ่านสัมภาษณ์" />
+              <div className="flex-1">
+                <p className="text-[13.5px] font-bold text-[#1A1A2E]">ผู้สมัครใหม่</p>
+                <p className="text-[12px] text-gray-500">เพิ่งส่งใบสมัคร รอ HR ตรวจสอบ resume เบื้องต้น</p>
+              </div>
+              <span className="text-[11px] font-bold text-[#127EE3] bg-blue-100 px-2.5 py-1 rounded-full">สถานะปัจจุบัน</span>
             </div>
-          </div>
-        )}
-
-        {/* ผ่านสัมภาษณ์ */}
-        {stage === "passed" && (
-          <div className="space-y-3">
-            {/* Interview result summary card */}
-            <div className="rounded-2xl border border-gray-200 overflow-hidden">
-              <div className="px-4 py-3 bg-gray-50 border-b border-gray-100 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-gray-400" />
-                  <span className="text-[12.5px] font-bold text-gray-900">บันทึกผลสัมภาษณ์</span>
-                </div>
-                <button onClick={() => handleOpenResult()}
-                  className="flex items-center gap-1 px-2.5 py-1 rounded-lg border border-gray-200 text-[11.5px] text-gray-500 hover:border-[#127EE3] hover:text-[#127EE3] transition-colors bg-white">
-                  <Edit2 className="w-3 h-3" />แก้ไขผลสัมภาษณ์
+            <div className="px-4 pb-4">
+              <p className="text-[11.5px] font-semibold text-gray-400 mb-2.5">ขั้นตอนต่อไป — เลือกทำอย่างใดอย่างหนึ่ง:</p>
+              <div className="flex gap-2 flex-wrap">
+                <button onClick={() => completeStageChange("shortlist")}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[13px] font-bold shadow-sm hover:opacity-90 transition-opacity">
+                  <ThumbsUp className="w-4 h-4" />คัดกรองผ่าน
+                </button>
+                <button onClick={() => completeStageChange("rejected")}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-red-200 text-red-500 text-[13px] font-medium bg-white hover:bg-red-50 transition-colors">
+                  <ThumbsDown className="w-4 h-4" />ไม่ผ่านการคัดกรอง
                 </button>
               </div>
-              {savedResult ? (
-                <div className="px-4 py-4 space-y-3">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest w-24 flex-shrink-0">ผลสัมภาษณ์</span>
-                    {savedResult.outcome === "passed" && (
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-semibold bg-teal-50 text-teal-700 border border-teal-100">
-                        <CheckCircle2 className="w-3 h-3" />ผ่านสัมภาษณ์
-                      </span>
-                    )}
-                    {savedResult.outcome === "wait_compare" && (
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-semibold bg-amber-50 text-amber-700 border border-amber-100">
-                        <Clock className="w-3 h-3" />รอเปรียบเทียบ
-                      </span>
-                    )}
-                    {savedResult.outcome === "rejected" && (
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-semibold bg-red-50 text-red-600 border border-red-100">
-                        <ThumbsDown className="w-3 h-3" />ไม่ผ่านสัมภาษณ์
-                      </span>
-                    )}
-                  </div>
-                  {savedResult.interviewers.length > 0 && (
-                    <div className="flex items-start gap-2">
-                      <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest w-24 flex-shrink-0 mt-0.5">ผู้สัมภาษณ์</span>
-                      <div className="flex flex-wrap gap-1.5">
-                        {savedResult.interviewers.map((iv) => (
-                          <span key={iv.id} className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11.5px] font-medium border ${iv.color} border-current/20`}>
-                            <span className={`w-3.5 h-3.5 rounded-full flex items-center justify-center text-[8px] font-bold ${iv.color}`}>{iv.initials}</span>
-                            {iv.fullName}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  {savedResult.comments && (
-                    <div className="flex items-start gap-2">
-                      <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest w-24 flex-shrink-0 mt-0.5">ความคิดเห็น</span>
-                      <p className="text-[12.5px] text-gray-700 leading-relaxed flex-1">{savedResult.comments}</p>
-                    </div>
-                  )}
-                  {savedResult.attachmentNames.length > 0 && (
-                    <div className="flex items-start gap-2">
-                      <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest w-24 flex-shrink-0 mt-0.5">ไฟล์แนบ</span>
-                      <div className="flex flex-col gap-1">
-                        {savedResult.attachmentNames.map((name, i) => (
-                          <span key={i} className="flex items-center gap-1.5 text-[12px] text-[#127EE3]">
-                            <Paperclip className="w-3 h-3 flex-shrink-0" />{name}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  <div className="flex items-center gap-2">
-                    <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest w-24 flex-shrink-0">บันทึกเมื่อ</span>
-                    <span className="text-[12px] text-gray-400">{savedResult.savedAt}</span>
-                  </div>
+            </div>
+          </div>
+        )}
+
+        {STEPS.map((step, idx) => {
+          const stepRank = idx;
+          const isDone    = currentRank > stepRank;
+          const isCurrent = currentRank === stepRank;
+          const isFuture  = currentRank < stepRank && stage !== "rejected";
+          const isRejected = stage === "rejected";
+
+          return (
+            <div key={step.key}
+              className={`rounded-2xl border overflow-hidden transition-all ${
+                isCurrent  ? "border-[#127EE3] shadow-sm shadow-[#127EE3]/10" :
+                isDone     ? "border-emerald-200 bg-emerald-50/30" :
+                isRejected ? "border-gray-100 bg-gray-50 opacity-40" :
+                             "border-gray-100 bg-white opacity-60"
+              }`}>
+
+              {/* Step header */}
+              <div className={`flex items-center gap-3 px-4 py-3 ${isCurrent ? "bg-blue-50/50" : ""}`}>
+                {/* Indicator */}
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
+                  isDone     ? "bg-emerald-500 text-white" :
+                  isCurrent  ? "bg-[#127EE3] text-white" :
+                               "bg-gray-100 text-gray-400"
+                }`}>
+                  {isDone ? <CheckCircle2 className="w-4 h-4" /> : step.icon}
                 </div>
-              ) : (
-                <div className="px-4 py-5 text-center">
-                  <p className="text-[12.5px] text-gray-400">ยังไม่มีบันทึกผลสัมภาษณ์</p>
-                  <button onClick={handleOpenResult}
-                    className="mt-2 text-[12px] font-semibold text-[#127EE3] hover:text-[#0f6bc7] transition-colors">
-                    + บันทึกผลสัมภาษณ์
+
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <p className={`text-[13.5px] font-bold ${isDone ? "text-emerald-700" : isCurrent ? "text-[#1A1A2E]" : "text-gray-400"}`}>
+                      {step.label}
+                    </p>
+                    {isCurrent && (
+                      <span className="text-[10.5px] font-bold text-[#127EE3] bg-blue-100 px-2 py-0.5 rounded-full whitespace-nowrap">
+                        ขั้นตอนนี้
+                      </span>
+                    )}
+                    {isDone && (
+                      <span className="text-[10.5px] font-bold text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded-full whitespace-nowrap">
+                        เสร็จแล้ว
+                      </span>
+                    )}
+                  </div>
+                  <p className={`text-[11.5px] mt-0.5 ${isCurrent ? "text-gray-500" : "text-gray-400"}`}>{step.desc}</p>
+                </div>
+
+                {/* Completed: undo button */}
+                {isDone && (
+                  <button
+                    onClick={() => completeStageChange(step.key)}
+                    className="text-[11px] text-gray-400 hover:text-[#127EE3] transition-colors whitespace-nowrap flex-shrink-0 border border-gray-200 rounded-lg px-2 py-1 bg-white hover:border-[#127EE3]"
+                  >
+                    ย้อนกลับมาขั้นนี้
                   </button>
+                )}
+              </div>
+
+              {/* Current step — expanded actions */}
+              {isCurrent && (
+                <div className="border-t border-blue-100 px-4 pb-4 pt-3 bg-white">
+
+                  {/* ── STEP: shortlist ── */}
+                  {step.key === "shortlist" && (
+                    <div className="space-y-3">
+                      <p className="text-[11.5px] font-semibold text-gray-400 mb-1">ตอนนี้ต้องทำอะไร?</p>
+                      <div className="flex gap-2 flex-wrap">
+                        <button onClick={() => setActiveAction("refer")}
+                          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[13px] font-bold shadow-sm hover:opacity-90 transition-opacity">
+                          <Users2 className="w-4 h-4" />ส่งให้ผู้จัดการพิจารณา
+                        </button>
+                        <button onClick={() => setActiveAction("schedule")}
+                          className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[#127EE3] text-[#127EE3] text-[13px] font-semibold bg-white hover:bg-blue-50 transition-colors">
+                          <Calendar className="w-4 h-4" />นัดสัมภาษณ์เลย
+                        </button>
+                      </div>
+                      <div className="flex gap-2 flex-wrap pt-1">
+                        <button onClick={openEmailCompose}
+                          className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-gray-200 text-gray-600 text-[12px] font-medium bg-white hover:border-[#127EE3] hover:text-[#127EE3] transition-colors">
+                          <Mail className="w-3.5 h-3.5" />ส่งอีเมลผู้สมัคร
+                        </button>
+                        <button onClick={() => completeTerminalAction("ไม่ผ่านการคัดกรอง")}
+                          className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-red-200 text-red-500 text-[12px] font-medium bg-white hover:bg-red-50 transition-colors">
+                          <ThumbsDown className="w-3.5 h-3.5" />ไม่ผ่าน
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* ── STEP: review ── */}
+                  {step.key === "review" && (
+                    <div className="space-y-3">
+                      <p className="text-[11.5px] font-semibold text-gray-400 mb-1">รอผลจากผู้พิจารณา — สิ่งที่ทำได้ตอนนี้:</p>
+                      <div className="flex gap-2 flex-wrap">
+                        <button onClick={() => setActiveAction("refer")}
+                          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[13px] font-bold shadow-sm hover:opacity-90 transition-opacity">
+                          <Users2 className="w-4 h-4" />ส่งให้คนอื่นพิจารณาเพิ่ม
+                        </button>
+                        <button onClick={() => completeStageChange("to_interview")}
+                          className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[#127EE3] text-[#127EE3] text-[13px] font-semibold bg-white hover:bg-blue-50 transition-colors">
+                          <Calendar className="w-4 h-4" />ผ่าน → รอนัดสัมภาษณ์
+                        </button>
+                      </div>
+                      {/* Reviewer cards */}
+                      {reviewers.length > 0 && (
+                        <div className="space-y-2 pt-1">
+                          {reviewers.map((r) => {
+                            const badge =
+                              r.status === "สนใจเรียกสัมภาษณ์"     ? "bg-emerald-50 text-emerald-700 border-emerald-200" :
+                              r.status === "ไม่สนใจเรียกสัมภาษณ์"  ? "bg-red-50 text-red-600 border-red-200" :
+                                                                        "bg-amber-50 text-amber-700 border-amber-200";
+                            const isRecording = recordingId === r.id;
+                            return (
+                              <div key={r.id} className="bg-gray-50 rounded-xl border border-gray-200 px-3.5 py-3 space-y-2">
+                                <div className="flex items-center justify-between gap-2">
+                                  <p className="text-[13px] font-semibold text-[#1A1A2E] truncate">{r.name}</p>
+                                  <span className={`shrink-0 inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold border ${badge}`}>{r.status}</span>
+                                </div>
+                                <p className="text-[11.5px] text-gray-400">{r.email} · ส่งเมื่อ {r.sentAt}</p>
+                                {r.note && <p className="text-[12px] text-gray-600 italic">"{r.note}"</p>}
+                                {!isRecording && r.status === "รอพิจารณา" && (
+                                  <div className="flex gap-1.5">
+                                    <button onClick={() => openRecordModal(r.id)}
+                                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg border border-[#127EE3] text-[#127EE3] text-[11.5px] font-semibold hover:bg-blue-50 transition-colors">
+                                      <FileText className="w-3 h-3" />ระบุผล
+                                    </button>
+                                    <button onClick={() => { store.addActivity({ id: `a${Date.now()}`, actor: "สมศรี HR", actorInitials: "สร", actorColor: "bg-[#127EE3]", type: "email", text: `ส่งอีเมลเตือน ${r.name}`, time: "เพิ่งเมื่อกี้" }); setAlertMsg("ส่งอีเมลเตือนแล้ว"); }}
+                                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg border border-gray-200 text-gray-500 text-[11.5px] hover:bg-gray-50 transition-colors">
+                                      <Send className="w-3 h-3" />เตือน
+                                    </button>
+                                  </div>
+                                )}
+                                {isRecording && (
+                                  <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
+                                    <div className="px-3 py-2.5 bg-gray-50 border-b border-gray-100">
+                                      <p className="text-[12px] font-bold text-[#1A1A2E]">{recordIsEdit ? "แก้ไขผลการพิจารณา" : "ระบุผลการพิจารณา"} — {r.name}</p>
+                                    </div>
+                                    <div className="px-3 py-3 space-y-3">
+                                      <div className="flex gap-2">
+                                        {(["สนใจเรียกสัมภาษณ์", "ไม่สนใจเรียกสัมภาษณ์"] as const).map((s) => (
+                                          <button key={s} onClick={() => setRecordStatus(s)}
+                                            className={`flex-1 py-2 rounded-xl border text-[11.5px] font-semibold transition-all ${recordStatus === s ? s === "สนใจเรียกสัมภาษณ์" ? "bg-emerald-50 border-emerald-400 text-emerald-700" : "bg-red-50 border-red-400 text-red-600" : "border-gray-200 text-gray-500 hover:border-gray-300"}`}>
+                                            {s}
+                                          </button>
+                                        ))}
+                                      </div>
+                                      <textarea value={recordNote} onChange={(e) => setRecordNote(e.target.value)} rows={2} placeholder="หมายเหตุ (ไม่บังคับ)..."
+                                        className="w-full px-3 py-2 text-[12px] bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:border-[#127EE3] resize-none placeholder:text-gray-400" />
+                                    </div>
+                                    <div className="flex justify-end gap-2 px-3 py-2.5 bg-gray-50 border-t border-gray-100">
+                                      <button onClick={() => setRecordingId(null)} className="px-3 py-1.5 rounded-lg border border-gray-200 text-[12px] text-gray-500 hover:bg-gray-100 transition-colors">ยกเลิก</button>
+                                      <button onClick={handleRecordSave} disabled={!recordStatus} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#127EE3] text-white text-[12px] font-bold hover:bg-[#0f6bc7] disabled:opacity-40 transition-colors">
+                                        <CheckCircle2 className="w-3.5 h-3.5" />บันทึก
+                                      </button>
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+                      <div className="flex gap-2 flex-wrap pt-1">
+                        <button onClick={openEmailCompose}
+                          className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-gray-200 text-gray-600 text-[12px] font-medium bg-white hover:border-[#127EE3] hover:text-[#127EE3] transition-colors">
+                          <Mail className="w-3.5 h-3.5" />ส่งอีเมลผู้สมัคร
+                        </button>
+                        <button onClick={() => completeTerminalAction("ไม่ผ่านการพิจารณา")}
+                          className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-red-200 text-red-500 text-[12px] font-medium bg-white hover:bg-red-50 transition-colors">
+                          <ThumbsDown className="w-3.5 h-3.5" />ไม่ผ่าน
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* ── STEP: to_interview ── */}
+                  {step.key === "to_interview" && (
+                    <div className="space-y-3">
+                      <p className="text-[11.5px] font-semibold text-gray-400 mb-1">รอนัดวันสัมภาษณ์ — กดเพื่อจัดตาราง:</p>
+                      <div className="flex gap-2 flex-wrap">
+                        <button onClick={() => setActiveAction("schedule")}
+                          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[13px] font-bold shadow-sm hover:opacity-90 transition-opacity">
+                          <Calendar className="w-4 h-4" />จัดตารางสัมภาษณ์
+                        </button>
+                        <button onClick={openEmailCompose}
+                          className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[#127EE3] text-[#127EE3] text-[13px] font-semibold bg-white hover:bg-blue-50 transition-colors">
+                          <Mail className="w-4 h-4" />ส่งอีเมลผู้สมัคร
+                        </button>
+                      </div>
+                      {/* Contact card */}
+                      <div className="rounded-xl border border-gray-200 bg-gray-50 px-3.5 py-3">
+                        <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2">ติดต่อผู้สมัคร</p>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="flex items-center gap-1.5 text-[12.5px] text-gray-700 font-medium">
+                            <Phone className="w-3.5 h-3.5 text-[#0DC2FF]" />{REVEALED_PHONE}
+                          </span>
+                          <button onClick={() => { navigator.clipboard.writeText(REVEALED_PHONE); setAlertMsg("คัดลอกเบอร์โทรแล้ว"); }}
+                            className="flex items-center gap-1 px-2 py-0.5 rounded-md border border-gray-200 text-[11px] text-gray-400 hover:bg-gray-50 transition-colors">
+                            <Copy className="w-3 h-3" />คัดลอก
+                          </button>
+                          <button onClick={() => { const now = new Date(); const label = now.toLocaleTimeString("th-TH", { hour: "2-digit", minute: "2-digit" }); setCallLogs((prev) => [{ id: now.getTime(), label }, ...prev]); store.addActivity({ id: `a${Date.now()}`, actor: "สมศรี HR", actorInitials: "สร", actorColor: "bg-[#127EE3]", type: "note", text: "ติดต่อผู้สมัครไม่ได้ (ไม่รับสาย)", time: "เพิ่งเมื่อกี้" }); setAlertMsg("บันทึกแล้ว"); }}
+                            className="flex items-center gap-1 px-2 py-0.5 rounded-md border border-red-200 text-[11px] text-red-400 hover:bg-red-50 transition-colors">
+                            <PhoneOff className="w-3 h-3" />ไม่รับสาย
+                          </button>
+                        </div>
+                        {callLogs.length > 0 && (
+                          <ul className="mt-2 space-y-1">
+                            {callLogs.map((entry) => (
+                              <li key={entry.id} className="flex items-center gap-1.5 text-[11px] text-gray-400">
+                                <PhoneOff className="w-3 h-3 flex-shrink-0 text-red-300" />ไม่รับสายเวลา {entry.label}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                      <div className="flex gap-2 pt-1">
+                        <button onClick={() => completeTerminalAction("ผู้สมัครปฏิเสธนัด")}
+                          className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-red-200 text-red-500 text-[12px] font-medium bg-white hover:bg-red-50 transition-colors">
+                          <Ban className="w-3.5 h-3.5" />ผู้สมัครปฏิเสธนัด
+                        </button>
+                        <button onClick={() => completeTerminalAction("ไม่ผ่านการพิจารณา")}
+                          className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-red-200 text-red-500 text-[12px] font-medium bg-white hover:bg-red-50 transition-colors">
+                          <ThumbsDown className="w-3.5 h-3.5" />ไม่ผ่าน
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* ── STEP: interview ── */}
+                  {step.key === "interview" && (
+                    <div className="space-y-3">
+                      {/* Show scheduled info if available */}
+                      {(scheduledInfo || applicant?.interviewDate) && (
+                        <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 px-3.5 py-3 flex items-start gap-2.5">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
+                          <div>
+                            <p className="text-[12.5px] font-semibold text-emerald-800">นัดสัมภาษณ์เรียบร้อยแล้ว</p>
+                            <p className="text-[12px] text-emerald-700 mt-0.5">
+                              {scheduledInfo
+                                ? `${toThaiDate(scheduledInfo.date)} · ${scheduledInfo.time} น. · ${typeLabel(scheduledInfo.type)}`
+                                : applicant?.interviewDate}
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                      <p className="text-[11.5px] font-semibold text-gray-400">สัมภาษณ์เสร็จแล้วหรือยัง?</p>
+                      <div className="flex gap-2 flex-wrap">
+                        <button onClick={() => handleOpenResult()}
+                          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[13px] font-bold shadow-sm hover:opacity-90 transition-opacity">
+                          <FileText className="w-4 h-4" />บันทึกผลสัมภาษณ์
+                        </button>
+                        <button onClick={() => setActiveAction("reschedule")}
+                          className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 text-gray-600 text-[13px] font-medium bg-white hover:border-[#127EE3] hover:text-[#127EE3] transition-colors">
+                          <RefreshCw className="w-4 h-4" />เปลี่ยนวันนัด
+                        </button>
+                      </div>
+                      <div className="flex gap-2 flex-wrap">
+                        <button onClick={() => completeTerminalAction("ยกเลิกนัดสัมภาษณ์")}
+                          className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-red-200 text-red-500 text-[12px] font-medium bg-white hover:bg-red-50 transition-colors">
+                          <X className="w-3.5 h-3.5" />ยกเลิกนัด
+                        </button>
+                        <button onClick={() => completeTerminalAction("ไม่มาสัมภาษณ์")}
+                          className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-red-200 text-red-500 text-[12px] font-medium bg-white hover:bg-red-50 transition-colors">
+                          <UserX className="w-3.5 h-3.5" />ไม่มาสัมภาษณ์
+                        </button>
+                        <button onClick={openEmailCompose}
+                          className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-gray-200 text-gray-600 text-[12px] font-medium bg-white hover:border-[#127EE3] hover:text-[#127EE3] transition-colors">
+                          <Mail className="w-3.5 h-3.5" />ส่งอีเมลผู้สมัคร
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* ── STEP: passed ── */}
+                  {step.key === "passed" && (
+                    <div className="space-y-3">
+                      {savedResult && (
+                        <div className="rounded-xl border border-gray-200 bg-gray-50 px-3.5 py-3 space-y-1.5">
+                          <div className="flex items-center justify-between">
+                            <p className="text-[11.5px] font-bold text-emerald-700">ผลสัมภาษณ์: ผ่าน</p>
+                            <button onClick={() => handleOpenResult()} className="text-[11px] text-gray-400 hover:text-[#127EE3] border border-gray-200 rounded-lg px-2 py-0.5 bg-white transition-colors">แก้ไข</button>
+                          </div>
+                          {savedResult.comments && <p className="text-[12px] text-gray-600 italic">"{savedResult.comments}"</p>}
+                        </div>
+                      )}
+                      <p className="text-[11.5px] font-semibold text-gray-400">ขั้นตอนต่อไป:</p>
+                      <div className="flex gap-2 flex-wrap">
+                        <button onClick={() => setActiveAction("offer")}
+                          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[13px] font-bold shadow-sm hover:opacity-90 transition-opacity">
+                          <FileText className="w-4 h-4" />ส่ง Offer
+                        </button>
+                        <button onClick={() => setActiveAction("schedule")}
+                          className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[#127EE3] text-[#127EE3] text-[13px] font-semibold bg-white hover:bg-blue-50 transition-colors">
+                          <Calendar className="w-4 h-4" />นัดสัมภาษณ์รอบถัดไป
+                        </button>
+                      </div>
+                      <div className="flex gap-2">
+                        {!savedResult && (
+                          <button onClick={() => handleOpenResult()}
+                            className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-gray-200 text-gray-600 text-[12px] font-medium bg-white hover:border-[#127EE3] hover:text-[#127EE3] transition-colors">
+                            <FileText className="w-3.5 h-3.5" />บันทึกผลสัมภาษณ์
+                          </button>
+                        )}
+                        <button onClick={() => completeTerminalAction("ไม่ผ่านสัมภาษณ์")}
+                          className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-red-200 text-red-500 text-[12px] font-medium bg-white hover:bg-red-50 transition-colors">
+                          <ThumbsDown className="w-3.5 h-3.5" />ไม่ผ่านท้ายที่สุด
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* ── STEP: offer ── */}
+                  {step.key === "offer" && (
+                    <div className="space-y-3">
+                      <p className="text-[11.5px] font-semibold text-gray-400 mb-1">รอผู้สมัครตอบรับ Offer:</p>
+                      <div className="flex gap-2 flex-wrap">
+                        <button onClick={() => setActiveAction("hire")}
+                          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 to-emerald-500 text-white text-[13px] font-bold shadow-sm hover:opacity-90 transition-opacity">
+                          <Award className="w-4 h-4" />รับเข้าทำงาน
+                        </button>
+                        <button onClick={openEmailCompose}
+                          className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[#127EE3] text-[#127EE3] text-[13px] font-semibold bg-white hover:bg-blue-50 transition-colors">
+                          <Mail className="w-4 h-4" />ส่งอีเมลผู้สมัคร
+                        </button>
+                      </div>
+                      <div className="flex gap-2">
+                        <button onClick={() => completeTerminalAction("ไม่รับข้อเสนอ")}
+                          className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-red-200 text-red-500 text-[12px] font-medium bg-white hover:bg-red-50 transition-colors">
+                          <XCircle className="w-3.5 h-3.5" />ผู้สมัครไม่รับ Offer
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* ── STEP: hired ── */}
+                  {step.key === "hired" && (
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-emerald-50 border border-emerald-200">
+                        <Award className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                        <p className="text-[13px] font-semibold text-emerald-800">ยินดีด้วย! บันทึกเป็นพนักงานเรียบร้อยแล้ว</p>
+                      </div>
+                      <div>
+                        <p className="text-[11.5px] font-semibold text-gray-400 mb-2">บันทึกเพิ่มเติม <span className="font-normal">(ไม่บังคับ)</span></p>
+                        {hiredNote && !hiredNoteEditing ? (
+                          <div className="rounded-xl border border-gray-200 bg-white px-3.5 py-3">
+                            <p className="text-[12.5px] text-gray-700 whitespace-pre-wrap">{hiredNote}</p>
+                            <button onClick={() => { setHiredNoteDraft(hiredNote); setHiredNoteEditing(true); }}
+                              className="flex items-center gap-1 mt-1.5 text-[11.5px] font-semibold text-[#127EE3] hover:underline">
+                              <Edit2 className="w-3 h-3" />แก้ไข
+                            </button>
+                          </div>
+                        ) : (
+                          <div className="space-y-2">
+                            <textarea rows={3} value={hiredNoteDraft} onChange={(e) => setHiredNoteDraft(e.target.value)}
+                              placeholder="เช่น เริ่มงานวันที่..., เงินเดือนที่ตกลง..."
+                              className="w-full px-3.5 py-2.5 text-[12.5px] bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:border-[#127EE3] focus:bg-white transition-all placeholder:text-gray-400 resize-none" />
+                            <button onClick={() => { setHiredNote(hiredNoteDraft); setHiredNoteEditing(false); setAlertMsg("บันทึกข้อมูลเรียบร้อยแล้ว"); }}
+                              className="flex items-center gap-1.5 px-4 py-2 border border-[#127EE3] text-[#127EE3] text-[12.5px] font-semibold rounded-xl hover:bg-blue-50 transition-colors">
+                              บันทึก
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
                 </div>
               )}
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-              <ActionBtn primary onClick={() => setActiveAction("offer")} icon={<FileText className="w-3.5 h-3.5 flex-shrink-0" />} label="ไป Offer" />
-              <ActionBtn onClick={() => setActiveAction("schedule")} icon={<Calendar className="w-3.5 h-3.5 flex-shrink-0" />} label="นัดรอบถัดไป" />
-              <ActionBtn onClick={() => handleOpenResult("wait_compare")} icon={<Clock className="w-3.5 h-3.5 flex-shrink-0" />} label="รอเปรียบเทียบ" />
-              <ActionBtn destructive onClick={() => completeStageChange("rejected")} icon={<ThumbsDown className="w-3.5 h-3.5 flex-shrink-0" />} label="ไม่ผ่าน" />
-            </div>
-          </div>
-        )}
+          );
+        })}
 
-        {/* Offer */}
-        {stage === "offer" && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-            <ActionBtn primary onClick={() => setActiveAction("hire")} icon={<Award className="w-3.5 h-3.5 flex-shrink-0" />} label="รับเข้าทำงาน" />
-            <ActionBtn destructive onClick={() => completeTerminalAction("ไม่รับข้อเสนอ")} icon={<XCircle className="w-3.5 h-3.5 flex-shrink-0" />} label="ไม่รับข้อเสนอ" />
-            <ActionBtn destructive onClick={() => completeStageChange("rejected")} icon={<ThumbsDown className="w-3.5 h-3.5 flex-shrink-0" />} label="ไม่ผ่าน" />
-          </div>
-        )}
-
-        {/* รับเข้าทำงาน */}
-        {stage === "hired" && (
-          <div className="flex items-center gap-2.5 px-4 py-3.5 rounded-xl bg-white border border-gray-200">
-            <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-            <p className="text-[13px] text-gray-700 font-medium">ผู้สมัครรายนี้ถูกบันทึกเป็นพนักงานเรียบร้อยแล้ว</p>
-          </div>
-        )}
-
-        {/* ไม่ผ่าน / ยกเลิก */}
-        {stage === "rejected" && (
-          <div className="space-y-2">
-            <div className="flex items-start gap-2.5 px-4 py-3 rounded-xl bg-white border border-gray-200">
-              <ThumbsDown className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="text-[13px] text-gray-700 font-medium">ไม่ผ่าน / ยกเลิก</p>
-                {rejectionReason && (
-                  <p className="text-[12px] text-gray-500 mt-0.5">เหตุผล: {rejectionReason}</p>
-                )}
-              </div>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-              <ActionBtn primary onClick={() => { setRejectionReason(null); completeStageChange("shortlist"); }} icon={<ThumbsUp className="w-3.5 h-3.5 flex-shrink-0" />} label="ย้ายกลับไปชอร์ตลิสต์" />
-              <ActionBtn onClick={() => showSubAlert("คัดลอกเรซูเม่ไปตำแหน่งอื่นแล้ว")} icon={<Copy className="w-3.5 h-3.5 flex-shrink-0" />} label="คัดลอกเรซูเม่ไปตำแหน่งอื่น" />
-            </div>
-          </div>
-        )}
-
-        {/* ส่งอีเมล — available in all stages */}
-        <div className="mt-4 pt-4 border-t border-gray-200">
-          <button
-            onClick={openEmailCompose}
-            className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-700 text-[12.5px] font-medium hover:border-blue-300 hover:text-blue-600 hover:bg-blue-50 transition-colors"
-          >
-            <Mail className="w-3.5 h-3.5 flex-shrink-0" />
-            ส่งอีเมลหาผู้สมัคร
-          </button>
-        </div>
       </div>
 
+      {/* ── Action panels rendered as full-width sections below steps ── */}
+      {false && null /* placeholder to prevent empty block */}
       {/* ── Action Panels ── */}
 
       {/* ส่งต่อให้พิจารณา panel */}
@@ -3233,34 +2938,6 @@ function ManageContent({ store, initialStage = "new", onStageChange, applicant, 
       )}
 
 
-      {/* Hired — note section */}
-      {stage === "hired" && (
-        <div>
-          <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2">บันทึกเพิ่มเติม</p>
-          {hiredNote && !hiredNoteEditing ? (
-            <div className="rounded-xl border border-gray-200 bg-white px-4 py-3 space-y-2">
-              <p className="text-[13px] text-gray-700 whitespace-pre-wrap">{hiredNote}</p>
-              <button onClick={() => { setHiredNoteDraft(hiredNote); setHiredNoteEditing(true); }}
-                className="flex items-center gap-1 text-[12px] font-semibold text-[#127EE3] hover:underline transition-colors">
-                <Edit2 className="w-3 h-3" />แก้ไข
-              </button>
-            </div>
-          ) : (
-            <div className="space-y-2">
-              <textarea rows={3} value={hiredNoteDraft}
-                onChange={(e) => setHiredNoteDraft(e.target.value)}
-                placeholder="เช่น เริ่มงานวันที่..., เงินเดือนที่ตกลง..., เงื่อนไขพิเศษ..."
-                className="w-full px-3.5 py-2.5 text-[13px] bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:border-[#127EE3] focus:bg-white transition-all placeholder:text-gray-400 resize-none" />
-              <button onClick={() => { setHiredNote(hiredNoteDraft); setHiredNoteEditing(false); setAlertMsg("บันทึกข้อมูลเรียบร้อยแล้ว"); }}
-                className="flex items-center gap-1.5 px-4 py-2 border border-[#127EE3] text-[#127EE3] text-[12.5px] font-semibold rounded-xl hover:bg-blue-50 transition-colors">
-                บันทึกโน้ต
-              </button>
-            </div>
-          )}
-        </div>
-      )}
-
-      <div className="h-2" />
     </div>
     </>
   );
