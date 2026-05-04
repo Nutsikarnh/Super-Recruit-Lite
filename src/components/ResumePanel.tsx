@@ -1369,33 +1369,189 @@ function timelineIcon(type: ActivityItem["type"], text: string) {
   return <div className="w-8 h-8 rounded-full bg-gray-100 border-2 border-white shadow-sm flex items-center justify-center flex-shrink-0"><MoreHorizontal className="w-3.5 h-3.5 text-gray-400" /></div>;
 }
 
-function TimelineContent({ store }: { store: ActivityStore }) {
-  const allItems = [...store.activities, ...MOCK_TIMELINE];
+// ─── Timeline helpers ─────────────────────────────────────────────────────────
+const TL_TYPE_COLOR: Record<ActivityItem["type"], string> = {
+  stage:  "#3B82F6",
+  note:   "#F59E0B",
+  file:   "#6B7280",
+  reveal: "#6B7280",
+  email:  "#10B981",
+  chat:   "#10B981",
+};
+
+function tlGroupByDate(items: ActivityItem[]): { label: string; items: ActivityItem[] }[] {
+  const groups = new Map<string, ActivityItem[]>();
+  for (const item of items) {
+    const t = item.time ?? "";
+    let label = "ก่อนหน้า";
+    if (t.startsWith("วันนี้")) label = "วันนี้";
+    else if (t.startsWith("เมื่อวาน")) label = "เมื่อวาน";
+    else {
+      const m = t.match(/^(\d{1,2}\s[\u0E00-\u0E7F.]+(?:\s\d{4})?)/);
+      label = m ? m[1] : t.split(" ").slice(0, 2).join(" ");
+    }
+    if (!groups.has(label)) groups.set(label, []);
+    groups.get(label)!.push(item);
+  }
+  return Array.from(groups.entries()).map(([label, items]) => ({ label, items }));
+}
+
+function tlExtractTime(t: string): string {
+  const m = t.match(/(\d{1,2}:\d{2})/);
+  if (m) return m[1];
+  if (t.includes("เมื่อกี้") || t.includes("พึ่งเมื่อกี้")) return "เพิ่งเมื่อกี้";
+  return "";
+}
+
+// Inline stage progress bar for timeline tab
+const TL_STAGES: PipelineStage[] = ["new", "shortlist", "review", "to_interview", "interview", "passed", "offer", "hired"];
+const TL_STAGE_LABELS: Record<string, string> = {
+  new: "ใหม่", shortlist: "คัดกรอง", review: "คัดกรอง",
+  to_interview: "สัมภาษณ์", interview: "สัมภาษณ์", passed: "สัมภาษณ์",
+  offer: "Offer", hired: "รับเข้า",
+};
+const TL_MAIN_STAGES = [
+  { key: "new",          label: "ใหม่" },
+  { key: "shortlist",    label: "คัดกรอง" },
+  { key: "to_interview", label: "สัมภาษณ์" },
+  { key: "offer",        label: "Offer" },
+  { key: "hired",        label: "รับเข้า" },
+] as const;
+
+function TimelineProgressBar({ current }: { current?: PipelineStage }) {
+  if (!current || current === "rejected") return null;
+  const stageOrder: PipelineStage[] = ["new", "shortlist", "to_interview", "offer", "hired"];
+  const mainMap: Partial<Record<PipelineStage, number>> = {
+    new: 0, shortlist: 1, review: 1,
+    to_interview: 2, interview: 2, passed: 2,
+    offer: 3, hired: 4,
+  };
+  const currentIdx = mainMap[current] ?? 0;
+
   return (
-    <div className="px-7 py-6">
-      <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-5">ประวัติทั้งหมด ({allItems.length} รายการ)</p>
-      <div className="relative">
-        {/* vertical connector line */}
-        <div className="absolute left-[15px] top-4 bottom-4 w-px bg-gray-200" />
-        <div className="space-y-0">
-          {allItems.map((item, i) => (
-            <div key={item.id} className="relative flex gap-4 pb-5 last:pb-0">
-              <div className="relative z-10">{timelineIcon(item.type, item.text)}</div>
-              <div className="flex-1 min-w-0 pt-1">
-                <div className="flex items-start justify-between gap-2">
-                  <p className="text-[13px] font-semibold text-[#1A1A2E] leading-snug">{item.text}</p>
-                  <span className="text-[11px] text-gray-400 whitespace-nowrap flex-shrink-0 mt-0.5">{item.time}</span>
+    <div className="px-6 pt-4 pb-3 bg-[#F7F9FC] border-b border-gray-100 flex-shrink-0">
+      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">ความคืบหน้า</p>
+      <div className="flex items-center gap-1">
+        {TL_MAIN_STAGES.map((s, i) => {
+          const isPast = currentIdx > i;
+          const isCurrent = currentIdx === i;
+          return (
+            <div key={s.key} className="flex items-center gap-1 flex-1 last:flex-none">
+              <div className="flex flex-col items-center gap-1.5 flex-shrink-0">
+                <div className={`w-7 h-7 rounded-full border-2 flex items-center justify-center transition-all ${
+                  isPast    ? "border-[#127EE3] bg-[#127EE3]" :
+                  isCurrent ? "border-[#127EE3] bg-white" :
+                              "border-gray-200 bg-white"
+                }`}>
+                  {isPast
+                    ? <CheckCircle2 className="w-3.5 h-3.5 text-white" />
+                    : <div className={`w-2 h-2 rounded-full ${isCurrent ? "bg-[#127EE3]" : "bg-gray-200"}`} />
+                  }
                 </div>
-                {item.detail && <p className="text-[12px] text-gray-500 mt-0.5 leading-relaxed">{item.detail}</p>}
-                {item.emailTo && !item.detail && <p className="text-[12px] text-gray-400 mt-0.5">ถึง: {item.emailTo}</p>}
-                <p className="text-[11.5px] text-gray-400 mt-1">โดย {item.actor}</p>
-                {i < allItems.length - 1 && <div className="mt-4 border-t border-gray-50" />}
+                <span className={`text-[9.5px] font-semibold whitespace-nowrap ${
+                  isPast || isCurrent ? "text-[#127EE3]" : "text-gray-300"
+                }`}>{s.label}</span>
+              </div>
+              {i < TL_MAIN_STAGES.length - 1 && (
+                <div className={`flex-1 h-px mb-3.5 ${isPast ? "bg-[#127EE3]" : "bg-gray-200"}`} />
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function TimelineContent({ store, currentStage }: { store: ActivityStore; currentStage?: PipelineStage }) {
+  const allItems = [...store.activities, ...MOCK_TIMELINE];
+  const groups = tlGroupByDate(allItems);
+
+  return (
+    <div className="flex flex-col h-full">
+      {/* Progress bar */}
+      <TimelineProgressBar current={currentStage} />
+
+      {/* Scrollable list */}
+      <div className="flex-1 overflow-y-auto px-6 py-5">
+        <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-4">
+          ประวัติทั้งหมด ({allItems.length} รายการ)
+        </p>
+
+        <div className="space-y-6">
+          {groups.map((group) => (
+            <div key={group.label}>
+              {/* Date header */}
+              <div className="flex items-center gap-2.5 mb-3">
+                <span className="text-[12px] font-semibold text-gray-500 whitespace-nowrap">{group.label}</span>
+                <div className="flex-1 border-t border-gray-100" />
+              </div>
+
+              {/* Events */}
+              <div className="relative">
+                <div className="absolute left-[5px] top-3 bottom-3 w-px bg-gray-100" />
+                <div className="space-y-1.5">
+                  {group.items.map((item) => {
+                    const dot = TL_TYPE_COLOR[item.type];
+                    const timeLabel = tlExtractTime(item.time);
+                    const stageName = item.type === "stage"
+                      ? item.text.replace(/.*เป็น\s?/, "").replace(/.*สถานะ\s?/, "")
+                      : null;
+                    return (
+                      <div key={item.id} className="relative flex gap-3">
+                        {/* Dot */}
+                        <div className="relative z-10 mt-[14px] flex-shrink-0">
+                          <div className="w-[11px] h-[11px] rounded-full border-2 border-white shadow-sm"
+                            style={{ backgroundColor: dot }} />
+                        </div>
+                        {/* Card */}
+                        <div className="flex-1 min-w-0 bg-[#F7F9FC] rounded-xl px-3.5 py-2.5">
+                          <div className="flex items-start justify-between gap-2">
+                            <p className="text-[12.5px] font-semibold text-[#1A1A2E] leading-snug">
+                              {item.type === "stage" && stageName
+                                ? <>เปลี่ยนสถานะเป็น{" "}<span style={{ color: dot }}>{stageName}</span></>
+                                : item.text
+                              }
+                            </p>
+                            {timeLabel && (
+                              <span className="text-[11px] text-gray-400 whitespace-nowrap flex-shrink-0 mt-0.5 tabular-nums">
+                                {timeLabel}
+                              </span>
+                            )}
+                          </div>
+                          {item.detail && (
+                            <p className="text-[11.5px] text-gray-500 mt-0.5 leading-relaxed">{item.detail}</p>
+                          )}
+                          {item.emailTo && !item.detail && (
+                            <p className="text-[11.5px] text-gray-400 mt-0.5">ถึง: {item.emailTo}</p>
+                          )}
+                          <p className="text-[11px] text-gray-400 mt-1">โดย {item.actor}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           ))}
         </div>
+        <div className="h-4" />
       </div>
-      <div className="h-4" />
+
+      {/* Legend */}
+      <div className="flex-shrink-0 border-t border-gray-100 bg-white px-6 py-3 flex items-center gap-4 flex-wrap">
+        {([
+          { type: "stage" as const, label: "เปลี่ยนสถานะ" },
+          { type: "note"  as const, label: "โน้ต" },
+          { type: "file"  as const, label: "ไฟล์" },
+          { type: "email" as const, label: "อีเมล/ส่งต่อ" },
+        ]).map((l) => (
+          <div key={l.type} className="flex items-center gap-1.5">
+            <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: TL_TYPE_COLOR[l.type] }} />
+            <span className="text-[11px] text-gray-500">{l.label}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -3364,7 +3520,7 @@ export default function ResumePanel({ onClose, job, onContact, isApplicant = fal
                 onSwitchToManage={() => setTab("manage")}
               />
             </div>
-            {tab === "timeline" && <TimelineContent store={store} />}
+            {tab === "timeline" && <TimelineContent store={store} currentStage={applicant?.stage} />}
           </div>
 
           {/* Bottom bar — Resume only */}
