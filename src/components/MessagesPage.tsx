@@ -222,9 +222,9 @@ const OUTREACH_RECORDS: OutreachRecord[] = [
 
 function Avatar({ char, size = "md" }: { char: string; size?: "sm" | "md" | "lg" }) {
   const sizeClass =
-    size === "sm" ? "w-8 h-8 text-[12px]" :
-    size === "lg" ? "w-12 h-12 text-[17px]" :
-    "w-10 h-10 text-[14px]";
+    size === "sm" ? "w-8 h-8 text-[14px]" :
+    size === "lg" ? "w-12 h-12 text-[19px]" :
+    "w-10 h-10 text-[16px]";
   return (
     <div className={`${sizeClass} rounded-full bg-gradient-to-br from-[#0DC2FF] to-[#127EE3] flex items-center justify-center text-white font-bold flex-shrink-0`}>
       {char}
@@ -234,7 +234,7 @@ function Avatar({ char, size = "md" }: { char: string; size?: "sm" | "md" | "lg"
 
 function PendingBadge() {
   return (
-    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-gray-100 text-gray-500 border border-gray-200">
+    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[13px] font-semibold bg-gray-100 text-gray-500 border border-gray-200">
       <span className="w-1.5 h-1.5 rounded-full bg-gray-400 animate-pulse" />
       รอตอบ
     </span>
@@ -245,7 +245,7 @@ function ResponseBadge({ response }: { response: NonNullable<CandidateResponse> 
   const cfg = RESPONSE_CONFIG[response];
   const Icon = cfg.icon;
   return (
-    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold ${cfg.badge}`}>
+    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[13px] font-semibold ${cfg.badge}`}>
       <Icon className="w-3 h-3" />
       {cfg.label}
     </span>
@@ -330,8 +330,8 @@ export default function MessagesPage({ onBack }: MessagesPageProps) {
               <ArrowLeft className="w-4 h-4" />
             </button>
             <div>
-              <h1 className="text-[16px] font-bold text-[#1A1A2E] leading-tight">อีเมลที่ส่งออก</h1>
-              <p className="text-[11px] text-gray-400 mt-0.5">
+              <h1 className="text-[18px] font-bold text-[#1A1A2E] leading-tight">อีเมลที่ส่งออก</h1>
+              <p className="text-[13px] text-gray-400 mt-0.5">
                 {pendingCount > 0
                   ? <span><span className="text-amber-600 font-bold">{pendingCount}</span> รายการรอตอบ</span>
                   : "ติดตามการตอบรับ"}
@@ -347,7 +347,7 @@ export default function MessagesPage({ onBack }: MessagesPageProps) {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="ค้นหาชื่อหรือตำแหน่ง..."
-              className="w-full pl-9 pr-8 py-2 text-[12.5px] bg-[#F7F9FC] rounded-xl border border-gray-200 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all placeholder:text-gray-400"
+              className="w-full pl-9 pr-8 py-2 text-[14.5px] bg-[#F7F9FC] rounded-xl border border-gray-200 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all placeholder:text-gray-400"
             />
             {searchQuery && (
               <button onClick={() => setSearchQuery("")} className="absolute right-2.5 top-1/2 -translate-y-1/2">
@@ -362,14 +362,14 @@ export default function MessagesPage({ onBack }: MessagesPageProps) {
               <button
                 key={f.id}
                 onClick={() => setStatusFilter(f.id)}
-                className={`flex-shrink-0 flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-colors ${
+                className={`flex-shrink-0 flex items-center gap-1 px-2.5 py-1 rounded-lg text-[13px] font-semibold transition-colors ${
                   statusFilter === f.id
                     ? "bg-[#127EE3] text-white shadow-sm shadow-[#127EE3]/20"
                     : "bg-[#F0F2F5] text-gray-500 hover:bg-gray-200"
                 }`}
               >
                 {f.label}
-                <span className={`text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center leading-none ${
+                <span className={`text-[11px] font-bold w-4 h-4 rounded-full flex items-center justify-center leading-none ${
                   statusFilter === f.id ? "bg-white/25 text-white" : "bg-white text-gray-500"
                 }`}>
                   {statusCounts[f.id]}
@@ -382,7 +382,7 @@ export default function MessagesPage({ onBack }: MessagesPageProps) {
           <div className="relative">
             <button
               onClick={() => setShowJobDropdown((v) => !v)}
-              className="w-full flex items-center justify-between px-3 py-2 bg-[#F7F9FC] hover:bg-gray-100 rounded-xl transition-colors text-[12.5px] border border-gray-200"
+              className="w-full flex items-center justify-between px-3 py-2 bg-[#F7F9FC] hover:bg-gray-100 rounded-xl transition-colors text-[14.5px] border border-gray-200"
             >
               <div className="flex items-center gap-2 text-gray-600">
                 <Filter className="w-3.5 h-3.5 text-gray-400" />
@@ -396,7 +396,7 @@ export default function MessagesPage({ onBack }: MessagesPageProps) {
                   <button
                     key={j.id}
                     onClick={() => { setJobFilter(j.id); setShowJobDropdown(false); }}
-                    className={`w-full flex items-center justify-between px-4 py-2.5 text-[12.5px] hover:bg-[#F0F2F5] transition-colors ${jobFilter === j.id ? "text-[#127EE3] font-semibold" : "text-gray-600"}`}
+                    className={`w-full flex items-center justify-between px-4 py-2.5 text-[14.5px] hover:bg-[#F0F2F5] transition-colors ${jobFilter === j.id ? "text-[#127EE3] font-semibold" : "text-gray-600"}`}
                   >
                     {j.label}
                     {jobFilter === j.id && <Check className="w-3.5 h-3.5 text-[#127EE3]" />}
@@ -412,7 +412,7 @@ export default function MessagesPage({ onBack }: MessagesPageProps) {
           {filtered.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-40 text-gray-400 gap-2">
               <Search className="w-8 h-8 text-gray-200" />
-              <p className="text-[13px]">ไม่พบรายการ</p>
+              <p className="text-[15px]">ไม่พบรายการ</p>
             </div>
           ) : (
             filtered.map((record) => (
@@ -434,14 +434,14 @@ export default function MessagesPage({ onBack }: MessagesPageProps) {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between mb-0.5">
-                    <span className="text-[13px] font-semibold truncate text-[#1A1A2E]">
+                    <span className="text-[15px] font-semibold truncate text-[#1A1A2E]">
                       {record.candidateName}
                     </span>
-                    <span className="text-[10px] text-gray-400 flex-shrink-0 ml-2">{record.sentDate}</span>
+                    <span className="text-[11px] text-gray-400 flex-shrink-0 ml-2">{record.sentDate}</span>
                   </div>
-                  <p className="text-[11.5px] text-[#127EE3] font-medium truncate mb-1.5">{record.jobPosition}</p>
+                  <p className="text-[13.5px] text-[#127EE3] font-medium truncate mb-1.5">{record.jobPosition}</p>
                   <div className="flex items-center gap-1.5 flex-wrap">
-                    <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-md ${SOURCE_CONFIG[record.source].style}`}>
+                    <span className={`text-[11px] font-semibold px-1.5 py-0.5 rounded-md ${SOURCE_CONFIG[record.source].style}`}>
                       {SOURCE_CONFIG[record.source].label}
                     </span>
                     {record.response === null
@@ -465,12 +465,12 @@ export default function MessagesPage({ onBack }: MessagesPageProps) {
               <Avatar char={selected.candidateAvatar} size="md" />
               <div className="min-w-0">
                 <div className="flex items-center gap-2 flex-wrap mb-0.5">
-                  <h2 className="text-[15px] font-bold text-[#1A1A2E]">{selected.candidateName}</h2>
-                  <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-md ${SOURCE_CONFIG[selected.source].style}`}>
+                  <h2 className="text-[17px] font-bold text-[#1A1A2E]">{selected.candidateName}</h2>
+                  <span className={`text-[11px] font-semibold px-1.5 py-0.5 rounded-md ${SOURCE_CONFIG[selected.source].style}`}>
                     {SOURCE_CONFIG[selected.source].label}
                   </span>
                 </div>
-                <p className="text-[11.5px] text-gray-400">
+                <p className="text-[13.5px] text-gray-400">
                   {selected.candidateRole} · ส่งอีเมลเมื่อ {selected.sentDate} {selected.sentAt}
                 </p>
               </div>
@@ -496,8 +496,8 @@ export default function MessagesPage({ onBack }: MessagesPageProps) {
                   <Icon className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="text-[10.5px] font-medium opacity-70">Candidate ตอบกลับ · {selected.responseAt}</p>
-                  <p className="text-[13.5px] font-bold">{cfg.label}</p>
+                  <p className="text-[12px] font-medium opacity-70">Candidate ตอบกลับ · {selected.responseAt}</p>
+                  <p className="text-[15.5px] font-bold">{cfg.label}</p>
                 </div>
               </div>
             );
@@ -511,9 +511,9 @@ export default function MessagesPage({ onBack }: MessagesPageProps) {
                 <div className="w-7 h-7 bg-[#127EE3]/10 border border-[#127EE3]/20 rounded-lg flex items-center justify-center flex-shrink-0">
                   <Mail className="w-3.5 h-3.5 text-[#127EE3]" />
                 </div>
-                <p className="text-[13px] font-bold text-[#1A1A2E] flex-1 truncate">{selected.emailSubject}</p>
+                <p className="text-[15px] font-bold text-[#1A1A2E] flex-1 truncate">{selected.emailSubject}</p>
               </div>
-              <div className="grid grid-cols-[52px_1fr] gap-y-1 text-[11.5px]">
+              <div className="grid grid-cols-[52px_1fr] gap-y-1 text-[13.5px]">
                 <span className="text-gray-400">จาก:</span>
                 <span className="text-[#1A1A2E] font-medium">อลิสา สุขใจ &lt;alisa@techflow.co.th&gt;</span>
                 <span className="text-gray-400">ถึง:</span>
@@ -530,12 +530,12 @@ export default function MessagesPage({ onBack }: MessagesPageProps) {
                   <Building2 className="w-[18px] h-[18px] text-white" />
                 </div>
                 <div>
-                  <p className="text-[14px] font-bold text-[#1A1A2E]">TechFlow Co., Ltd.</p>
-                  <p className="text-[11px] text-gray-400">Super Recruit — Talent Outreach</p>
+                  <p className="text-[16px] font-bold text-[#1A1A2E]">TechFlow Co., Ltd.</p>
+                  <p className="text-[13px] text-gray-400">Super Recruit — Talent Outreach</p>
                 </div>
               </div>
 
-              <div className="text-[14px] text-[#374151] leading-[1.85] space-y-3">
+              <div className="text-[16px] text-[#374151] leading-[1.85] space-y-3">
                 {emailLines.map((line, i) => {
                   if (line.trim() === "") return <div key={i} className="h-2" />;
                   if (line.startsWith("•")) {
@@ -552,7 +552,7 @@ export default function MessagesPage({ onBack }: MessagesPageProps) {
 
               {/* CTA buttons (read-only display) */}
               <div className="mt-8 border-t border-gray-100 pt-6">
-                <p className="text-[12px] text-gray-400 font-medium text-center mb-4">
+                <p className="text-[14px] text-gray-400 font-medium text-center mb-4">
                   คุณ{selected.candidateName} รู้สึกอย่างไรกับโอกาสนี้?
                 </p>
                 <div className="flex gap-3 justify-center">
@@ -569,11 +569,11 @@ export default function MessagesPage({ onBack }: MessagesPageProps) {
                         <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${cfg.ctaBg}`}>
                           <Icon className={`w-4.5 h-4.5 ${cfg.ctaIcon}`} />
                         </div>
-                        <span className={`text-[11.5px] font-bold text-center leading-tight ${cfg.ctaText}`}>
+                        <span className={`text-[13.5px] font-bold text-center leading-tight ${cfg.ctaText}`}>
                           {cfg.label}
                         </span>
                         {isChosen && (
-                          <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full bg-white/60 ${cfg.ctaText}`}>
+                          <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full bg-white/60 ${cfg.ctaText}`}>
                             เลือกแล้ว
                           </span>
                         )}
@@ -581,7 +581,7 @@ export default function MessagesPage({ onBack }: MessagesPageProps) {
                     );
                   })}
                 </div>
-                <p className="text-[11px] text-gray-400 text-center mt-4">
+                <p className="text-[13px] text-gray-400 text-center mt-4">
                   ปุ่มเหล่านี้อยู่ในอีเมลจริงที่ Candidate ได้รับ
                 </p>
               </div>
@@ -593,12 +593,12 @@ export default function MessagesPage({ onBack }: MessagesPageProps) {
       {/* Right panel — candidate info */}
       <div className="w-[240px] min-w-[240px] bg-white border-l border-gray-100 overflow-y-auto shadow-sm">
         <div className="p-5">
-          <p className="text-[10.5px] font-bold text-gray-400 uppercase tracking-widest mb-4">รายละเอียด Candidate</p>
+          <p className="text-[12px] font-bold text-gray-400 uppercase tracking-widest mb-4">รายละเอียด Candidate</p>
 
           <div className="flex flex-col items-center mb-5 pb-5 border-b border-gray-100">
             <Avatar char={selected.candidateAvatar} size="lg" />
-            <h4 className="text-[14px] font-bold text-[#1A1A2E] mt-3 text-center">{selected.candidateName}</h4>
-            <p className="text-[11.5px] text-gray-400 text-center mt-0.5">{selected.candidateRole}</p>
+            <h4 className="text-[16px] font-bold text-[#1A1A2E] mt-3 text-center">{selected.candidateName}</h4>
+            <p className="text-[13.5px] text-gray-400 text-center mt-0.5">{selected.candidateRole}</p>
           </div>
 
           {/* Response status */}
@@ -609,8 +609,8 @@ export default function MessagesPage({ onBack }: MessagesPageProps) {
               <div className={`mb-4 p-3 rounded-xl border flex items-center gap-2 ${cfg.card}`}>
                 <Icon className="w-3.5 h-3.5 flex-shrink-0" />
                 <div>
-                  <p className="text-[9.5px] font-medium opacity-70 uppercase tracking-wide">ตอบกลับ</p>
-                  <p className="text-[12px] font-bold">{cfg.label}</p>
+                  <p className="text-[10.5px] font-medium opacity-70 uppercase tracking-wide">ตอบกลับ</p>
+                  <p className="text-[14px] font-bold">{cfg.label}</p>
                 </div>
               </div>
             );
@@ -628,8 +628,8 @@ export default function MessagesPage({ onBack }: MessagesPageProps) {
               <div key={item.label} className="flex items-start gap-2.5">
                 <div className="mt-0.5 flex-shrink-0">{item.icon}</div>
                 <div>
-                  <p className="text-[10px] text-gray-400 uppercase tracking-wide font-semibold">{item.label}</p>
-                  <p className="text-[12px] font-medium text-[#1A1A2E] mt-0.5">{item.value}</p>
+                  <p className="text-[11px] text-gray-400 uppercase tracking-wide font-semibold">{item.label}</p>
+                  <p className="text-[14px] font-medium text-[#1A1A2E] mt-0.5">{item.value}</p>
                 </div>
               </div>
             ))}
@@ -637,10 +637,10 @@ export default function MessagesPage({ onBack }: MessagesPageProps) {
 
           {/* Skills */}
           <div className="mb-5">
-            <p className="text-[10px] text-gray-400 uppercase tracking-wide font-semibold mb-2">Skills</p>
+            <p className="text-[11px] text-gray-400 uppercase tracking-wide font-semibold mb-2">Skills</p>
             <div className="flex flex-wrap gap-1.5">
               {selected.candidateDetails.skills.map((s) => (
-                <span key={s} className="text-[10.5px] font-medium px-2 py-1 bg-[#EBF5FF] text-[#127EE3] rounded-lg border border-[#127EE3]/10">
+                <span key={s} className="text-[12px] font-medium px-2 py-1 bg-[#EBF5FF] text-[#127EE3] rounded-lg border border-[#127EE3]/10">
                   {s}
                 </span>
               ))}
@@ -649,31 +649,31 @@ export default function MessagesPage({ onBack }: MessagesPageProps) {
 
           {/* Job */}
           <div className="mb-5 p-3 bg-[#F7F9FC] rounded-xl border border-gray-100">
-            <p className="text-[10px] text-gray-400 uppercase tracking-wide font-semibold mb-1.5">ตำแหน่งที่ส่งไป</p>
+            <p className="text-[11px] text-gray-400 uppercase tracking-wide font-semibold mb-1.5">ตำแหน่งที่ส่งไป</p>
             <div className="flex items-center gap-1.5">
               <Briefcase className="w-3.5 h-3.5 text-[#127EE3]" />
-              <p className="text-[12px] font-semibold text-[#1A1A2E]">{selected.jobPosition}</p>
+              <p className="text-[14px] font-semibold text-[#1A1A2E]">{selected.jobPosition}</p>
             </div>
           </div>
 
           <div className="space-y-2">
             <button
               onClick={() => setResumeOpen(true)}
-              className="w-full py-2.5 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] hover:opacity-90 text-white text-[12.5px] font-bold rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm shadow-[#019EFC]/20"
+              className="w-full py-2.5 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] hover:opacity-90 text-white text-[14.5px] font-bold rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm shadow-[#019EFC]/20"
             >
               <FileText className="w-3.5 h-3.5" />ดู Resume
             </button>
             {shortlistedIds.has(selected.id) ? (
               <button
                 disabled
-                className="w-full py-2 border border-emerald-200 bg-emerald-50 text-emerald-600 text-[12.5px] font-semibold rounded-xl flex items-center justify-center gap-2 cursor-not-allowed"
+                className="w-full py-2 border border-emerald-200 bg-emerald-50 text-emerald-600 text-[14.5px] font-semibold rounded-xl flex items-center justify-center gap-2 cursor-not-allowed"
               >
                 <CheckCircle2 className="w-3.5 h-3.5" />อยู่ใน Shortlist แล้ว
               </button>
             ) : (
               <button
                 onClick={() => handleAddToShortlist(selected)}
-                className="w-full py-2 border border-gray-200 text-gray-600 text-[12.5px] font-semibold rounded-xl hover:border-[#127EE3] hover:text-[#127EE3] transition-all flex items-center justify-center gap-2"
+                className="w-full py-2 border border-gray-200 text-gray-600 text-[14.5px] font-semibold rounded-xl hover:border-[#127EE3] hover:text-[#127EE3] transition-all flex items-center justify-center gap-2"
               >
                 <Star className="w-3.5 h-3.5" />เพิ่มใน Shortlist
               </button>

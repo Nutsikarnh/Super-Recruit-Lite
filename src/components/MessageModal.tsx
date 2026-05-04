@@ -115,14 +115,14 @@ function ScoreBar({ label, value }: { label: string; value: number }) {
   const pct = (value / 5) * 100;
   return (
     <div className="flex items-center gap-2">
-      <span className="text-[12px] text-gray-600 w-14 flex-shrink-0">{label}</span>
+      <span className="text-[14px] text-gray-600 w-14 flex-shrink-0">{label}</span>
       <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
         <div
           className="h-full rounded-full bg-[#0DC2FF]"
           style={{ width: `${pct}%` }}
         />
       </div>
-      <span className="text-[12px] font-bold text-[#0DC2FF] w-6 text-right flex-shrink-0">{value}</span>
+      <span className="text-[14px] font-bold text-[#0DC2FF] w-6 text-right flex-shrink-0">{value}</span>
     </div>
   );
 }
@@ -159,8 +159,8 @@ export default function MessageModal({ candidateTitle, candidateCompany, candida
           <div className="w-16 h-16 rounded-full bg-emerald-50 border-2 border-emerald-200 flex items-center justify-center mx-auto mb-4">
             <Send className="w-7 h-7 text-emerald-500" />
           </div>
-          <h3 className="text-[18px] font-bold text-[#1A1A2E] mb-2">ส่งข้อความเรียบร้อยแล้ว</h3>
-          <p className="text-[13px] text-gray-500 leading-relaxed">ระบบจะแจ้งเตือนคุณเมื่อผู้สมัครตอบรับหรือเปิดข้อความ</p>
+          <h3 className="text-[20px] font-bold text-[#1A1A2E] mb-2">ส่งข้อความเรียบร้อยแล้ว</h3>
+          <p className="text-[15px] text-gray-500 leading-relaxed">ระบบจะแจ้งเตือนคุณเมื่อผู้สมัครตอบรับหรือเปิดข้อความ</p>
         </div>
       </div>
     );
@@ -179,8 +179,8 @@ export default function MessageModal({ candidateTitle, candidateCompany, candida
               <Send className="w-4 h-4 text-[#0DC2FF]" />
             </div>
             <div>
-              <h3 className="text-[16px] font-bold text-[#1A1A2E]">ส่งข้อความสนใจ</h3>
-              <p className="text-[12px] text-gray-400">ผ่านระบบ — ไม่เปิดเผยตัวตนจนกว่าผู้สมัครจะตอบรับ</p>
+              <h3 className="text-[18px] font-bold text-[#1A1A2E]">ส่งข้อความสนใจ</h3>
+              <p className="text-[14px] text-gray-400">ผ่านระบบ — ไม่เปิดเผยตัวตนจนกว่าผู้สมัครจะตอบรับ</p>
             </div>
           </div>
           <button onClick={onClose} className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors">
@@ -191,7 +191,7 @@ export default function MessageModal({ candidateTitle, candidateCompany, candida
         <div className="flex-1 overflow-y-auto p-6 space-y-5">
           {/* From — Dream Company selector */}
           <div>
-            <label className="block text-[12px] font-bold text-[#1A1A2E] mb-2 flex items-center gap-1.5">
+            <label className="block text-[14px] font-bold text-[#1A1A2E] mb-2 flex items-center gap-1.5">
               <Building2 className="w-3.5 h-3.5 text-gray-400" />
               ส่งในนามบริษัท
             </label>
@@ -202,17 +202,17 @@ export default function MessageModal({ candidateTitle, candidateCompany, candida
               >
                 <div className="flex items-center gap-3 flex-1 min-w-0">
                   {/* Logo */}
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${selectedCompany.color} flex items-center justify-center text-white text-[11px] font-black flex-shrink-0 shadow-sm`}>
+                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${selectedCompany.color} flex items-center justify-center text-white text-[13px] font-black flex-shrink-0 shadow-sm`}>
                     {selectedCompany.logo}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <p className="text-[14px] font-semibold text-[#1A1A2E]">{selectedCompany.name}</p>
+                      <p className="text-[16px] font-semibold text-[#1A1A2E]">{selectedCompany.name}</p>
                       <div className="flex items-center gap-0.5">
                         <Star className="w-2.5 h-2.5 text-rose-400 fill-rose-400" />
                         <Star className="w-2.5 h-2.5 text-rose-400 fill-rose-400" />
                         <Star className="w-2.5 h-2.5 text-rose-400 fill-rose-400" />
-                        <span className="text-[10px] text-rose-500 font-semibold ml-0.5">Dream Company</span>
+                        <span className="text-[11px] text-rose-500 font-semibold ml-0.5">Dream Company</span>
                       </div>
                     </div>
                     {/* Score bars inline */}
@@ -234,14 +234,14 @@ export default function MessageModal({ candidateTitle, candidateCompany, candida
                       onClick={() => { setSelectedCompany(company); setShowCompanyDropdown(false); }}
                       className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-gray-50 transition-colors ${selectedCompany.name === company.name ? "bg-[#0DC2FF]/5" : ""}`}
                     >
-                      <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${company.color} flex items-center justify-center text-white text-[10px] font-black flex-shrink-0 shadow-sm`}>
+                      <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${company.color} flex items-center justify-center text-white text-[11px] font-black flex-shrink-0 shadow-sm`}>
                         {company.logo}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-[13px] font-semibold text-[#1A1A2E]">{company.name}</p>
+                        <p className="text-[15px] font-semibold text-[#1A1A2E]">{company.name}</p>
                         <div className="flex items-center gap-2 mt-0.5">
                           {company.scores.map((s) => (
-                            <span key={s.label} className="text-[10px] text-gray-400">
+                            <span key={s.label} className="text-[11px] text-gray-400">
                               {s.label} <span className="font-bold text-[#0DC2FF]">{s.value}</span>
                             </span>
                           ))}
@@ -256,7 +256,7 @@ export default function MessageModal({ candidateTitle, candidateCompany, candida
 
           {/* To */}
           <div>
-            <label className="block text-[12px] font-bold text-[#1A1A2E] mb-2">ถึง</label>
+            <label className="block text-[14px] font-bold text-[#1A1A2E] mb-2">ถึง</label>
             <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-gray-50 border border-gray-100">
               <div className="w-8 h-8 rounded-lg bg-gray-200 flex items-center justify-center flex-shrink-0">
                 <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-gray-400" stroke="currentColor" strokeWidth="1.5">
@@ -264,25 +264,25 @@ export default function MessageModal({ candidateTitle, candidateCompany, candida
                 </svg>
               </div>
               <div>
-                <p className="text-[13px] font-semibold text-[#1A1A2E]">{candidateTitle}</p>
-                <p className="text-[11px] text-gray-400">จาก {candidateCompany}  ·  ยังไม่เปิดเผยชื่อ</p>
+                <p className="text-[15px] font-semibold text-[#1A1A2E]">{candidateTitle}</p>
+                <p className="text-[13px] text-gray-400">จาก {candidateCompany}  ·  ยังไม่เปิดเผยชื่อ</p>
               </div>
             </div>
           </div>
 
           {/* Subject */}
           <div>
-            <label className="block text-[12px] font-bold text-[#1A1A2E] mb-2">หัวข้อ</label>
+            <label className="block text-[14px] font-bold text-[#1A1A2E] mb-2">หัวข้อ</label>
             <input
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-[14px] text-[#1A1A2E] focus:outline-none focus:border-[#127EE3] transition-colors"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-[16px] text-[#1A1A2E] focus:outline-none focus:border-[#127EE3] transition-colors"
             />
           </div>
 
           {/* Why interested — editable */}
           <div>
-            <label className="block text-[12px] font-bold text-[#1A1A2E] mb-1.5 flex items-center gap-1.5">
+            <label className="block text-[14px] font-bold text-[#1A1A2E] mb-1.5 flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-[#0DC2FF]" />
               เหตุผลที่สนใจ (AI ช่วย personalise ให้แล้ว — แก้ได้)
             </label>
@@ -290,29 +290,29 @@ export default function MessageModal({ candidateTitle, candidateCompany, candida
               value={whyInterested}
               onChange={(e) => setWhyInterested(e.target.value)}
               rows={4}
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-[13px] text-gray-600 leading-relaxed focus:outline-none focus:border-[#127EE3] transition-colors resize-none"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-[15px] text-gray-600 leading-relaxed focus:outline-none focus:border-[#127EE3] transition-colors resize-none"
             />
           </div>
 
           {/* Full message preview with company header */}
           <div>
-            <label className="block text-[12px] font-bold text-[#1A1A2E] mb-2">ตัวอย่างข้อความเต็ม</label>
+            <label className="block text-[14px] font-bold text-[#1A1A2E] mb-2">ตัวอย่างข้อความเต็ม</label>
             <div className="bg-gray-50 rounded-xl border border-gray-100 overflow-hidden">
               {/* Company header in email */}
               <div className="px-5 py-4 bg-white border-b border-gray-100 flex items-start justify-between gap-4">
                 <div className="flex items-start gap-3 flex-1 min-w-0">
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${selectedCompany.color} flex items-center justify-center text-white text-[12px] font-black shadow-sm flex-shrink-0`}>
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${selectedCompany.color} flex items-center justify-center text-white text-[14px] font-black shadow-sm flex-shrink-0`}>
                     {selectedCompany.logo}
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[14px] font-bold text-[#1A1A2E]">{selectedCompany.name}</p>
+                    <p className="text-[16px] font-bold text-[#1A1A2E]">{selectedCompany.name}</p>
                     <div className="flex items-center gap-1 mt-0.5">
                       <Star className="w-2.5 h-2.5 text-rose-400 fill-rose-400" />
                       <Star className="w-2.5 h-2.5 text-rose-400 fill-rose-400" />
                       <Star className="w-2.5 h-2.5 text-rose-400 fill-rose-400" />
-                      <span className="text-[10px] text-rose-500 font-bold ml-0.5">Dream Company — วิเศษสุด</span>
+                      <span className="text-[11px] text-rose-500 font-bold ml-0.5">Dream Company — วิเศษสุด</span>
                     </div>
-                    <p className="text-[11px] text-gray-400 mt-1.5 leading-relaxed italic">"{selectedCompany.tagline}"</p>
+                    <p className="text-[13px] text-gray-400 mt-1.5 leading-relaxed italic">"{selectedCompany.tagline}"</p>
                   </div>
                 </div>
                 <div className="flex-shrink-0">
@@ -324,21 +324,21 @@ export default function MessageModal({ candidateTitle, candidateCompany, candida
                 </div>
               </div>
               <div className="px-5 py-5 space-y-3">
-                <pre className="text-[12px] text-gray-600 leading-relaxed whitespace-pre-wrap font-sans">
+                <pre className="text-[14px] text-gray-600 leading-relaxed whitespace-pre-wrap font-sans">
                   {fullMessage}
                 </pre>
                 {/* CTA buttons inside the email preview */}
                 <div className="flex gap-3 pt-2">
                   <button
                     onClick={handleSend}
-                    className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-gradient-to-r from-[#0DC2FF] to-[#127EE3] text-white text-[13px] font-bold shadow-sm shadow-[#0DC2FF]/25 hover:shadow-[#0DC2FF]/40 transition-all"
+                    className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-gradient-to-r from-[#0DC2FF] to-[#127EE3] text-white text-[15px] font-bold shadow-sm shadow-[#0DC2FF]/25 hover:shadow-[#0DC2FF]/40 transition-all"
                   >
                     <Send className="w-3.5 h-3.5" />
                     สนใจพูดคุยด้วย
                   </button>
                   <button
                     onClick={onClose}
-                    className="flex-1 py-2.5 rounded-xl text-[13px] font-semibold text-gray-500 hover:text-gray-700 border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-colors text-center"
+                    className="flex-1 py-2.5 rounded-xl text-[15px] font-semibold text-gray-500 hover:text-gray-700 border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-colors text-center"
                   >
                     เอาไว้โอกาสหน้า
                   </button>
@@ -350,7 +350,7 @@ export default function MessageModal({ candidateTitle, candidateCompany, candida
           {/* Privacy note */}
           <div className="flex items-start gap-2.5 px-3.5 py-3 rounded-xl bg-[#F0F8FF] border border-[#0DC2FF]/20">
             <Sparkles className="w-4 h-4 text-[#127EE3] flex-shrink-0 mt-0.5" />
-            <p className="text-[12px] text-[#127EE3] leading-relaxed">
+            <p className="text-[14px] text-[#127EE3] leading-relaxed">
               ข้อความจะส่งผ่านระบบโดยไม่เปิดเผยข้อมูลทั้งสองฝ่าย จนกว่าผู้สมัครจะตอบรับและอนุญาตให้แลกเปลี่ยนข้อมูลติดต่อ
             </p>
           </div>
@@ -360,14 +360,14 @@ export default function MessageModal({ candidateTitle, candidateCompany, candida
         <div className="flex items-center gap-2 px-6 py-4 border-t border-gray-100 flex-shrink-0">
           <button
             onClick={handleSend}
-            className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-[#0DC2FF] to-[#127EE3] text-white text-[14px] font-bold shadow-md shadow-[#0DC2FF]/25 hover:shadow-[#0DC2FF]/40 transition-all"
+            className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-[#0DC2FF] to-[#127EE3] text-white text-[16px] font-bold shadow-md shadow-[#0DC2FF]/25 hover:shadow-[#0DC2FF]/40 transition-all"
           >
             <Send className="w-4 h-4" />
             ส่งข้อความสนใจ
           </button>
           <button
             onClick={onClose}
-            className="px-5 py-3 rounded-xl text-[14px] font-semibold text-gray-400 hover:text-gray-600 border border-gray-100 hover:border-gray-200 transition-colors"
+            className="px-5 py-3 rounded-xl text-[16px] font-semibold text-gray-400 hover:text-gray-600 border border-gray-100 hover:border-gray-200 transition-colors"
           >
             ยกเลิก
           </button>

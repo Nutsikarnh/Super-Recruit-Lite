@@ -375,7 +375,7 @@ function StarRating({ value }: { value: number }) {
 }
 
 function AvatarBubble({ initials, size = "sm", color = "bg-[#127EE3]/10 text-[#127EE3]" }: { initials: string; size?: "sm" | "md" | "lg"; color?: string }) {
-  const sz = size === "lg" ? "w-12 h-12 text-[14px]" : size === "md" ? "w-9 h-9 text-[12px]" : "w-7 h-7 text-[10px]";
+  const sz = size === "lg" ? "w-12 h-12 text-[16px]" : size === "md" ? "w-9 h-9 text-[14px]" : "w-7 h-7 text-[11px]";
   return (
     <div className={`${sz} rounded-xl flex items-center justify-center font-bold flex-shrink-0 ${color}`}>
       {initials}
@@ -386,7 +386,7 @@ function AvatarBubble({ initials, size = "sm", color = "bg-[#127EE3]/10 text-[#1
 function PillarBadge({ pillar }: { pillar: BrandPillar }) {
   const cfg = PILLAR_CONFIG[pillar];
   return (
-    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold border ${cfg.bg} ${cfg.color} ${cfg.border}`}>
+    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[13px] font-bold border ${cfg.bg} ${cfg.color} ${cfg.border}`}>
       {cfg.icon}
       {pillar}
     </span>
@@ -399,8 +399,8 @@ function ScoreGauge({ score, max = 5, label, color }: { score: number; max?: num
   return (
     <div className="flex flex-col gap-1.5">
       <div className="flex items-center justify-between">
-        <span className="text-[12px] text-gray-500 font-medium">{label}</span>
-        <span className="text-[13px] font-black text-[#1A1A2E]">{display}<span className="text-[10px] text-gray-400 font-normal">/{max}</span></span>
+        <span className="text-[14px] text-gray-500 font-medium">{label}</span>
+        <span className="text-[15px] font-black text-[#1A1A2E]">{display}<span className="text-[11px] text-gray-400 font-normal">/{max}</span></span>
       </div>
       <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
         <div className={`h-full rounded-full transition-all duration-700 ${color}`} style={{ width: `${pct}%` }} />
@@ -492,7 +492,7 @@ function CopyButton({ text, label }: { text: string; label: string }) {
   };
   return (
     <button onClick={copy}
-      className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-[12.5px] font-bold transition-all ${copied ? "bg-emerald-50 text-emerald-600 border border-emerald-200" : "bg-[#F0F8FF] border border-[#0DC2FF]/30 text-[#127EE3] hover:bg-[#E0F0FF]"}`}>
+      className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-[14.5px] font-bold transition-all ${copied ? "bg-emerald-50 text-emerald-600 border border-emerald-200" : "bg-[#F0F8FF] border border-[#0DC2FF]/30 text-[#127EE3] hover:bg-[#E0F0FF]"}`}>
       {copied ? <Check size={13}/> : <Copy size={13}/>}
       {copied ? "คัดลอกแล้ว!" : label}
     </button>
@@ -512,24 +512,24 @@ function PostCard({ t, selected, onSelect }: { t: typeof POST_TEMPLATES[0]; sele
         <div className="bg-white/80 backdrop-blur rounded-xl p-3 shadow-sm border border-white/60">
           <div className="flex items-center gap-2 mb-2">
             <div className="w-7 h-7 rounded-lg bg-[#0F1724] flex items-center justify-center flex-shrink-0">
-              <span className="text-white text-[9px] font-bold tracking-tight">HiB</span>
+              <span className="text-white text-[10px] font-bold tracking-tight">HiB</span>
             </div>
             <div>
-              <p className="text-[11px] font-bold text-[#1A1A2E] leading-none">TechVibe Solutions</p>
-              <p className="text-[10px] text-gray-400">Dream Company 2569</p>
+              <p className="text-[13px] font-bold text-[#1A1A2E] leading-none">TechVibe Solutions</p>
+              <p className="text-[11px] text-gray-400">Dream Company 2569</p>
             </div>
           </div>
-          <p className="text-[10.5px] text-gray-600 leading-relaxed line-clamp-3">{t.caption}</p>
+          <p className="text-[12px] text-gray-600 leading-relaxed line-clamp-3">{t.caption}</p>
           <div className="mt-2 pt-2 border-t border-gray-100 flex items-center gap-1.5">
             <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-gradient-to-r from-[#fff0f4] to-[#fff6f9] border border-[#f43f76]/20">
-              <span className="text-[9px] font-black text-[#f43f76]">Dream Company</span>
+              <span className="text-[10px] font-black text-[#f43f76]">Dream Company</span>
             </div>
           </div>
         </div>
       </div>
       <div className="px-4 py-2.5 bg-white flex items-center justify-between">
-        <p className="text-[12.5px] font-bold text-[#1A1A2E]">{t.label}</p>
-        <span className="flex items-center gap-1 text-[11px] text-gray-400" style={{color: t.accent}}>
+        <p className="text-[14.5px] font-bold text-[#1A1A2E]">{t.label}</p>
+        <span className="flex items-center gap-1 text-[13px] text-gray-400" style={{color: t.accent}}>
           {platformIcons[t.platform]}
           {t.platform === "all" ? "ทุก platform" : t.platform}
         </span>
@@ -555,10 +555,10 @@ function DreamKitTab() {
             <div className="w-7 h-7 rounded-xl bg-[#f43f76]/10 flex items-center justify-center">
               <Trophy size={15} className="text-[#f43f76]"/>
             </div>
-            <span className="text-[11px] font-bold text-[#f43f76] uppercase tracking-widest">Dream Company Kit</span>
+            <span className="text-[13px] font-bold text-[#f43f76] uppercase tracking-widest">Dream Company Kit</span>
           </div>
-          <h2 className="text-[22px] font-black text-[#1A1A2E] leading-tight">เอาตรา Dream Company ไปแปะได้เลย</h2>
-          <p className="text-[13.5px] text-gray-500 mt-1.5 max-w-xl">นำตราองค์กรไปใช้บนเว็บไซต์ ลิงก์ตำแหน่งงาน หรือแชร์ลง Social เพื่อให้คนรู้ว่าองค์กรคุณผ่านการรับรองจากพนักงานจริง</p>
+          <h2 className="text-[24px] font-black text-[#1A1A2E] leading-tight">เอาตรา Dream Company ไปแปะได้เลย</h2>
+          <p className="text-[15.5px] text-gray-500 mt-1.5 max-w-xl">นำตราองค์กรไปใช้บนเว็บไซต์ ลิงก์ตำแหน่งงาน หรือแชร์ลง Social เพื่อให้คนรู้ว่าองค์กรคุณผ่านการรับรองจากพนักงานจริง</p>
         </div>
         <DreamBadgePreview size="lg"/>
       </div>
@@ -572,17 +572,17 @@ function DreamKitTab() {
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
             <div className="px-6 py-4 border-b border-gray-50 flex items-center gap-2">
               <BadgeCheck size={16} className="text-[#f43f76]"/>
-              <h3 className="text-[14px] font-bold text-[#1A1A2E]">Badge สำหรับเว็บไซต์</h3>
+              <h3 className="text-[16px] font-bold text-[#1A1A2E]">Badge สำหรับเว็บไซต์</h3>
             </div>
             <div className="px-6 py-5 space-y-5">
 
               {/* Size selector */}
               <div>
-                <p className="text-[12px] font-bold text-gray-500 uppercase tracking-wide mb-2.5">ขนาด Badge</p>
+                <p className="text-[14px] font-bold text-gray-500 uppercase tracking-wide mb-2.5">ขนาด Badge</p>
                 <div className="flex gap-2">
                   {([["sm","เล็ก"],["md","กลาง"],["lg","ใหญ่"]] as const).map(([k,l])=>(
                     <button key={k} onClick={()=>setBadgeSize(k)}
-                      className={`px-4 py-2 rounded-xl text-[12.5px] font-semibold border transition-all ${badgeSize===k?"bg-[#127EE3] text-white border-[#127EE3]":"bg-white text-gray-500 border-gray-200 hover:border-gray-300"}`}>
+                      className={`px-4 py-2 rounded-xl text-[14.5px] font-semibold border transition-all ${badgeSize===k?"bg-[#127EE3] text-white border-[#127EE3]":"bg-white text-gray-500 border-gray-200 hover:border-gray-300"}`}>
                       {l}
                     </button>
                   ))}
@@ -591,7 +591,7 @@ function DreamKitTab() {
 
               {/* Preview */}
               <div>
-                <p className="text-[12px] font-bold text-gray-500 uppercase tracking-wide mb-2.5">ตัวอย่าง</p>
+                <p className="text-[14px] font-bold text-gray-500 uppercase tracking-wide mb-2.5">ตัวอย่าง</p>
                 <div className="rounded-xl border border-gray-100 bg-gray-50 p-5 min-h-[100px] flex items-center">
                   <DreamBadgePreview size={badgeSize}/>
                 </div>
@@ -605,7 +605,7 @@ function DreamKitTab() {
                 <div className="rounded-xl bg-[#1A1A2E] p-4 flex items-center justify-center">
                   <div className="inline-flex items-center gap-3 px-4 py-2.5 rounded-xl bg-white/10 border border-white/15">
                     <div className="flex flex-col items-center gap-0.5">
-                      <p className="text-[11px] font-black text-white tracking-wide leading-none">Dream Company</p>
+                      <p className="text-[13px] font-black text-white tracking-wide leading-none">Dream Company</p>
                       <div className="flex items-center gap-0.5 mt-0.5">
                         {[0,1,2].map(i=>(
                           <svg key={i} viewBox="0 0 24 24" className="w-4 h-4 fill-white">
@@ -613,19 +613,19 @@ function DreamKitTab() {
                           </svg>
                         ))}
                       </div>
-                      <p className="text-[8px] font-bold text-white/60 tracking-widest uppercase">2569</p>
+                      <p className="text-[9px] font-bold text-white/60 tracking-widest uppercase">2569</p>
                     </div>
                     <div className="w-px h-8 bg-white/20"/>
                     <div>
-                      <p className="text-[10px] text-white/50 font-medium">Top 8%</p>
-                      <p className="text-[12px] font-black text-white">อุตสาหกรรม</p>
+                      <p className="text-[11px] text-white/50 font-medium">Top 8%</p>
+                      <p className="text-[14px] font-black text-white">อุตสาหกรรม</p>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="flex gap-2">
-                <p className="text-[11.5px] text-gray-400 flex-1">Light background</p>
-                <p className="text-[11.5px] text-gray-400 flex-1 text-center">Dark background</p>
+                <p className="text-[13.5px] text-gray-400 flex-1">Light background</p>
+                <p className="text-[13.5px] text-gray-400 flex-1 text-center">Dark background</p>
               </div>
 
               {/* Embed tabs */}
@@ -633,7 +633,7 @@ function DreamKitTab() {
                 <div className="flex items-center gap-1 p-1 bg-gray-50 rounded-xl border border-gray-100 w-fit mb-3">
                   {([["html","HTML Embed"],["image","ดาวน์โหลดรูป"]] as const).map(([k,l])=>(
                     <button key={k} onClick={()=>setEmbedTab(k)}
-                      className={`px-4 py-1.5 rounded-lg text-[12.5px] font-semibold transition-all ${embedTab===k?"bg-white text-[#1A1A2E] shadow-sm":"text-gray-400 hover:text-gray-600"}`}>
+                      className={`px-4 py-1.5 rounded-lg text-[14.5px] font-semibold transition-all ${embedTab===k?"bg-white text-[#1A1A2E] shadow-sm":"text-gray-400 hover:text-gray-600"}`}>
                       {k==="html" ? <><Code2 size={12} className="inline mr-1.5"/>HTML</> : <><Download size={12} className="inline mr-1.5"/>รูปภาพ</>}
                       <span className="ml-1">{l.split(" ").slice(1).join(" ")}</span>
                     </button>
@@ -642,16 +642,16 @@ function DreamKitTab() {
 
                 {embedTab === "html" ? (
                   <div className="space-y-2">
-                    <pre className="bg-[#0f1d3a] text-[#0DC2FF] text-[11.5px] rounded-xl p-4 overflow-x-auto leading-relaxed whitespace-pre-wrap font-mono border border-[#127EE3]/20">
+                    <pre className="bg-[#0f1d3a] text-[#0DC2FF] text-[13.5px] rounded-xl p-4 overflow-x-auto leading-relaxed whitespace-pre-wrap font-mono border border-[#127EE3]/20">
 {EMBED_HTML}
                     </pre>
                     <div className="flex items-center gap-2">
                       <CopyButton text={EMBED_HTML} label="คัดลอก HTML Code"/>
-                      <a href="#" onClick={e=>e.preventDefault()} className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-[12.5px] font-bold bg-gray-50 border border-gray-200 text-gray-600 hover:border-gray-300 transition-all">
+                      <a href="#" onClick={e=>e.preventDefault()} className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-[14.5px] font-bold bg-gray-50 border border-gray-200 text-gray-600 hover:border-gray-300 transition-all">
                         <ExternalLink size={13}/> ดูตัวอย่างสด
                       </a>
                     </div>
-                    <p className="text-[11.5px] text-gray-400">วางโค้ดนี้ในเว็บไซต์ Career Page หรือ Footer ของคุณ badge จะอัปเดตอัตโนมัติทุกปี</p>
+                    <p className="text-[13.5px] text-gray-400">วางโค้ดนี้ในเว็บไซต์ Career Page หรือ Footer ของคุณ badge จะอัปเดตอัตโนมัติทุกปี</p>
                   </div>
                 ) : (
                   <div className="space-y-3">
@@ -666,14 +666,14 @@ function DreamKitTab() {
                             <Image size={18} className="text-gray-400 group-hover:text-[#127EE3] transition-colors"/>
                           </div>
                           <div className="text-center">
-                            <p className="text-[12px] font-bold text-[#1A1A2E]">{f.label}</p>
-                            <p className="text-[11px] text-gray-400">{f.sub}</p>
+                            <p className="text-[14px] font-bold text-[#1A1A2E]">{f.label}</p>
+                            <p className="text-[13px] text-gray-400">{f.sub}</p>
                           </div>
-                          <span className="flex items-center gap-1 text-[11px] font-bold text-[#127EE3]"><Download size={11}/>ดาวน์โหลด</span>
+                          <span className="flex items-center gap-1 text-[13px] font-bold text-[#127EE3]"><Download size={11}/>ดาวน์โหลด</span>
                         </button>
                       ))}
                     </div>
-                    <p className="text-[11.5px] text-gray-400">ใช้ SVG เพื่อความคมชัดสูงสุดบนทุกหน้าจอ</p>
+                    <p className="text-[13.5px] text-gray-400">ใช้ SVG เพื่อความคมชัดสูงสุดบนทุกหน้าจอ</p>
                   </div>
                 )}
               </div>
@@ -684,7 +684,7 @@ function DreamKitTab() {
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
             <div className="px-6 py-4 border-b border-gray-50 flex items-center gap-2">
               <CheckCircle2 size={16} className="text-emerald-500"/>
-              <h3 className="text-[14px] font-bold text-[#1A1A2E]">แนวทางการใช้ Badge</h3>
+              <h3 className="text-[16px] font-bold text-[#1A1A2E]">แนวทางการใช้ Badge</h3>
             </div>
             <div className="px-6 py-4">
               <div className="grid grid-cols-2 gap-3">
@@ -701,7 +701,7 @@ function DreamKitTab() {
                       ? <CheckCircle2 size={14} className="text-emerald-500 flex-shrink-0 mt-0.5"/>
                       : <X size={14} className="text-red-400 flex-shrink-0 mt-0.5"/>
                     }
-                    <p className="text-[12.5px] text-gray-600">{g.text}</p>
+                    <p className="text-[14.5px] text-gray-600">{g.text}</p>
                   </div>
                 ))}
               </div>
@@ -714,7 +714,7 @@ function DreamKitTab() {
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-gray-50 flex items-center gap-2">
               <Share2 size={16} className="text-[#127EE3]"/>
-              <h3 className="text-[14px] font-bold text-[#1A1A2E]">Social Post Templates</h3>
+              <h3 className="text-[16px] font-bold text-[#1A1A2E]">Social Post Templates</h3>
             </div>
             <div className="px-5 py-4 space-y-3">
               {POST_TEMPLATES.map(t=>(
@@ -730,7 +730,7 @@ function DreamKitTab() {
         <div className="px-6 py-4 border-b border-gray-50 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <PenLine size={15} className="text-[#127EE3]"/>
-            <h3 className="text-[14px] font-bold text-[#1A1A2E]">Caption: {currentPost.label}</h3>
+            <h3 className="text-[16px] font-bold text-[#1A1A2E]">Caption: {currentPost.label}</h3>
           </div>
           <div className="flex items-center gap-2">
             {[
@@ -753,11 +753,11 @@ function DreamKitTab() {
               <textarea
                 defaultValue={currentPost.caption}
                 rows={8}
-                className="w-full bg-[#F8F9FA] border border-gray-200 rounded-xl px-4 py-3 text-[13.5px] text-[#1A1A2E] leading-relaxed focus:outline-none focus:border-[#127EE3] focus:bg-white transition-all resize-none placeholder-gray-400"
+                className="w-full bg-[#F8F9FA] border border-gray-200 rounded-xl px-4 py-3 text-[15.5px] text-[#1A1A2E] leading-relaxed focus:outline-none focus:border-[#127EE3] focus:bg-white transition-all resize-none placeholder-gray-400"
               />
               <div className="flex items-center gap-2">
                 <CopyButton text={currentPost.caption} label="คัดลอก Caption"/>
-                <button className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-[12.5px] font-bold bg-[#1A1A2E] text-white hover:bg-[#2a2a3e] transition-colors">
+                <button className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-[14.5px] font-bold bg-[#1A1A2E] text-white hover:bg-[#2a2a3e] transition-colors">
                   <Download size={13}/> ดาวน์โหลดรูป + Caption
                 </button>
               </div>
@@ -765,16 +765,16 @@ function DreamKitTab() {
 
             {/* Post preview card */}
             <div className="col-span-1">
-              <p className="text-[12px] font-bold text-gray-500 uppercase tracking-wide mb-2">ตัวอย่างโพสต์</p>
+              <p className="text-[14px] font-bold text-gray-500 uppercase tracking-wide mb-2">ตัวอย่างโพสต์</p>
               <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
                 <div className={`bg-gradient-to-br ${currentPost.bg} p-4`}>
                   <div className="flex items-center gap-2 mb-3">
                     <div className="w-8 h-8 rounded-xl bg-[#0F1724] flex items-center justify-center">
-                      <span className="text-white text-[10px] font-bold tracking-tight">HiB</span>
+                      <span className="text-white text-[11px] font-bold tracking-tight">HiB</span>
                     </div>
                     <div>
-                      <p className="text-[11.5px] font-bold text-[#1A1A2E]">TechVibe Solutions</p>
-                      <p className="text-[10px] text-gray-400">Dream Company 2569</p>
+                      <p className="text-[13.5px] font-bold text-[#1A1A2E]">TechVibe Solutions</p>
+                      <p className="text-[11px] text-gray-400">Dream Company 2569</p>
                     </div>
                   </div>
                   {/* Badge in post */}
@@ -782,17 +782,17 @@ function DreamKitTab() {
                     <svg viewBox="0 0 24 24" className="w-4 h-4 fill-[#f43f76]">
                       <path d="M12 12 C12 12 7 9.5 7 6.5 C7 4.5 8.5 3 10.5 3 C11.4 3 12 3.6 12 3.6 C12 3.6 12.6 3 13.5 3 C15.5 3 17 4.5 17 6.5 C17 9.5 12 12 12 12Z M12 12 C12 12 14.5 17 17.5 17 C19.5 17 21 15.5 21 13.5 C21 12.6 20.4 12 20.4 12 C20.4 12 21 11.4 21 10.5 C21 8.5 19.5 7 17.5 7 C14.5 7 12 12 12 12Z M12 12 C12 12 17 14.5 17 17.5 C17 19.5 15.5 21 13.5 21 C12.6 21 12 20.4 12 20.4 C12 20.4 11.4 21 10.5 21 C8.5 21 7 19.5 7 17.5 C7 14.5 12 12 12 12Z M12 12 C12 12 9.5 7 6.5 7 C4.5 7 3 8.5 3 10.5 C3 11.4 3.6 12 3.6 12 C3.6 12 3 12.6 3 13.5 C3 15.5 4.5 17 6.5 17 C9.5 17 12 12 12 12Z"/>
                     </svg>
-                    <span className="text-[10.5px] font-black text-[#f43f76]">Dream Company 2569</span>
+                    <span className="text-[12px] font-black text-[#f43f76]">Dream Company 2569</span>
                   </div>
-                  <p className="text-[11px] text-gray-700 leading-relaxed line-clamp-5">{currentPost.caption}</p>
+                  <p className="text-[13px] text-gray-700 leading-relaxed line-clamp-5">{currentPost.caption}</p>
                 </div>
                 <div className="bg-white px-4 py-2.5 flex items-center justify-between border-t border-gray-100">
                   <div className="flex items-center gap-2 text-gray-400">
-                    <Heart size={13}/><span className="text-[11px]">128</span>
-                    <MessageSquare size={13}/><span className="text-[11px]">24</span>
-                    <Share2 size={13}/><span className="text-[11px]">47</span>
+                    <Heart size={13}/><span className="text-[13px]">128</span>
+                    <MessageSquare size={13}/><span className="text-[13px]">24</span>
+                    <Share2 size={13}/><span className="text-[13px]">47</span>
                   </div>
-                  <span className="text-[10px] text-gray-300">23 เม.ย. 2569</span>
+                  <span className="text-[11px] text-gray-300">23 เม.ย. 2569</span>
                 </div>
               </div>
             </div>
@@ -804,7 +804,7 @@ function DreamKitTab() {
       <div className="bg-gradient-to-r from-[#fff0f4] to-white rounded-2xl border border-[#f43f76]/15 px-7 py-5">
         <div className="flex items-center gap-2 mb-4">
           <Trophy size={16} className="text-[#f43f76]"/>
-          <h3 className="text-[14px] font-bold text-[#1A1A2E]">Checklist การเผยแพร่ Dream Company Badge</h3>
+          <h3 className="text-[16px] font-bold text-[#1A1A2E]">Checklist การเผยแพร่ Dream Company Badge</h3>
         </div>
         <div className="grid grid-cols-4 gap-3">
           {[
@@ -818,8 +818,8 @@ function DreamKitTab() {
                 {item.icon}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-[12.5px] font-bold text-[#1A1A2E]">{item.label}</p>
-                <p className="text-[11.5px] text-gray-400">{item.desc}</p>
+                <p className="text-[14.5px] font-bold text-[#1A1A2E]">{item.label}</p>
+                <p className="text-[13.5px] text-gray-400">{item.desc}</p>
               </div>
               <div className={`w-5 h-5 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition-all ${item.done ? "bg-emerald-500 border-emerald-500":"border-gray-200"}`}>
                 {item.done && <Check size={10} className="text-white"/>}
@@ -885,7 +885,7 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
       <div className="max-w-screen-xl mx-auto px-6 py-6 flex flex-col gap-5">
 
         {/* Back */}
-        <button onClick={onBack} className="flex items-center gap-2 text-[14px] font-medium text-gray-500 hover:text-[#1A1A2E] transition-colors w-fit">
+        <button onClick={onBack} className="flex items-center gap-2 text-[16px] font-medium text-gray-500 hover:text-[#1A1A2E] transition-colors w-fit">
           <ChevronLeft className="w-4 h-4" />
           กลับ
         </button>
@@ -902,10 +902,10 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                   <div className="w-8 h-8 rounded-xl bg-[#127EE3]/10 flex items-center justify-center">
                     <Award className="w-4 h-4 text-[#127EE3]" />
                   </div>
-                  <span className="text-[11px] font-bold text-[#127EE3] uppercase tracking-widest">Employer Branding</span>
+                  <span className="text-[13px] font-bold text-[#127EE3] uppercase tracking-widest">Employer Branding</span>
                 </div>
-                <h1 className="text-[28px] font-bold text-[#1A1A2E] leading-tight">แบรนด์นายจ้างของคุณ</h1>
-                <p className="text-[14px] text-gray-400 mt-1.5">สร้าง brand ที่ดึงดูดคนเก่งมาหาคุณ — ก่อนที่คุณจะต้องไปตามหาพวกเขา</p>
+                <h1 className="text-[30px] font-bold text-[#1A1A2E] leading-tight">แบรนด์นายจ้างของคุณ</h1>
+                <p className="text-[16px] text-gray-400 mt-1.5">สร้าง brand ที่ดึงดูดคนเก่งมาหาคุณ — ก่อนที่คุณจะต้องไปตามหาพวกเขา</p>
 
                 {/* Dream Company badge with review metrics */}
                 <div className="mt-4 inline-flex items-center gap-5 px-5 py-4 rounded-2xl bg-gradient-to-r from-[#fff0f4] to-[#fff6f9] border-2 border-[#f43f76]/20 shadow-sm">
@@ -943,16 +943,16 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                       <div className={`w-6 h-6 rounded-lg bg-white flex items-center justify-center ${cfg.color} border border-gray-100`}>
                         {cfg.icon}
                       </div>
-                      <span className="text-[12px] font-bold text-gray-600">{pillar}</span>
+                      <span className="text-[14px] font-bold text-gray-600">{pillar}</span>
                     </div>
                     <div className="flex items-baseline gap-1">
-                      <span className="text-[24px] font-black leading-none text-[#1A1A2E]">{scores[pillar].toFixed(1)}</span>
-                      <span className="text-[11px] text-gray-400 ml-0.5">/5</span>
+                      <span className="text-[26px] font-black leading-none text-[#1A1A2E]">{scores[pillar].toFixed(1)}</span>
+                      <span className="text-[13px] text-gray-400 ml-0.5">/5</span>
                     </div>
                     <div className="mt-2 h-1.5 bg-gray-200 rounded-full overflow-hidden">
                       <div className={`h-full rounded-full ${cfg.dot}`} style={{ width: `${pct}%` }} />
                     </div>
-                    <p className="text-[10px] text-gray-400 mt-1.5">{cfg.desc}</p>
+                    <p className="text-[11px] text-gray-400 mt-1.5">{cfg.desc}</p>
                   </div>
                 );
               })}
@@ -1002,11 +1002,11 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                   {item.icon}
                 </div>
                 <div className="flex-1">
-                  <p className="text-[13.5px] font-bold text-[#1A1A2E]">{item.title}</p>
-                  <p className="text-[12.5px] text-gray-500 mt-0.5 leading-relaxed">{item.desc}</p>
+                  <p className="text-[15.5px] font-bold text-[#1A1A2E]">{item.title}</p>
+                  <p className="text-[14.5px] text-gray-500 mt-0.5 leading-relaxed">{item.desc}</p>
                   <button
                     onClick={item.onClick}
-                    className="mt-3 px-4 py-1.5 rounded-xl text-[12.5px] font-bold transition-colors bg-[#1A1A2E] text-white hover:bg-[#2a2a3e]"
+                    className="mt-3 px-4 py-1.5 rounded-xl text-[14.5px] font-bold transition-colors bg-[#1A1A2E] text-white hover:bg-[#2a2a3e]"
                   >
                     {item.cta}
                   </button>
@@ -1022,7 +1022,7 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-5 py-3 text-[13px] font-semibold transition-all whitespace-nowrap border-b-2 ${
+              className={`px-5 py-3 text-[15px] font-semibold transition-all whitespace-nowrap border-b-2 ${
                 activeTab === tab
                   ? "border-[#127EE3] text-[#127EE3]"
                   : "border-transparent text-gray-400 hover:text-[#1A1A2E]"
@@ -1044,7 +1044,7 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
               <div className="px-7 py-5 border-b border-gray-100">
                 <div className="flex items-center gap-2">
                   <Trophy className="w-4 h-4 text-amber-500" />
-                  <h3 className="text-[15px] font-bold text-[#1A1A2E]">Weekly Achievements</h3>
+                  <h3 className="text-[17px] font-bold text-[#1A1A2E]">Weekly Achievements</h3>
                 </div>
               </div>
               <div className="px-7 py-6 flex flex-col gap-6">
@@ -1056,12 +1056,12 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                     { label: "Office 24 Posts", sub: "โพสต์", value: OFFICE24_POSTS.length, delta: null },
                   ].map((m) => (
                     <div key={m.label} className="rounded-xl border border-gray-100 bg-gray-50 px-5 py-4">
-                      <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wide mb-1">{m.label}</p>
+                      <p className="text-[13px] font-semibold text-gray-400 uppercase tracking-wide mb-1">{m.label}</p>
                       <div className="flex items-end gap-2">
-                        <span className="text-[28px] font-black text-[#1A1A2E] leading-none">{m.value}</span>
-                        {m.delta && <span className="text-[11px] text-[#127EE3] font-semibold mb-0.5">{m.delta}</span>}
+                        <span className="text-[30px] font-black text-[#1A1A2E] leading-none">{m.value}</span>
+                        {m.delta && <span className="text-[13px] text-[#127EE3] font-semibold mb-0.5">{m.delta}</span>}
                       </div>
-                      <p className="text-[12px] text-gray-400 mt-0.5">{m.sub}</p>
+                      <p className="text-[14px] text-gray-400 mt-0.5">{m.sub}</p>
                     </div>
                   ))}
                 </div>
@@ -1074,8 +1074,8 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                     <div key={a.title} className={`flex items-start gap-3 rounded-xl border px-4 py-3.5 ${a.bg}`}>
                       <div className="flex-shrink-0 mt-0.5">{a.icon}</div>
                       <div>
-                        <p className="text-[13px] font-bold text-[#1A1A2E]">{a.title}</p>
-                        <p className="text-[12px] text-gray-500 mt-0.5">{a.desc}</p>
+                        <p className="text-[15px] font-bold text-[#1A1A2E]">{a.title}</p>
+                        <p className="text-[14px] text-gray-500 mt-0.5">{a.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -1088,10 +1088,10 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
               <div className="px-7 py-5 border-b border-gray-50 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Smile className="w-4 h-4 text-[#127EE3]" />
-                  <h3 className="text-[15px] font-bold text-[#1A1A2E]">ความประทับใจจากผู้สมัคร</h3>
-                  <span className="text-[12px] px-2 py-0.5 rounded-full bg-[#F0F8FF] text-[#127EE3] font-bold">20</span>
+                  <h3 className="text-[17px] font-bold text-[#1A1A2E]">ความประทับใจจากผู้สมัคร</h3>
+                  <span className="text-[14px] px-2 py-0.5 rounded-full bg-[#F0F8FF] text-[#127EE3] font-bold">20</span>
                 </div>
-                <p className="text-[12px] text-gray-400">หลังอ่าน HR SAY / รีวิว</p>
+                <p className="text-[14px] text-gray-400">หลังอ่าน HR SAY / รีวิว</p>
               </div>
               <div className="divide-y divide-gray-50">
                 {CANDIDATE_IMPRESSIONS.slice(0, 5).map((imp) => (
@@ -1102,12 +1102,12 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                       <div className="flex-1">
                         <div className="flex items-center justify-between gap-2">
                           <div>
-                            <span className="text-[13.5px] font-bold text-[#1A1A2E]">{imp.name}</span>
-                            <span className="text-[12px] text-gray-400 ml-2">{imp.role}</span>
+                            <span className="text-[15.5px] font-bold text-[#1A1A2E]">{imp.name}</span>
+                            <span className="text-[14px] text-gray-400 ml-2">{imp.role}</span>
                           </div>
-                          <span className="text-[11.5px] text-gray-400 flex-shrink-0">{imp.date}</span>
+                          <span className="text-[13.5px] text-gray-400 flex-shrink-0">{imp.date}</span>
                         </div>
-                        <p className="text-[13.5px] text-gray-600 mt-2 leading-relaxed">{imp.text}</p>
+                        <p className="text-[15.5px] text-gray-600 mt-2 leading-relaxed">{imp.text}</p>
                       </div>
                     </div>
                   </div>
@@ -1128,7 +1128,7 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
               <div className="px-7 py-5 border-b border-gray-100">
                 <div className="flex items-center gap-2">
                   <BarChart2 className="w-4 h-4 text-[#127EE3]" />
-                  <h3 className="text-[15px] font-bold text-[#1A1A2E]">Overall Summary</h3>
+                  <h3 className="text-[17px] font-bold text-[#1A1A2E]">Overall Summary</h3>
                 </div>
               </div>
               <div className="px-7 py-6 flex flex-col gap-7">
@@ -1143,17 +1143,17 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                     <div key={m.label} className="rounded-xl border border-gray-100 bg-gray-50 px-5 py-4">
                       <div className="flex items-center gap-1.5 text-gray-400 mb-2">
                         {m.icon}
-                        <p className="text-[11px] font-semibold uppercase tracking-wide">{m.label}</p>
+                        <p className="text-[13px] font-semibold uppercase tracking-wide">{m.label}</p>
                       </div>
-                      <p className="text-[26px] font-black text-[#1A1A2E] leading-none">{m.value}</p>
-                      <p className="text-[11.5px] text-[#127EE3] font-medium mt-1">{m.delta}</p>
+                      <p className="text-[28px] font-black text-[#1A1A2E] leading-none">{m.value}</p>
+                      <p className="text-[13.5px] text-[#127EE3] font-medium mt-1">{m.delta}</p>
                     </div>
                   ))}
                 </div>
 
                 {/* Job Seeker's Favorites */}
                 <div>
-                  <p className="text-[13px] font-bold text-[#1A1A2E] mb-3">Job Seeker's Favorites</p>
+                  <p className="text-[15px] font-bold text-[#1A1A2E] mb-3">Job Seeker's Favorites</p>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {[
                       { name: "Good Life", likes: 43, delta: "+1" },
@@ -1166,10 +1166,10 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                           <Heart className="w-3.5 h-3.5 text-[#127EE3]" />
                         </div>
                         <div className="min-w-0">
-                          <p className="text-[12.5px] font-semibold text-[#1A1A2E] truncate">{f.name}</p>
+                          <p className="text-[14.5px] font-semibold text-[#1A1A2E] truncate">{f.name}</p>
                           <div className="flex items-center gap-1">
-                            <span className="text-[12px] text-gray-500">{f.likes} Likes</span>
-                            {f.delta && <span className="text-[11px] text-[#127EE3] font-semibold">{f.delta}</span>}
+                            <span className="text-[14px] text-gray-500">{f.likes} Likes</span>
+                            {f.delta && <span className="text-[13px] text-[#127EE3] font-semibold">{f.delta}</span>}
                           </div>
                         </div>
                       </div>
@@ -1179,27 +1179,27 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
 
                 {/* YOU SAY Reviews */}
                 <div>
-                  <p className="text-[13px] font-bold text-[#1A1A2E] mb-3">Your YOU SAY Reviews</p>
+                  <p className="text-[15px] font-bold text-[#1A1A2E] mb-3">Your YOU SAY Reviews</p>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div className="rounded-xl border border-gray-100 bg-gray-50 px-5 py-4">
-                      <p className="text-[11px] text-gray-400 font-semibold uppercase tracking-wide mb-1">Status</p>
-                      <p className="text-[14px] font-bold text-amber-600">Dream Company</p>
-                      <p className="text-[12px] text-gray-400 mt-0.5">3 YOU SAY Flower of hearts</p>
+                      <p className="text-[13px] text-gray-400 font-semibold uppercase tracking-wide mb-1">Status</p>
+                      <p className="text-[16px] font-bold text-amber-600">Dream Company</p>
+                      <p className="text-[14px] text-gray-400 mt-0.5">3 YOU SAY Flower of hearts</p>
                     </div>
                     <div className="rounded-xl border border-gray-100 bg-gray-50 px-5 py-4">
-                      <p className="text-[11px] text-gray-400 font-semibold uppercase tracking-wide mb-1">Total YOU SAY Review</p>
+                      <p className="text-[13px] text-gray-400 font-semibold uppercase tracking-wide mb-1">Total YOU SAY Review</p>
                       <div className="flex items-end gap-2">
-                        <span className="text-[26px] font-black text-[#1A1A2E] leading-none">140</span>
-                        <span className="text-[11px] text-[#127EE3] font-semibold mb-0.5">+2 Reviews</span>
+                        <span className="text-[28px] font-black text-[#1A1A2E] leading-none">140</span>
+                        <span className="text-[13px] text-[#127EE3] font-semibold mb-0.5">+2 Reviews</span>
                       </div>
                     </div>
                     <div className="rounded-xl border border-gray-100 bg-gray-50 px-5 py-4">
-                      <p className="text-[11px] text-gray-400 font-semibold uppercase tracking-wide mb-1">Overall Rating</p>
+                      <p className="text-[13px] text-gray-400 font-semibold uppercase tracking-wide mb-1">Overall Rating</p>
                       <div className="flex items-center gap-1.5 mt-1">
                         {[1,2,3,4,5].map((s) => (
                           <Star key={s} className="w-4 h-4 text-amber-400 fill-amber-400" />
                         ))}
-                        <span className="text-[13px] font-bold text-[#1A1A2E] ml-1">5 / 5</span>
+                        <span className="text-[15px] font-bold text-[#1A1A2E] ml-1">5 / 5</span>
                       </div>
                     </div>
                   </div>
@@ -1212,7 +1212,7 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
               <div className="px-7 py-5 border-b border-gray-100">
                 <div className="flex items-center gap-2">
                   <Image className="w-4 h-4 text-[#127EE3]" />
-                  <h3 className="text-[15px] font-bold text-[#1A1A2E]">Most Liked Photo</h3>
+                  <h3 className="text-[17px] font-bold text-[#1A1A2E]">Most Liked Photo</h3>
                 </div>
               </div>
               <div className="px-7 py-6">
@@ -1232,7 +1232,7 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                       <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent px-3 py-2.5">
                         <div className="flex items-center gap-1">
                           <Heart className="w-3.5 h-3.5 text-white fill-white" />
-                          <span className="text-[12px] font-bold text-white">{photo.likes}</span>
+                          <span className="text-[14px] font-bold text-white">{photo.likes}</span>
                         </div>
                       </div>
                     </div>
@@ -1257,11 +1257,11 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                   <Users className="w-4 h-4 text-[#127EE3]" />
                 </div>
                 <div>
-                  <p className="text-[14px] font-bold text-[#1A1A2E]">ชวนพนักงานมาเขียนรีวิว</p>
-                  <p className="text-[13px] text-gray-500 mt-0.5">บริษัทที่มีรีวิว 10+ รีวิว มีผู้สมัครมากกว่า 47% — คุณมี 5 รีวิว ขาดอีก 5</p>
+                  <p className="text-[16px] font-bold text-[#1A1A2E]">ชวนพนักงานมาเขียนรีวิว</p>
+                  <p className="text-[15px] text-gray-500 mt-0.5">บริษัทที่มีรีวิว 10+ รีวิว มีผู้สมัครมากกว่า 47% — คุณมี 5 รีวิว ขาดอีก 5</p>
                 </div>
               </div>
-              <button className="flex items-center gap-2 px-5 py-2.5 bg-[#127EE3] text-white text-[13px] font-bold rounded-xl hover:bg-[#0f6bc7] transition-colors whitespace-nowrap flex-shrink-0">
+              <button className="flex items-center gap-2 px-5 py-2.5 bg-[#127EE3] text-white text-[15px] font-bold rounded-xl hover:bg-[#0f6bc7] transition-colors whitespace-nowrap flex-shrink-0">
                 <Plus className="w-4 h-4" />
                 ส่ง Invite ให้พนักงาน
               </button>
@@ -1269,7 +1269,7 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
 
             {/* Filter by highlight */}
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-[12px] font-semibold text-gray-400">highlight:</span>
+              <span className="text-[14px] font-semibold text-gray-400">highlight:</span>
               {(["ทั้งหมด", "ชีวิตดี", "งานดี", "เงินดี", "สังคมดี"] as const).map((f) => {
                 const isActive = activePillarFilter === f;
                 const cfg = f !== "ทั้งหมด" ? PILLAR_CONFIG[f] : null;
@@ -1278,7 +1278,7 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                   <button
                     key={f}
                     onClick={() => setActivePillarFilter(f)}
-                    className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-[12.5px] font-semibold border transition-all ${
+                    className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-[14.5px] font-semibold border transition-all ${
                       isActive
                         ? (cfg ? `${cfg.bg} ${cfg.color} ${cfg.border}` : "bg-[#1A1A2E] text-white border-[#1A1A2E]")
                         : "bg-white text-gray-400 border-gray-200 hover:border-gray-300"
@@ -1286,7 +1286,7 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                   >
                     {cfg && isActive && cfg.icon}
                     {f}
-                    <span className="text-[10px] font-black opacity-60">{count}</span>
+                    <span className="text-[11px] font-black opacity-60">{count}</span>
                   </button>
                 );
               })}
@@ -1306,16 +1306,16 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                         <div className="w-14 h-14 rounded-2xl bg-[#F0F2F5] border border-gray-200 flex items-center justify-center mb-3">
                           <Users className="w-6 h-6 text-gray-400" />
                         </div>
-                        <p className="text-[13px] font-bold text-[#1A1A2E]">익명</p>
-                        <p className="text-[12px] text-gray-500 mt-0.5">{review.role}</p>
-                        <p className="text-[11.5px] text-gray-400 mt-0.5">
+                        <p className="text-[15px] font-bold text-[#1A1A2E]">익명</p>
+                        <p className="text-[14px] text-gray-500 mt-0.5">{review.role}</p>
+                        <p className="text-[13.5px] text-gray-400 mt-0.5">
                           {review.tenure}{review.isFormer ? ", อดีตพนักงาน" : ", พนักงานปัจจุบัน"}
                         </p>
 
                         {/* Overall score */}
                         <div className="mt-4 mb-3">
-                          <p className="text-[30px] font-black text-[#127EE3] leading-none">{review.overallScore.toFixed(1)}</p>
-                          <p className="text-[11px] text-gray-400 mt-0.5">คะแนนรวม</p>
+                          <p className="text-[32px] font-black text-[#127EE3] leading-none">{review.overallScore.toFixed(1)}</p>
+                          <p className="text-[13px] text-gray-400 mt-0.5">คะแนนรวม</p>
                         </div>
 
                         {/* Pillar score bars */}
@@ -1325,31 +1325,31 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                             const score = review.details[p].score;
                             return (
                               <div key={p} className="flex items-center gap-2">
-                                <span className="text-[11px] text-gray-500 w-14 text-left flex-shrink-0">{p}</span>
+                                <span className="text-[13px] text-gray-500 w-14 text-left flex-shrink-0">{p}</span>
                                 <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                                   <div className={`h-full rounded-full ${cfg.dot}`} style={{ width: `${(score / 5) * 100}%` }} />
                                 </div>
-                                <span className={`text-[11px] font-black w-5 text-right ${cfg.color}`}>{score}</span>
+                                <span className={`text-[13px] font-black w-5 text-right ${cfg.color}`}>{score}</span>
                               </div>
                             );
                           })}
                         </div>
 
                         {/* Helpful */}
-                        <button className="mt-4 flex items-center gap-1.5 text-[11.5px] text-gray-400 hover:text-[#127EE3] transition-colors">
+                        <button className="mt-4 flex items-center gap-1.5 text-[13.5px] text-gray-400 hover:text-[#127EE3] transition-colors">
                           <ThumbsUp className="w-3.5 h-3.5" />
                           มีประโยชน์ ({review.helpful})
                         </button>
-                        <p className="text-[10.5px] text-gray-300 mt-1">{review.date}</p>
+                        <p className="text-[12px] text-gray-300 mt-1">{review.date}</p>
                       </div>
 
                       {/* Right panel — quote + detail breakdown */}
                       <div className="flex-1 px-7 py-6">
                         {/* Quote */}
-                        <p className="text-[16px] font-bold text-[#1A1A2E] mb-5">
-                          <span className="text-gray-300 font-black text-[20px] leading-none mr-1">"</span>
+                        <p className="text-[18px] font-bold text-[#1A1A2E] mb-5">
+                          <span className="text-gray-300 font-black text-[22px] leading-none mr-1">"</span>
                           {review.quote}
-                          <span className="text-gray-300 font-black text-[20px] leading-none ml-1">"</span>
+                          <span className="text-gray-300 font-black text-[22px] leading-none ml-1">"</span>
                         </p>
 
                         {/* 4-pillar detail grid */}
@@ -1361,16 +1361,16 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                               <div key={p}>
                                 <div className={`flex items-center gap-1.5 mb-2.5 pb-1.5 border-b border-gray-100`}>
                                   <span className={cfg.color}>{cfg.icon}</span>
-                                  <span className="text-[13px] font-black text-[#1A1A2E]">{p}</span>
+                                  <span className="text-[15px] font-black text-[#1A1A2E]">{p}</span>
                                 </div>
                                 <div className="space-y-2">
                                   {detail.items.map((item, i) => (
                                     <div key={i} className="flex items-start justify-between gap-2">
-                                      <span className="text-[12.5px] text-gray-500 leading-tight">{item.label}</span>
+                                      <span className="text-[14.5px] text-gray-500 leading-tight">{item.label}</span>
                                       {item.isText ? (
-                                        <span className="text-[12.5px] font-semibold text-[#127EE3] text-right leading-tight flex-shrink-0">{item.value}</span>
+                                        <span className="text-[14.5px] font-semibold text-[#127EE3] text-right leading-tight flex-shrink-0">{item.value}</span>
                                       ) : (
-                                        <span className={`text-[12.5px] font-black flex-shrink-0 ${cfg.color}`}>{item.value}/5</span>
+                                        <span className={`text-[14.5px] font-black flex-shrink-0 ${cfg.color}`}>{item.value}/5</span>
                                       )}
                                     </div>
                                   ))}
@@ -1383,7 +1383,7 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                         {/* Expand toggle */}
                         <button
                           onClick={() => setExpandedReview(isExpanded ? null : review.id)}
-                          className="mt-3 text-[12px] text-[#127EE3] font-semibold hover:underline flex items-center gap-1"
+                          className="mt-3 text-[14px] text-[#127EE3] font-semibold hover:underline flex items-center gap-1"
                         >
                           {isExpanded ? "ย่อลง" : "ดูรายละเอียดทั้งหมด"}
                         </button>
@@ -1406,14 +1406,14 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
             <div className="flex items-start gap-3 px-5 py-4 rounded-2xl bg-amber-50 border border-amber-200">
               <AlertCircle className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
               <div className="flex-1">
-                <p className="text-[13.5px] font-bold text-amber-700">HR SAY ยังไม่ได้ update 14 วันแล้ว</p>
-                <p className="text-[12.5px] text-amber-600 mt-0.5 leading-relaxed">
+                <p className="text-[15.5px] font-bold text-amber-700">HR SAY ยังไม่ได้ update 14 วันแล้ว</p>
+                <p className="text-[14.5px] text-amber-600 mt-0.5 leading-relaxed">
                   ผู้สมัครระดับ Senior มักอ่าน HR SAY ก่อนตัดสินใจสมัคร — content ที่ fresh กว่า สื่อถึง culture ที่มีชีวิตมากกว่า
                 </p>
               </div>
               <button
                 onClick={() => setHrSayDraft(true)}
-                className="flex items-center gap-1.5 px-4 py-2 bg-amber-500 text-white text-[12.5px] font-bold rounded-xl hover:bg-amber-600 transition-colors whitespace-nowrap flex-shrink-0"
+                className="flex items-center gap-1.5 px-4 py-2 bg-amber-500 text-white text-[14.5px] font-bold rounded-xl hover:bg-amber-600 transition-colors whitespace-nowrap flex-shrink-0"
               >
                 <Edit3 className="w-3.5 h-3.5" />
                 อัปเดตเลย
@@ -1430,9 +1430,9 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                 <div key={i} className={`${item.bg} rounded-2xl border border-gray-100 shadow-sm px-5 py-4`}>
                   <div className={`flex items-center gap-2 mb-2 ${item.color}`}>
                     {item.icon}
-                    <p className="text-[11.5px] font-bold uppercase tracking-wider">{item.label}</p>
+                    <p className="text-[13.5px] font-bold uppercase tracking-wider">{item.label}</p>
                   </div>
-                  <p className={`text-[28px] font-black leading-none ${item.color}`}>{item.value}</p>
+                  <p className={`text-[30px] font-black leading-none ${item.color}`}>{item.value}</p>
                 </div>
               ))}
             </div>
@@ -1442,13 +1442,13 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
               <div className="px-7 py-5 border-b border-gray-50 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Building2 className="w-4 h-4 text-gray-400" />
-                  <h3 className="text-[15px] font-bold text-[#1A1A2E]">HR SAY ปัจจุบัน</h3>
+                  <h3 className="text-[17px] font-bold text-[#1A1A2E]">HR SAY ปัจจุบัน</h3>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[11.5px] text-gray-400 px-2.5 py-1 rounded-full bg-gray-100">อัปเดตล่าสุด 14 วันที่แล้ว</span>
+                  <span className="text-[13.5px] text-gray-400 px-2.5 py-1 rounded-full bg-gray-100">อัปเดตล่าสุด 14 วันที่แล้ว</span>
                   <button
                     onClick={() => setHrSayDraft(true)}
-                    className="flex items-center gap-1.5 px-3.5 py-2 bg-[#1A1A2E] text-white text-[12.5px] font-bold rounded-xl hover:bg-[#2a2a3e] transition-colors"
+                    className="flex items-center gap-1.5 px-3.5 py-2 bg-[#1A1A2E] text-white text-[14.5px] font-bold rounded-xl hover:bg-[#2a2a3e] transition-colors"
                   >
                     <Edit3 className="w-3.5 h-3.5" />
                     แก้ไข
@@ -1458,7 +1458,7 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
 
               {hrSayDraft ? (
                 <div className="px-7 py-6 space-y-5">
-                  <div className="p-4 bg-[#F0F8FF] rounded-xl border border-[#0DC2FF]/20 flex items-center gap-2 text-[12.5px] text-[#127EE3]">
+                  <div className="p-4 bg-[#F0F8FF] rounded-xl border border-[#0DC2FF]/20 flex items-center gap-2 text-[14.5px] text-[#127EE3]">
                     <Sparkles className="w-4 h-4" />
                     <span className="font-semibold">เคล็ดลับ:</span> เขียนให้เหมือนคุยกับเพื่อน — honest, specific, มีเรื่องเล่า ไม่ใช่แค่ bullet point
                   </div>
@@ -1474,21 +1474,21 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                       <div key={pillar}>
                         <div className={`flex items-center gap-2 mb-2 ${cfg.color}`}>
                           {cfg.icon}
-                          <span className="text-[12.5px] font-bold uppercase tracking-wider">{pillar}</span>
+                          <span className="text-[14.5px] font-bold uppercase tracking-wider">{pillar}</span>
                         </div>
                         <textarea
                           defaultValue={defaults[pillar]}
                           rows={3}
-                          className={`w-full px-4 py-3 text-[13.5px] text-gray-700 leading-relaxed rounded-xl border focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all resize-none ${cfg.bg} ${cfg.border}`}
+                          className={`w-full px-4 py-3 text-[15.5px] text-gray-700 leading-relaxed rounded-xl border focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all resize-none ${cfg.bg} ${cfg.border}`}
                         />
                       </div>
                     );
                   })}
                   <div className="flex gap-3 pt-2">
-                    <button className="flex-1 py-3 bg-[#1A1A2E] text-white text-[13.5px] font-bold rounded-xl hover:bg-[#2a2a3e] transition-colors">
+                    <button className="flex-1 py-3 bg-[#1A1A2E] text-white text-[15.5px] font-bold rounded-xl hover:bg-[#2a2a3e] transition-colors">
                       บันทึกและเผยแพร่
                     </button>
-                    <button onClick={() => setHrSayDraft(false)} className="px-6 py-3 border border-gray-200 text-gray-500 text-[13.5px] font-medium rounded-xl hover:border-gray-400 transition-colors">
+                    <button onClick={() => setHrSayDraft(false)} className="px-6 py-3 border border-gray-200 text-gray-500 text-[15.5px] font-medium rounded-xl hover:border-gray-400 transition-colors">
                       ยกเลิก
                     </button>
                   </div>
@@ -1507,9 +1507,9 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                       <div key={pillar} className="px-7 py-5">
                         <div className={`flex items-center gap-2 mb-2 ${cfg.color}`}>
                           {cfg.icon}
-                          <span className="text-[12px] font-bold uppercase tracking-wider">{pillar}</span>
+                          <span className="text-[14px] font-bold uppercase tracking-wider">{pillar}</span>
                         </div>
-                        <p className="text-[13.5px] text-gray-600 leading-relaxed">{content[pillar]}</p>
+                        <p className="text-[15.5px] text-gray-600 leading-relaxed">{content[pillar]}</p>
                       </div>
                     );
                   })}
@@ -1530,19 +1530,19 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <Camera className="w-4 h-4 text-[#0DC2FF]" />
-                  <span className="text-[11px] font-bold text-[#0DC2FF] uppercase tracking-widest">Office 24</span>
+                  <span className="text-[13px] font-bold text-[#0DC2FF] uppercase tracking-widest">Office 24</span>
                 </div>
-                <h3 className="text-[18px] font-bold text-white">Social Platform ของพนักงาน</h3>
-                <p className="text-[13px] text-white/50 mt-1">พนักงานแชร์ชีวิตจริงใน 4 หมวด — authentic content ดึงดูดผู้สมัครดีกว่า official content 3 เท่า</p>
+                <h3 className="text-[20px] font-bold text-white">Social Platform ของพนักงาน</h3>
+                <p className="text-[15px] text-white/50 mt-1">พนักงานแชร์ชีวิตจริงใน 4 หมวด — authentic content ดึงดูดผู้สมัครดีกว่า official content 3 เท่า</p>
               </div>
-              <div className="flex items-center gap-3 text-white/60 text-[12.5px]">
+              <div className="flex items-center gap-3 text-white/60 text-[14.5px]">
                 <div className="text-center">
-                  <p className="text-[22px] font-black text-white leading-none">{OFFICE24_POSTS.reduce((s, p) => s + p.likes, 0).toLocaleString()}</p>
+                  <p className="text-[24px] font-black text-white leading-none">{OFFICE24_POSTS.reduce((s, p) => s + p.likes, 0).toLocaleString()}</p>
                   <p>Likes รวม</p>
                 </div>
                 <div className="w-px h-10 bg-white/10" />
                 <div className="text-center">
-                  <p className="text-[22px] font-black text-white leading-none">{OFFICE24_POSTS.length}</p>
+                  <p className="text-[24px] font-black text-white leading-none">{OFFICE24_POSTS.length}</p>
                   <p>Posts</p>
                 </div>
               </div>
@@ -1558,7 +1558,7 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                   <button
                     key={f}
                     onClick={() => setOffice24Pillar(f)}
-                    className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-[12.5px] font-semibold border transition-all ${
+                    className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-[14.5px] font-semibold border transition-all ${
                       isActive
                         ? (cfg ? `${cfg.bg} ${cfg.color} ${cfg.border}` : "bg-[#1A1A2E] text-white border-[#1A1A2E]")
                         : "bg-white text-gray-400 border-gray-200 hover:border-gray-300"
@@ -1566,7 +1566,7 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                   >
                     {cfg && isActive && cfg.icon}
                     {f}
-                    <span className="text-[10px] font-black opacity-60">{count}</span>
+                    <span className="text-[11px] font-black opacity-60">{count}</span>
                   </button>
                 );
               })}
@@ -1584,7 +1584,7 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                       {post.isNew && (
                         <div className="absolute top-3 left-3">
-                          <span className="flex items-center gap-1 px-2 py-1 rounded-full bg-[#0DC2FF] text-white text-[10px] font-bold">
+                          <span className="flex items-center gap-1 px-2 py-1 rounded-full bg-[#0DC2FF] text-white text-[11px] font-bold">
                             <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
                             ใหม่
                           </span>
@@ -1611,12 +1611,12 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                       <div className="flex items-center gap-2 mb-2.5">
                         <AvatarBubble initials={post.avatar} size="sm" color={`${cfg.bg} ${cfg.color}`} />
                         <div>
-                          <p className="text-[12.5px] font-bold text-[#1A1A2E] leading-none">{post.author}</p>
-                          <p className="text-[11px] text-gray-400 mt-0.5">{post.role}</p>
+                          <p className="text-[14.5px] font-bold text-[#1A1A2E] leading-none">{post.author}</p>
+                          <p className="text-[13px] text-gray-400 mt-0.5">{post.role}</p>
                         </div>
                       </div>
-                      <p className="text-[13px] text-gray-600 leading-relaxed line-clamp-3">{post.caption}</p>
-                      <div className="flex items-center gap-4 mt-3 text-[12px] text-gray-400">
+                      <p className="text-[15px] text-gray-600 leading-relaxed line-clamp-3">{post.caption}</p>
+                      <div className="flex items-center gap-4 mt-3 text-[14px] text-gray-400">
                         <button className="flex items-center gap-1 hover:text-rose-500 transition-colors">
                           <Heart className="w-3.5 h-3.5" />
                           {post.likes}
@@ -1640,11 +1640,11 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                   <Image className="w-4 h-4 text-rose-500" />
                 </div>
                 <div>
-                  <p className="text-[14px] font-bold text-[#1A1A2E]">สนับสนุนให้พนักงานโพสต์มากขึ้น</p>
-                  <p className="text-[13px] text-gray-500 mt-0.5">หมวด "เงินดี" มีโพสต์น้อยที่สุด — ลองชวนทีม share เรื่อง bonus, stock, หรือ perks ที่ได้รับ</p>
+                  <p className="text-[16px] font-bold text-[#1A1A2E]">สนับสนุนให้พนักงานโพสต์มากขึ้น</p>
+                  <p className="text-[15px] text-gray-500 mt-0.5">หมวด "เงินดี" มีโพสต์น้อยที่สุด — ลองชวนทีม share เรื่อง bonus, stock, หรือ perks ที่ได้รับ</p>
                 </div>
               </div>
-              <button className="flex items-center gap-2 px-5 py-2.5 bg-[#1A1A2E] text-white text-[13px] font-bold rounded-xl hover:bg-[#2a2a3e] transition-colors whitespace-nowrap flex-shrink-0">
+              <button className="flex items-center gap-2 px-5 py-2.5 bg-[#1A1A2E] text-white text-[15px] font-bold rounded-xl hover:bg-[#2a2a3e] transition-colors whitespace-nowrap flex-shrink-0">
                 <Plus className="w-4 h-4" />
                 ชวนพนักงานโพสต์
               </button>
@@ -1668,9 +1668,9 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
               <div className="flex items-start gap-3 mb-5">
                 <Globe className="w-5 h-5 text-[#0DC2FF] flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-[11px] font-bold text-[#0DC2FF] uppercase tracking-widest mb-1">Branding Impact</p>
-                  <h3 className="text-[20px] font-bold">Employer Branding ที่ดีลดต้นทุนสรรหาได้จริง</h3>
-                  <p className="text-[13px] text-white/50 mt-1">ข้อมูลจากบริษัทที่ใช้ Super Resume Branding เต็มรูปแบบ</p>
+                  <p className="text-[13px] font-bold text-[#0DC2FF] uppercase tracking-widest mb-1">Branding Impact</p>
+                  <h3 className="text-[22px] font-bold">Employer Branding ที่ดีลดต้นทุนสรรหาได้จริง</h3>
+                  <p className="text-[15px] text-white/50 mt-1">ข้อมูลจากบริษัทที่ใช้ Super Resume Branding เต็มรูปแบบ</p>
                 </div>
               </div>
               <div className="grid grid-cols-3 gap-4">
@@ -1682,10 +1682,10 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                   <div key={i} className="bg-white/8 border border-white/10 rounded-xl px-4 py-4">
                     <div className="flex items-center gap-2 mb-2">
                       {item.icon}
-                      <p className="text-[11.5px] text-white/60 font-medium">{item.label}</p>
+                      <p className="text-[13.5px] text-white/60 font-medium">{item.label}</p>
                     </div>
-                    <p className="text-[28px] font-black text-white leading-none">{item.value}</p>
-                    <p className="text-[11.5px] text-white/40 mt-1">{item.sub}</p>
+                    <p className="text-[30px] font-black text-white leading-none">{item.value}</p>
+                    <p className="text-[13.5px] text-white/40 mt-1">{item.sub}</p>
                   </div>
                 ))}
               </div>
@@ -1695,7 +1695,7 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm px-7 py-6">
               <div className="flex items-center gap-2 mb-5">
                 <BarChart2 className="w-4 h-4 text-[#127EE3]" />
-                <h3 className="text-[15px] font-bold text-[#1A1A2E]">แนวโน้ม 6 เดือนที่ผ่านมา</h3>
+                <h3 className="text-[17px] font-bold text-[#1A1A2E]">แนวโน้ม 6 เดือนที่ผ่านมา</h3>
               </div>
               <div className="space-y-4">
                 {[
@@ -1708,10 +1708,10 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                   return (
                     <div key={metric.label}>
                       <div className="flex items-center justify-between mb-1.5">
-                        <p className="text-[12.5px] font-semibold text-gray-600">{metric.label}</p>
-                        <p className="text-[12.5px] font-bold text-[#1A1A2E]">
+                        <p className="text-[14.5px] font-semibold text-gray-600">{metric.label}</p>
+                        <p className="text-[14.5px] font-bold text-[#1A1A2E]">
                           {metric.data[metric.data.length - 1].toLocaleString()} {metric.unit}
-                          <span className="text-[11px] font-normal text-emerald-500 ml-1.5">
+                          <span className="text-[13px] font-normal text-emerald-500 ml-1.5">
                             +{Math.round(((metric.data[5] - metric.data[0]) / metric.data[0]) * 100)}%
                           </span>
                         </p>
@@ -1729,7 +1729,7 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                       </div>
                       <div className="flex gap-1.5 mt-1">
                         {months.map((m, i) => (
-                          <div key={i} className="flex-1 text-center text-[9px] text-gray-400">{m}</div>
+                          <div key={i} className="flex-1 text-center text-[10px] text-gray-400">{m}</div>
                         ))}
                       </div>
                     </div>
@@ -1745,13 +1745,13 @@ export default function EmployerBrandingPage({ onBack }: EmployerBrandingPagePro
                   <Trophy className="w-4 h-4 text-[#127EE3]" />
                 </div>
                 <div>
-                  <p className="text-[14.5px] font-bold text-[#1A1A2E]">ยกระดับเป็น Branding Pro</p>
-                  <p className="text-[13px] text-gray-500 mt-0.5 leading-relaxed">
+                  <p className="text-[16.5px] font-bold text-[#1A1A2E]">ยกระดับเป็น Branding Pro</p>
+                  <p className="text-[15px] text-gray-500 mt-0.5 leading-relaxed">
                     ปลดล็อก: Video HR SAY · Branded Career Page · Priority placement · Benchmark vs competitor employers
                   </p>
                 </div>
               </div>
-              <button className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-[#0DC2FF] to-[#127EE3] text-white text-[13.5px] font-bold rounded-xl shadow-md shadow-[#0DC2FF]/20 hover:shadow-[#0DC2FF]/35 transition-all whitespace-nowrap flex-shrink-0">
+              <button className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-[#0DC2FF] to-[#127EE3] text-white text-[15.5px] font-bold rounded-xl shadow-md shadow-[#0DC2FF]/20 hover:shadow-[#0DC2FF]/35 transition-all whitespace-nowrap flex-shrink-0">
                 <Sparkles className="w-4 h-4" />
                 ดู Branding Pro
                 <ChevronRight className="w-4 h-4" />

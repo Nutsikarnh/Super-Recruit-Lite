@@ -17,7 +17,7 @@ import type { ApplicantRow } from "../data/applicants";
 function StageBadge({ stage }: { stage: PipelineStage }) {
   const cfg = PIPELINE_STAGES.find((s) => s.key === stage)!;
   return (
-    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold ${cfg.bg} ${cfg.color}`}>
+    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[13px] font-semibold ${cfg.bg} ${cfg.color}`}>
       {cfg.label}
     </span>
   );
@@ -114,15 +114,15 @@ export default function ShortlistPage({ jobId, jobTitle, onBack }: ShortlistPage
           </button>
           <div>
             <div className="flex items-center gap-2">
-              <p className="text-[12px] font-bold text-emerald-600 uppercase tracking-widest">Shortlist</p>
+              <p className="text-[14px] font-bold text-emerald-600 uppercase tracking-widest">Shortlist</p>
               {unreadCount > 0 && (
-                <span className="px-2 py-0.5 rounded-full bg-emerald-500 text-white text-[11px] font-bold">
+                <span className="px-2 py-0.5 rounded-full bg-emerald-500 text-white text-[13px] font-bold">
                   {unreadCount} ใหม่
                 </span>
               )}
             </div>
-            <h1 className="text-[22px] font-bold text-[#1A1A2E]">{jobTitle}</h1>
-            <p className="text-[13px] text-gray-400">
+            <h1 className="text-[24px] font-bold text-[#1A1A2E]">{jobTitle}</h1>
+            <p className="text-[15px] text-gray-400">
               {candidates.length} คนใน Shortlist · {(stageStats.interview ?? 0) + (stageStats.to_interview ?? 0)} สัมภาษณ์ · {stageStats.offer ?? 0} Offer
             </p>
           </div>
@@ -155,9 +155,9 @@ export default function ShortlistPage({ jobId, jobTitle, onBack }: ShortlistPage
               >
                 <div className="flex items-center gap-1.5">
                   {s.icon}
-                  <span className="text-[10.5px] font-semibold uppercase tracking-wide leading-none text-gray-400">{s.label}</span>
+                  <span className="text-[12px] font-semibold uppercase tracking-wide leading-none text-gray-400">{s.label}</span>
                 </div>
-                <p className="text-[26px] font-black leading-none" style={{ color: isActive ? s.accent : "#1A1A2E" }}>{cnt}</p>
+                <p className="text-[28px] font-black leading-none" style={{ color: isActive ? s.accent : "#1A1A2E" }}>{cnt}</p>
               </button>
             );
           })}
@@ -189,7 +189,7 @@ export default function ShortlistPage({ jobId, jobTitle, onBack }: ShortlistPage
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="ค้นหาชื่อหรือตำแหน่ง..."
-                  className="w-full pl-9 pr-3 py-2 text-[13px] bg-[#F0F2F5] rounded-xl border border-transparent focus:outline-none focus:border-emerald-400 focus:bg-white transition-all"
+                  className="w-full pl-9 pr-3 py-2 text-[15px] bg-[#F0F2F5] rounded-xl border border-transparent focus:outline-none focus:border-emerald-400 focus:bg-white transition-all"
                 />
               </div>
 
@@ -203,7 +203,7 @@ export default function ShortlistPage({ jobId, jobTitle, onBack }: ShortlistPage
                     <button
                       key={opt.key}
                       onClick={() => setSourceFilter(opt.key)}
-                      className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[12px] font-medium transition-all ${
+                      className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[14px] font-medium transition-all ${
                         sourceFilter === opt.key
                           ? "bg-white text-emerald-600 shadow-sm font-semibold"
                           : "text-gray-500 hover:text-[#1A1A2E]"
@@ -212,7 +212,7 @@ export default function ShortlistPage({ jobId, jobTitle, onBack }: ShortlistPage
                       {opt.key === "top_pick" && <Sparkles className="w-3 h-3" />}
                       {opt.key === "self_apply" && <Users className="w-3 h-3" />}
                       {opt.label}
-                      <span className={`text-[10.5px] font-bold ${sourceFilter === opt.key ? "text-emerald-500" : "text-gray-400"}`}>
+                      <span className={`text-[12px] font-bold ${sourceFilter === opt.key ? "text-emerald-500" : "text-gray-400"}`}>
                         {opt.count}
                       </span>
                     </button>
@@ -224,7 +224,7 @@ export default function ShortlistPage({ jobId, jobTitle, onBack }: ShortlistPage
                 <select
                   value={stageFilter}
                   onChange={(e) => setStageFilter(e.target.value as PipelineStage | "all")}
-                  className="appearance-none bg-[#F0F2F5] rounded-xl pl-3 pr-8 py-2 text-[12.5px] font-medium text-gray-600 focus:outline-none border border-transparent focus:border-emerald-400 focus:bg-white transition-all cursor-pointer"
+                  className="appearance-none bg-[#F0F2F5] rounded-xl pl-3 pr-8 py-2 text-[14.5px] font-medium text-gray-600 focus:outline-none border border-transparent focus:border-emerald-400 focus:bg-white transition-all cursor-pointer"
                 >
                   <option value="all">สถานะทั้งหมด</option>
                   <option value="new">ใหม่</option>
@@ -244,8 +244,8 @@ export default function ShortlistPage({ jobId, jobTitle, onBack }: ShortlistPage
             {filtered.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-20 bg-white rounded-2xl border border-gray-100">
                 <AlertCircle className="w-10 h-10 text-gray-200 mb-3" />
-                <p className="text-[14px] font-semibold text-gray-400">ไม่พบข้อมูล Shortlist</p>
-                <p className="text-[13px] text-gray-300 mt-1">ยังไม่มีคนใน Shortlist สำหรับตำแหน่งนี้</p>
+                <p className="text-[16px] font-semibold text-gray-400">ไม่พบข้อมูล Shortlist</p>
+                <p className="text-[15px] text-gray-300 mt-1">ยังไม่มีคนใน Shortlist สำหรับตำแหน่งนี้</p>
               </div>
             ) : (
               <div className="space-y-3">
@@ -287,7 +287,7 @@ function ShortlistCard({
       <div className="p-4 flex items-start gap-3.5">
         <div className="relative flex-shrink-0">
           <div
-            className="w-11 h-11 rounded-xl flex items-center justify-center text-white text-[13px] font-bold shadow-sm"
+            className="w-11 h-11 rounded-xl flex items-center justify-center text-white text-[15px] font-bold shadow-sm"
             style={{ backgroundColor: candidate.avatarColor }}
           >
             {candidate.initials}
@@ -300,25 +300,25 @@ function ShortlistCard({
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2 mb-1">
             <div className="min-w-0">
-              <p className="text-[14px] font-semibold text-[#111827] leading-snug group-hover:text-emerald-700 transition-colors truncate">
+              <p className="text-[16px] font-semibold text-[#111827] leading-snug group-hover:text-emerald-700 transition-colors truncate">
                 {candidate.name}
               </p>
-              <p className="text-[12px] text-gray-500 mt-0.5 truncate">
+              <p className="text-[14px] text-gray-500 mt-0.5 truncate">
                 {candidate.currentTitle} · {candidate.currentCompany}
               </p>
             </div>
           </div>
 
           <div className="flex items-center gap-3 flex-wrap mt-2">
-            <span className="flex items-center gap-1 text-[11px] text-gray-400">
+            <span className="flex items-center gap-1 text-[13px] text-gray-400">
               <Briefcase className="w-3 h-3 text-gray-300" />
               {candidate.experience}
             </span>
-            <span className="flex items-center gap-1 text-[11px] text-gray-400">
+            <span className="flex items-center gap-1 text-[13px] text-gray-400">
               <MapPin className="w-3 h-3 text-gray-300" />
               {candidate.location}
             </span>
-            <span className="flex items-center gap-1 text-[11px] text-gray-400">
+            <span className="flex items-center gap-1 text-[13px] text-gray-400">
               <Clock className="w-3 h-3 text-gray-300" />
               เพิ่มเมื่อ {candidate.addedAt}
             </span>
@@ -326,12 +326,12 @@ function ShortlistCard({
 
           <div className="flex items-center gap-1.5 mt-2.5 flex-wrap">
             <StageBadge stage={candidate.stage} />
-            <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10.5px] font-semibold ${SOURCE_COLORS_SEARCH[candidate.source]}`}>
+            <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[12px] font-semibold ${SOURCE_COLORS_SEARCH[candidate.source]}`}>
               <UserCheck className="w-3 h-3" />
               {SOURCE_LABELS_SEARCH[candidate.source]}
             </span>
             {candidate.skills.slice(0, 3).map((s) => (
-              <span key={s} className="px-2 py-0.5 rounded-md text-[10.5px] font-medium bg-gray-100 text-gray-500">
+              <span key={s} className="px-2 py-0.5 rounded-md text-[12px] font-medium bg-gray-100 text-gray-500">
                 {s}
               </span>
             ))}
@@ -340,7 +340,7 @@ function ShortlistCard({
       </div>
 
       <div className="mx-4 mb-4 pt-3 border-t border-gray-100">
-        <p className="text-[11.5px] text-gray-500 line-clamp-2 leading-relaxed">
+        <p className="text-[13.5px] text-gray-500 line-clamp-2 leading-relaxed">
           <span className="text-emerald-600 font-semibold">AI · </span>
           {candidate.aiSummary}
         </p>

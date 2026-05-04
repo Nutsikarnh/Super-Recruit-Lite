@@ -10,11 +10,11 @@ import ResumePanel from "./ResumePanel";
 function StageBadge({ stage, prominent = false }: { stage: PipelineStage; prominent?: boolean }) {
   const cfg = PIPELINE_STAGES.find((s) => s.key === stage)!;
   return prominent ? (
-    <span className={`inline-flex items-center px-3 py-1 rounded-full text-[12px] font-medium ${cfg.bg} ${cfg.color}`}>
+    <span className={`inline-flex items-center px-3 py-1 rounded-full text-[14px] font-medium ${cfg.bg} ${cfg.color}`}>
       {cfg.label}
     </span>
   ) : (
-    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold ${cfg.bg} ${cfg.color}`}>
+    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[13px] font-semibold ${cfg.bg} ${cfg.color}`}>
       {cfg.label}
     </span>
   );
@@ -125,7 +125,7 @@ function ModalShell({
         <div className="flex items-center justify-between px-4 pt-4 pb-3 border-b border-gray-100">
           <div className="flex items-center gap-2">
             {icon}
-            <h2 className="text-[14px] font-bold text-[#1A1A2E]">{title}</h2>
+            <h2 className="text-[16px] font-bold text-[#1A1A2E]">{title}</h2>
           </div>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors">
             <X className="w-4 h-4" />
@@ -140,7 +140,7 @@ function ModalShell({
 
 function CancelBtn({ onClick, label = "ยกเลิก" }: { onClick: () => void; label?: string }) {
   return (
-    <button onClick={onClick} className="flex-1 py-2 rounded-xl border border-gray-200 text-[13px] font-medium text-gray-600 hover:bg-gray-50 transition-colors">
+    <button onClick={onClick} className="flex-1 py-2 rounded-xl border border-gray-200 text-[15px] font-medium text-gray-600 hover:bg-gray-50 transition-colors">
       {label}
     </button>
   );
@@ -151,7 +151,7 @@ function ConfirmBtn({ onClick, label = "ยืนยัน", disabled = false, d
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`flex-1 py-2 rounded-xl border text-[13px] font-semibold transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${
+      className={`flex-1 py-2 rounded-xl border text-[15px] font-semibold transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${
         danger
           ? "border-red-400 text-red-500 hover:bg-red-50"
           : "border-[#127EE3] text-[#127EE3] hover:bg-[#F0F8FF]"
@@ -164,7 +164,7 @@ function ConfirmBtn({ onClick, label = "ยืนยัน", disabled = false, d
 
 // ─── Label util ─────────────────────────────────────────────────────────────
 function FieldLabel({ children }: { children: React.ReactNode }) {
-  return <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">{children}</p>;
+  return <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">{children}</p>;
 }
 
 // ─── EmailEditModal ──────────────────────────────────────────────────────────
@@ -186,41 +186,41 @@ function EmailEditModal({
     <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/40 backdrop-blur-[2px]">
       <div className="bg-white rounded-xl border border-gray-200 shadow-2xl w-full max-w-md mx-4 overflow-hidden">
         <div className="flex items-center justify-between px-4 pt-4 pb-3 border-b border-gray-100">
-          <h2 className="text-[14px] font-bold text-[#1A1A2E]">แก้ไขข้อความอีเมล</h2>
+          <h2 className="text-[16px] font-bold text-[#1A1A2E]">แก้ไขข้อความอีเมล</h2>
           <button onClick={onCancel} className="text-gray-400 hover:text-gray-600 transition-colors">
             <X className="w-4 h-4" />
           </button>
         </div>
         <div className="px-4 py-4 space-y-3">
           <div>
-            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">หัวข้อ</p>
+            <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">หัวข้อ</p>
             <input
               type="text"
               value={draftSubject}
               onChange={(e) => setDraftSubject(e.target.value)}
-              className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[13px] text-gray-800 focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/30 transition-all"
+              className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[15px] text-gray-800 focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/30 transition-all"
             />
           </div>
           <div>
-            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">ข้อความ</p>
+            <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">ข้อความ</p>
             <textarea
               value={draftBody}
               onChange={(e) => setDraftBody(e.target.value)}
               rows={7}
-              className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[13px] text-gray-800 resize-none focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/30 transition-all"
+              className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[15px] text-gray-800 resize-none focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/30 transition-all"
             />
           </div>
         </div>
         <div className="flex items-center gap-2 px-4 pb-4">
           <button
             onClick={onCancel}
-            className="flex-1 py-2 rounded-xl border border-gray-200 text-[13px] font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+            className="flex-1 py-2 rounded-xl border border-gray-200 text-[15px] font-medium text-gray-600 hover:bg-gray-50 transition-colors"
           >
             ยกเลิก
           </button>
           <button
             onClick={() => onSave(draftSubject, draftBody)}
-            className="flex-1 py-2 rounded-xl border border-[#127EE3] text-[13px] font-semibold text-[#127EE3] hover:bg-[#F0F8FF] transition-colors"
+            className="flex-1 py-2 rounded-xl border border-[#127EE3] text-[15px] font-semibold text-[#127EE3] hover:bg-[#F0F8FF] transition-colors"
           >
             บันทึก
           </button>
@@ -268,30 +268,30 @@ function ScheduleModal({
           <div className="flex items-center justify-between px-4 pt-4 pb-3 border-b border-gray-100">
             <div className="flex items-center gap-2">
               <CalendarClock className="w-4 h-4 text-[#127EE3]" />
-              <h2 className="text-[14px] font-bold text-[#1A1A2E]">ลงตารางนัดสัมภาษณ์</h2>
+              <h2 className="text-[16px] font-bold text-[#1A1A2E]">ลงตารางนัดสัมภาษณ์</h2>
             </div>
             <button onClick={onCancel} className="text-gray-400 hover:text-gray-600 transition-colors"><X className="w-4 h-4" /></button>
           </div>
           <div className="px-4 py-4 space-y-4">
             <div className="flex items-center gap-2 px-3 py-2 bg-[#F0F8FF] rounded-xl border border-[#0DC2FF]/30">
               <User className="w-3.5 h-3.5 text-[#127EE3] flex-shrink-0" />
-              <span className="text-[12px] text-gray-500">ผู้สมัคร:</span>
-              <span className="text-[12px] font-semibold text-[#1A1A2E]">{applicantName}</span>
+              <span className="text-[14px] text-gray-500">ผู้สมัคร:</span>
+              <span className="text-[14px] font-semibold text-[#1A1A2E]">{applicantName}</span>
             </div>
             <div>
               <FieldLabel>วันที่</FieldLabel>
               <input type="date" value={date} min={todayIso}
                 onChange={(e) => { setDate(e.target.value); setTime(null); }}
-                className={`w-full px-3.5 py-2 rounded-xl border text-[13px] font-medium transition-all focus:outline-none focus:ring-2 focus:ring-[#0DC2FF]/40 ${date ? "border-[#0DC2FF] bg-[#F0F8FF] text-[#1A1A2E]" : "border-gray-200 bg-[#F0F2F5] text-gray-400"}`}
+                className={`w-full px-3.5 py-2 rounded-xl border text-[15px] font-medium transition-all focus:outline-none focus:ring-2 focus:ring-[#0DC2FF]/40 ${date ? "border-[#0DC2FF] bg-[#F0F8FF] text-[#1A1A2E]" : "border-gray-200 bg-[#F0F2F5] text-gray-400"}`}
               />
-              {date && <p className="mt-1 text-[11px] text-[#127EE3] font-medium pl-1">{isoToThaiShort(date)}</p>}
+              {date && <p className="mt-1 text-[13px] text-[#127EE3] font-medium pl-1">{isoToThaiShort(date)}</p>}
             </div>
             <div>
               <FieldLabel>เวลา</FieldLabel>
               <div className="grid grid-cols-4 gap-1.5">
                 {MODAL_TIME_SLOTS.map((t) => (
                   <button key={t} onClick={() => setTime(t)}
-                    className={`py-1.5 rounded-xl text-[12px] font-semibold border transition-all ${time === t ? "bg-[#127EE3] text-white border-[#127EE3] shadow-sm" : "bg-[#F0F2F5] text-gray-600 border-transparent hover:bg-[#E8EDF2] hover:border-gray-200"}`}
+                    className={`py-1.5 rounded-xl text-[14px] font-semibold border transition-all ${time === t ? "bg-[#127EE3] text-white border-[#127EE3] shadow-sm" : "bg-[#F0F2F5] text-gray-600 border-transparent hover:bg-[#E8EDF2] hover:border-gray-200"}`}
                   >{t}</button>
                 ))}
               </div>
@@ -300,7 +300,7 @@ function ScheduleModal({
               <FieldLabel>ผู้สัมภาษณ์</FieldLabel>
               <div className="relative">
                 <select value={interviewer} onChange={(e) => setInterviewer(e.target.value)}
-                  className={`w-full px-3.5 py-2 rounded-xl border text-[13px] font-medium transition-all appearance-none focus:outline-none focus:ring-2 focus:ring-[#0DC2FF]/40 ${interviewer ? "border-[#0DC2FF] bg-[#F0F8FF] text-[#1A1A2E]" : "border-gray-200 bg-[#F0F2F5] text-gray-400"}`}
+                  className={`w-full px-3.5 py-2 rounded-xl border text-[15px] font-medium transition-all appearance-none focus:outline-none focus:ring-2 focus:ring-[#0DC2FF]/40 ${interviewer ? "border-[#0DC2FF] bg-[#F0F8FF] text-[#1A1A2E]" : "border-gray-200 bg-[#F0F2F5] text-gray-400"}`}
                 >
                   {INTERVIEWERS.map((n) => <option key={n} value={n}>{n}</option>)}
                 </select>
@@ -320,7 +320,7 @@ function ScheduleModal({
                 </label>
                 {sendEmail && (
                   <button onClick={() => setShowEmailEdit(true)}
-                    className="flex-shrink-0 flex items-center gap-1 text-[12px] font-medium text-[#127EE3] hover:text-[#0e6bc7] transition-colors mt-0.5"
+                    className="flex-shrink-0 flex items-center gap-1 text-[14px] font-medium text-[#127EE3] hover:text-[#0e6bc7] transition-colors mt-0.5"
                   >
                     {emailEdited && <span className="w-1.5 h-1.5 rounded-full bg-[#127EE3] flex-shrink-0" />}
                     แก้ไขข้อความ
@@ -366,14 +366,14 @@ function ForwardReviewModal({
     >
       <div className="flex items-center gap-2 px-3 py-2 bg-[#F0F8FF] rounded-xl border border-[#0DC2FF]/30">
         <User className="w-3.5 h-3.5 text-[#127EE3] flex-shrink-0" />
-        <span className="text-[12px] text-gray-500">ผู้สมัคร:</span>
-        <span className="text-[12px] font-semibold text-[#1A1A2E]">{applicantName}</span>
+        <span className="text-[14px] text-gray-500">ผู้สมัคร:</span>
+        <span className="text-[14px] font-semibold text-[#1A1A2E]">{applicantName}</span>
       </div>
       <div>
         <FieldLabel>ผู้พิจารณา</FieldLabel>
         <div className="relative">
           <select value={reviewer} onChange={(e) => setReviewer(e.target.value)}
-            className="w-full px-3.5 py-2 rounded-xl border border-[#0DC2FF] bg-[#F0F8FF] text-[13px] font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-[#0DC2FF]/40 text-[#1A1A2E]"
+            className="w-full px-3.5 py-2 rounded-xl border border-[#0DC2FF] bg-[#F0F8FF] text-[15px] font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-[#0DC2FF]/40 text-[#1A1A2E]"
           >
             {INTERVIEWERS.map((n) => <option key={n} value={n}>{n}</option>)}
           </select>
@@ -383,7 +383,7 @@ function ForwardReviewModal({
       <div>
         <FieldLabel>ข้อความ / Note</FieldLabel>
         <textarea value={note} onChange={(e) => setNote(e.target.value)} rows={3} placeholder="เหตุผลหรือข้อความสำหรับผู้พิจารณา..."
-          className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[13px] text-gray-800 resize-none focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/30 transition-all"
+          className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[15px] text-gray-800 resize-none focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/30 transition-all"
         />
       </div>
       <label className="flex items-center gap-2.5 cursor-pointer select-none">
@@ -429,14 +429,14 @@ function RejectReasonModal({
     >
       <div className="flex items-center gap-2 px-3 py-2 bg-red-50 rounded-xl border border-red-100">
         <User className="w-3.5 h-3.5 text-red-400 flex-shrink-0" />
-        <span className="text-[12px] text-gray-500">ผู้สมัคร:</span>
-        <span className="text-[12px] font-semibold text-[#1A1A2E]">{applicantName}</span>
+        <span className="text-[14px] text-gray-500">ผู้สมัคร:</span>
+        <span className="text-[14px] font-semibold text-[#1A1A2E]">{applicantName}</span>
       </div>
       <div>
         <FieldLabel>เหตุผล</FieldLabel>
         <div className="relative">
           <select value={reason} onChange={(e) => setReason(e.target.value)}
-            className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[13px] font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-red-200 text-gray-800"
+            className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[15px] font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-red-200 text-gray-800"
           >
             {REJECT_REASONS.map((r) => <option key={r} value={r}>{r}</option>)}
           </select>
@@ -446,7 +446,7 @@ function RejectReasonModal({
       <div>
         <FieldLabel>หมายเหตุเพิ่มเติม</FieldLabel>
         <textarea value={note} onChange={(e) => setNote(e.target.value)} rows={3} placeholder="(ไม่บังคับ)"
-          className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[13px] text-gray-800 resize-none focus:outline-none focus:border-red-300 focus:ring-2 focus:ring-red-100 transition-all"
+          className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[15px] text-gray-800 resize-none focus:outline-none focus:border-red-300 focus:ring-2 focus:ring-red-100 transition-all"
         />
       </div>
     </ModalShell>
@@ -478,8 +478,8 @@ function InterviewResultModal({
     >
       <div className="flex items-center gap-2 px-3 py-2 bg-[#F0F8FF] rounded-xl border border-[#0DC2FF]/30">
         <User className="w-3.5 h-3.5 text-[#127EE3] flex-shrink-0" />
-        <span className="text-[12px] text-gray-500">ผู้สมัคร:</span>
-        <span className="text-[12px] font-semibold text-[#1A1A2E]">{applicantName}</span>
+        <span className="text-[14px] text-gray-500">ผู้สมัคร:</span>
+        <span className="text-[14px] font-semibold text-[#1A1A2E]">{applicantName}</span>
       </div>
       <div className="space-y-1.5">
         <FieldLabel>ผลการสัมภาษณ์</FieldLabel>
@@ -487,15 +487,15 @@ function InterviewResultModal({
           <button key={o.key} onClick={() => setOutcome(o.key)}
             className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl border-2 text-left transition-all ${outcome === o.key ? o.color : "border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200"}`}
           >
-            <span className="text-[13px] font-semibold">{o.label}</span>
-            <span className="text-[11px] opacity-70">{o.desc}</span>
+            <span className="text-[15px] font-semibold">{o.label}</span>
+            <span className="text-[13px] opacity-70">{o.desc}</span>
           </button>
         ))}
       </div>
       <div>
         <FieldLabel>หมายเหตุ</FieldLabel>
         <textarea value={note} onChange={(e) => setNote(e.target.value)} rows={2} placeholder="(ไม่บังคับ) ความคิดเห็นเพิ่มเติม..."
-          className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[13px] text-gray-800 resize-none focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/30 transition-all"
+          className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[15px] text-gray-800 resize-none focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/30 transition-all"
         />
       </div>
     </ModalShell>
@@ -521,13 +521,13 @@ function HiredNoteModal({
     >
       <div className="flex items-center gap-2 px-3 py-2 bg-emerald-50 rounded-xl border border-emerald-100">
         <User className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
-        <span className="text-[12px] text-gray-500">ผู้สมัคร:</span>
-        <span className="text-[12px] font-semibold text-[#1A1A2E]">{applicantName}</span>
+        <span className="text-[14px] text-gray-500">ผู้สมัคร:</span>
+        <span className="text-[14px] font-semibold text-[#1A1A2E]">{applicantName}</span>
       </div>
       <div>
         <FieldLabel>โน้ต</FieldLabel>
         <textarea value={note} onChange={(e) => setNote(e.target.value)} rows={4} placeholder="บันทึกข้อมูลสำหรับพนักงานใหม่..."
-          className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[13px] text-gray-800 resize-none focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 transition-all"
+          className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[15px] text-gray-800 resize-none focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 transition-all"
         />
       </div>
     </ModalShell>
@@ -553,13 +553,13 @@ function ReasonModal({
     >
       <div className="flex items-center gap-2 px-3 py-2 bg-red-50 rounded-xl border border-red-100">
         <User className="w-3.5 h-3.5 text-red-400 flex-shrink-0" />
-        <span className="text-[12px] text-gray-500">ผู้สมัคร:</span>
-        <span className="text-[12px] font-semibold text-[#1A1A2E]">{applicantName}</span>
+        <span className="text-[14px] text-gray-500">ผู้สมัคร:</span>
+        <span className="text-[14px] font-semibold text-[#1A1A2E]">{applicantName}</span>
       </div>
       <div>
         <FieldLabel>หมายเหตุ</FieldLabel>
         <textarea value={note} onChange={(e) => setNote(e.target.value)} rows={3} placeholder="(ไม่บังคับ)"
-          className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[13px] text-gray-800 resize-none focus:outline-none focus:border-red-300 focus:ring-2 focus:ring-red-100 transition-all"
+          className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[15px] text-gray-800 resize-none focus:outline-none focus:border-red-300 focus:ring-2 focus:ring-red-100 transition-all"
         />
       </div>
     </ModalShell>
@@ -596,30 +596,30 @@ function BulkScheduleModal({
           <div className="flex items-center justify-between px-4 pt-4 pb-3 border-b border-gray-100">
             <div className="flex items-center gap-2">
               <CalendarClock className="w-4 h-4 text-[#127EE3]" />
-              <h2 className="text-[14px] font-bold text-[#1A1A2E]">ลงตารางนัดสัมภาษณ์</h2>
+              <h2 className="text-[16px] font-bold text-[#1A1A2E]">ลงตารางนัดสัมภาษณ์</h2>
             </div>
             <button onClick={onCancel} className="text-gray-400 hover:text-gray-600 transition-colors"><X className="w-4 h-4" /></button>
           </div>
           <div className="px-4 py-4 space-y-4">
             <div className="flex items-center gap-2 px-3 py-2 bg-[#F0F8FF] rounded-xl border border-[#0DC2FF]/30">
               <Users className="w-3.5 h-3.5 text-[#127EE3] flex-shrink-0" />
-              <span className="text-[12px] text-gray-500">ผู้สมัครที่เลือก:</span>
-              <span className="text-[12px] font-semibold text-[#127EE3]">{count} คน</span>
+              <span className="text-[14px] text-gray-500">ผู้สมัครที่เลือก:</span>
+              <span className="text-[14px] font-semibold text-[#127EE3]">{count} คน</span>
             </div>
             <div>
               <FieldLabel>วันที่</FieldLabel>
               <input type="date" value={date} min={todayIso}
                 onChange={(e) => { setDate(e.target.value); setTime(null); }}
-                className={`w-full px-3.5 py-2 rounded-xl border text-[13px] font-medium transition-all focus:outline-none focus:ring-2 focus:ring-[#0DC2FF]/40 ${date ? "border-[#0DC2FF] bg-[#F0F8FF] text-[#1A1A2E]" : "border-gray-200 bg-[#F0F2F5] text-gray-400"}`}
+                className={`w-full px-3.5 py-2 rounded-xl border text-[15px] font-medium transition-all focus:outline-none focus:ring-2 focus:ring-[#0DC2FF]/40 ${date ? "border-[#0DC2FF] bg-[#F0F8FF] text-[#1A1A2E]" : "border-gray-200 bg-[#F0F2F5] text-gray-400"}`}
               />
-              {date && <p className="mt-1 text-[11px] text-[#127EE3] font-medium pl-1">{isoToThaiShort(date)}</p>}
+              {date && <p className="mt-1 text-[13px] text-[#127EE3] font-medium pl-1">{isoToThaiShort(date)}</p>}
             </div>
             <div>
               <FieldLabel>เวลา</FieldLabel>
               <div className="grid grid-cols-4 gap-1.5">
                 {MODAL_TIME_SLOTS.map((t) => (
                   <button key={t} onClick={() => setTime(t)}
-                    className={`py-1.5 rounded-xl text-[12px] font-semibold border transition-all ${time === t ? "bg-[#127EE3] text-white border-[#127EE3] shadow-sm" : "bg-[#F0F2F5] text-gray-600 border-transparent hover:bg-[#E8EDF2] hover:border-gray-200"}`}
+                    className={`py-1.5 rounded-xl text-[14px] font-semibold border transition-all ${time === t ? "bg-[#127EE3] text-white border-[#127EE3] shadow-sm" : "bg-[#F0F2F5] text-gray-600 border-transparent hover:bg-[#E8EDF2] hover:border-gray-200"}`}
                   >{t}</button>
                 ))}
               </div>
@@ -628,7 +628,7 @@ function BulkScheduleModal({
               <FieldLabel>ผู้สัมภาษณ์</FieldLabel>
               <div className="relative">
                 <select value={interviewer} onChange={(e) => setInterviewer(e.target.value)}
-                  className="w-full px-3.5 py-2 rounded-xl border border-[#0DC2FF] bg-[#F0F8FF] text-[13px] font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-[#0DC2FF]/40 text-[#1A1A2E]">
+                  className="w-full px-3.5 py-2 rounded-xl border border-[#0DC2FF] bg-[#F0F8FF] text-[15px] font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-[#0DC2FF]/40 text-[#1A1A2E]">
                   {INTERVIEWERS.map((n) => <option key={n} value={n}>{n}</option>)}
                 </select>
                 <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none" />
@@ -646,7 +646,7 @@ function BulkScheduleModal({
                 </label>
                 {sendEmail && (
                   <button onClick={() => setShowEmailEdit(true)}
-                    className="flex-shrink-0 flex items-center gap-1 text-[12px] font-medium text-[#127EE3] hover:text-[#0e6bc7] transition-colors mt-0.5">
+                    className="flex-shrink-0 flex items-center gap-1 text-[14px] font-medium text-[#127EE3] hover:text-[#0e6bc7] transition-colors mt-0.5">
                     {emailEdited && <span className="w-1.5 h-1.5 rounded-full bg-[#127EE3] flex-shrink-0" />}
                     แก้ไขข้อความ
                   </button>
@@ -685,14 +685,14 @@ function BulkForwardModal({
       footer={<><CancelBtn onClick={onCancel} /><ConfirmBtn onClick={() => onConfirm(reviewer, note, sendEmail)} /></>}>
       <div className="flex items-center gap-2 px-3 py-2 bg-[#F0F8FF] rounded-xl border border-[#0DC2FF]/30">
         <Users className="w-3.5 h-3.5 text-[#127EE3] flex-shrink-0" />
-        <span className="text-[12px] text-gray-500">ผู้สมัครที่เลือก:</span>
-        <span className="text-[12px] font-semibold text-[#127EE3]">{count} คน</span>
+        <span className="text-[14px] text-gray-500">ผู้สมัครที่เลือก:</span>
+        <span className="text-[14px] font-semibold text-[#127EE3]">{count} คน</span>
       </div>
       <div>
         <FieldLabel>ผู้พิจารณา</FieldLabel>
         <div className="relative">
           <select value={reviewer} onChange={(e) => setReviewer(e.target.value)}
-            className="w-full px-3.5 py-2 rounded-xl border border-[#0DC2FF] bg-[#F0F8FF] text-[13px] font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-[#0DC2FF]/40 text-[#1A1A2E]">
+            className="w-full px-3.5 py-2 rounded-xl border border-[#0DC2FF] bg-[#F0F8FF] text-[15px] font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-[#0DC2FF]/40 text-[#1A1A2E]">
             {INTERVIEWERS.map((n) => <option key={n} value={n}>{n}</option>)}
           </select>
           <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none" />
@@ -701,7 +701,7 @@ function BulkForwardModal({
       <div>
         <FieldLabel>ข้อความ / Note</FieldLabel>
         <textarea value={note} onChange={(e) => setNote(e.target.value)} rows={3} placeholder="เหตุผลหรือข้อความสำหรับผู้พิจารณา..."
-          className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[13px] text-gray-800 resize-none focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/30 transition-all" />
+          className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[15px] text-gray-800 resize-none focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/30 transition-all" />
       </div>
       <label className="flex items-center gap-2.5 cursor-pointer select-none">
         <input type="checkbox" checked={sendEmail} onChange={(e) => setSendEmail(e.target.checked)}
@@ -728,14 +728,14 @@ function BulkRejectModal({
       footer={<><CancelBtn onClick={onCancel} /><ConfirmBtn onClick={() => onConfirm(reason, note)} label="บันทึก" danger /></>}>
       <div className="flex items-center gap-2 px-3 py-2 bg-red-50 rounded-xl border border-red-100">
         <Users className="w-3.5 h-3.5 text-red-400 flex-shrink-0" />
-        <span className="text-[12px] text-gray-500">ผู้สมัครที่เลือก:</span>
-        <span className="text-[12px] font-semibold text-red-500">{count} คน</span>
+        <span className="text-[14px] text-gray-500">ผู้สมัครที่เลือก:</span>
+        <span className="text-[14px] font-semibold text-red-500">{count} คน</span>
       </div>
       <div>
         <FieldLabel>เหตุผล</FieldLabel>
         <div className="relative">
           <select value={reason} onChange={(e) => setReason(e.target.value)}
-            className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[13px] font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-red-200 text-gray-800">
+            className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[15px] font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-red-200 text-gray-800">
             {REJECT_REASONS.map((r) => <option key={r} value={r}>{r}</option>)}
           </select>
           <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none" />
@@ -744,7 +744,7 @@ function BulkRejectModal({
       <div>
         <FieldLabel>หมายเหตุเพิ่มเติม</FieldLabel>
         <textarea value={note} onChange={(e) => setNote(e.target.value)} rows={3} placeholder="(ไม่บังคับ)"
-          className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[13px] text-gray-800 resize-none focus:outline-none focus:border-red-300 focus:ring-2 focus:ring-red-100 transition-all" />
+          className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[15px] text-gray-800 resize-none focus:outline-none focus:border-red-300 focus:ring-2 focus:ring-red-100 transition-all" />
       </div>
     </ModalShell>
   );
@@ -767,18 +767,18 @@ function BulkEmailModal({
       footer={<><CancelBtn onClick={onCancel} /><ConfirmBtn onClick={() => onConfirm(subject, body)} label="ส่งอีเมล" disabled={!subject.trim() || !body.trim()} /></>}>
       <div className="flex items-center gap-2 px-3 py-2 bg-[#F0F8FF] rounded-xl border border-[#0DC2FF]/30">
         <Users className="w-3.5 h-3.5 text-[#127EE3] flex-shrink-0" />
-        <span className="text-[12px] text-gray-500">ถึง:</span>
-        <span className="text-[12px] font-semibold text-[#127EE3]">{count} ผู้สมัคร</span>
+        <span className="text-[14px] text-gray-500">ถึง:</span>
+        <span className="text-[14px] font-semibold text-[#127EE3]">{count} ผู้สมัคร</span>
       </div>
       <div>
         <FieldLabel>หัวข้อ</FieldLabel>
         <input type="text" value={subject} onChange={(e) => setSubject(e.target.value)}
-          className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[13px] text-gray-800 focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/30 transition-all" />
+          className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[15px] text-gray-800 focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/30 transition-all" />
       </div>
       <div>
         <FieldLabel>ข้อความ</FieldLabel>
         <textarea value={body} onChange={(e) => setBody(e.target.value)} rows={6}
-          className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[13px] text-gray-800 resize-none focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/30 transition-all" />
+          className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[15px] text-gray-800 resize-none focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/30 transition-all" />
       </div>
     </ModalShell>
   );
@@ -805,23 +805,23 @@ function BulkInterviewResultModal({
       footer={<><CancelBtn onClick={onCancel} /><ConfirmBtn onClick={() => onConfirm(outcome, note)} label="บันทึก" /></>}>
       <div className="flex items-center gap-2 px-3 py-2 bg-[#F0F8FF] rounded-xl border border-[#0DC2FF]/30">
         <Users className="w-3.5 h-3.5 text-[#127EE3] flex-shrink-0" />
-        <span className="text-[12px] text-gray-500">ผู้สมัครที่เลือก:</span>
-        <span className="text-[12px] font-semibold text-[#127EE3]">{count} คน</span>
+        <span className="text-[14px] text-gray-500">ผู้สมัครที่เลือก:</span>
+        <span className="text-[14px] font-semibold text-[#127EE3]">{count} คน</span>
       </div>
       <div className="space-y-1.5">
         <FieldLabel>ผลการสัมภาษณ์</FieldLabel>
         {options.map((o) => (
           <button key={o.key} onClick={() => setOutcome(o.key)}
             className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl border-2 text-left transition-all ${outcome === o.key ? o.color : "border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200"}`}>
-            <span className="text-[13px] font-semibold">{o.label}</span>
-            <span className="text-[11px] opacity-70">{o.desc}</span>
+            <span className="text-[15px] font-semibold">{o.label}</span>
+            <span className="text-[13px] opacity-70">{o.desc}</span>
           </button>
         ))}
       </div>
       <div>
         <FieldLabel>หมายเหตุ</FieldLabel>
         <textarea value={note} onChange={(e) => setNote(e.target.value)} rows={2} placeholder="(ไม่บังคับ)"
-          className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[13px] text-gray-800 resize-none focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/30 transition-all" />
+          className="w-full px-3.5 py-2 rounded-xl border border-gray-200 text-[15px] text-gray-800 resize-none focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/30 transition-all" />
       </div>
     </ModalShell>
   );
@@ -903,7 +903,7 @@ function BulkActionBar({
         <div className="w-5 h-5 rounded-md bg-[#127EE3] flex items-center justify-center">
           <CheckCircle2 className="w-3 h-3 text-white" />
         </div>
-        <span className="text-[13px] font-semibold text-[#1A1A2E]">
+        <span className="text-[15px] font-semibold text-[#1A1A2E]">
           เลือกแล้ว <span className="text-[#127EE3]">{count}</span> คน
         </span>
       </div>
@@ -911,13 +911,13 @@ function BulkActionBar({
       <div className="flex items-center gap-2 flex-wrap flex-1">
         {actions.map((a) => (
           <button key={a.key} onClick={() => onAction(a.key)}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-[12.5px] font-medium border transition-all ${btnCls[a.variant]}`}>
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-[14.5px] font-medium border transition-all ${btnCls[a.variant]}`}>
             {a.icon}{a.label}
           </button>
         ))}
       </div>
       <button onClick={onClear}
-        className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-medium text-gray-400 hover:text-gray-600 hover:bg-gray-50 transition-all border border-transparent">
+        className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[14px] font-medium text-gray-400 hover:text-gray-600 hover:bg-gray-50 transition-all border border-transparent">
         <X className="w-3.5 h-3.5" />ยกเลิก
       </button>
     </div>
@@ -933,7 +933,7 @@ function CardActionBtn({ label, onClick, variant = "primary" }: { label: string;
   }[variant];
   return (
     <button onClick={(e) => { e.stopPropagation(); onClick(); }}
-      className={`px-3.5 py-1.5 rounded-lg text-[12px] font-medium border transition-all ${cls}`}
+      className={`px-3.5 py-1.5 rounded-lg text-[14px] font-medium border transition-all ${cls}`}
     >
       {label}
     </button>
@@ -983,19 +983,19 @@ function ApplicantCard({
         return (
           <div className="mt-3 space-y-2.5">
             <div className="flex items-center gap-4 flex-wrap">
-              <span className="flex items-center gap-1.5 text-[13px] text-gray-500"><Briefcase className="w-3.5 h-3.5 text-gray-400" />{applicant.experience}</span>
-              <span className="flex items-center gap-1.5 text-[13px] text-gray-500"><MapPin className="w-3.5 h-3.5 text-gray-400" />{applicant.location}</span>
-              <span className="flex items-center gap-1.5 text-[13px] text-gray-500"><Banknote className="w-3.5 h-3.5 text-gray-400" />{applicant.salaryExpect}</span>
+              <span className="flex items-center gap-1.5 text-[15px] text-gray-500"><Briefcase className="w-3.5 h-3.5 text-gray-400" />{applicant.experience}</span>
+              <span className="flex items-center gap-1.5 text-[15px] text-gray-500"><MapPin className="w-3.5 h-3.5 text-gray-400" />{applicant.location}</span>
+              <span className="flex items-center gap-1.5 text-[15px] text-gray-500"><Banknote className="w-3.5 h-3.5 text-gray-400" />{applicant.salaryExpect}</span>
             </div>
             <div className="flex items-center gap-2 flex-wrap">
               {applicant.skills.slice(0, 4).map((s) => (
-                <span key={s} className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[12px] font-medium bg-gray-50 text-gray-600 border border-gray-200">
+                <span key={s} className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[14px] font-medium bg-gray-50 text-gray-600 border border-gray-200">
                   <Zap className="w-3 h-3 text-gray-400" />{s}
                 </span>
               ))}
             </div>
             {stage === "shortlist" && applicant.note && (
-              <p className="text-[12px] text-gray-500 bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100 truncate">{applicant.note}</p>
+              <p className="text-[14px] text-gray-500 bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100 truncate">{applicant.note}</p>
             )}
           </div>
         );
@@ -1003,9 +1003,9 @@ function ApplicantCard({
         return (
           <div className="mt-2.5 space-y-1.5">
             {(applicant.reviewers ?? []).length === 0
-              ? <p className="text-[12px] text-gray-400">ยังไม่มี feedback</p>
+              ? <p className="text-[14px] text-gray-400">ยังไม่มี feedback</p>
               : (applicant.reviewers ?? []).map((r, i) => (
-                <p key={i} className="text-[12px] text-gray-600 flex items-center gap-1">
+                <p key={i} className="text-[14px] text-gray-600 flex items-center gap-1">
                   <span>{REVIEWER_STATUS_ICON[r.status]}</span>
                   <span className="font-medium">{REVIEWER_STATUS_LABEL[r.status]}</span>
                   <span className="text-gray-300 mx-0.5">·</span>
@@ -1018,17 +1018,17 @@ function ApplicantCard({
       case "to_interview":
         return (
           <div className="mt-2.5 space-y-1">
-            <p className="flex items-center gap-1.5 text-[12px] text-amber-600">
+            <p className="flex items-center gap-1.5 text-[14px] text-amber-600">
               <Clock className="w-3.5 h-3.5 text-amber-400" />รอนัดสัมภาษณ์
             </p>
-            {applicant.note && <p className="text-[12px] text-gray-400 truncate">{applicant.note}</p>}
+            {applicant.note && <p className="text-[14px] text-gray-400 truncate">{applicant.note}</p>}
           </div>
         );
       case "interview":
         return (
           <div className="mt-2.5 space-y-1.5">
             {applicant.interviewType && (
-              <p className="text-[12px] text-gray-500 flex items-center gap-1.5">
+              <p className="text-[14px] text-gray-500 flex items-center gap-1.5">
                 <Video className="w-3.5 h-3.5 text-gray-400" />
                 {applicant.interviewType === "video" ? "Video Call" : applicant.interviewType === "onsite" ? "Onsite" : applicant.interviewType}
                 {applicant.interviewers && applicant.interviewers.length > 0 && (
@@ -1037,31 +1037,31 @@ function ApplicantCard({
               </p>
             )}
             {!applicant.interviewType && !applicant.interviewDateIso && applicant.interviewDate && (
-              <p className="text-[12px] text-gray-500 flex items-center gap-1.5">
+              <p className="text-[14px] text-gray-500 flex items-center gap-1.5">
                 <CalendarClock className="w-3.5 h-3.5 text-gray-400" />{applicant.interviewDate}
               </p>
             )}
             {(applicant.interviewNote || applicant.note) && (
-              <p className="text-[12px] text-gray-400 truncate">{applicant.interviewNote ?? applicant.note}</p>
+              <p className="text-[14px] text-gray-400 truncate">{applicant.interviewNote ?? applicant.note}</p>
             )}
           </div>
         );
       case "passed":
         return (
           <div className="mt-2.5 space-y-1">
-            <p className="flex items-center gap-1.5 text-[12px] text-emerald-600">
+            <p className="flex items-center gap-1.5 text-[14px] text-emerald-600">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />ผ่านสัมภาษณ์แล้ว
             </p>
-            {applicant.note && <p className="text-[12px] text-gray-400 truncate">{applicant.note}</p>}
+            {applicant.note && <p className="text-[14px] text-gray-400 truncate">{applicant.note}</p>}
           </div>
         );
       case "offer":
         return (
           <div className="mt-2.5 space-y-1.5">
             {applicant.offerAmount && (
-              <p className="text-[12.5px] text-gray-600">เสนอเงินเดือน: <span className="text-[#127EE3] font-semibold">{applicant.offerAmount}</span></p>
+              <p className="text-[14.5px] text-gray-600">เสนอเงินเดือน: <span className="text-[#127EE3] font-semibold">{applicant.offerAmount}</span></p>
             )}
-            <p className="flex items-center gap-1.5 text-[12px] text-amber-600">
+            <p className="flex items-center gap-1.5 text-[14px] text-amber-600">
               <Clock className="w-3.5 h-3.5 text-amber-400" />รอผู้สมัครตอบรับ
             </p>
           </div>
@@ -1069,21 +1069,21 @@ function ApplicantCard({
       case "hired":
         return (
           <div className="mt-2.5 space-y-1">
-            <p className="flex items-center gap-1.5 text-[12px] text-emerald-600">
+            <p className="flex items-center gap-1.5 text-[14px] text-emerald-600">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />รับเข้าทำงานแล้ว
             </p>
-            {applicant.note && <p className="text-[12px] text-gray-400 truncate">{applicant.note}</p>}
+            {applicant.note && <p className="text-[14px] text-gray-400 truncate">{applicant.note}</p>}
           </div>
         );
       case "rejected":
         return (
           <div className="mt-2.5 space-y-1.5">
             {applicant.rejectionReason && (
-              <p className="flex items-center gap-1.5 text-[12px] text-red-500">
+              <p className="flex items-center gap-1.5 text-[14px] text-red-500">
                 <AlertCircle className="w-3.5 h-3.5 text-red-400" />{applicant.rejectionReason}
               </p>
             )}
-            {applicant.note && <p className="text-[12px] text-gray-400 truncate">{applicant.note}</p>}
+            {applicant.note && <p className="text-[14px] text-gray-400 truncate">{applicant.note}</p>}
           </div>
         );
       default:
@@ -1177,7 +1177,7 @@ function ApplicantCard({
           {/* Avatar */}
           <div className="relative flex-shrink-0">
             <div
-              className="w-11 h-11 rounded-xl flex items-center justify-center text-white text-[13px] font-bold shadow-sm"
+              className="w-11 h-11 rounded-xl flex items-center justify-center text-white text-[15px] font-bold shadow-sm"
               style={{ backgroundColor: applicant.avatarColor }}
             >
               {applicant.initials}
@@ -1188,10 +1188,10 @@ function ApplicantCard({
           </div>
           {/* Name + title/company */}
           <div className="flex-1 min-w-0">
-            <p className="text-[15px] font-semibold text-[#111827] leading-tight group-hover:text-[#127EE3] transition-colors truncate">
+            <p className="text-[17px] font-semibold text-[#111827] leading-tight group-hover:text-[#127EE3] transition-colors truncate">
               {applicant.name}
             </p>
-            <p className="text-[13px] text-gray-500 mt-0.5 truncate leading-snug">
+            <p className="text-[15px] text-gray-500 mt-0.5 truncate leading-snug">
               <span className="font-medium text-gray-600">{applicant.currentTitle}</span>
               <span className="text-gray-400"> · {applicant.currentCompany}</span>
             </p>
@@ -1293,15 +1293,15 @@ function TopPickCard({ candidate }: { candidate: TopPickApplicant }) {
               </svg>
             </div>
             <div className="min-w-0">
-              <p className="text-[14px] text-[#1A1A2E] font-bold leading-snug">{candidate.currentTitle}</p>
-              <div className="inline-flex items-center gap-1 mt-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-gradient-to-r from-[#0DC2FF] to-[#127EE3] text-white shadow-sm tracking-wide uppercase">
+              <p className="text-[16px] text-[#1A1A2E] font-bold leading-snug">{candidate.currentTitle}</p>
+              <div className="inline-flex items-center gap-1 mt-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-gradient-to-r from-[#0DC2FF] to-[#127EE3] text-white shadow-sm tracking-wide uppercase">
                 <Zap className="w-2.5 h-2.5" />
                 AI Top Pick
               </div>
             </div>
           </div>
 
-          <div className="space-y-2 text-[13px] border border-gray-100 rounded-xl px-3.5 py-3 bg-gray-50/50">
+          <div className="space-y-2 text-[15px] border border-gray-100 rounded-xl px-3.5 py-3 bg-gray-50/50">
             <div className="flex items-start gap-2">
               <Briefcase className="w-3.5 h-3.5 text-gray-400 flex-shrink-0 mt-0.5" />
               <span className="font-semibold text-[#1A1A2E] leading-snug">{candidate.currentCompany}</span>
@@ -1331,12 +1331,12 @@ function TopPickCard({ candidate }: { candidate: TopPickApplicant }) {
           <div className="flex items-center justify-between mb-3.5">
             <div className="flex items-center gap-1.5">
               <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-400" />
-              <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Why This Candidate Stands Out</span>
+              <span className="text-[13px] font-bold text-gray-400 uppercase tracking-wider">Why This Candidate Stands Out</span>
             </div>
           </div>
           <ul className="space-y-2.5 mb-5">
             {candidate.whyYoullLike.map((item, i) => (
-              <li key={i} className="flex gap-2.5 text-[13.5px] text-gray-700 leading-relaxed">
+              <li key={i} className="flex gap-2.5 text-[15.5px] text-gray-700 leading-relaxed">
                 <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#0DC2FF] mt-[7px]" />
                 <span>{item}</span>
               </li>
@@ -1346,31 +1346,31 @@ function TopPickCard({ candidate }: { candidate: TopPickApplicant }) {
           <div className="mb-4 pt-3 border-t border-gray-100">
             <div className="flex items-center gap-1.5 mb-2.5">
               <Sparkles className="w-3.5 h-3.5 text-[#0DC2FF]" />
-              <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">ตัวตน (Character)</span>
+              <span className="text-[13px] font-bold text-gray-400 uppercase tracking-wider">ตัวตน (Character)</span>
             </div>
             <div className="grid grid-cols-[1fr_auto_1fr] gap-x-2 items-start">
               <div className="flex flex-col gap-1 min-w-0">
                 <div className="flex items-center gap-1.5 flex-wrap">
-                  <span className="inline-flex items-center gap-1 text-[12px] font-bold px-2.5 py-1 rounded-full bg-[#0DC2FF]/10 text-[#0277a8] border border-[#0DC2FF]/20 whitespace-nowrap">
+                  <span className="inline-flex items-center gap-1 text-[14px] font-bold px-2.5 py-1 rounded-full bg-[#0DC2FF]/10 text-[#0277a8] border border-[#0DC2FF]/20 whitespace-nowrap">
                     {hobbyIcon && <span>{hobbyIcon}</span>}
                     {character.fromHobbies}
                   </span>
-                  <span className="text-[10px] font-medium text-gray-400 uppercase tracking-wide">Hobbies</span>
+                  <span className="text-[11px] font-medium text-gray-400 uppercase tracking-wide">Hobbies</span>
                 </div>
                 {candidate.hobbyDescription && (
-                  <p className="text-[11px] text-gray-400 pl-0.5 leading-relaxed">{candidate.hobbyDescription}</p>
+                  <p className="text-[13px] text-gray-400 pl-0.5 leading-relaxed">{candidate.hobbyDescription}</p>
                 )}
               </div>
               <ChevronRight className="w-3 h-3 text-gray-300 mt-2 flex-shrink-0" />
               <div className="flex flex-col gap-1 min-w-0">
                 <div className="flex items-center gap-1.5 flex-wrap">
-                  <span className="inline-flex items-center gap-1 text-[12px] font-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 whitespace-nowrap">
+                  <span className="inline-flex items-center gap-1 text-[14px] font-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 whitespace-nowrap">
                     {character.fromStrengths}
                   </span>
-                  <span className="text-[10px] font-medium text-gray-400 uppercase tracking-wide">Strengths</span>
+                  <span className="text-[11px] font-medium text-gray-400 uppercase tracking-wide">Strengths</span>
                 </div>
                 {candidate.strengthDescription && (
-                  <p className="text-[11px] text-gray-400 pl-0.5 leading-relaxed">{candidate.strengthDescription}</p>
+                  <p className="text-[13px] text-gray-400 pl-0.5 leading-relaxed">{candidate.strengthDescription}</p>
                 )}
               </div>
             </div>
@@ -1381,13 +1381,13 @@ function TopPickCard({ candidate }: { candidate: TopPickApplicant }) {
               <div className="flex items-center gap-2 mb-2.5">
                 <div className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-[#127EE3]/8 border border-[#127EE3]/15">
                   <Brain className="w-3 h-3 text-[#127EE3]" />
-                  <span className="text-[10px] font-bold text-[#127EE3] uppercase tracking-wider">Behavioral Signals</span>
+                  <span className="text-[11px] font-bold text-[#127EE3] uppercase tracking-wider">Behavioral Signals</span>
                 </div>
-                <span className="text-[10px] text-gray-300">วิเคราะห์จาก AI</span>
+                <span className="text-[11px] text-gray-300">วิเคราะห์จาก AI</span>
               </div>
               <ul className="space-y-1.5">
                 {candidate.deepAnalysis.map((item, i) => (
-                  <li key={i} className="flex gap-2.5 text-[12.5px] leading-relaxed text-gray-600">
+                  <li key={i} className="flex gap-2.5 text-[14.5px] leading-relaxed text-gray-600">
                     <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#127EE3]/50 mt-[6px]" />
                     <span><span className="font-semibold text-[#1A1A2E]">{item.label}</span> — {item.detail}</span>
                   </li>
@@ -1397,13 +1397,13 @@ function TopPickCard({ candidate }: { candidate: TopPickApplicant }) {
           )}
 
           <div className="flex items-center gap-2 mt-auto pt-2">
-            <button className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-[14px] font-bold bg-gradient-to-r from-[#0DC2FF] to-[#127EE3] text-white shadow-md shadow-[#0DC2FF]/25 hover:shadow-[#0DC2FF]/40 transition-all">
+            <button className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-[16px] font-bold bg-gradient-to-r from-[#0DC2FF] to-[#127EE3] text-white shadow-md shadow-[#0DC2FF]/25 hover:shadow-[#0DC2FF]/40 transition-all">
               <FileText className="w-4 h-4" />
               ดูเรซูเม่
             </button>
             <button
               onClick={() => setMessageSent(true)}
-              className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-[14px] font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-[16px] font-semibold transition-all ${
                 messageSent
                   ? "bg-emerald-50 text-emerald-600 border border-emerald-200"
                   : "border border-[#127EE3] text-[#127EE3] hover:bg-[#127EE3] hover:text-white"
@@ -1507,9 +1507,9 @@ function InterviewWeeklyView({
           const isToday = dateStr === todayStr;
           return (
             <div key={i} className={`py-2.5 px-2 text-center border-r last:border-r-0 border-gray-100 ${isToday ? "bg-blue-50" : ""}`}>
-              <div className={`text-[11px] font-medium uppercase tracking-wide ${isToday ? "text-[#127EE3]" : "text-gray-400"}`}>{thaiDayNames[d.getDay()]}</div>
-              <div className={`text-[16px] font-semibold mt-0.5 w-7 h-7 mx-auto flex items-center justify-center rounded-full ${isToday ? "bg-[#127EE3] text-white" : "text-gray-700"}`}>{d.getDate()}</div>
-              <div className={`text-[10px] mt-0.5 ${isToday ? "text-[#127EE3]" : "text-gray-300"}`}>{thaiMonths[d.getMonth()]}</div>
+              <div className={`text-[13px] font-medium uppercase tracking-wide ${isToday ? "text-[#127EE3]" : "text-gray-400"}`}>{thaiDayNames[d.getDay()]}</div>
+              <div className={`text-[18px] font-semibold mt-0.5 w-7 h-7 mx-auto flex items-center justify-center rounded-full ${isToday ? "bg-[#127EE3] text-white" : "text-gray-700"}`}>{d.getDate()}</div>
+              <div className={`text-[11px] mt-0.5 ${isToday ? "text-[#127EE3]" : "text-gray-300"}`}>{thaiMonths[d.getMonth()]}</div>
             </div>
           );
         })}
@@ -1529,9 +1529,9 @@ function InterviewWeeklyView({
                     onClick={() => onSelect(a)}
                     className="w-full text-left rounded-lg px-2 py-1.5 bg-white border border-[#127EE3]/20 hover:border-[#127EE3]/50 hover:shadow-sm transition-all group"
                   >
-                    {time && <div className="text-[10px] font-semibold text-[#127EE3]">{time}</div>}
-                    <div className="text-[11px] font-medium text-gray-700 leading-tight truncate">{a.name}</div>
-                    <div className="text-[10px] text-gray-400 truncate">{a.position}</div>
+                    {time && <div className="text-[11px] font-semibold text-[#127EE3]">{time}</div>}
+                    <div className="text-[13px] font-medium text-gray-700 leading-tight truncate">{a.name}</div>
+                    <div className="text-[11px] text-gray-400 truncate">{a.position}</div>
                   </button>
                 );
               })}
@@ -1587,7 +1587,7 @@ function InterviewMonthlyView({
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
       <div className="grid grid-cols-7 border-b border-gray-100">
         {thaiDayNames.map(n => (
-          <div key={n} className="py-2 text-center text-[11px] font-medium text-gray-400 uppercase tracking-wide border-r last:border-r-0 border-gray-100">{n}</div>
+          <div key={n} className="py-2 text-center text-[13px] font-medium text-gray-400 uppercase tracking-wide border-r last:border-r-0 border-gray-100">{n}</div>
         ))}
       </div>
       <div className="grid grid-cols-7 divide-x divide-gray-100">
@@ -1601,7 +1601,7 @@ function InterviewMonthlyView({
           const extra = items.length - visible.length;
           return (
             <div key={i} className={`min-h-[80px] p-1.5 border-b border-gray-100 ${isToday ? "bg-blue-50/50" : ""}`}>
-              <div className={`text-[12px] font-semibold w-6 h-6 flex items-center justify-center rounded-full mb-1 ${isToday ? "bg-[#127EE3] text-white" : "text-gray-500"}`}>{dayNum}</div>
+              <div className={`text-[14px] font-semibold w-6 h-6 flex items-center justify-center rounded-full mb-1 ${isToday ? "bg-[#127EE3] text-white" : "text-gray-500"}`}>{dayNum}</div>
               <div className="space-y-0.5">
                 {visible.map(a => {
                   const time = a.interviewDateIso?.split("T")[1]?.slice(0, 5) ?? "";
@@ -1611,12 +1611,12 @@ function InterviewMonthlyView({
                       onClick={() => onSelect(a)}
                       className="w-full text-left rounded px-1.5 py-0.5 bg-[#127EE3]/8 hover:bg-[#127EE3]/15 transition-colors"
                     >
-                      <span className="text-[10px] text-[#127EE3] font-medium truncate block">{time && `${time} `}{a.name}</span>
+                      <span className="text-[11px] text-[#127EE3] font-medium truncate block">{time && `${time} `}{a.name}</span>
                     </button>
                   );
                 })}
                 {extra > 0 && (
-                  <div className="text-[10px] text-gray-400 px-1">+{extra} เพิ่มเติม</div>
+                  <div className="text-[11px] text-gray-400 px-1">+{extra} เพิ่มเติม</div>
                 )}
               </div>
             </div>
@@ -1637,8 +1637,8 @@ function InterviewSectionHeader({ group, count }: { group: InterviewGroup; count
   return (
     <div className="flex items-center gap-2.5 mb-3">
       <div className={`w-2 h-2 rounded-full flex-shrink-0 ${c.dotColor}`} />
-      <span className="text-[13px] font-semibold text-gray-700">{c.label}</span>
-      <span className="text-[12px] text-gray-400">({count})</span>
+      <span className="text-[15px] font-semibold text-gray-700">{c.label}</span>
+      <span className="text-[14px] text-gray-400">({count})</span>
       <div className="flex-1 border-t border-gray-100" />
     </div>
   );
@@ -1701,7 +1701,7 @@ function InterviewCard({
           )}
           <div className="relative">
             <div
-              className="w-9 h-9 rounded-lg flex items-center justify-center text-white text-[11.5px] font-bold"
+              className="w-9 h-9 rounded-lg flex items-center justify-center text-white text-[13.5px] font-bold"
               style={{ backgroundColor: applicant.avatarColor }}
             >
               {applicant.initials}
@@ -1714,14 +1714,14 @@ function InterviewCard({
 
         {/* Candidate info + actions */}
         <div className="flex-1 min-w-0">
-          <p className="text-[14px] font-semibold text-[#111827] group-hover:text-[#127EE3] transition-colors truncate leading-snug">
+          <p className="text-[16px] font-semibold text-[#111827] group-hover:text-[#127EE3] transition-colors truncate leading-snug">
             {applicant.name}
           </p>
-          <p className="text-[12.5px] text-gray-400 mt-0.5 truncate">
+          <p className="text-[14.5px] text-gray-400 mt-0.5 truncate">
             {applicant.currentTitle} · {applicant.currentCompany}
           </p>
           {applicant.interviewType && (
-            <p className="text-[12px] text-gray-500 mt-1.5 flex items-center gap-1.5">
+            <p className="text-[14px] text-gray-500 mt-1.5 flex items-center gap-1.5">
               <Video className="w-3 h-3 text-gray-400 flex-shrink-0" />
               <span>
                 {applicant.interviewType === "video" ? "Video Call" : applicant.interviewType === "onsite" ? "Onsite" : applicant.interviewType}
@@ -1744,10 +1744,10 @@ function InterviewCard({
         {/* Time — top right */}
         {time && (
           <div className="flex-shrink-0 text-right pl-3 pt-0.5 min-w-[64px]">
-            <p className={`text-[15px] font-semibold tabular-nums leading-none ${timeColor}`}>{time}</p>
-            <p className="text-[11.5px] text-gray-400 mt-0.5 leading-snug">{day}</p>
+            <p className={`text-[17px] font-semibold tabular-nums leading-none ${timeColor}`}>{time}</p>
+            <p className="text-[13.5px] text-gray-400 mt-0.5 leading-snug">{day}</p>
             {relative && (
-              <span className={`inline-flex mt-1.5 px-1.5 py-0.5 rounded-md text-[10.5px] font-semibold ${
+              <span className={`inline-flex mt-1.5 px-1.5 py-0.5 rounded-md text-[12px] font-semibold ${
                 relative === "กำลังสัมภาษณ์"
                   ? "bg-green-50 text-green-600"
                   : "bg-orange-50 text-orange-600"
@@ -2153,7 +2153,7 @@ export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", 
       )}
 
       {toast && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] px-5 py-2.5 bg-[#1A1A2E] text-white text-[13px] font-medium rounded-2xl shadow-xl flex items-center gap-2.5 border border-white/5">
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] px-5 py-2.5 bg-[#1A1A2E] text-white text-[15px] font-medium rounded-2xl shadow-xl flex items-center gap-2.5 border border-white/5">
           <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
             <CheckCircle2 className="w-3.5 h-3.5 text-green-400" />
           </div>
@@ -2168,13 +2168,13 @@ export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", 
           </button>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-0.5">
-              <p className="text-[11.5px] font-semibold text-[#0DC2FF] uppercase tracking-widest">ผู้สมัคร</p>
+              <p className="text-[13.5px] font-semibold text-[#0DC2FF] uppercase tracking-widest">ผู้สมัคร</p>
               {unreadCount > 0 && (
-                <span className="px-2 py-0.5 rounded-full bg-[#127EE3] text-white text-[10.5px] font-bold">{unreadCount} ใหม่</span>
+                <span className="px-2 py-0.5 rounded-full bg-[#127EE3] text-white text-[12px] font-bold">{unreadCount} ใหม่</span>
               )}
             </div>
-            <h1 className="text-[22px] font-bold text-[#1A1A2E] leading-snug truncate">{jobTitle}</h1>
-            <p className="text-[12.5px] text-gray-400 mt-0.5">
+            <h1 className="text-[24px] font-bold text-[#1A1A2E] leading-snug truncate">{jobTitle}</h1>
+            <p className="text-[14.5px] text-gray-400 mt-0.5">
               {mockApplicants.length} คนทั้งหมด · {stageStats.new ?? 0} ใหม่ · {(stageStats.interview ?? 0) + (stageStats.to_interview ?? 0)} สัมภาษณ์
             </p>
           </div>
@@ -2266,11 +2266,11 @@ export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", 
                   <span className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${s.iconBg} ${s.iconColor}`}>
                     {s.icon}
                   </span>
-                  <span className="text-[10.5px] font-semibold uppercase tracking-wide text-gray-400 leading-tight">
+                  <span className="text-[12px] font-semibold uppercase tracking-wide text-gray-400 leading-tight">
                     {s.label}
                   </span>
                 </div>
-                <p className="text-[28px] font-black leading-none tracking-tight" style={{ color: isActive ? s.accent : "#1A1A2E" }}>
+                <p className="text-[30px] font-black leading-none tracking-tight" style={{ color: isActive ? s.accent : "#1A1A2E" }}>
                   {cnt}
                 </p>
                 {/* Sub-status breakdown — always visible */}
@@ -2291,7 +2291,7 @@ export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", 
                               setSubStatus(isSubActive ? "all_sub" : ps);
                             }
                           }}
-                          className={`flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[10px] font-medium border transition-all ${
+                          className={`flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[11px] font-medium border transition-all ${
                             isSubActive
                               ? "text-white border-transparent"
                               : isActive
@@ -2328,7 +2328,7 @@ export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", 
                 <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-350" />
                 <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
                   placeholder="ค้นหาชื่อหรือตำแหน่ง..."
-                  className="w-full pl-10 pr-3 py-2 text-[13px] bg-gray-50 rounded-xl border border-gray-100 focus:outline-none focus:border-[#127EE3]/40 focus:bg-white focus:ring-2 focus:ring-[#127EE3]/8 transition-all placeholder:text-gray-350"
+                  className="w-full pl-10 pr-3 py-2 text-[15px] bg-gray-50 rounded-xl border border-gray-100 focus:outline-none focus:border-[#127EE3]/40 focus:bg-white focus:ring-2 focus:ring-[#127EE3]/8 transition-all placeholder:text-gray-350"
                 />
               </div>
               <div className="relative">
@@ -2346,7 +2346,7 @@ export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", 
                       setMainStage(ms); setSubStatus(v as PipelineStage);
                     }
                   }}
-                  className="appearance-none bg-gray-50 rounded-xl pl-3.5 pr-8 py-2 text-[12.5px] font-medium text-gray-600 focus:outline-none border border-gray-100 focus:border-[#127EE3]/40 focus:ring-2 focus:ring-[#127EE3]/8 transition-all cursor-pointer"
+                  className="appearance-none bg-gray-50 rounded-xl pl-3.5 pr-8 py-2 text-[14.5px] font-medium text-gray-600 focus:outline-none border border-gray-100 focus:border-[#127EE3]/40 focus:ring-2 focus:ring-[#127EE3]/8 transition-all cursor-pointer"
                 >
                   <option value="all">สถานะทั้งหมด</option>
                   <option value="new">ใหม่</option>
@@ -2373,7 +2373,7 @@ export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", 
                 interviewView === "day" ? (
                   <div className="relative">
                     <select value={interviewSort} onChange={(e) => setInterviewSort(e.target.value as "asc" | "desc")}
-                      className="appearance-none bg-gray-50 rounded-xl pl-3.5 pr-8 py-2 text-[12.5px] font-medium text-gray-600 focus:outline-none border border-gray-100 focus:border-[#127EE3]/40 focus:ring-2 focus:ring-[#127EE3]/8 transition-all cursor-pointer"
+                      className="appearance-none bg-gray-50 rounded-xl pl-3.5 pr-8 py-2 text-[14.5px] font-medium text-gray-600 focus:outline-none border border-gray-100 focus:border-[#127EE3]/40 focus:ring-2 focus:ring-[#127EE3]/8 transition-all cursor-pointer"
                     >
                       <option value="asc">วันสัมภาษณ์ (ใกล้สุดก่อน)</option>
                       <option value="desc">วันสัมภาษณ์ (ไกลสุดก่อน)</option>
@@ -2384,7 +2384,7 @@ export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", 
               ) : (
                 <div className="relative">
                   <select value={sortBy} onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-                    className="appearance-none bg-gray-50 rounded-xl pl-3.5 pr-8 py-2 text-[12.5px] font-medium text-gray-600 focus:outline-none border border-gray-100 focus:border-[#127EE3]/40 focus:ring-2 focus:ring-[#127EE3]/8 transition-all cursor-pointer"
+                    className="appearance-none bg-gray-50 rounded-xl pl-3.5 pr-8 py-2 text-[14.5px] font-medium text-gray-600 focus:outline-none border border-gray-100 focus:border-[#127EE3]/40 focus:ring-2 focus:ring-[#127EE3]/8 transition-all cursor-pointer"
                   >
                     <option value="appliedAt">วันที่สมัคร</option>
                   </select>
@@ -2427,7 +2427,7 @@ export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", 
                         <button
                           key={v}
                           onClick={() => setInterviewView(v)}
-                          className={`h-8 px-3 rounded-lg text-[12.5px] font-medium flex items-center gap-1.5 transition-all duration-150 ${
+                          className={`h-8 px-3 rounded-lg text-[14.5px] font-medium flex items-center gap-1.5 transition-all duration-150 ${
                             active
                               ? "bg-[#127EE3] text-white shadow-sm"
                               : "text-gray-500 hover:bg-gray-50 hover:text-gray-800"
@@ -2448,7 +2448,7 @@ export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", 
                       >
                         <ChevronDown className="w-3.5 h-3.5 rotate-90" />
                       </button>
-                      <span className={`text-[12.5px] font-medium px-2 ${isCurrentWeek ? "text-[#127EE3]" : "text-gray-600"}`}>{weekLabel}</span>
+                      <span className={`text-[14.5px] font-medium px-2 ${isCurrentWeek ? "text-[#127EE3]" : "text-gray-600"}`}>{weekLabel}</span>
                       <button
                         onClick={() => { const d = new Date(selectedWeekStart); d.setDate(d.getDate() + 7); setSelectedWeekStart(d); }}
                         className="w-7 h-7 rounded-lg border border-gray-200 bg-white flex items-center justify-center text-gray-400 hover:text-[#127EE3] hover:border-[#127EE3]/40 transition-all"
@@ -2466,7 +2466,7 @@ export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", 
                       >
                         <ChevronDown className="w-3.5 h-3.5 rotate-90" />
                       </button>
-                      <span className={`text-[12.5px] font-medium px-2 min-w-[130px] text-center ${isCurrentMonth ? "text-[#127EE3]" : "text-gray-600"}`}>{monthLabel}</span>
+                      <span className={`text-[14.5px] font-medium px-2 min-w-[130px] text-center ${isCurrentMonth ? "text-[#127EE3]" : "text-gray-600"}`}>{monthLabel}</span>
                       <button
                         onClick={() => { const d = new Date(selectedMonth); d.setMonth(d.getMonth() + 1); setSelectedMonth(d); }}
                         className="w-7 h-7 rounded-lg border border-gray-200 bg-white flex items-center justify-center text-gray-400 hover:text-[#127EE3] hover:border-[#127EE3]/40 transition-all"
@@ -2505,8 +2505,8 @@ export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", 
                   <div className="w-14 h-14 rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center mb-4">
                     <CalendarClock className="w-7 h-7 text-gray-300" />
                   </div>
-                  <p className="text-[14.5px] font-semibold text-gray-500">ยังไม่มีผู้สมัครที่มีนัดสัมภาษณ์</p>
-                  <p className="text-[12.5px] text-gray-400 mt-1.5">ผู้สมัครที่ยังไม่ได้นัด จะอยู่ในสถานะ 'รอนัดสัมภาษณ์'</p>
+                  <p className="text-[16.5px] font-semibold text-gray-500">ยังไม่มีผู้สมัครที่มีนัดสัมภาษณ์</p>
+                  <p className="text-[14.5px] text-gray-400 mt-1.5">ผู้สมัครที่ยังไม่ได้นัด จะอยู่ในสถานะ 'รอนัดสัมภาษณ์'</p>
                 </div>
               );
               if (interviewView === "week") {
@@ -2544,7 +2544,7 @@ export default function ApplicantsPage({ jobTitle = "Product Designer (UI/UX)", 
                     <div className="w-14 h-14 rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center mb-4">
                       <Search className="w-7 h-7 text-gray-300" />
                     </div>
-                    <p className="text-[14.5px] font-semibold text-gray-500">ไม่พบผู้สมัคร</p>
+                    <p className="text-[16.5px] font-semibold text-gray-500">ไม่พบผู้สมัคร</p>
                   </div>
                 ) : (
                   <div className="space-y-3">

@@ -14,7 +14,7 @@ interface CandidateImpression {
 
 function AvatarBubble({ initials, color }: { initials: string; color: string }) {
   return (
-    <div className={`w-9 h-9 text-[12px] rounded-xl flex items-center justify-center font-bold flex-shrink-0 ${color}`}>
+    <div className={`w-9 h-9 text-[14px] rounded-xl flex items-center justify-center font-bold flex-shrink-0 ${color}`}>
       {initials}
     </div>
   );
@@ -36,7 +36,7 @@ export default function EmployerBrandingReviewsPage({ impressions, onBack }: Pro
       <div className="flex items-center gap-3 mb-6">
         <button
           onClick={onBack}
-          className="flex items-center gap-1.5 text-[13px] font-semibold text-[#127EE3] hover:text-[#0f6bc7] transition-colors"
+          className="flex items-center gap-1.5 text-[15px] font-semibold text-[#127EE3] hover:text-[#0f6bc7] transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           กลับ
@@ -45,10 +45,10 @@ export default function EmployerBrandingReviewsPage({ impressions, onBack }: Pro
 
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
         <div className="px-7 py-5 border-b border-gray-100 flex items-center justify-between">
-          <h2 className="text-[18px] font-bold text-[#1A1A2E]">
+          <h2 className="text-[20px] font-bold text-[#1A1A2E]">
             ความประทับใจจากผู้สมัครทั้งหมด
           </h2>
-          <span className="text-[12px] px-2 py-0.5 rounded-full bg-[#F0F8FF] text-[#127EE3] font-bold">
+          <span className="text-[14px] px-2 py-0.5 rounded-full bg-[#F0F8FF] text-[#127EE3] font-bold">
             {impressions.length}
           </span>
         </div>
@@ -63,12 +63,12 @@ export default function EmployerBrandingReviewsPage({ impressions, onBack }: Pro
                 <div className="flex-1">
                   <div className="flex items-center justify-between gap-2">
                     <div>
-                      <span className="text-[13.5px] font-bold text-[#1A1A2E]">{imp.name}</span>
-                      <span className="text-[12px] text-gray-400 ml-2">{imp.role}</span>
+                      <span className="text-[15.5px] font-bold text-[#1A1A2E]">{imp.name}</span>
+                      <span className="text-[14px] text-gray-400 ml-2">{imp.role}</span>
                     </div>
-                    <span className="text-[11.5px] text-gray-400 flex-shrink-0">{imp.date}</span>
+                    <span className="text-[13.5px] text-gray-400 flex-shrink-0">{imp.date}</span>
                   </div>
-                  <p className="text-[13.5px] text-gray-600 mt-2 leading-relaxed">{imp.text}</p>
+                  <p className="text-[15.5px] text-gray-600 mt-2 leading-relaxed">{imp.text}</p>
                 </div>
               </div>
             </div>

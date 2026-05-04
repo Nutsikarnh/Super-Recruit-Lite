@@ -164,23 +164,23 @@ function ActivityItem({ activity, isLast }: { activity: Activity; isLast: boolea
       <div className="pb-4 flex-1 min-w-0">
         <div className="flex items-start justify-between gap-2">
           <div className="flex-1 min-w-0">
-            <p className="text-[13px] font-semibold text-[#1A1A2E] leading-snug truncate">{activity.title}</p>
-            <p className="text-[11.5px] text-gray-400 mt-0.5 truncate">{activity.subtitle}</p>
+            <p className="text-[15px] font-semibold text-[#1A1A2E] leading-snug truncate">{activity.title}</p>
+            <p className="text-[13.5px] text-gray-400 mt-0.5 truncate">{activity.subtitle}</p>
           </div>
           <div className="flex items-center gap-2 flex-shrink-0 mt-0.5">
             {activity.meta && (
-              <span className="text-[10.5px] font-semibold text-gray-400 bg-gray-50 border border-gray-100 px-2 py-0.5 rounded-full">
+              <span className="text-[12px] font-semibold text-gray-400 bg-gray-50 border border-gray-100 px-2 py-0.5 rounded-full">
                 {activity.meta}
               </span>
             )}
             {activity.needsFollowUp && !activity.done && (
-              <span className="flex items-center gap-1 text-[10.5px] font-semibold text-amber-600 bg-amber-50 border border-amber-100 px-2 py-0.5 rounded-full">
+              <span className="flex items-center gap-1 text-[12px] font-semibold text-amber-600 bg-amber-50 border border-amber-100 px-2 py-0.5 rounded-full">
                 <AlertCircle className="w-3 h-3" />
                 ติดตาม
               </span>
             )}
             {activity.done && (
-              <span className="flex items-center gap-1 text-[10.5px] font-semibold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full">
+              <span className="flex items-center gap-1 text-[12px] font-semibold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full">
                 <CheckCircle2 className="w-3 h-3" />
                 เสร็จ
               </span>
@@ -189,7 +189,7 @@ function ActivityItem({ activity, isLast }: { activity: Activity; isLast: boolea
         </div>
         <div className="flex items-center gap-1.5 mt-1">
           <Clock className="w-3 h-3 text-gray-300" />
-          <span className="text-[11px] text-gray-400">{activity.timeAgo}</span>
+          <span className="text-[13px] text-gray-400">{activity.timeAgo}</span>
         </div>
       </div>
     </div>
@@ -206,15 +206,15 @@ export default function RecentActivityFeed() {
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm">
       <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-gray-50">
         <div className="flex items-center gap-3">
-          <h2 className="text-[13px] font-bold text-[#1A1A2E]">Recent Activity</h2>
+          <h2 className="text-[15px] font-bold text-[#1A1A2E]">Recent Activity</h2>
           {followUpCount > 0 && (
-            <span className="flex items-center gap-1 text-[11px] font-bold text-amber-600 bg-amber-50 border border-amber-100 px-2.5 py-0.5 rounded-full">
+            <span className="flex items-center gap-1 text-[13px] font-bold text-amber-600 bg-amber-50 border border-amber-100 px-2.5 py-0.5 rounded-full">
               <AlertCircle className="w-3 h-3" />
               {followUpCount} รายการรอติดตาม
             </span>
           )}
         </div>
-        <span className="text-[11.5px] text-gray-400">อลิสา สุขใจ</span>
+        <span className="text-[13.5px] text-gray-400">อลิสา สุขใจ</span>
       </div>
 
       <div className="px-5 pt-4">
@@ -230,7 +230,7 @@ export default function RecentActivityFeed() {
       <div className="px-5 pb-4">
         <button
           onClick={() => setExpanded((v) => !v)}
-          className="w-full flex items-center justify-center gap-1.5 py-2 text-[12.5px] font-medium text-gray-400 hover:text-[#127EE3] transition-colors border border-dashed border-gray-200 hover:border-[#127EE3]/40 rounded-xl"
+          className="w-full flex items-center justify-center gap-1.5 py-2 text-[14.5px] font-medium text-gray-400 hover:text-[#127EE3] transition-colors border border-dashed border-gray-200 hover:border-[#127EE3]/40 rounded-xl"
         >
           {expanded ? (
             <>

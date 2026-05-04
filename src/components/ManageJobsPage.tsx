@@ -51,7 +51,7 @@ function DayTag({ days }: { days: number }) {
   const isRecent = days <= 7;
   return (
     <span
-      className={`inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold ${
+      className={`inline-flex items-center px-2 py-0.5 rounded-full text-[13px] font-semibold ${
         isNew
           ? "bg-emerald-50 text-emerald-600"
           : isRecent
@@ -104,7 +104,7 @@ function ActionMenu({
         <button
           key={item.label}
           onClick={item.onClick}
-          className="w-full flex items-center gap-2.5 px-4 py-2.5 text-[13px] font-medium text-gray-600 hover:bg-gray-50 hover:text-[#1A1A2E] transition-colors"
+          className="w-full flex items-center gap-2.5 px-4 py-2.5 text-[15px] font-medium text-gray-600 hover:bg-gray-50 hover:text-[#1A1A2E] transition-colors"
         >
           {item.icon}
           {item.label}
@@ -115,7 +115,7 @@ function ActionMenu({
           <div className="my-1 border-t border-gray-100" />
           <button
             onClick={() => { onDelete(); onClose(); }}
-            className="w-full flex items-center gap-2.5 px-4 py-2.5 text-[13px] font-medium text-red-500 hover:bg-red-50 transition-colors"
+            className="w-full flex items-center gap-2.5 px-4 py-2.5 text-[15px] font-medium text-red-500 hover:bg-red-50 transition-colors"
           >
             <Trash2 className="w-3.5 h-3.5" />
             ลบประกาศ
@@ -134,15 +134,15 @@ function TopPicksNudge({ topPicks, onViewTopPicks }: { topPicks: number; onViewT
           <Zap className="w-3.5 h-3.5 text-white" />
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-[12px] font-bold text-[#127EE3] mb-0.5">ไม่ต้องรอให้เค้า apply มาเอง</p>
-          <p className="text-[11.5px] text-gray-500 leading-relaxed">
+          <p className="text-[14px] font-bold text-[#127EE3] mb-0.5">ไม่ต้องรอให้เค้า apply มาเอง</p>
+          <p className="text-[13.5px] text-gray-500 leading-relaxed">
             Top Picks <span className="font-semibold text-[#1A1A2E]">{topPicks} คน</span> ถูก AI คัดมาแล้ว — ส่ง invite ให้เค้าได้ทันที ไม่ต้องรอ
           </p>
         </div>
       </div>
       <button
         onClick={onViewTopPicks}
-        className="mt-2.5 w-full flex items-center justify-center gap-1.5 py-2 bg-[#127EE3] hover:bg-[#0f6bc7] text-white text-[12px] font-bold rounded-lg transition-colors"
+        className="mt-2.5 w-full flex items-center justify-center gap-1.5 py-2 bg-[#127EE3] hover:bg-[#0f6bc7] text-white text-[14px] font-bold rounded-lg transition-colors"
       >
         <Send className="w-3 h-3" />
         ส่ง invite ให้ Top Picks
@@ -186,7 +186,7 @@ function JobListRow({
     }`}>
       <div className="flex items-center gap-4 px-5 py-3.5">
         {/* Status badge */}
-        <div className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold border flex-shrink-0 ${cfg.color}`}>
+        <div className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[13px] font-semibold border flex-shrink-0 ${cfg.color}`}>
           {cfg.icon}
           {cfg.label}
         </div>
@@ -194,20 +194,20 @@ function JobListRow({
         {/* Title + meta */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-0.5">
-            <span className="text-[14px] font-semibold text-[#1A1A2E] truncate">{job.title}</span>
+            <span className="text-[16px] font-semibold text-[#1A1A2E] truncate">{job.title}</span>
             <DayTag days={job.daysOnline} />
           </div>
           <div className="flex items-center gap-3 flex-wrap">
-            <span className="flex items-center gap-1 text-[12px] text-gray-400">
+            <span className="flex items-center gap-1 text-[14px] text-gray-400">
               <MapPin className="w-3 h-3" />
               {job.location}
             </span>
-            <span className="flex items-center gap-1 text-[12px] text-gray-400">
+            <span className="flex items-center gap-1 text-[14px] text-gray-400">
               <Briefcase className="w-3 h-3" />
               {job.type}
             </span>
             {job.salary && (
-              <span className="flex items-center gap-1 text-[12px] text-emerald-600 font-medium">
+              <span className="flex items-center gap-1 text-[14px] text-emerald-600 font-medium">
                 <DollarSign className="w-3 h-3" />
                 {job.salary}
               </span>
@@ -222,8 +222,8 @@ function JobListRow({
             title="ดู Top Picks"
             className="group flex flex-col items-center justify-center w-[52px] h-[44px] rounded-xl bg-[#EBF8FF] hover:bg-[#D6F0FF] cursor-pointer transition-all gap-0.5"
           >
-            <span className="text-[16px] font-black leading-none text-[#127EE3]">{job.topPicks}</span>
-            <span className="text-[8.5px] font-semibold text-[#127EE3]/70 uppercase tracking-wide">picks</span>
+            <span className="text-[18px] font-black leading-none text-[#127EE3]">{job.topPicks}</span>
+            <span className="text-[9.5px] font-semibold text-[#127EE3]/70 uppercase tracking-wide">picks</span>
           </button>
 
           <button
@@ -231,8 +231,8 @@ function JobListRow({
             title="ดูใบสมัคร"
             className="group flex flex-col items-center justify-center w-[52px] h-[44px] rounded-xl bg-[#F5F5F7] hover:bg-[#ECEDF0] cursor-pointer transition-all gap-0.5"
           >
-            <span className="text-[16px] font-black leading-none text-[#1A1A2E]">{job.applicants}</span>
-            <span className="text-[8.5px] font-semibold text-gray-400 uppercase tracking-wide">สมัคร</span>
+            <span className="text-[18px] font-black leading-none text-[#1A1A2E]">{job.applicants}</span>
+            <span className="text-[9.5px] font-semibold text-gray-400 uppercase tracking-wide">สมัคร</span>
           </button>
 
           <button
@@ -241,8 +241,8 @@ function JobListRow({
             title="ดู Shortlist"
             className="group flex flex-col items-center justify-center w-[52px] h-[44px] rounded-xl bg-emerald-50 hover:bg-emerald-100 cursor-pointer transition-all gap-0.5"
           >
-            <span className="text-[16px] font-black leading-none text-emerald-600">{job.shortlist ?? 0}</span>
-            <span className="text-[8.5px] font-semibold text-emerald-500/70 uppercase tracking-wide">list</span>
+            <span className="text-[18px] font-black leading-none text-emerald-600">{job.shortlist ?? 0}</span>
+            <span className="text-[9.5px] font-semibold text-emerald-500/70 uppercase tracking-wide">list</span>
           </button>
 
           <button
@@ -251,8 +251,8 @@ function JobListRow({
             title="ดูรายชื่อรับเข้าทำงาน"
             className="group flex flex-col items-center justify-center w-[52px] h-[44px] rounded-xl bg-[#F5F5F7] hover:bg-[#EBF8FF] cursor-pointer transition-all gap-0.5"
           >
-            <span className="text-[16px] font-black leading-none text-[#127EE3]">{job.hired ?? 0}</span>
-            <span className="text-[8.5px] font-semibold text-[#127EE3]/60 uppercase tracking-wide">รับเข้า</span>
+            <span className="text-[18px] font-black leading-none text-[#127EE3]">{job.hired ?? 0}</span>
+            <span className="text-[9.5px] font-semibold text-[#127EE3]/60 uppercase tracking-wide">รับเข้า</span>
           </button>
         </div>
 
@@ -386,9 +386,9 @@ export default function ManageJobsPage({ jobs, onJobStatusChange, onCreateJob, o
         {/* Page header */}
         <div className="flex items-center justify-between mb-6">
           <div>
-            <p className="text-[12px] font-bold text-[#0DC2FF] uppercase tracking-widest mb-0.5">Super Recruit</p>
-            <h1 className="text-[22px] font-bold text-[#1A1A2E]">จัดการประกาศงาน</h1>
-            <p className="text-[13px] text-gray-400 mt-0.5">
+            <p className="text-[14px] font-bold text-[#0DC2FF] uppercase tracking-widest mb-0.5">Super Recruit</p>
+            <h1 className="text-[24px] font-bold text-[#1A1A2E]">จัดการประกาศงาน</h1>
+            <p className="text-[15px] text-gray-400 mt-0.5">
               {totalOnline} ประกาศออนไลน์ · {scopeJobs.length} ทั้งหมด
               {selectedContract && (
                 <span className="ml-1.5 text-[#127EE3] font-medium">· {selectedContract.label}</span>
@@ -397,7 +397,7 @@ export default function ManageJobsPage({ jobs, onJobStatusChange, onCreateJob, o
           </div>
           <button
             onClick={onCreateJob}
-            className="flex items-center gap-2 px-5 py-2.5 bg-[#127EE3] text-white text-[14px] font-semibold rounded-xl hover:bg-[#0f6bc7] transition-colors shadow-md shadow-[#127EE3]/20"
+            className="flex items-center gap-2 px-5 py-2.5 bg-[#127EE3] text-white text-[16px] font-semibold rounded-xl hover:bg-[#0f6bc7] transition-colors shadow-md shadow-[#127EE3]/20"
           >
             <Plus className="w-4 h-4" />
             สร้างประกาศใหม่
@@ -409,7 +409,7 @@ export default function ManageJobsPage({ jobs, onJobStatusChange, onCreateJob, o
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4 text-gray-400" />
-              <span className="text-[13px] font-semibold text-gray-500">ภาพรวมการสรรหา</span>
+              <span className="text-[15px] font-semibold text-gray-500">ภาพรวมการสรรหา</span>
             </div>
             <div className="flex items-center gap-2">
               {/* Period dropdown */}
@@ -417,7 +417,7 @@ export default function ManageJobsPage({ jobs, onJobStatusChange, onCreateJob, o
                 <select
                   value={period}
                   onChange={(e) => handlePeriodChange(e.target.value)}
-                  className="appearance-none bg-[#F0F2F5] border border-transparent rounded-xl pl-3 pr-8 py-1.5 text-[12.5px] font-medium text-gray-600 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all cursor-pointer"
+                  className="appearance-none bg-[#F0F2F5] border border-transparent rounded-xl pl-3 pr-8 py-1.5 text-[14.5px] font-medium text-gray-600 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all cursor-pointer"
                 >
                   {PERIOD_OPTIONS.map((o) => (
                     <option key={o.key} value={o.key}>{o.label}</option>
@@ -432,7 +432,7 @@ export default function ManageJobsPage({ jobs, onJobStatusChange, onCreateJob, o
                 <select
                   value={contractFilter}
                   onChange={(e) => setContractFilter(e.target.value)}
-                  className={`appearance-none border rounded-xl pl-8 pr-8 py-1.5 text-[12.5px] font-medium focus:outline-none transition-all cursor-pointer ${
+                  className={`appearance-none border rounded-xl pl-8 pr-8 py-1.5 text-[14.5px] font-medium focus:outline-none transition-all cursor-pointer ${
                     contractFilter !== "all"
                       ? "bg-[#127EE3]/8 border-[#127EE3]/30 text-[#127EE3] focus:border-[#0DC2FF]"
                       : "bg-[#F0F2F5] border-transparent text-gray-600 focus:border-[#0DC2FF] focus:bg-white"
@@ -451,19 +451,19 @@ export default function ManageJobsPage({ jobs, onJobStatusChange, onCreateJob, o
           {/* Custom date range */}
           {showCustomDate && (
             <div className="flex items-center gap-2 mb-4 p-3 bg-[#F0F2F5] rounded-xl">
-              <span className="text-[12px] text-gray-500 font-medium">ตั้งแต่</span>
+              <span className="text-[14px] text-gray-500 font-medium">ตั้งแต่</span>
               <input
                 type="date"
                 value={customFrom}
                 onChange={(e) => setCustomFrom(e.target.value)}
-                className="px-3 py-1.5 text-[12.5px] bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0DC2FF] transition-all"
+                className="px-3 py-1.5 text-[14.5px] bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0DC2FF] transition-all"
               />
-              <span className="text-[12px] text-gray-400">—</span>
+              <span className="text-[14px] text-gray-400">—</span>
               <input
                 type="date"
                 value={customTo}
                 onChange={(e) => setCustomTo(e.target.value)}
-                className="px-3 py-1.5 text-[12.5px] bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0DC2FF] transition-all"
+                className="px-3 py-1.5 text-[14.5px] bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#0DC2FF] transition-all"
               />
               <button
                 onClick={() => { setPeriod("all"); setShowCustomDate(false); }}
@@ -482,10 +482,10 @@ export default function ManageJobsPage({ jobs, onJobStatusChange, onCreateJob, o
                   <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${s.color}`}>
                     {s.iconNode}
                   </div>
-                  <span className="text-[11.5px] text-gray-500 font-medium leading-tight">{s.label}</span>
+                  <span className="text-[13.5px] text-gray-500 font-medium leading-tight">{s.label}</span>
                 </div>
-                <p className="text-[28px] font-black text-[#1A1A2E] leading-none mb-1.5">{s.value}</p>
-                <p className="text-[11px] text-gray-400 font-medium">{s.note}</p>
+                <p className="text-[30px] font-black text-[#1A1A2E] leading-none mb-1.5">{s.value}</p>
+                <p className="text-[13px] text-gray-400 font-medium">{s.note}</p>
               </div>
             ))}
           </div>
@@ -500,7 +500,7 @@ export default function ManageJobsPage({ jobs, onJobStatusChange, onCreateJob, o
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="ค้นหาตำแหน่งงาน..."
-              className="w-full pl-9 pr-3 py-2 text-[13.5px] bg-[#F0F2F5] rounded-xl border border-transparent focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all placeholder:text-gray-400"
+              className="w-full pl-9 pr-3 py-2 text-[15.5px] bg-[#F0F2F5] rounded-xl border border-transparent focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all placeholder:text-gray-400"
             />
             {search && (
               <button onClick={() => setSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2">
@@ -516,7 +516,7 @@ export default function ManageJobsPage({ jobs, onJobStatusChange, onCreateJob, o
                 <button
                   key={opt.key}
                   onClick={() => setStatusFilter(opt.key)}
-                  className={`px-3 py-1.5 rounded-lg text-[12.5px] font-medium transition-all ${
+                  className={`px-3 py-1.5 rounded-lg text-[14.5px] font-medium transition-all ${
                     statusFilter === opt.key
                       ? "bg-white text-[#127EE3] shadow-sm font-semibold"
                       : "text-gray-500 hover:text-[#1A1A2E]"
@@ -524,7 +524,7 @@ export default function ManageJobsPage({ jobs, onJobStatusChange, onCreateJob, o
                 >
                   {opt.label}
                   {count > 0 && (
-                    <span className={`ml-1.5 text-[10.5px] font-bold ${statusFilter === opt.key ? "text-[#127EE3]" : "text-gray-400"}`}>
+                    <span className={`ml-1.5 text-[12px] font-bold ${statusFilter === opt.key ? "text-[#127EE3]" : "text-gray-400"}`}>
                       {count}
                     </span>
                   )}
@@ -538,7 +538,7 @@ export default function ManageJobsPage({ jobs, onJobStatusChange, onCreateJob, o
             <select
               value={channelFilter}
               onChange={(e) => setChannelFilter(e.target.value as typeof channelFilter)}
-              className="appearance-none bg-[#F0F2F5] border border-transparent rounded-xl pl-3 pr-8 py-2 text-[12.5px] font-medium text-gray-600 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all cursor-pointer"
+              className="appearance-none bg-[#F0F2F5] border border-transparent rounded-xl pl-3 pr-8 py-2 text-[14.5px] font-medium text-gray-600 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all cursor-pointer"
             >
               <option value="all">ทุกช่องทาง</option>
               <option value="online">ประกาศออนไลน์</option>
@@ -554,7 +554,7 @@ export default function ManageJobsPage({ jobs, onJobStatusChange, onCreateJob, o
             <select
               value={recruiterFilter}
               onChange={(e) => setRecruiterFilter(e.target.value)}
-              className={`appearance-none border rounded-xl pl-8 pr-8 py-2 text-[12.5px] font-medium focus:outline-none transition-all cursor-pointer ${
+              className={`appearance-none border rounded-xl pl-8 pr-8 py-2 text-[14.5px] font-medium focus:outline-none transition-all cursor-pointer ${
                 recruiterFilter !== "all"
                   ? "bg-[#127EE3]/8 border-[#127EE3]/30 text-[#127EE3] focus:border-[#0DC2FF]"
                   : "bg-[#F0F2F5] border-transparent text-gray-600 focus:border-[#0DC2FF] focus:bg-white"
@@ -569,7 +569,7 @@ export default function ManageJobsPage({ jobs, onJobStatusChange, onCreateJob, o
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5 text-[12.5px] text-gray-500">
+            <div className="flex items-center gap-1.5 text-[14.5px] text-gray-500">
               <ArrowUpDown className="w-3.5 h-3.5" />
               <span>เรียงตาม</span>
             </div>
@@ -577,7 +577,7 @@ export default function ManageJobsPage({ jobs, onJobStatusChange, onCreateJob, o
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-                className="appearance-none bg-[#F0F2F5] border border-transparent rounded-xl pl-3 pr-8 py-2 text-[12.5px] font-medium text-gray-600 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all cursor-pointer"
+                className="appearance-none bg-[#F0F2F5] border border-transparent rounded-xl pl-3 pr-8 py-2 text-[14.5px] font-medium text-gray-600 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all cursor-pointer"
               >
                 <option value="daysOnline">วันที่ประกาศ</option>
                 <option value="topPicks">Top Picks</option>
@@ -594,11 +594,11 @@ export default function ManageJobsPage({ jobs, onJobStatusChange, onCreateJob, o
             <div className="w-14 h-14 rounded-2xl bg-[#F0F2F5] flex items-center justify-center mb-3">
               <AlertCircle className="w-6 h-6 text-gray-300" />
             </div>
-            <p className="text-[15px] font-semibold text-gray-400 mb-1">ไม่พบประกาศงาน</p>
-            <p className="text-[13px] text-gray-400">ลองปรับ filter หรือสร้างประกาศใหม่</p>
+            <p className="text-[17px] font-semibold text-gray-400 mb-1">ไม่พบประกาศงาน</p>
+            <p className="text-[15px] text-gray-400">ลองปรับ filter หรือสร้างประกาศใหม่</p>
             <button
               onClick={onCreateJob}
-              className="mt-4 flex items-center gap-2 px-5 py-2.5 bg-[#127EE3] text-white text-[13.5px] font-semibold rounded-xl hover:bg-[#0f6bc7] transition-colors"
+              className="mt-4 flex items-center gap-2 px-5 py-2.5 bg-[#127EE3] text-white text-[15.5px] font-semibold rounded-xl hover:bg-[#0f6bc7] transition-colors"
             >
               <Plus className="w-4 h-4" />
               สร้างประกาศใหม่
@@ -609,9 +609,9 @@ export default function ManageJobsPage({ jobs, onJobStatusChange, onCreateJob, o
             {/* List header */}
             <div className="flex items-center gap-4 px-5 py-2.5 border-b border-gray-100 bg-[#F8FAFD]">
               <div className="flex-shrink-0 w-[90px]">
-                <span className="text-[10.5px] font-semibold text-gray-400 uppercase tracking-wider">สถานะ</span>
+                <span className="text-[12px] font-semibold text-gray-400 uppercase tracking-wider">สถานะ</span>
               </div>
-              <div className="flex-1 text-[10.5px] font-semibold text-gray-400 uppercase tracking-wider">ตำแหน่งงาน</div>
+              <div className="flex-1 text-[12px] font-semibold text-gray-400 uppercase tracking-wider">ตำแหน่งงาน</div>
               <div className="flex items-center gap-1.5 flex-shrink-0">
                 {[
                   { w: 52, icon: <Sparkles className="w-3 h-3 text-[#127EE3]" />, label: "Top Picks" },
@@ -621,7 +621,7 @@ export default function ManageJobsPage({ jobs, onJobStatusChange, onCreateJob, o
                 ].map((col) => (
                   <div key={col.label} style={{ width: col.w }} className="flex flex-col items-center justify-center gap-0.5">
                     {col.icon}
-                    <span className="text-[9px] font-semibold text-gray-400 uppercase tracking-wide">{col.label}</span>
+                    <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide">{col.label}</span>
                   </div>
                 ))}
               </div>

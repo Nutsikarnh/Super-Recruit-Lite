@@ -76,13 +76,13 @@ export default function WelcomeBanner({ onCreateJob, onSearchTalent }: WelcomeBa
       {/* Top row: greeting + CTA buttons */}
       <div className="flex items-start justify-between gap-6">
         <div className="flex flex-col gap-1">
-          <p className="text-[12.5px] text-gray-400 font-medium tracking-wide">
+          <p className="text-[14.5px] text-gray-400 font-medium tracking-wide">
             วันอาทิตย์, 20 เมษายน 2568
           </p>
-          <h1 className="text-[28px] font-semibold text-[#0F1724] leading-tight tracking-tight">
+          <h1 className="text-[30px] font-semibold text-[#0F1724] leading-tight tracking-tight">
             สวัสดี, คุณอลิสา
           </h1>
-          <p className="text-[14px] text-gray-500 mt-0.5">
+          <p className="text-[16px] text-gray-500 mt-0.5">
             วันนี้มีสัมภาษณ์ 3 คน
           </p>
         </div>
@@ -90,14 +90,14 @@ export default function WelcomeBanner({ onCreateJob, onSearchTalent }: WelcomeBa
         <div className="flex items-center gap-2.5 flex-shrink-0 pt-1">
           <button
             onClick={onCreateJob}
-            className="flex items-center gap-2 px-4 py-2.5 border border-gray-200 text-gray-600 hover:border-[#127EE3] hover:text-[#127EE3] text-[13.5px] font-medium rounded-xl transition-all bg-white"
+            className="flex items-center gap-2 px-4 py-2.5 border border-gray-200 text-gray-600 hover:border-[#127EE3] hover:text-[#127EE3] text-[15.5px] font-medium rounded-xl transition-all bg-white"
           >
             <Plus className="w-4 h-4" />
             สร้างประกาศงาน
           </button>
           <button
             onClick={onSearchTalent}
-            className="flex items-center gap-2 px-4 py-2.5 text-white text-[13.5px] font-semibold rounded-xl transition-all shadow-md shadow-[#127EE3]/20 hover:shadow-[#127EE3]/35 hover:opacity-95"
+            className="flex items-center gap-2 px-4 py-2.5 text-white text-[15.5px] font-semibold rounded-xl transition-all shadow-md shadow-[#127EE3]/20 hover:shadow-[#127EE3]/35 hover:opacity-95"
             style={{ background: "linear-gradient(135deg, #01BFF9 0%, #019EFC 100%)" }}
           >
             <Search className="w-4 h-4" />
@@ -129,12 +129,12 @@ export default function WelcomeBanner({ onCreateJob, onSearchTalent }: WelcomeBa
           {/* Text */}
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-0.5">
-              <span className="text-[12px] font-semibold" style={{ color: msg.accent }}>
+              <span className="text-[14px] font-semibold" style={{ color: msg.accent }}>
                 {msg.title}
               </span>
-              <span className="text-[11px] text-gray-400">{msg.date}</span>
+              <span className="text-[13px] text-gray-400">{msg.date}</span>
             </div>
-            <p className="text-[13px] text-gray-600 leading-snug line-clamp-1">{msg.text}</p>
+            <p className="text-[15px] text-gray-600 leading-snug line-clamp-1">{msg.text}</p>
           </div>
 
           {/* Navigation */}

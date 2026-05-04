@@ -32,7 +32,7 @@ function SectionCard({ title, subtitle, children }: { title:string; subtitle?:st
     <div className="bg-white rounded-2xl overflow-hidden">
       <div className="px-6 pt-6 pb-6">
         <p className="text-base font-medium text-[#1A1A2E]">{title}</p>
-        {subtitle && <p className="text-[12px] text-gray-400 mt-0.5">{subtitle}</p>}
+        {subtitle && <p className="text-[14px] text-gray-400 mt-0.5">{subtitle}</p>}
       </div>
       <div className="px-6 pb-6">{children}</div>
     </div>
@@ -42,21 +42,21 @@ function SectionCard({ title, subtitle, children }: { title:string; subtitle?:st
 function Field({ label, hint, children, full }: { label:string; hint?:string; children:React.ReactNode; full?:boolean }) {
   return (
     <div className={`space-y-1.5 ${full ? "col-span-2" : ""}`}>
-      <label className="block text-[12px] font-bold text-gray-500 uppercase tracking-wide">{label}</label>
+      <label className="block text-[14px] font-bold text-gray-500 uppercase tracking-wide">{label}</label>
       {children}
-      {hint && <p className="text-[11px] text-gray-400">{hint}</p>}
+      {hint && <p className="text-[13px] text-gray-400">{hint}</p>}
     </div>
   );
 }
 
-const inputCls = "w-full bg-[#F8F9FA] border border-gray-200 rounded-xl px-3.5 py-2.5 text-[13.5px] text-[#1A1A2E] placeholder-gray-400 focus:outline-none focus:border-[#127EE3] focus:bg-white transition-all";
+const inputCls = "w-full bg-[#F8F9FA] border border-gray-200 rounded-xl px-3.5 py-2.5 text-[15.5px] text-[#1A1A2E] placeholder-gray-400 focus:outline-none focus:border-[#127EE3] focus:bg-white transition-all";
 
 function Inp({ value, onChange, placeholder, prefix, type="text" }: { value:string; onChange:(v:string)=>void; placeholder?:string; prefix?:React.ReactNode; type?:string }) {
   return (
     <div className={`flex items-center gap-2.5 bg-[#F8F9FA] border border-gray-200 rounded-xl px-3.5 py-2.5 focus-within:border-[#127EE3] focus-within:bg-white transition-all ${type==="textarea" ? "items-start" : ""}`}>
       {prefix && <span className="text-gray-400 flex-shrink-0 mt-px">{prefix}</span>}
       <input value={value} type={type} onChange={e=>onChange(e.target.value)} placeholder={placeholder}
-        className="flex-1 bg-transparent text-[13.5px] text-[#1A1A2E] placeholder-gray-400 outline-none min-w-0" />
+        className="flex-1 bg-transparent text-[15.5px] text-[#1A1A2E] placeholder-gray-400 outline-none min-w-0" />
     </div>
   );
 }
@@ -77,8 +77,8 @@ function Toggle({ checked, onChange, label, description }: { checked:boolean; on
   return (
     <div className="flex items-center justify-between gap-4 py-3.5 border-b border-gray-50 last:border-0">
       <div className="flex-1">
-        <p className="text-[13.5px] font-medium text-[#1A1A2E]">{label}</p>
-        {description && <p className="text-[12px] text-gray-400 mt-0.5">{description}</p>}
+        <p className="text-[15.5px] font-medium text-[#1A1A2E]">{label}</p>
+        {description && <p className="text-[14px] text-gray-400 mt-0.5">{description}</p>}
       </div>
       <button onClick={()=>onChange(!checked)}
         className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${checked?"bg-[#127EE3]":"bg-gray-200"}`}>
@@ -94,9 +94,9 @@ function SaveBanner({ dirty, onSave }: { dirty:boolean; onSave:()=>void }) {
     <div className="flex items-center justify-between gap-4 px-4 py-2.5 bg-[#FFF8F0] border border-amber-100 rounded-2xl">
       <div className="flex items-center gap-2">
         <AlertCircle size={14} className="text-amber-500" />
-        <span className="text-[13px] font-medium text-amber-700">มีการเปลี่ยนแปลงที่ยังไม่ได้บันทึก</span>
+        <span className="text-[15px] font-medium text-amber-700">มีการเปลี่ยนแปลงที่ยังไม่ได้บันทึก</span>
       </div>
-      <button onClick={onSave} className="flex items-center gap-1.5 px-4 py-1.5 bg-[#127EE3] text-white text-[12.5px] font-bold rounded-xl hover:bg-[#0e6bc7] transition-colors">
+      <button onClick={onSave} className="flex items-center gap-1.5 px-4 py-1.5 bg-[#127EE3] text-white text-[14.5px] font-bold rounded-xl hover:bg-[#0e6bc7] transition-colors">
         <Save size={13} /> บันทึก
       </button>
     </div>
@@ -132,7 +132,7 @@ function BannerGallery({ slots, onChange }: { slots: BannerSlot[]; onChange: (s:
               <div className="relative aspect-[16/9] rounded-xl overflow-hidden border border-gray-200">
                 <img src={slot.url} alt="" className="w-full h-full object-cover" />
                 {i === 0 && (
-                  <div className="absolute top-1.5 left-1.5 bg-[#127EE3] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-md flex items-center gap-0.5">
+                  <div className="absolute top-1.5 left-1.5 bg-[#127EE3] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-md flex items-center gap-0.5">
                     <Star size={9} className="fill-white" />
                     แบนเนอร์หลัก
                   </div>
@@ -152,13 +152,13 @@ function BannerGallery({ slots, onChange }: { slots: BannerSlot[]; onChange: (s:
                 className="w-full aspect-[16/9] rounded-xl border-2 border-dashed border-gray-200 hover:border-[#0DC2FF] hover:bg-[#0DC2FF]/5 transition-all flex flex-col items-center justify-center gap-1 text-gray-300 hover:text-[#0DC2FF]"
               >
                 <Plus size={16} />
-                {i === 0 && <span className="text-[9px] font-semibold">แบนเนอร์หลัก</span>}
+                {i === 0 && <span className="text-[10px] font-semibold">แบนเนอร์หลัก</span>}
               </button>
             )}
           </div>
         ))}
       </div>
-      <p className="text-[11px] text-gray-400 mt-2">
+      <p className="text-[13px] text-gray-400 mt-2">
         รูปแรกจะเป็นแบนเนอร์หลัก · รองรับสูงสุด 3 รูป · แนะนำอัตราส่วน 16:9
       </p>
     </div>
@@ -191,12 +191,12 @@ function EditableSection({
       <div className="px-6 pt-6 pb-6 flex items-center justify-between">
         <div>
           <p className="text-base font-medium text-[#1A1A2E]">{title}</p>
-          {subtitle && <p className="text-[12px] text-gray-400 mt-0.5">{subtitle}</p>}
+          {subtitle && <p className="text-[14px] text-gray-400 mt-0.5">{subtitle}</p>}
         </div>
         {!editing && (
           <button
             onClick={() => setEditing(true)}
-            className="text-[13px] font-semibold text-[#127EE3] hover:text-[#0f6bc7] transition-colors"
+            className="text-[15px] font-semibold text-[#127EE3] hover:text-[#0f6bc7] transition-colors"
           >
             แก้ไข
           </button>
@@ -209,13 +209,13 @@ function EditableSection({
             <div className="flex items-center justify-end gap-2 mt-5 pt-4 border-t border-gray-50">
               <button
                 onClick={handleCancel}
-                className="px-4 py-2 text-[13px] font-semibold text-gray-500 bg-white border border-gray-200 rounded-xl hover:border-gray-300 transition-colors"
+                className="px-4 py-2 text-[15px] font-semibold text-gray-500 bg-white border border-gray-200 rounded-xl hover:border-gray-300 transition-colors"
               >
                 ยกเลิก
               </button>
               <button
                 onClick={handleSave}
-                className="px-5 py-2 text-[13px] font-semibold text-white bg-[#127EE3] rounded-xl hover:bg-[#0f6bc7] transition-colors"
+                className="px-5 py-2 text-[15px] font-semibold text-white bg-[#127EE3] rounded-xl hover:bg-[#0f6bc7] transition-colors"
               >
                 บันทึก
               </button>
@@ -257,8 +257,8 @@ function MapPreview({ url }: { url: string }) {
         </div>
       </div>
       <div className="flex-1 px-4 py-3 min-w-0">
-        <p className="text-[13.5px] font-semibold text-[#1A1A2E] mb-1">แผนที่บริษัท</p>
-        <p className="text-[12px] text-gray-400 group-hover:text-[#127EE3] transition-colors flex items-center gap-1">
+        <p className="text-[15.5px] font-semibold text-[#1A1A2E] mb-1">แผนที่บริษัท</p>
+        <p className="text-[14px] text-gray-400 group-hover:text-[#127EE3] transition-colors flex items-center gap-1">
           <LinkIcon size={11} />
           ดูตำแหน่งบน Google Maps
         </p>
@@ -270,8 +270,8 @@ function MapPreview({ url }: { url: string }) {
 function ReadRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col gap-0.5">
-      <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wide">{label}</span>
-      <span className="text-[13.5px] text-[#1A1A2E]">{value || <span className="text-gray-300">—</span>}</span>
+      <span className="text-[13px] font-bold text-gray-400 uppercase tracking-wide">{label}</span>
+      <span className="text-[15.5px] text-[#1A1A2E]">{value || <span className="text-gray-300">—</span>}</span>
     </div>
   );
 }
@@ -341,7 +341,7 @@ function CompanyTab() {
       {/* Logo & banner — always editable */}
       <SectionCard title="โลโก้และภาพแบนเนอร์" subtitle="ภาพที่แสดงในประกาศงานและโปรไฟล์องค์กร">
         <div className="mb-5">
-          <p className="text-[12px] font-bold text-gray-500 uppercase tracking-wide mb-2">ภาพแบนเนอร์</p>
+          <p className="text-[14px] font-bold text-gray-500 uppercase tracking-wide mb-2">ภาพแบนเนอร์</p>
           <BannerGallery slots={banners} onChange={setBanners} />
         </div>
         <div className="flex items-start gap-5">
@@ -349,7 +349,7 @@ function CompanyTab() {
             <div className="w-20 h-20 rounded-2xl overflow-hidden bg-[#0F1724] flex items-center justify-center shadow-lg">
               {logoUrl
                 ? <img src={logoUrl} alt="logo" className="w-full h-full object-cover" />
-                : <span className="text-white text-[18px] font-bold tracking-tight">HiB</span>
+                : <span className="text-white text-[20px] font-bold tracking-tight">HiB</span>
               }
             </div>
             <button onClick={()=>logoFileRef.current?.click()} className="absolute -bottom-1.5 -right-1.5 w-7 h-7 bg-white border border-gray-200 rounded-xl flex items-center justify-center shadow-sm hover:bg-gray-50 transition-colors">
@@ -368,14 +368,14 @@ function CompanyTab() {
             />
           </div>
           <div>
-            <p className="text-[13.5px] font-semibold text-[#1A1A2E]">โลโก้บริษัท</p>
-            <p className="text-[12px] text-gray-400 mt-0.5 mb-3">PNG, JPG หรือ SVG ขนาดไม่เกิน 2MB · แนะนำ 400×400px</p>
+            <p className="text-[15.5px] font-semibold text-[#1A1A2E]">โลโก้บริษัท</p>
+            <p className="text-[14px] text-gray-400 mt-0.5 mb-3">PNG, JPG หรือ SVG ขนาดไม่เกิน 2MB · แนะนำ 400×400px</p>
             <div className="flex items-center gap-2">
-              <button onClick={()=>logoFileRef.current?.click()} className="flex items-center gap-1.5 px-3.5 py-2 bg-[#F0F8FF] border border-[#0DC2FF]/30 text-[#127EE3] text-[12.5px] font-semibold rounded-xl hover:bg-[#E0F0FF] transition-colors">
+              <button onClick={()=>logoFileRef.current?.click()} className="flex items-center gap-1.5 px-3.5 py-2 bg-[#F0F8FF] border border-[#0DC2FF]/30 text-[#127EE3] text-[14.5px] font-semibold rounded-xl hover:bg-[#E0F0FF] transition-colors">
                 <Upload size={13} /> อัปโหลดโลโก้ใหม่
               </button>
               {logoUrl && (
-                <button onClick={()=>setLogoUrl(null)} className="px-3.5 py-2 text-[12.5px] font-semibold text-red-400 hover:text-red-500 transition-colors">
+                <button onClick={()=>setLogoUrl(null)} className="px-3.5 py-2 text-[14.5px] font-semibold text-red-400 hover:text-red-500 transition-colors">
                   ลบโลโก้
                 </button>
               )}
@@ -419,7 +419,7 @@ function CompanyTab() {
       <SectionCard title="เกี่ยวกับองค์กร" subtitle="แสดงในหน้าโปรไฟล์บริษัทของผู้หางาน">
         {/* Set selector */}
         <div className="mb-4">
-          <label className="block text-[12px] font-semibold text-gray-500 mb-1.5">ชุดเกี่ยวกับองค์กร</label>
+          <label className="block text-[14px] font-semibold text-gray-500 mb-1.5">ชุดเกี่ยวกับองค์กร</label>
           <div className="relative">
             <select
               value={orgAboutSetId}
@@ -438,7 +438,7 @@ function CompanyTab() {
                   setOrgAboutExpanded(false);
                 }
               }}
-              className="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-[13px] text-[#1A1A2E] focus:outline-none focus:border-[#0DC2FF] transition-all appearance-none cursor-pointer pr-8 shadow-sm"
+              className="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-[15px] text-[#1A1A2E] focus:outline-none focus:border-[#0DC2FF] transition-all appearance-none cursor-pointer pr-8 shadow-sm"
             >
               {orgAboutSets.map((s) => (
                 <option key={s.id} value={s.id}>{s.label}</option>
@@ -451,21 +451,21 @@ function CompanyTab() {
         {/* Content box */}
         <div className="rounded-lg border border-gray-200 bg-gray-50 overflow-hidden">
           <div className="flex items-center justify-between px-3 py-2 border-b border-gray-200">
-            <span className="text-[12px] font-semibold text-gray-500">เนื้อหา</span>
+            <span className="text-[14px] font-semibold text-gray-500">เนื้อหา</span>
             <button
               onClick={() => { setOrgAboutDraftText(orgAboutDesc); setShowEditOrgAboutModal(true); }}
-              className="text-[12px] font-medium text-[#127EE3] hover:text-[#0e6bc7] transition-colors"
+              className="text-[14px] font-medium text-[#127EE3] hover:text-[#0e6bc7] transition-colors"
             >
               แก้ไข
             </button>
           </div>
           <div className="px-3 py-3">
-            <p className={`text-[13px] text-[#374151] leading-relaxed whitespace-pre-line ${!orgAboutExpanded ? "line-clamp-3" : ""}`}>
+            <p className={`text-[15px] text-[#374151] leading-relaxed whitespace-pre-line ${!orgAboutExpanded ? "line-clamp-3" : ""}`}>
               {orgAboutDesc}
             </p>
             <button
               onClick={() => setOrgAboutExpanded((v) => !v)}
-              className="mt-2 text-[12px] font-medium text-gray-500 hover:text-gray-700 transition-colors"
+              className="mt-2 text-[14px] font-medium text-gray-500 hover:text-gray-700 transition-colors"
             >
               {orgAboutExpanded ? "ย่อกลับ" : "ดูเพิ่มเติม"}
             </button>
@@ -476,20 +476,20 @@ function CompanyTab() {
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4">
               <div className="px-6 pt-6 pb-2">
-                <h2 className="text-[16px] font-bold text-[#1A1A2E] mb-4">แก้ไขเกี่ยวกับองค์กร</h2>
-                <label className="block text-[12px] font-semibold text-gray-500 mb-1.5">เกี่ยวกับองค์กร</label>
+                <h2 className="text-[18px] font-bold text-[#1A1A2E] mb-4">แก้ไขเกี่ยวกับองค์กร</h2>
+                <label className="block text-[14px] font-semibold text-gray-500 mb-1.5">เกี่ยวกับองค์กร</label>
                 <textarea
                   autoFocus
                   rows={7}
                   value={orgAboutDraftText}
                   onChange={(e) => setOrgAboutDraftText(e.target.value)}
-                  className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-3 py-2.5 text-[13px] text-[#1A1A2E] focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all resize-none"
+                  className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-3 py-2.5 text-[15px] text-[#1A1A2E] focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all resize-none"
                 />
               </div>
               <div className="flex gap-2 px-6 py-5">
                 <button
                   onClick={() => setShowEditOrgAboutModal(false)}
-                  className="flex-1 border border-gray-200 text-gray-500 text-[13px] font-semibold py-2.5 rounded-xl hover:bg-gray-50 transition-colors"
+                  className="flex-1 border border-gray-200 text-gray-500 text-[15px] font-semibold py-2.5 rounded-xl hover:bg-gray-50 transition-colors"
                 >
                   ยกเลิก
                 </button>
@@ -499,7 +499,7 @@ function CompanyTab() {
                     setOrgAboutSets((prev) => prev.map((s) => s.id === orgAboutSetId ? { ...s, description: orgAboutDraftText } : s));
                     setShowEditOrgAboutModal(false);
                   }}
-                  className="flex-1 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[13px] font-semibold py-2.5 rounded-xl hover:opacity-90 transition-opacity"
+                  className="flex-1 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[15px] font-semibold py-2.5 rounded-xl hover:opacity-90 transition-opacity"
                 >
                   บันทึก
                 </button>
@@ -511,32 +511,32 @@ function CompanyTab() {
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4">
               <div className="px-6 pt-6 pb-2 space-y-4">
-                <h2 className="text-[16px] font-bold text-[#1A1A2E]">สร้างชุดเกี่ยวกับองค์กร</h2>
+                <h2 className="text-[18px] font-bold text-[#1A1A2E]">สร้างชุดเกี่ยวกับองค์กร</h2>
                 <div>
-                  <label className="block text-[12px] font-semibold text-gray-500 mb-1.5">ชื่อ Template</label>
+                  <label className="block text-[14px] font-semibold text-gray-500 mb-1.5">ชื่อ Template</label>
                   <input
                     autoFocus
                     type="text"
                     value={newOrgAboutSetName}
                     onChange={(e) => setNewOrgAboutSetName(e.target.value)}
                     placeholder="เช่น TechVibe Solutions - Tech Hiring"
-                    className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-3 py-2.5 text-[13px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all"
+                    className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-3 py-2.5 text-[15px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-[12px] font-semibold text-gray-500 mb-1.5">เกี่ยวกับองค์กร</label>
+                  <label className="block text-[14px] font-semibold text-gray-500 mb-1.5">เกี่ยวกับองค์กร</label>
                   <textarea
                     rows={5}
                     value={newOrgAboutSetDesc}
                     onChange={(e) => setNewOrgAboutSetDesc(e.target.value)}
-                    className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-3 py-2.5 text-[13px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all resize-none"
+                    className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-3 py-2.5 text-[15px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all resize-none"
                   />
                 </div>
               </div>
               <div className="flex gap-2 px-6 py-5">
                 <button
                   onClick={() => setShowAddOrgAboutSetModal(false)}
-                  className="flex-1 border border-gray-200 text-gray-500 text-[13px] font-semibold py-2.5 rounded-xl hover:bg-gray-50 transition-colors"
+                  className="flex-1 border border-gray-200 text-gray-500 text-[15px] font-semibold py-2.5 rounded-xl hover:bg-gray-50 transition-colors"
                 >
                   ยกเลิก
                 </button>
@@ -554,7 +554,7 @@ function CompanyTab() {
                     setNewOrgAboutSetDesc("");
                   }}
                   disabled={!newOrgAboutSetName.trim()}
-                  className="flex-1 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[13px] font-semibold py-2.5 rounded-xl hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
+                  className="flex-1 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[15px] font-semibold py-2.5 rounded-xl hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   บันทึก
                 </button>
@@ -742,16 +742,16 @@ function PermissionModal({ mode, initial, onSave, onCancel }: PermModalProps) {
     });
   };
 
-  const fieldCls = "w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-[13px] text-[#1A1A2E] placeholder-gray-400 focus:outline-none focus:border-[#127EE3] focus:bg-white transition-all";
+  const fieldCls = "w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-[15px] text-[#1A1A2E] placeholder-gray-400 focus:outline-none focus:border-[#127EE3] focus:bg-white transition-all";
   const selectCls = `${fieldCls} appearance-none cursor-pointer pr-8`;
-  const labelCls = "block text-[12.5px] font-semibold text-gray-600 mb-1.5";
+  const labelCls = "block text-[14.5px] font-semibold text-gray-600 mb-1.5";
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-[540px] flex flex-col max-h-[92vh]">
         {/* Header */}
         <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-gray-100 flex-shrink-0">
-          <h2 className="text-[16px] font-semibold text-[#1A1A2E]">
+          <h2 className="text-[18px] font-semibold text-[#1A1A2E]">
             {mode === "invite" ? "เชิญสมาชิกใหม่" : "แก้ไขข้อมูลและสิทธิ์ผู้ใช้งาน"}
           </h2>
           <button onClick={onCancel} className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors flex-shrink-0 ml-4">
@@ -765,7 +765,7 @@ function PermissionModal({ mode, initial, onSave, onCancel }: PermModalProps) {
           {mode === "edit" && (
             <>
               <div>
-                <p className="text-[13px] font-bold text-[#1A1A2E] mb-3">User Information</p>
+                <p className="text-[15px] font-bold text-[#1A1A2E] mb-3">User Information</p>
                 <div className="space-y-3">
                   <div className="grid grid-cols-2 gap-3">
                     <div>
@@ -832,7 +832,7 @@ function PermissionModal({ mode, initial, onSave, onCancel }: PermModalProps) {
                 <Mail size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
                 <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="user@example.com" className={`${fieldCls} pl-9`} />
               </div>
-              <p className="mt-2 text-[12px] text-gray-400 leading-relaxed">
+              <p className="mt-2 text-[14px] text-gray-400 leading-relaxed">
                 ผู้ใช้งานจะได้รับอีเมลเชิญ และสามารถกรอกข้อมูลส่วนตัวเพิ่มเติมได้ภายหลัง
               </p>
             </div>
@@ -840,7 +840,7 @@ function PermissionModal({ mode, initial, onSave, onCancel }: PermModalProps) {
 
           {/* ── Permission Settings ── */}
           <div>
-            {mode === "edit" && <p className="text-[13px] font-bold text-[#1A1A2E] mb-3">Permission Settings</p>}
+            {mode === "edit" && <p className="text-[15px] font-bold text-[#1A1A2E] mb-3">Permission Settings</p>}
 
             {/* Role */}
             <div className="mb-4">
@@ -848,7 +848,7 @@ function PermissionModal({ mode, initial, onSave, onCancel }: PermModalProps) {
               <div className="flex gap-3">
                 {(["admin","user"] as const).map(r => (
                   <button key={r} onClick={() => setRole(r)}
-                    className={`flex-1 py-2.5 rounded-xl border text-[13px] font-semibold transition-all ${
+                    className={`flex-1 py-2.5 rounded-xl border text-[15px] font-semibold transition-all ${
                       role === r ? "border-[#127EE3] bg-[#EFF6FF] text-[#127EE3]" : "border-gray-200 bg-white text-gray-500 hover:border-gray-300"
                     }`}>
                     {r === "admin" ? "Admin" : "User"}
@@ -856,7 +856,7 @@ function PermissionModal({ mode, initial, onSave, onCancel }: PermModalProps) {
                 ))}
               </div>
               {role === "admin" && (
-                <p className="mt-2 text-[12px] text-gray-400 flex items-center gap-1.5">
+                <p className="mt-2 text-[14px] text-gray-400 flex items-center gap-1.5">
                   <Check size={12} className="text-emerald-500" />
                   Admin มีสิทธิ์เข้าถึงทุกฟังก์ชันโดยอัตโนมัติ
                 </p>
@@ -866,10 +866,10 @@ function PermissionModal({ mode, initial, onSave, onCancel }: PermModalProps) {
             {/* Module Access — User only */}
             {role === "user" && (
               <div>
-                <label className="block text-[12.5px] font-semibold text-gray-600 mb-1">
+                <label className="block text-[14.5px] font-semibold text-gray-600 mb-1">
                   Module Access <span className="font-normal text-gray-400">— User</span>
                 </label>
-                <p className="text-[12px] font-semibold text-gray-500 mb-2.5">Accessible Function</p>
+                <p className="text-[14px] font-semibold text-gray-500 mb-2.5">Accessible Function</p>
                 <div className="space-y-3">
                   {MODULE_LIST.map(({ key, label }) => (
                     <div key={key}>
@@ -880,7 +880,7 @@ function PermissionModal({ mode, initial, onSave, onCancel }: PermModalProps) {
                           }`}>
                           {perms[key] && <Check size={11} className="text-white" />}
                         </div>
-                        <span className="text-[13.5px] text-[#1A1A2E]">{label}</span>
+                        <span className="text-[15.5px] text-[#1A1A2E]">{label}</span>
                       </label>
                       {key === "resume" && perms.resume && (
                         <div className="ml-8 mt-2.5 space-y-2">
@@ -892,7 +892,7 @@ function PermissionModal({ mode, initial, onSave, onCancel }: PermModalProps) {
                                 }`}>
                                 {perms.resumeScope === scope && <div className="w-2 h-2 rounded-full bg-[#127EE3]" />}
                               </div>
-                              <span className="text-[13px] text-gray-600">
+                              <span className="text-[15px] text-gray-600">
                                 {scope === "all" ? "All positions' resumes" : "Some positions' resumes"}
                               </span>
                             </label>
@@ -900,7 +900,7 @@ function PermissionModal({ mode, initial, onSave, onCancel }: PermModalProps) {
                           {perms.resumeScope === "some" && (
                             <div className="relative mt-1.5">
                               <select value={perms.resumePositions} onChange={e => setPerms(p => ({ ...p, resumePositions: e.target.value }))}
-                                className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-[12.5px] text-[#1A1A2E] focus:outline-none focus:border-[#127EE3] appearance-none cursor-pointer pr-8 transition-all">
+                                className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-[14.5px] text-[#1A1A2E] focus:outline-none focus:border-[#127EE3] appearance-none cursor-pointer pr-8 transition-all">
                                 <option value="">-- Please Select --</option>
                                 <option value="frontend">Frontend Developer</option>
                                 <option value="backend">Backend Developer</option>
@@ -921,14 +921,14 @@ function PermissionModal({ mode, initial, onSave, onCancel }: PermModalProps) {
             {/* Admin summary */}
             {role === "admin" && (
               <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
-                <p className="text-[12.5px] font-semibold text-gray-500 mb-2">สิทธิ์ที่ได้รับ</p>
+                <p className="text-[14.5px] font-semibold text-gray-500 mb-2">สิทธิ์ที่ได้รับ</p>
                 <div className="flex flex-wrap gap-1.5">
                   {MODULE_LIST.map(({ label }) => (
-                    <span key={label} className="flex items-center gap-1 px-2.5 py-1 bg-[#EFF6FF] rounded-lg text-[11.5px] font-semibold text-[#127EE3]">
+                    <span key={label} className="flex items-center gap-1 px-2.5 py-1 bg-[#EFF6FF] rounded-lg text-[13.5px] font-semibold text-[#127EE3]">
                       <Check size={10} /> {label}
                     </span>
                   ))}
-                  <span className="flex items-center gap-1 px-2.5 py-1 bg-[#EFF6FF] rounded-lg text-[11.5px] font-semibold text-[#127EE3]">
+                  <span className="flex items-center gap-1 px-2.5 py-1 bg-[#EFF6FF] rounded-lg text-[13.5px] font-semibold text-[#127EE3]">
                     <Check size={10} /> User Management
                   </span>
                 </div>
@@ -939,11 +939,11 @@ function PermissionModal({ mode, initial, onSave, onCancel }: PermModalProps) {
 
         {/* Footer */}
         <div className="flex gap-3 px-6 py-4 border-t border-gray-100 bg-gray-50/50 flex-shrink-0">
-          <button onClick={onCancel} className="flex-1 py-2.5 rounded-xl border border-gray-200 text-[13px] font-semibold text-gray-600 bg-white hover:bg-gray-50 transition-colors">
+          <button onClick={onCancel} className="flex-1 py-2.5 rounded-xl border border-gray-200 text-[15px] font-semibold text-gray-600 bg-white hover:bg-gray-50 transition-colors">
             Cancel
           </button>
           <button onClick={handleSave} disabled={!canSave}
-            className={`flex-1 py-2.5 rounded-xl text-[13px] font-semibold text-white transition-all ${
+            className={`flex-1 py-2.5 rounded-xl text-[15px] font-semibold text-white transition-all ${
               canSave ? "bg-gradient-to-r from-[#01BFF9] to-[#019EFC] hover:opacity-90 shadow-sm" : "bg-gray-200 text-gray-400 cursor-not-allowed"
             }`}>
             {mode === "invite" ? "ส่งคำเชิญ" : "บันทึก"}
@@ -964,15 +964,15 @@ function ConfirmDeleteModal({ title, message, confirmLabel, onConfirm, onCancel 
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm px-4">
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm">
         <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
-          <p className="text-[15px] font-bold text-[#1A1A2E]">{title}</p>
+          <p className="text-[17px] font-bold text-[#1A1A2E]">{title}</p>
           <button onClick={onCancel} className="p-1.5 rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-all"><X size={16} /></button>
         </div>
         <div className="px-6 py-5">
-          <p className="text-[13.5px] text-gray-600 leading-relaxed">{message}</p>
+          <p className="text-[15.5px] text-gray-600 leading-relaxed">{message}</p>
         </div>
         <div className="flex gap-3 px-6 py-4 border-t border-gray-100">
-          <button onClick={onCancel} className="flex-1 py-2.5 rounded-xl border border-gray-200 text-[13px] font-semibold text-gray-600 hover:bg-gray-50 transition-colors">ยกเลิก</button>
-          <button onClick={onConfirm} className="flex-1 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white text-[13px] font-semibold transition-colors">{confirmLabel}</button>
+          <button onClick={onCancel} className="flex-1 py-2.5 rounded-xl border border-gray-200 text-[15px] font-semibold text-gray-600 hover:bg-gray-50 transition-colors">ยกเลิก</button>
+          <button onClick={onConfirm} className="flex-1 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white text-[15px] font-semibold transition-colors">{confirmLabel}</button>
         </div>
       </div>
     </div>
@@ -1041,8 +1041,8 @@ function TeamTab() {
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
         {/* Header */}
         <div className="px-6 pt-5 pb-4 border-b border-gray-100">
-          <h3 className="text-[16px] font-semibold text-[#1A1A2E]">สมาชิกในทีม</h3>
-          <p className="text-[13px] text-gray-400 mt-0.5">ตั้งค่าบทบาทและจัดการสิทธิ์การใช้งานของทีมได้ง่าย ๆ</p>
+          <h3 className="text-[18px] font-semibold text-[#1A1A2E]">สมาชิกในทีม</h3>
+          <p className="text-[15px] text-gray-400 mt-0.5">ตั้งค่าบทบาทและจัดการสิทธิ์การใช้งานของทีมได้ง่าย ๆ</p>
         </div>
 
         {/* Search + CTA */}
@@ -1053,12 +1053,12 @@ function TeamTab() {
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="ค้นหาชื่อหรืออีเมลสมาชิก..."
-              className="flex-1 text-[13px] outline-none bg-transparent placeholder-gray-400 text-[#1A1A2E]"
+              className="flex-1 text-[15px] outline-none bg-transparent placeholder-gray-400 text-[#1A1A2E]"
             />
           </div>
           <button
             onClick={() => setModal({ mode: "invite" })}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[13px] font-semibold hover:opacity-90 transition-opacity flex-shrink-0 shadow-sm"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[15px] font-semibold hover:opacity-90 transition-opacity flex-shrink-0 shadow-sm"
           >
             <Plus size={14} /> เชิญสมาชิกใหม่
           </button>
@@ -1069,11 +1069,11 @@ function TeamTab() {
           <table className="w-full">
             <thead>
               <tr className="bg-gray-50 border-b border-gray-100">
-                <th className="text-left px-6 py-3 text-[11.5px] font-semibold text-gray-500 uppercase tracking-wide">ผู้ใช้งาน</th>
-                <th className="text-left px-4 py-3 text-[11.5px] font-semibold text-gray-500 uppercase tracking-wide">สถานะ</th>
-                <th className="text-left px-4 py-3 text-[11.5px] font-semibold text-gray-500 uppercase tracking-wide">สิทธิ์การใช้งาน</th>
-                <th className="text-left px-4 py-3 text-[11.5px] font-semibold text-gray-500 uppercase tracking-wide">ใช้งานล่าสุด</th>
-                <th className="text-center px-4 py-3 text-[11.5px] font-semibold text-gray-500 uppercase tracking-wide">การจัดการ</th>
+                <th className="text-left px-6 py-3 text-[13.5px] font-semibold text-gray-500 uppercase tracking-wide">ผู้ใช้งาน</th>
+                <th className="text-left px-4 py-3 text-[13.5px] font-semibold text-gray-500 uppercase tracking-wide">สถานะ</th>
+                <th className="text-left px-4 py-3 text-[13.5px] font-semibold text-gray-500 uppercase tracking-wide">สิทธิ์การใช้งาน</th>
+                <th className="text-left px-4 py-3 text-[13.5px] font-semibold text-gray-500 uppercase tracking-wide">ใช้งานล่าสุด</th>
+                <th className="text-center px-4 py-3 text-[13.5px] font-semibold text-gray-500 uppercase tracking-wide">การจัดการ</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
@@ -1082,19 +1082,19 @@ function TeamTab() {
                   {/* ผู้ใช้งาน */}
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white text-[13px] font-bold flex-shrink-0" style={{ background: m.color }}>
+                      <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white text-[15px] font-bold flex-shrink-0" style={{ background: m.color }}>
                         {m.av}
                       </div>
                       <div>
-                        <p className="text-[13.5px] font-semibold text-[#1A1A2E]">{m.name}</p>
-                        <p className="text-[12px] text-gray-400">{m.email}</p>
+                        <p className="text-[15.5px] font-semibold text-[#1A1A2E]">{m.name}</p>
+                        <p className="text-[14px] text-gray-400">{m.email}</p>
                       </div>
                     </div>
                   </td>
                   {/* สถานะ */}
                   <td className="px-4 py-4">
                     <span
-                      className="inline-flex px-2.5 py-1 rounded-lg text-[11.5px] font-bold"
+                      className="inline-flex px-2.5 py-1 rounded-lg text-[13.5px] font-bold"
                       style={{ color: ROLE_META_V2[m.role].color, background: ROLE_META_V2[m.role].bg }}
                     >
                       {ROLE_META_V2[m.role].label}
@@ -1102,11 +1102,11 @@ function TeamTab() {
                   </td>
                   {/* สิทธิ์ */}
                   <td className="px-4 py-4">
-                    <span className="text-[13px] text-gray-600">{permsToRights(m.role, m.perms)}</span>
+                    <span className="text-[15px] text-gray-600">{permsToRights(m.role, m.perms)}</span>
                   </td>
                   {/* ใช้งานล่าสุด */}
                   <td className="px-4 py-4">
-                    <span className="text-[13px] text-gray-500">{m.last}</span>
+                    <span className="text-[15px] text-gray-500">{m.last}</span>
                   </td>
                   {/* การจัดการ */}
                   <td className="px-4 py-4">
@@ -1131,7 +1131,7 @@ function TeamTab() {
               ))}
               {filtered.length === 0 && (
                 <tr>
-                  <td colSpan={5} className="px-6 py-10 text-center text-[13px] text-gray-400">ไม่พบสมาชิกที่ตรงกับการค้นหา</td>
+                  <td colSpan={5} className="px-6 py-10 text-center text-[15px] text-gray-400">ไม่พบสมาชิกที่ตรงกับการค้นหา</td>
                 </tr>
               )}
             </tbody>
@@ -1140,11 +1140,11 @@ function TeamTab() {
 
         {/* Footer */}
         <div className="px-6 py-3.5 border-t border-gray-100 flex items-center justify-between bg-gray-50/50">
-          <span className="text-[12.5px] text-gray-400">
+          <span className="text-[14.5px] text-gray-400">
             Showing 1–{filtered.length} of {members.length} Members
           </span>
           <div className="flex items-center gap-1">
-            <button className="w-8 h-8 rounded-lg bg-[#127EE3] text-white text-[13px] font-semibold flex items-center justify-center shadow-sm">1</button>
+            <button className="w-8 h-8 rounded-lg bg-[#127EE3] text-white text-[15px] font-semibold flex items-center justify-center shadow-sm">1</button>
           </div>
         </div>
       </div>
@@ -1176,7 +1176,7 @@ function NotificationsTab() {
         <div className="flex gap-2 flex-wrap">
           {[{key:"email",label:"อีเมล",icon:<Mail size={14}/>},{key:"inapp",label:"In-app",icon:<Bell size={14}/>}].map(ch=>(
             <button key={ch.key} onClick={()=>toggleCh(ch.key)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border text-[13px] font-semibold transition-all ${channels.has(ch.key)?"bg-[#127EE3] text-white border-[#127EE3] shadow-sm":"bg-white text-gray-600 border-gray-200 hover:border-[#127EE3] hover:text-[#127EE3]"}`}>
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border text-[15px] font-semibold transition-all ${channels.has(ch.key)?"bg-[#127EE3] text-white border-[#127EE3] shadow-sm":"bg-white text-gray-600 border-gray-200 hover:border-[#127EE3] hover:text-[#127EE3]"}`}>
               {ch.icon}{ch.label}
               {channels.has(ch.key) && <Check size={13}/>}
             </button>
@@ -1264,19 +1264,19 @@ function SecurityTab() {
       {/* Account security */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
         <div className="px-6 py-4 border-b border-gray-100">
-          <p className="text-[14px] font-bold text-[#1A1A2E]">บัญชีและความปลอดภัย</p>
+          <p className="text-[16px] font-bold text-[#1A1A2E]">บัญชีและความปลอดภัย</p>
         </div>
 
         {/* Email row */}
         <div className="px-6 py-5 border-b border-gray-100">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <p className="text-[12px] font-semibold text-gray-400 mb-0.5">อีเมลเข้าสู่ระบบ</p>
-              <p className="text-[14px] font-medium text-[#1A1A2E]">{currentEmail}</p>
+              <p className="text-[14px] font-semibold text-gray-400 mb-0.5">อีเมลเข้าสู่ระบบ</p>
+              <p className="text-[16px] font-medium text-[#1A1A2E]">{currentEmail}</p>
             </div>
             {!editingEmail && (
               <button onClick={() => setEditingEmail(true)}
-                className="text-[13px] font-semibold text-[#127EE3] hover:text-[#0e6bc7] transition-colors flex-shrink-0 mt-0.5">
+                className="text-[15px] font-semibold text-[#127EE3] hover:text-[#0e6bc7] transition-colors flex-shrink-0 mt-0.5">
                 แก้ไข
               </button>
             )}
@@ -1288,7 +1288,7 @@ function SecurityTab() {
                   <Mail size={14} className="text-gray-400 flex-shrink-0" />
                   <input type="email" value={newEmail} onChange={e => setNewEmail(e.target.value)}
                     placeholder="กรอกอีเมลใหม่"
-                    className="flex-1 text-[13px] bg-transparent outline-none placeholder-gray-400 text-[#1A1A2E]" />
+                    className="flex-1 text-[15px] bg-transparent outline-none placeholder-gray-400 text-[#1A1A2E]" />
                 </div>
               </Field>
               <Field label="ยืนยันอีเมลใหม่">
@@ -1296,19 +1296,19 @@ function SecurityTab() {
                   <Mail size={14} className="text-gray-400 flex-shrink-0" />
                   <input type="email" value={confEmail} onChange={e => setConfEmail(e.target.value)}
                     placeholder="ยืนยันอีเมลใหม่"
-                    className="flex-1 text-[13px] bg-transparent outline-none placeholder-gray-400 text-[#1A1A2E]" />
+                    className="flex-1 text-[15px] bg-transparent outline-none placeholder-gray-400 text-[#1A1A2E]" />
                 </div>
                 {confEmail.length > 0 && newEmail !== confEmail && (
-                  <p className="mt-1.5 text-[12px] text-red-400">อีเมลไม่ตรงกัน</p>
+                  <p className="mt-1.5 text-[14px] text-red-400">อีเมลไม่ตรงกัน</p>
                 )}
               </Field>
               <div className="flex gap-3 pt-1">
                 <button onClick={handleEmailCancel}
-                  className="px-4 py-2 border border-gray-200 text-[13px] font-semibold text-gray-600 rounded-xl hover:bg-gray-50 transition-colors">
+                  className="px-4 py-2 border border-gray-200 text-[15px] font-semibold text-gray-600 rounded-xl hover:bg-gray-50 transition-colors">
                   ยกเลิก
                 </button>
                 <button onClick={handleEmailSave} disabled={!emailCanSave}
-                  className={`px-4 py-2 text-[13px] font-bold rounded-xl transition-colors ${
+                  className={`px-4 py-2 text-[15px] font-bold rounded-xl transition-colors ${
                     emailCanSave ? "bg-[#127EE3] text-white hover:bg-[#0e6bc7]" : "bg-gray-200 text-gray-400 cursor-not-allowed"
                   }`}>
                   บันทึก
@@ -1322,12 +1322,12 @@ function SecurityTab() {
         <div className="px-6 py-5">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <p className="text-[12px] font-semibold text-gray-400 mb-0.5">รหัสผ่าน</p>
-              <p className="text-[14px] font-medium text-[#1A1A2E]">ตั้งค่าแล้ว</p>
+              <p className="text-[14px] font-semibold text-gray-400 mb-0.5">รหัสผ่าน</p>
+              <p className="text-[16px] font-medium text-[#1A1A2E]">ตั้งค่าแล้ว</p>
             </div>
             {!editingPassword && (
               <button onClick={() => setEditingPassword(true)}
-                className="text-[13px] font-semibold text-[#127EE3] hover:text-[#0e6bc7] transition-colors flex-shrink-0 mt-0.5">
+                className="text-[15px] font-semibold text-[#127EE3] hover:text-[#0e6bc7] transition-colors flex-shrink-0 mt-0.5">
                 แก้ไข
               </button>
             )}
@@ -1337,7 +1337,7 @@ function SecurityTab() {
               <Field label="รหัสผ่านปัจจุบัน">
                 <div className="flex items-center gap-2 bg-[#F8F9FA] border border-gray-200 rounded-xl px-3.5 py-2.5 focus-within:border-[#127EE3] focus-within:bg-white transition-all">
                   <input value={cur} onChange={e=>setCur(e.target.value)} type={showCur?"text":"password"} placeholder="••••••••"
-                    className="flex-1 bg-transparent text-[13.5px] outline-none placeholder-gray-400"/>
+                    className="flex-1 bg-transparent text-[15.5px] outline-none placeholder-gray-400"/>
                   <button onClick={()=>setShowCur(v=>!v)} className="text-gray-400 hover:text-gray-600">
                     {showCur?<EyeOff size={15}/>:<Eye size={15}/>}
                   </button>
@@ -1346,7 +1346,7 @@ function SecurityTab() {
               <Field label="รหัสผ่านใหม่" hint="ต้องมีอย่างน้อย 8 ตัวอักษร ตัวเลข และอักขระพิเศษ">
                 <div className="bg-[#F8F9FA] border border-gray-200 rounded-xl px-3.5 py-2.5 focus-within:border-[#127EE3] focus-within:bg-white transition-all">
                   <input value={nw} onChange={e=>setNw(e.target.value)} type="password" placeholder="••••••••"
-                    className="w-full bg-transparent text-[13.5px] outline-none placeholder-gray-400"/>
+                    className="w-full bg-transparent text-[15.5px] outline-none placeholder-gray-400"/>
                 </div>
                 {nw.length>0 && (
                   <div className="mt-2 space-y-1.5">
@@ -1355,7 +1355,7 @@ function SecurityTab() {
                         <div key={i} className={`flex-1 h-1.5 rounded-full transition-colors ${ok?strengthColor[strengthScore-1]||"bg-emerald-400":"bg-gray-200"}`}/>
                       ))}
                     </div>
-                    <p className={`text-[11px] font-semibold ${strengthScore===3?"text-emerald-500":strengthScore===2?"text-amber-500":"text-red-500"}`}>
+                    <p className={`text-[13px] font-semibold ${strengthScore===3?"text-emerald-500":strengthScore===2?"text-amber-500":"text-red-500"}`}>
                       ความแข็งแกร่ง: {strengthLabel[strengthScore-1]||"อ่อน"}
                     </p>
                   </div>
@@ -1364,17 +1364,17 @@ function SecurityTab() {
               <Field label="ยืนยันรหัสผ่านใหม่">
                 <div className={`bg-[#F8F9FA] border rounded-xl px-3.5 py-2.5 focus-within:bg-white transition-all ${conf&&conf!==nw?"border-red-300 focus-within:border-red-400":"border-gray-200 focus-within:border-[#127EE3]"}`}>
                   <input value={conf} onChange={e=>setConf(e.target.value)} type="password" placeholder="••••••••"
-                    className="w-full bg-transparent text-[13.5px] outline-none placeholder-gray-400"/>
+                    className="w-full bg-transparent text-[15.5px] outline-none placeholder-gray-400"/>
                 </div>
-                {conf&&conf!==nw && <p className="text-[11.5px] text-red-500 mt-1">รหัสผ่านไม่ตรงกัน</p>}
+                {conf&&conf!==nw && <p className="text-[13.5px] text-red-500 mt-1">รหัสผ่านไม่ตรงกัน</p>}
               </Field>
               <div className="flex gap-3 pt-1">
                 <button onClick={handlePasswordCancel}
-                  className="px-4 py-2 border border-gray-200 text-[13px] font-semibold text-gray-600 rounded-xl hover:bg-gray-50 transition-colors">
+                  className="px-4 py-2 border border-gray-200 text-[15px] font-semibold text-gray-600 rounded-xl hover:bg-gray-50 transition-colors">
                   ยกเลิก
                 </button>
                 <button onClick={handlePasswordSave}
-                  className="px-4 py-2 bg-[#127EE3] text-white text-[13px] font-bold rounded-xl hover:bg-[#0e6bc7] transition-colors">
+                  className="px-4 py-2 bg-[#127EE3] text-white text-[15px] font-bold rounded-xl hover:bg-[#0e6bc7] transition-colors">
                   บันทึก
                 </button>
               </div>
@@ -1387,8 +1387,8 @@ function SecurityTab() {
       <SectionCard title="การยืนยันตัวตนสองขั้นตอน (2FA)">
         <div className="flex items-center justify-between gap-4 mb-4">
           <div>
-            <p className="text-[13.5px] font-semibold text-[#1A1A2E]">Two-Factor Authentication</p>
-            <p className="text-[12.5px] text-gray-400 mt-0.5">เพิ่มความปลอดภัยด้วยรหัส OTP ทุกครั้งที่เข้าสู่ระบบ</p>
+            <p className="text-[15.5px] font-semibold text-[#1A1A2E]">Two-Factor Authentication</p>
+            <p className="text-[14.5px] text-gray-400 mt-0.5">เพิ่มความปลอดภัยด้วยรหัส OTP ทุกครั้งที่เข้าสู่ระบบ</p>
           </div>
           <button onClick={()=>setTwoFA(v=>!v)} className={`relative w-11 h-6 rounded-full transition-colors ${twoFA?"bg-[#127EE3]":"bg-gray-200"}`}>
             <span className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-all ${twoFA?"left-[22px]":"left-0.5"}`}/>
@@ -1400,12 +1400,12 @@ function SecurityTab() {
               <QrCode size={48} className="text-gray-400"/>
             </div>
             <div className="flex-1">
-              <p className="text-[13px] font-bold text-[#1A1A2E] mb-1">สแกน QR ด้วยแอป Authenticator</p>
-              <p className="text-[12px] text-gray-500 mb-3">ใช้ Google Authenticator หรือ Authy สแกน QR code แล้วกรอกรหัส 6 หลัก</p>
+              <p className="text-[15px] font-bold text-[#1A1A2E] mb-1">สแกน QR ด้วยแอป Authenticator</p>
+              <p className="text-[14px] text-gray-500 mb-3">ใช้ Google Authenticator หรือ Authy สแกน QR code แล้วกรอกรหัส 6 หลัก</p>
               <div className="flex items-center gap-2">
                 <input value={otp} onChange={e=>setOtp(e.target.value)} maxLength={6} placeholder="000000"
-                  className="w-32 bg-white border border-gray-200 rounded-xl px-3 py-2 text-[16px] font-mono text-center text-[#1A1A2E] focus:outline-none focus:border-[#127EE3] tracking-widest transition-all"/>
-                <button className="px-4 py-2 bg-[#127EE3] text-white text-[13px] font-bold rounded-xl hover:bg-[#0e6bc7] transition-colors">ยืนยัน</button>
+                  className="w-32 bg-white border border-gray-200 rounded-xl px-3 py-2 text-[18px] font-mono text-center text-[#1A1A2E] focus:outline-none focus:border-[#127EE3] tracking-widest transition-all"/>
+                <button className="px-4 py-2 bg-[#127EE3] text-white text-[15px] font-bold rounded-xl hover:bg-[#0e6bc7] transition-colors">ยืนยัน</button>
               </div>
             </div>
           </div>
@@ -1423,17 +1423,17 @@ function SecurityTab() {
             <div key={i} className="flex items-center gap-3 px-4 py-3 rounded-xl border border-gray-100 hover:border-gray-200 transition-all">
               <span className={`flex-shrink-0 ${d.cur?"text-[#127EE3]":"text-gray-400"}`}>{d.icon}</span>
               <div className="flex-1">
-                <p className="text-[13.5px] font-medium text-[#1A1A2E]">{d.label}</p>
-                <p className="text-[12px] text-gray-400">{d.loc} · {d.time}</p>
+                <p className="text-[15.5px] font-medium text-[#1A1A2E]">{d.label}</p>
+                <p className="text-[14px] text-gray-400">{d.loc} · {d.time}</p>
               </div>
               {d.cur
-                ? <span className="text-[11.5px] font-bold text-emerald-500 bg-emerald-50 px-2.5 py-1 rounded-lg flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400"/>อุปกรณ์นี้</span>
-                : <button className="text-[12.5px] font-semibold text-red-500 hover:text-red-600 flex items-center gap-1"><LogOut size={12}/>ออก</button>
+                ? <span className="text-[13.5px] font-bold text-emerald-500 bg-emerald-50 px-2.5 py-1 rounded-lg flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400"/>อุปกรณ์นี้</span>
+                : <button className="text-[14.5px] font-semibold text-red-500 hover:text-red-600 flex items-center gap-1"><LogOut size={12}/>ออก</button>
               }
             </div>
           ))}
         </div>
-        <button className="flex items-center gap-2 px-4 py-2.5 border border-red-200 text-red-500 text-[13px] font-semibold rounded-xl hover:bg-red-50 transition-colors">
+        <button className="flex items-center gap-2 px-4 py-2.5 border border-red-200 text-red-500 text-[15px] font-semibold rounded-xl hover:bg-red-50 transition-colors">
           <LogOut size={14}/> ออกจากระบบทุกอุปกรณ์
         </button>
       </SectionCard>
@@ -1441,11 +1441,11 @@ function SecurityTab() {
       {/* Audit log */}
       <SectionCard title="บันทึกกิจกรรม" subtitle="ประวัติการเข้าสู่ระบบและการเปลี่ยนแปลง">
         <div className="overflow-hidden rounded-xl border border-gray-100">
-          <table className="w-full text-[13px]">
+          <table className="w-full text-[15px]">
             <thead>
               <tr className="bg-gray-50">
                 {["เวลา","กิจกรรม","IP Address","สถานะ"].map(h=>(
-                  <th key={h} className="text-left px-4 py-2.5 font-bold text-[11px] text-gray-500 uppercase tracking-wide">{h}</th>
+                  <th key={h} className="text-left px-4 py-2.5 font-bold text-[13px] text-gray-500 uppercase tracking-wide">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -1454,9 +1454,9 @@ function SecurityTab() {
                 <tr key={i} className={i%2===0?"bg-white":"bg-gray-50/50"}>
                   <td className="px-4 py-2.5 text-gray-500 whitespace-nowrap">{a.time}</td>
                   <td className="px-4 py-2.5 font-medium text-[#1A1A2E]">{a.act}</td>
-                  <td className="px-4 py-2.5 text-gray-500 font-mono text-[12px]">{a.ip}</td>
+                  <td className="px-4 py-2.5 text-gray-500 font-mono text-[14px]">{a.ip}</td>
                   <td className="px-4 py-2.5">
-                    <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11.5px] font-bold ${a.ok?"text-emerald-600 bg-emerald-50":"text-red-600 bg-red-50"}`}>
+                    <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[13.5px] font-bold ${a.ok?"text-emerald-600 bg-emerald-50":"text-red-600 bg-red-50"}`}>
                       {a.ok?<Check size={10}/>:<X size={10}/>}
                       {a.ok?"สำเร็จ":"ล้มเหลว"}
                     </span>
@@ -1472,12 +1472,12 @@ function SecurityTab() {
       <SectionCard title="Session Timeout">
         <div className="flex items-center gap-4">
           <div>
-            <p className="text-[13.5px] font-medium text-[#1A1A2E] mb-0.5">ออกจากระบบอัตโนมัติเมื่อไม่มีการใช้งาน</p>
-            <p className="text-[12px] text-gray-400">ป้องกันการเข้าถึงโดยไม่ได้รับอนุญาต</p>
+            <p className="text-[15.5px] font-medium text-[#1A1A2E] mb-0.5">ออกจากระบบอัตโนมัติเมื่อไม่มีการใช้งาน</p>
+            <p className="text-[14px] text-gray-400">ป้องกันการเข้าถึงโดยไม่ได้รับอนุญาต</p>
           </div>
           <div className="ml-auto flex items-center gap-2">
             <Sel value={timeout} onChange={setTimeout_} options={["1 ชั่วโมง","4 ชั่วโมง","8 ชั่วโมง","24 ชั่วโมง","ไม่มีกำหนด"]}/>
-            <button className="px-4 py-2.5 bg-[#127EE3] text-white text-[13px] font-bold rounded-xl hover:bg-[#0e6bc7] transition-colors whitespace-nowrap">บันทึก</button>
+            <button className="px-4 py-2.5 bg-[#127EE3] text-white text-[15px] font-bold rounded-xl hover:bg-[#0e6bc7] transition-colors whitespace-nowrap">บันทึก</button>
           </div>
         </div>
       </SectionCard>
@@ -1573,13 +1573,13 @@ function LogoCropModal({ src, onConfirm, onCancel }: {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
       <div className="bg-white rounded-2xl shadow-2xl w-[380px] overflow-hidden">
         <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-gray-100">
-          <p className="text-[15px] font-semibold text-[#1A1A2E]">ปรับตำแหน่งโลโก้</p>
+          <p className="text-[17px] font-semibold text-[#1A1A2E]">ปรับตำแหน่งโลโก้</p>
           <button onClick={onCancel} className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors">
             <X size={15} className="text-gray-500" />
           </button>
         </div>
         <div className="px-5 pt-4 pb-2">
-          <p className="text-[12px] text-gray-400 mb-3 text-center">ลากเพื่อปรับตำแหน่ง · ใช้แถบด้านล่างเพื่อซูม</p>
+          <p className="text-[14px] text-gray-400 mb-3 text-center">ลากเพื่อปรับตำแหน่ง · ใช้แถบด้านล่างเพื่อซูม</p>
           {/* crop frame */}
           <div
             className="mx-auto rounded-2xl overflow-hidden cursor-grab active:cursor-grabbing select-none"
@@ -1589,7 +1589,7 @@ function LogoCropModal({ src, onConfirm, onCancel }: {
           >
             <div className="absolute inset-0" style={{ backgroundImage: "repeating-conic-gradient(#e5e7eb 0% 25%, white 0% 50%)", backgroundSize: "20px 20px" }} />
             {!loaded && (
-              <div className="absolute inset-0 flex items-center justify-center text-[13px] text-gray-400 z-10">
+              <div className="absolute inset-0 flex items-center justify-center text-[15px] text-gray-400 z-10">
                 กำลังโหลดรูปภาพ...
               </div>
             )}
@@ -1608,7 +1608,7 @@ function LogoCropModal({ src, onConfirm, onCancel }: {
                 }}
               />
             ) : (
-              <div className="absolute inset-0 flex items-center justify-center text-[13px] text-gray-400">
+              <div className="absolute inset-0 flex items-center justify-center text-[15px] text-gray-400">
                 ไม่พบรูปภาพที่อัปโหลด
               </div>
             )}
@@ -1616,7 +1616,7 @@ function LogoCropModal({ src, onConfirm, onCancel }: {
           </div>
           {/* zoom slider */}
           <div className="mt-4 flex items-center gap-3">
-            <span className="text-[11px] text-gray-400 w-5 text-center">−</span>
+            <span className="text-[13px] text-gray-400 w-5 text-center">−</span>
             <input
               type="range"
               min={0.5}
@@ -1626,14 +1626,14 @@ function LogoCropModal({ src, onConfirm, onCancel }: {
               onChange={e => setZoom(parseFloat(e.target.value))}
               className="flex-1 accent-[#0DC2FF] h-1.5 cursor-pointer"
             />
-            <span className="text-[11px] text-gray-400 w-5 text-center">+</span>
+            <span className="text-[13px] text-gray-400 w-5 text-center">+</span>
           </div>
         </div>
         <div className="flex gap-2 px-5 py-4">
-          <button onClick={onCancel} className="flex-1 py-2.5 rounded-xl border border-gray-200 text-[13px] font-semibold text-gray-600 hover:bg-gray-50 transition-colors">
+          <button onClick={onCancel} className="flex-1 py-2.5 rounded-xl border border-gray-200 text-[15px] font-semibold text-gray-600 hover:bg-gray-50 transition-colors">
             ยกเลิก
           </button>
-          <button onClick={handleConfirm} className="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[13px] font-semibold hover:opacity-90 transition-opacity">
+          <button onClick={handleConfirm} className="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[15px] font-semibold hover:opacity-90 transition-opacity">
             ใช้รูปนี้
           </button>
         </div>
@@ -1671,8 +1671,8 @@ function EmailTemplatesTab() {
 
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
         <div className="px-6 py-5 border-b border-gray-100">
-          <p className="text-[15px] font-bold text-[#1A1A2E]">เทมเพลตอีเมล</p>
-          <p className="text-[12.5px] text-gray-400 mt-0.5">จัดการข้อความอีเมลที่ใช้บ่อย เพื่อส่งหาผู้สมัครหรือผู้พิจารณาได้รวดเร็วขึ้น</p>
+          <p className="text-[17px] font-bold text-[#1A1A2E]">เทมเพลตอีเมล</p>
+          <p className="text-[14.5px] text-gray-400 mt-0.5">จัดการข้อความอีเมลที่ใช้บ่อย เพื่อส่งหาผู้สมัครหรือผู้พิจารณาได้รวดเร็วขึ้น</p>
         </div>
 
         <div className="px-6 py-4 flex items-center gap-3 border-b border-gray-100">
@@ -1681,10 +1681,10 @@ function EmailTemplatesTab() {
             <input
               value={query} onChange={e => setQuery(e.target.value)}
               placeholder="ค้นหาเทมเพลต..."
-              className="flex-1 text-[13px] bg-transparent outline-none placeholder-gray-400 text-[#1A1A2E]"
+              className="flex-1 text-[15px] bg-transparent outline-none placeholder-gray-400 text-[#1A1A2E]"
             />
           </div>
-          <button className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[13px] font-semibold rounded-xl hover:opacity-90 transition-opacity flex-shrink-0">
+          <button className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[15px] font-semibold rounded-xl hover:opacity-90 transition-opacity flex-shrink-0">
             <Plus size={14} /> สร้างเทมเพลตใหม่
           </button>
         </div>
@@ -1692,22 +1692,22 @@ function EmailTemplatesTab() {
         <table className="w-full">
           <thead>
             <tr className="bg-[#F8F9FA] border-b border-gray-100">
-              <th className="text-left px-6 py-3 text-[11.5px] font-semibold text-gray-400 uppercase tracking-wide">ชื่อเทมเพลต</th>
-              <th className="text-left px-6 py-3 text-[11.5px] font-semibold text-gray-400 uppercase tracking-wide">ใช้สำหรับ</th>
-              <th className="text-left px-6 py-3 text-[11.5px] font-semibold text-gray-400 uppercase tracking-wide">แก้ไขล่าสุด</th>
-              <th className="text-left px-6 py-3 text-[11.5px] font-semibold text-gray-400 uppercase tracking-wide">การจัดการ</th>
+              <th className="text-left px-6 py-3 text-[13.5px] font-semibold text-gray-400 uppercase tracking-wide">ชื่อเทมเพลต</th>
+              <th className="text-left px-6 py-3 text-[13.5px] font-semibold text-gray-400 uppercase tracking-wide">ใช้สำหรับ</th>
+              <th className="text-left px-6 py-3 text-[13.5px] font-semibold text-gray-400 uppercase tracking-wide">แก้ไขล่าสุด</th>
+              <th className="text-left px-6 py-3 text-[13.5px] font-semibold text-gray-400 uppercase tracking-wide">การจัดการ</th>
             </tr>
           </thead>
           <tbody>
             {filtered.map(row => (
               <tr key={row.id} className="border-b border-gray-50 last:border-0 hover:bg-[#F8FBFF] transition-colors">
                 <td className="px-6 py-4">
-                  <p className="text-[13.5px] font-semibold text-[#1A1A2E]">{row.name}</p>
+                  <p className="text-[15.5px] font-semibold text-[#1A1A2E]">{row.name}</p>
                 </td>
                 <td className="px-6 py-4">
-                  <span className="inline-flex items-center px-2.5 py-1 bg-blue-50 text-[#127EE3] text-[12px] font-semibold rounded-lg">{row.purpose}</span>
+                  <span className="inline-flex items-center px-2.5 py-1 bg-blue-50 text-[#127EE3] text-[14px] font-semibold rounded-lg">{row.purpose}</span>
                 </td>
-                <td className="px-6 py-4 text-[13px] text-gray-500">{row.updated}</td>
+                <td className="px-6 py-4 text-[15px] text-gray-500">{row.updated}</td>
                 <td className="px-6 py-4">
                   <div className="flex items-center gap-2">
                     <button className="p-1.5 rounded-lg text-gray-400 hover:text-[#127EE3] hover:bg-blue-50 transition-all">
@@ -1722,7 +1722,7 @@ function EmailTemplatesTab() {
             ))}
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={4} className="px-6 py-10 text-center text-[13px] text-gray-400">ไม่พบเทมเพลตที่ค้นหา</td>
+                <td colSpan={4} className="px-6 py-10 text-center text-[15px] text-gray-400">ไม่พบเทมเพลตที่ค้นหา</td>
               </tr>
             )}
           </tbody>
@@ -1802,27 +1802,27 @@ function EmailBookTab() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm px-4">
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-md">
             <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
-              <p className="text-[15px] font-bold text-[#1A1A2E]">{modal.editing ? "แก้ไขรายชื่ออีเมล" : "เพิ่มรายชื่ออีเมล"}</p>
+              <p className="text-[17px] font-bold text-[#1A1A2E]">{modal.editing ? "แก้ไขรายชื่ออีเมล" : "เพิ่มรายชื่ออีเมล"}</p>
               <button onClick={closeModal} className="p-1.5 rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-all"><X size={16} /></button>
             </div>
             <div className="px-6 py-5 space-y-4">
               {([ ["fullName","ชื่อ-นามสกุล","เช่น คุณสมชาย"], ["email","อีเมล","เช่น somchai@company.co.th"] ] as [keyof typeof form, string, string][]).map(([key, label, placeholder]) => (
                 <div key={key} className="space-y-1.5">
-                  <label className="block text-[12px] font-bold text-gray-500 uppercase tracking-wide">{label}</label>
+                  <label className="block text-[14px] font-bold text-gray-500 uppercase tracking-wide">{label}</label>
                   <input
                     value={form[key]} onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
                     placeholder={placeholder}
-                    className="w-full bg-[#F8F9FA] border border-gray-200 rounded-xl px-3.5 py-2.5 text-[13.5px] text-[#1A1A2E] placeholder-gray-400 focus:outline-none focus:border-[#127EE3] focus:bg-white transition-all"
+                    className="w-full bg-[#F8F9FA] border border-gray-200 rounded-xl px-3.5 py-2.5 text-[15.5px] text-[#1A1A2E] placeholder-gray-400 focus:outline-none focus:border-[#127EE3] focus:bg-white transition-all"
                   />
                 </div>
               ))}
               <div className="space-y-1.5">
-                <label className="block text-[12px] font-bold text-gray-500 uppercase tracking-wide">แผนก</label>
+                <label className="block text-[14px] font-bold text-gray-500 uppercase tracking-wide">แผนก</label>
                 <div className="relative">
                   <select
                     value={form.department}
                     onChange={e => setForm(f => ({ ...f, department: e.target.value, customDepartment: "" }))}
-                    className="w-full appearance-none bg-[#F8F9FA] border border-gray-200 rounded-xl px-3.5 py-2.5 text-[13.5px] text-[#1A1A2E] focus:outline-none focus:border-[#127EE3] focus:bg-white transition-all pr-9"
+                    className="w-full appearance-none bg-[#F8F9FA] border border-gray-200 rounded-xl px-3.5 py-2.5 text-[15.5px] text-[#1A1A2E] focus:outline-none focus:border-[#127EE3] focus:bg-white transition-all pr-9"
                   >
                     <option value="" disabled>เลือกแผนก...</option>
                     {DEPARTMENT_OPTIONS.map(d => <option key={d} value={d}>{d}</option>)}
@@ -1832,20 +1832,20 @@ function EmailBookTab() {
               </div>
               {isOther && (
                 <div className="space-y-1.5">
-                  <label className="block text-[12px] font-bold text-gray-500 uppercase tracking-wide">ระบุแผนก</label>
+                  <label className="block text-[14px] font-bold text-gray-500 uppercase tracking-wide">ระบุแผนก</label>
                   <input
                     value={form.customDepartment}
                     onChange={e => setForm(f => ({ ...f, customDepartment: e.target.value }))}
                     placeholder="เช่น Legal, R&D"
-                    className="w-full bg-[#F8F9FA] border border-gray-200 rounded-xl px-3.5 py-2.5 text-[13.5px] text-[#1A1A2E] placeholder-gray-400 focus:outline-none focus:border-[#127EE3] focus:bg-white transition-all"
+                    className="w-full bg-[#F8F9FA] border border-gray-200 rounded-xl px-3.5 py-2.5 text-[15.5px] text-[#1A1A2E] placeholder-gray-400 focus:outline-none focus:border-[#127EE3] focus:bg-white transition-all"
                   />
                 </div>
               )}
             </div>
             <div className="flex gap-3 px-6 py-4 border-t border-gray-100">
-              <button onClick={closeModal} className="flex-1 py-2.5 rounded-xl border border-gray-200 text-[13px] font-semibold text-gray-600 hover:bg-gray-50 transition-colors">ยกเลิก</button>
+              <button onClick={closeModal} className="flex-1 py-2.5 rounded-xl border border-gray-200 text-[15px] font-semibold text-gray-600 hover:bg-gray-50 transition-colors">ยกเลิก</button>
               <button onClick={handleSave} disabled={!canSave}
-                className={`flex-1 py-2.5 rounded-xl text-[13px] font-semibold text-white transition-opacity ${canSave ? "bg-gradient-to-r from-[#01BFF9] to-[#019EFC] hover:opacity-90" : "bg-gray-200 text-gray-400 cursor-not-allowed"}`}>
+                className={`flex-1 py-2.5 rounded-xl text-[15px] font-semibold text-white transition-opacity ${canSave ? "bg-gradient-to-r from-[#01BFF9] to-[#019EFC] hover:opacity-90" : "bg-gray-200 text-gray-400 cursor-not-allowed"}`}>
                 บันทึก
               </button>
             </div>
@@ -1855,17 +1855,17 @@ function EmailBookTab() {
 
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
         <div className="px-6 py-5 border-b border-gray-100">
-          <p className="text-[15px] font-bold text-[#1A1A2E]">สมุดรายชื่ออีเมล</p>
-          <p className="text-[12.5px] text-gray-400 mt-0.5">จัดการรายชื่ออีเมลของผู้พิจารณาและทีมที่ใช้ส่งต่อผู้สมัครเป็นประจำ</p>
+          <p className="text-[17px] font-bold text-[#1A1A2E]">สมุดรายชื่ออีเมล</p>
+          <p className="text-[14.5px] text-gray-400 mt-0.5">จัดการรายชื่ออีเมลของผู้พิจารณาและทีมที่ใช้ส่งต่อผู้สมัครเป็นประจำ</p>
         </div>
 
         <div className="px-6 py-4 flex items-center gap-3 border-b border-gray-100">
           <div className="flex-1 flex items-center gap-2.5 bg-[#F8F9FA] border border-gray-200 rounded-xl px-3.5 py-2.5 focus-within:border-[#127EE3] focus-within:bg-white transition-all">
             <Search size={14} className="text-gray-400 flex-shrink-0" />
             <input value={query} onChange={e => setQuery(e.target.value)} placeholder="ค้นหาชื่อหรืออีเมล..."
-              className="flex-1 text-[13px] bg-transparent outline-none placeholder-gray-400 text-[#1A1A2E]" />
+              className="flex-1 text-[15px] bg-transparent outline-none placeholder-gray-400 text-[#1A1A2E]" />
           </div>
-          <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[13px] font-semibold rounded-xl hover:opacity-90 transition-opacity flex-shrink-0">
+          <button onClick={openAdd} className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[15px] font-semibold rounded-xl hover:opacity-90 transition-opacity flex-shrink-0">
             <Plus size={14} /> เพิ่มรายชื่อ
           </button>
         </div>
@@ -1873,10 +1873,10 @@ function EmailBookTab() {
         <table className="w-full">
           <thead>
             <tr className="bg-[#F8F9FA] border-b border-gray-100">
-              <th className="text-left px-6 py-3 text-[11.5px] font-semibold text-gray-400 uppercase tracking-wide">ชื่อ-นามสกุล</th>
-              <th className="text-left px-6 py-3 text-[11.5px] font-semibold text-gray-400 uppercase tracking-wide">อีเมล</th>
-              <th className="text-left px-6 py-3 text-[11.5px] font-semibold text-gray-400 uppercase tracking-wide">แผนก</th>
-              <th className="text-left px-6 py-3 text-[11.5px] font-semibold text-gray-400 uppercase tracking-wide">การจัดการ</th>
+              <th className="text-left px-6 py-3 text-[13.5px] font-semibold text-gray-400 uppercase tracking-wide">ชื่อ-นามสกุล</th>
+              <th className="text-left px-6 py-3 text-[13.5px] font-semibold text-gray-400 uppercase tracking-wide">อีเมล</th>
+              <th className="text-left px-6 py-3 text-[13.5px] font-semibold text-gray-400 uppercase tracking-wide">แผนก</th>
+              <th className="text-left px-6 py-3 text-[13.5px] font-semibold text-gray-400 uppercase tracking-wide">การจัดการ</th>
             </tr>
           </thead>
           <tbody>
@@ -1885,13 +1885,13 @@ function EmailBookTab() {
                 <td className="px-6 py-4">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#01BFF9]/20 to-[#019EFC]/20 flex items-center justify-center flex-shrink-0">
-                      <span className="text-[12px] font-bold text-[#127EE3]">{row.fullName.charAt(0)}</span>
+                      <span className="text-[14px] font-bold text-[#127EE3]">{row.fullName.charAt(0)}</span>
                     </div>
-                    <p className="text-[13.5px] font-semibold text-[#1A1A2E]">{row.fullName}</p>
+                    <p className="text-[15.5px] font-semibold text-[#1A1A2E]">{row.fullName}</p>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-[13px] text-gray-500">{row.email}</td>
-                <td className="px-6 py-4 text-[13px] text-gray-600">{row.department}</td>
+                <td className="px-6 py-4 text-[15px] text-gray-500">{row.email}</td>
+                <td className="px-6 py-4 text-[15px] text-gray-600">{row.department}</td>
                 <td className="px-6 py-4">
                   <div className="flex items-center gap-2">
                     <button onClick={() => openEdit(row)} className="p-1.5 rounded-lg text-gray-400 hover:text-[#127EE3] hover:bg-blue-50 transition-all"><Pencil size={14} /></button>
@@ -1901,7 +1901,7 @@ function EmailBookTab() {
               </tr>
             ))}
             {filtered.length === 0 && (
-              <tr><td colSpan={4} className="px-6 py-10 text-center text-[13px] text-gray-400">ไม่พบรายชื่อที่ค้นหา</td></tr>
+              <tr><td colSpan={4} className="px-6 py-10 text-center text-[15px] text-gray-400">ไม่พบรายชื่อที่ค้นหา</td></tr>
             )}
           </tbody>
         </table>
@@ -1922,10 +1922,10 @@ export default function OrganizationSettingsPage({ onBack }: { onBack?: () => vo
             <div className="w-7 h-7 rounded-lg bg-[#127EE3]/10 flex items-center justify-center">
               <Building2 size={14} className="text-[#127EE3]" />
             </div>
-            <p className="text-[11px] font-bold text-[#127EE3] uppercase tracking-widest">ระบบ</p>
+            <p className="text-[13px] font-bold text-[#127EE3] uppercase tracking-widest">ระบบ</p>
           </div>
-          <h1 className="text-[22px] font-bold text-[#1A1A2E] tracking-tight">ตั้งค่าองค์กร</h1>
-          <p className="text-[13.5px] text-gray-400 mt-1">จัดการข้อมูล ทีม การแจ้งเตือน และความปลอดภัย</p>
+          <h1 className="text-[24px] font-bold text-[#1A1A2E] tracking-tight">ตั้งค่าองค์กร</h1>
+          <p className="text-[15.5px] text-gray-400 mt-1">จัดการข้อมูล ทีม การแจ้งเตือน และความปลอดภัย</p>
         </div>
       </div>
 
@@ -1934,7 +1934,7 @@ export default function OrganizationSettingsPage({ onBack }: { onBack?: () => vo
         <nav className="w-[200px] flex-shrink-0 bg-white rounded-2xl border border-gray-100 shadow-sm p-1.5 sticky top-6">
           {TABS.map(t=>(
             <button key={t.key} onClick={()=>setTab(t.key)}
-              className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-[13px] font-medium transition-all text-left mb-0.5 last:mb-0 ${tab===t.key ? "bg-gradient-to-r from-[#01BFF9]/10 to-[#019EFC]/10 text-[#127EE3] font-semibold border border-[#127EE3]/15" : "text-gray-500 hover:bg-[#F7F9FC] hover:text-[#1A1A2E]"}`}>
+              className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-[15px] font-medium transition-all text-left mb-0.5 last:mb-0 ${tab===t.key ? "bg-gradient-to-r from-[#01BFF9]/10 to-[#019EFC]/10 text-[#127EE3] font-semibold border border-[#127EE3]/15" : "text-gray-500 hover:bg-[#F7F9FC] hover:text-[#1A1A2E]"}`}>
               <span className={`flex-shrink-0 ${tab===t.key?"text-[#127EE3]":"text-gray-300"}`}>{t.icon}</span>
               {t.label}
               {tab===t.key && <ChevronRight size={13} className="ml-auto text-[#127EE3]/70"/>}

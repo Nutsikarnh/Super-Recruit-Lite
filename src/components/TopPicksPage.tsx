@@ -711,8 +711,8 @@ function SnoozeModal({ onClose, onSubmit }: SnoozeModalProps) {
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 overflow-hidden">
         <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-gray-100">
           <div>
-            <h3 className="text-[16px] font-bold text-[#1A1A2E]">ทำไมถึงยังไม่สนใจ?</h3>
-            <p className="text-[13px] text-gray-400 mt-0.5">บอก AI เพื่อนำเสนอได้ตรงกว่าเดิม</p>
+            <h3 className="text-[18px] font-bold text-[#1A1A2E]">ทำไมถึงยังไม่สนใจ?</h3>
+            <p className="text-[15px] text-gray-400 mt-0.5">บอก AI เพื่อนำเสนอได้ตรงกว่าเดิม</p>
           </div>
           <button onClick={onClose} className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors">
             <X className="w-4 h-4 text-gray-500" />
@@ -722,18 +722,18 @@ function SnoozeModal({ onClose, onSubmit }: SnoozeModalProps) {
         <div className="px-6 pt-4 pb-2">
           <div className="flex items-start gap-2.5 px-3.5 py-3 rounded-xl bg-[#F0F8FF] border border-[#0DC2FF]/20 mb-5">
             <Brain className="w-4 h-4 text-[#127EE3] flex-shrink-0 mt-0.5" />
-            <p className="text-[13px] text-[#127EE3] leading-relaxed">
+            <p className="text-[15px] text-[#127EE3] leading-relaxed">
               AI จะเรียนรู้จากคำตอบนี้ เพื่อนำเสนอผู้สมัครที่ตรงกับความต้องการของคุณมากขึ้นในครั้งต่อไป
             </p>
           </div>
 
-          <p className="text-[13px] font-semibold text-[#1A1A2E] mb-3">เหตุผลที่ไว้ก่อน</p>
+          <p className="text-[15px] font-semibold text-[#1A1A2E] mb-3">เหตุผลที่ไว้ก่อน</p>
           <div className="space-y-2">
             {snoozeReasons.map((reason) => (
               <button
                 key={reason}
                 onClick={() => setSelected(reason)}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[14px] text-left border transition-all ${
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[16px] text-left border transition-all ${
                   selected === reason
                     ? "border-[#127EE3] bg-[#127EE3]/5 text-[#127EE3] font-semibold"
                     : "border-gray-100 hover:border-gray-200 text-gray-600"
@@ -755,7 +755,7 @@ function SnoozeModal({ onClose, onSubmit }: SnoozeModalProps) {
                 value={otherNote}
                 onChange={(e) => setOtherNote(e.target.value)}
                 placeholder="บอก AI เพิ่มเติมว่าอะไรที่ไม่ตรง..."
-                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-[14px] text-gray-600 placeholder-gray-300 resize-none focus:outline-none focus:border-[#127EE3] transition-colors"
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-[16px] text-gray-600 placeholder-gray-300 resize-none focus:outline-none focus:border-[#127EE3] transition-colors"
                 rows={2}
               />
             </div>
@@ -766,7 +766,7 @@ function SnoozeModal({ onClose, onSubmit }: SnoozeModalProps) {
           <button
             onClick={handleSubmit}
             disabled={!selected}
-            className={`flex-1 py-3 rounded-xl text-[14px] font-bold transition-all ${
+            className={`flex-1 py-3 rounded-xl text-[16px] font-bold transition-all ${
               selected
                 ? "bg-[#1A1A2E] text-white hover:bg-[#2a2a3e]"
                 : "bg-gray-100 text-gray-300 cursor-not-allowed"
@@ -776,7 +776,7 @@ function SnoozeModal({ onClose, onSubmit }: SnoozeModalProps) {
           </button>
           <button
             onClick={onClose}
-            className="px-5 py-3 rounded-xl text-[14px] font-semibold text-gray-400 hover:text-gray-600 border border-gray-100 hover:border-gray-200 transition-colors"
+            className="px-5 py-3 rounded-xl text-[16px] font-semibold text-gray-400 hover:text-gray-600 border border-gray-100 hover:border-gray-200 transition-colors"
           >
             ข้าม
           </button>
@@ -792,22 +792,22 @@ function CharacterSection({ hobbies, strengths, hobbyDescription, strengthDescri
 
   return (
     <div className="mb-4 pt-3 border-t border-gray-100">
-      <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-2.5">ตัวตน (Character)</p>
+      <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-2.5">ตัวตน (Character)</p>
       <div className="flex items-stretch gap-2">
         <div className="flex-1 rounded-lg bg-blue-50 border border-blue-100 px-3 py-2.5">
-          <p className="text-[9px] font-medium text-gray-400 mb-1.5">Hobbies</p>
+          <p className="text-[10px] font-medium text-gray-400 mb-1.5">Hobbies</p>
           <div className="flex items-center gap-1.5 mb-1">
-            <span className="text-[12px] font-semibold text-gray-700 leading-tight">{character.fromHobbies}</span>
+            <span className="text-[14px] font-semibold text-gray-700 leading-tight">{character.fromHobbies}</span>
           </div>
           {hobbyDescription && (
-            <p className="text-[12px] text-gray-500 leading-relaxed">{hobbyDescription}</p>
+            <p className="text-[14px] text-gray-500 leading-relaxed">{hobbyDescription}</p>
           )}
         </div>
         <div className="flex-1 rounded-lg bg-pink-50 border border-pink-100 px-3 py-2.5">
-          <p className="text-[9px] font-medium text-gray-400 mb-1.5">Strengths</p>
-          <span className="text-[12px] font-semibold text-gray-700 leading-tight block mb-1">{character.fromStrengths}</span>
+          <p className="text-[10px] font-medium text-gray-400 mb-1.5">Strengths</p>
+          <span className="text-[14px] font-semibold text-gray-700 leading-tight block mb-1">{character.fromStrengths}</span>
           {strengthDescription && (
-            <p className="text-[12px] text-gray-500 leading-relaxed">{strengthDescription}</p>
+            <p className="text-[14px] text-gray-500 leading-relaxed">{strengthDescription}</p>
           )}
         </div>
       </div>
@@ -849,8 +849,8 @@ function PerfectFitCard({ candidate, showResume, job }: { candidate: Candidate; 
             <div className="flex items-start gap-3 mb-5">
               <AnonymousAvatar size="lg" />
               <div className="min-w-0 flex-1">
-                <p className="text-[15px] text-[#111827] font-semibold leading-snug mb-1">{candidate.title}</p>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#EBF8FF] text-[#0277a8] tracking-wide uppercase">
+                <p className="text-[17px] text-[#111827] font-semibold leading-snug mb-1">{candidate.title}</p>
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#EBF8FF] text-[#0277a8] tracking-wide uppercase">
                   <Zap className="w-2.5 h-2.5" />
                   Perfectly Fit
                 </span>
@@ -858,7 +858,7 @@ function PerfectFitCard({ candidate, showResume, job }: { candidate: Candidate; 
             </div>
 
             {/* Key info rows */}
-            <div className="space-y-2 text-[12.5px] mb-4">
+            <div className="space-y-2 text-[14.5px] mb-4">
               <div className="flex items-center gap-2">
                 <Briefcase className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
                 <span className="font-medium text-[#111827] leading-snug">{candidate.company}</span>
@@ -877,16 +877,16 @@ function PerfectFitCard({ candidate, showResume, job }: { candidate: Candidate; 
               </div>
               <div className="flex items-center gap-2 pt-2 border-t border-gray-100">
                 <Banknote className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
-                <span className="font-semibold text-[#111827] text-[13px]">{candidate.salary}</span>
+                <span className="font-semibold text-[#111827] text-[15px]">{candidate.salary}</span>
               </div>
             </div>
 
             {candidate.competencies && candidate.competencies.length > 0 && (
               <div className="pt-3 mt-3 border-t border-gray-100">
-                <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-2">Core Competencies</p>
+                <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-2">Core Competencies</p>
                 <div className="flex flex-wrap gap-1">
                   {candidate.competencies.map((c) => (
-                    <span key={c} className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-teal-50 text-teal-700">{c}</span>
+                    <span key={c} className="text-[13px] font-medium px-2 py-0.5 rounded-md bg-teal-50 text-teal-700">{c}</span>
                   ))}
                 </div>
               </div>
@@ -896,13 +896,13 @@ function PerfectFitCard({ candidate, showResume, job }: { candidate: Candidate; 
           {/* RIGHT — Why + Character + Signals + CTAs */}
           <div className="flex-1 min-w-0 flex flex-col">
             {/* Why label */}
-            <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-3">Why This Candidate Stands Out</p>
+            <p className="text-[13px] font-semibold text-gray-400 uppercase tracking-wider mb-3">Why This Candidate Stands Out</p>
 
             {/* Why insights */}
             <ul className="space-y-2.5 mb-5">
               {candidate.whyYoullLike.slice(0, 3).map((item, i) => (
-                <li key={i} className="flex gap-3 text-[13px] text-gray-700 leading-[1.65]">
-                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gray-100 text-gray-400 text-[10px] font-bold flex items-center justify-center mt-[1px]">{i + 1}</span>
+                <li key={i} className="flex gap-3 text-[15px] text-gray-700 leading-[1.65]">
+                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gray-100 text-gray-400 text-[11px] font-bold flex items-center justify-center mt-[1px]">{i + 1}</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -914,12 +914,12 @@ function PerfectFitCard({ candidate, showResume, job }: { candidate: Candidate; 
               <div className="mb-4 pt-3 border-t border-gray-100">
                 <div className="flex items-center gap-1.5 mb-2">
                   <Brain className="w-3 h-3 text-gray-400" />
-                  <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Behavioral Signals</span>
-                  <span className="text-[10px] text-gray-300 ml-1">· AI</span>
+                  <span className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Behavioral Signals</span>
+                  <span className="text-[11px] text-gray-300 ml-1">· AI</span>
                 </div>
                 <ul className="space-y-1.5">
                   {candidate.deepAnalysis.map((item, i) => (
-                    <li key={i} className="flex gap-2.5 text-[12px] leading-relaxed text-gray-500">
+                    <li key={i} className="flex gap-2.5 text-[14px] leading-relaxed text-gray-500">
                       <span className="flex-shrink-0 w-1 h-1 rounded-full bg-gray-300 mt-[7px]" />
                       <span><span className="font-medium text-gray-700">{item.label}</span> — {item.detail}</span>
                     </li>
@@ -932,14 +932,14 @@ function PerfectFitCard({ candidate, showResume, job }: { candidate: Candidate; 
             <div className="flex items-center gap-2 mt-auto pt-3 border-t border-gray-100 flex-wrap">
               <button
                 onClick={() => setResumeOpen(true)}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-[13px] font-semibold bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white hover:opacity-90 transition-opacity"
+                className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-[15px] font-semibold bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white hover:opacity-90 transition-opacity"
               >
                 <FileText className="w-3.5 h-3.5" />
                 ดูเรซูเม่
               </button>
               <button
                 onClick={() => setMessageOpen(true)}
-                className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-[13px] font-medium transition-all ${
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-[15px] font-medium transition-all ${
                   status === "sent"
                     ? "bg-emerald-50 text-emerald-600 border border-emerald-200"
                     : "border border-gray-300 text-gray-600 hover:border-[#019EFC] hover:text-[#019EFC]"
@@ -949,7 +949,7 @@ function PerfectFitCard({ candidate, showResume, job }: { candidate: Candidate; 
               </button>
               <button
                 onClick={() => setStatus(status === "shortlisted" ? null : "shortlisted")}
-                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[13px] font-medium border transition-all ${
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[15px] font-medium border transition-all ${
                   status === "shortlisted"
                     ? "bg-amber-50 text-amber-600 border-amber-200"
                     : "border-gray-200 text-gray-500 hover:border-amber-200 hover:text-amber-600"
@@ -962,7 +962,7 @@ function PerfectFitCard({ candidate, showResume, job }: { candidate: Candidate; 
                 onClick={() => {
                   if (status === "snoozed") { setStatus(null); } else { setShowSnoozeModal(true); }
                 }}
-                className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-[12.5px] transition-colors ml-auto ${
+                className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-[14.5px] transition-colors ml-auto ${
                   status === "snoozed"
                     ? "text-gray-400 bg-gray-50"
                     : "text-gray-400 hover:text-gray-600"
@@ -1021,10 +1021,10 @@ function RunnerUpCard({ candidate, job }: { candidate: RunnerCandidate; job?: Jo
             <div className="flex items-start gap-3 mb-4">
               <AnonymousAvatar size="lg" />
               <div className="min-w-0 flex-1">
-                <p className="text-[14px] text-[#111827] font-semibold leading-snug mb-1">{candidate.title}</p>
+                <p className="text-[16px] text-[#111827] font-semibold leading-snug mb-1">{candidate.title}</p>
                 <div className="flex items-center gap-1.5 flex-wrap">
                   {candidate.runnerTag && (
-                    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-semibold border ${tagClass}`}>
+                    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-semibold border ${tagClass}`}>
                       {tagIcon}
                       {candidate.runnerTag.label}
                     </span>
@@ -1034,7 +1034,7 @@ function RunnerUpCard({ candidate, job }: { candidate: RunnerCandidate; job?: Jo
             </div>
 
             {/* Info rows */}
-            <div className="space-y-2 text-[12px]">
+            <div className="space-y-2 text-[14px]">
               <div className="flex items-center gap-2 text-gray-700">
                 <Briefcase className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
                 <span className="font-medium leading-snug">{candidate.company}</span>
@@ -1059,10 +1059,10 @@ function RunnerUpCard({ candidate, job }: { candidate: RunnerCandidate; job?: Jo
 
             {candidate.competencies && candidate.competencies.length > 0 && (
               <div className="mt-3 pt-3 border-t border-gray-100">
-                <p className="text-[9px] font-semibold text-gray-400 uppercase tracking-wider mb-1.5">Core Competencies</p>
+                <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1.5">Core Competencies</p>
                 <div className="flex flex-wrap gap-1">
                   {candidate.competencies.map((c) => (
-                    <span key={c} className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-teal-50 text-teal-600">{c}</span>
+                    <span key={c} className="text-[11px] font-medium px-1.5 py-0.5 rounded bg-teal-50 text-teal-600">{c}</span>
                   ))}
                 </div>
               </div>
@@ -1072,13 +1072,13 @@ function RunnerUpCard({ candidate, job }: { candidate: RunnerCandidate; job?: Jo
           {/* RIGHT */}
           <div className="flex-1 min-w-0 flex flex-col">
             <div className="flex items-center justify-between mb-3">
-              <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Why This Candidate Stands Out</p>
+              <p className="text-[13px] font-semibold text-gray-400 uppercase tracking-wider">Why This Candidate Stands Out</p>
             </div>
 
             <ul className="space-y-2.5 mb-4">
               {candidate.whyYoullLike.map((item, i) => (
-                <li key={i} className="flex gap-3 text-[12.5px] text-gray-700 leading-[1.65]">
-                  <span className="flex-shrink-0 w-4 h-4 rounded-full bg-gray-100 text-gray-400 text-[9px] font-bold flex items-center justify-center mt-[2px]">{i + 1}</span>
+                <li key={i} className="flex gap-3 text-[14.5px] text-gray-700 leading-[1.65]">
+                  <span className="flex-shrink-0 w-4 h-4 rounded-full bg-gray-100 text-gray-400 text-[10px] font-bold flex items-center justify-center mt-[2px]">{i + 1}</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -1089,17 +1089,17 @@ function RunnerUpCard({ candidate, job }: { candidate: RunnerCandidate; job?: Jo
               const ch = deriveCharacter(candidate.hobbies, candidate.strengths);
               return (
                 <div className="mb-4 pt-3 border-t border-gray-100">
-                  <p className="text-[9px] font-semibold text-gray-400 uppercase tracking-wider mb-2">ตัวตน (Character)</p>
+                  <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-2">ตัวตน (Character)</p>
                   <div className="flex items-stretch gap-2">
                     <div className="flex-1 rounded-lg bg-blue-50 border border-blue-100 px-2.5 py-2">
-                      <p className="text-[9px] font-medium text-gray-400 mb-1">Hobbies</p>
-                      <span className="text-[11.5px] font-semibold text-gray-700">{ch.fromHobbies}</span>
-                      {candidate.hobbyDescription && <p className="text-[12px] text-gray-500 mt-0.5 leading-relaxed">{candidate.hobbyDescription}</p>}
+                      <p className="text-[10px] font-medium text-gray-400 mb-1">Hobbies</p>
+                      <span className="text-[13.5px] font-semibold text-gray-700">{ch.fromHobbies}</span>
+                      {candidate.hobbyDescription && <p className="text-[14px] text-gray-500 mt-0.5 leading-relaxed">{candidate.hobbyDescription}</p>}
                     </div>
                     <div className="flex-1 rounded-lg bg-pink-50 border border-pink-100 px-2.5 py-2">
-                      <p className="text-[9px] font-medium text-gray-400 mb-1">Strengths</p>
-                      <span className="text-[11.5px] font-semibold text-gray-700">{ch.fromStrengths}</span>
-                      {candidate.strengthDescription && <p className="text-[12px] text-gray-500 mt-0.5 leading-relaxed">{candidate.strengthDescription}</p>}
+                      <p className="text-[10px] font-medium text-gray-400 mb-1">Strengths</p>
+                      <span className="text-[13.5px] font-semibold text-gray-700">{ch.fromStrengths}</span>
+                      {candidate.strengthDescription && <p className="text-[14px] text-gray-500 mt-0.5 leading-relaxed">{candidate.strengthDescription}</p>}
                     </div>
                   </div>
                 </div>
@@ -1108,10 +1108,10 @@ function RunnerUpCard({ candidate, job }: { candidate: RunnerCandidate; job?: Jo
 
             {candidate.deepAnalysis && candidate.deepAnalysis.length > 0 && (
               <div className="mb-4 pt-3 border-t border-gray-100">
-                <p className="text-[9px] font-semibold text-gray-400 uppercase tracking-wider mb-2">Behavioral Signals · AI</p>
+                <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-2">Behavioral Signals · AI</p>
                 <ul className="space-y-1.5">
                   {candidate.deepAnalysis.map((item, i) => (
-                    <li key={i} className="flex gap-2 text-[11.5px] leading-relaxed text-gray-500">
+                    <li key={i} className="flex gap-2 text-[13.5px] leading-relaxed text-gray-500">
                       <span className="w-1 h-1 rounded-full bg-gray-300 flex-shrink-0 mt-[7px]" />
                       <span><span className="font-medium text-gray-700">{item.label}:</span> {item.detail}</span>
                     </li>
@@ -1121,13 +1121,13 @@ function RunnerUpCard({ candidate, job }: { candidate: RunnerCandidate; job?: Jo
             )}
 
             <div className="flex items-center gap-2 mt-auto pt-3 border-t border-gray-100 flex-wrap">
-              <button className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[12.5px] font-semibold bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white hover:opacity-90 transition-opacity">
+              <button className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[14.5px] font-semibold bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white hover:opacity-90 transition-opacity">
                 <FileText className="w-3.5 h-3.5" />
                 ดูเรซูเม่
               </button>
               <button
                 onClick={() => setMessageOpen(true)}
-                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[12.5px] font-medium transition-all ${
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[14.5px] font-medium transition-all ${
                   status === "sent"
                     ? "bg-emerald-50 text-emerald-600 border border-emerald-200"
                     : "border border-gray-300 text-gray-600 hover:border-[#019EFC] hover:text-[#019EFC]"
@@ -1137,7 +1137,7 @@ function RunnerUpCard({ candidate, job }: { candidate: RunnerCandidate; job?: Jo
               </button>
               <button
                 onClick={() => setStatus(status === "shortlisted" ? null : "shortlisted")}
-                className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-[12.5px] font-medium border transition-all ${
+                className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-[14.5px] font-medium border transition-all ${
                   status === "shortlisted"
                     ? "bg-amber-50 text-amber-600 border-amber-200"
                     : "border-gray-200 text-gray-500 hover:border-amber-200 hover:text-amber-600"
@@ -1150,7 +1150,7 @@ function RunnerUpCard({ candidate, job }: { candidate: RunnerCandidate; job?: Jo
                 onClick={() => {
                   if (status === "snoozed") { setStatus(null); } else { setShowSnoozeModal(true); }
                 }}
-                className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-[12.5px] transition-colors ml-auto ${
+                className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-[14.5px] transition-colors ml-auto ${
                   status === "snoozed" ? "text-gray-400 bg-gray-50" : "text-gray-400 hover:text-gray-600"
                 }`}
               >
@@ -1223,7 +1223,7 @@ export default function TopPicksPage({ onBack, jobs = [], initialJobId }: TopPic
         <div className="flex items-center gap-3">
           <button
             onClick={onBack}
-            className="flex items-center gap-2 text-[14px] font-medium text-gray-500 hover:text-[#1A1A2E] transition-colors"
+            className="flex items-center gap-2 text-[16px] font-medium text-gray-500 hover:text-[#1A1A2E] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             กลับไปหน้ารวมตำแหน่งงาน
@@ -1233,12 +1233,12 @@ export default function TopPicksPage({ onBack, jobs = [], initialJobId }: TopPic
             <div className="relative ml-auto">
               <button
                 onClick={() => setJobSelectorOpen((v) => !v)}
-                className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-white border border-gray-200 shadow-sm hover:border-[#127EE3]/40 hover:shadow-md transition-all text-[14px] font-semibold text-[#1A1A2E]"
+                className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-white border border-gray-200 shadow-sm hover:border-[#127EE3]/40 hover:shadow-md transition-all text-[16px] font-semibold text-[#1A1A2E]"
               >
                 <Sparkles className="w-3.5 h-3.5 text-[#0DC2FF]" />
                 <span className="max-w-[220px] truncate">{jobTitle}</span>
                 {topPicksNew > 0 && (
-                  <span className="flex-shrink-0 text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#127EE3] text-white">+{topPicksNew} ใหม่</span>
+                  <span className="flex-shrink-0 text-[11px] font-bold px-1.5 py-0.5 rounded-full bg-[#127EE3] text-white">+{topPicksNew} ใหม่</span>
                 )}
                 <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform flex-shrink-0 ${jobSelectorOpen ? "rotate-180" : ""}`} />
               </button>
@@ -1248,8 +1248,8 @@ export default function TopPicksPage({ onBack, jobs = [], initialJobId }: TopPic
                   <div className="fixed inset-0 z-40" onClick={() => setJobSelectorOpen(false)} />
                   <div className="absolute right-0 top-full mt-2 z-50 bg-white rounded-2xl border border-gray-100 shadow-2xl overflow-hidden w-[360px]">
                     <div className="px-4 pt-4 pb-2 border-b border-gray-50">
-                      <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">เลือกตำแหน่งงาน</p>
-                      <p className="text-[12px] text-gray-400 mt-0.5">ตำแหน่งที่มี AI Top Picks พร้อมให้ดู</p>
+                      <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest">เลือกตำแหน่งงาน</p>
+                      <p className="text-[14px] text-gray-400 mt-0.5">ตำแหน่งที่มี AI Top Picks พร้อมให้ดู</p>
                     </div>
                     <div className="py-1.5 max-h-[320px] overflow-y-auto">
                       {jobsWithPicks.map((job) => {
@@ -1268,15 +1268,15 @@ export default function TopPicksPage({ onBack, jobs = [], initialJobId }: TopPic
                           >
                             <div className={`w-2 h-2 rounded-full flex-shrink-0 ${isActive ? "bg-[#127EE3]" : "bg-gray-200"}`} />
                             <div className="flex-1 min-w-0">
-                              <p className={`text-[13.5px] font-semibold leading-snug truncate ${isActive ? "text-[#127EE3]" : "text-[#1A1A2E]"}`}>{job.title}</p>
-                              <p className="text-[11.5px] text-gray-400 mt-0.5">{job.location} · {job.type}</p>
+                              <p className={`text-[15.5px] font-semibold leading-snug truncate ${isActive ? "text-[#127EE3]" : "text-[#1A1A2E]"}`}>{job.title}</p>
+                              <p className="text-[13.5px] text-gray-400 mt-0.5">{job.location} · {job.type}</p>
                             </div>
                             <div className="flex items-center gap-1.5 flex-shrink-0">
-                              <span className={`text-[12px] font-bold px-2.5 py-1 rounded-full ${isActive ? "bg-[#127EE3]/10 text-[#127EE3]" : "bg-gray-100 text-gray-500"}`}>
+                              <span className={`text-[14px] font-bold px-2.5 py-1 rounded-full ${isActive ? "bg-[#127EE3]/10 text-[#127EE3]" : "bg-gray-100 text-gray-500"}`}>
                                 {job.topPicks}
                               </span>
                               {job.topPicksNew && job.topPicksNew > 0 ? (
-                                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#127EE3] text-white">+{job.topPicksNew}</span>
+                                <span className="text-[11px] font-bold px-1.5 py-0.5 rounded-full bg-[#127EE3] text-white">+{job.topPicksNew}</span>
                               ) : null}
                             </div>
                           </button>
@@ -1297,18 +1297,18 @@ export default function TopPicksPage({ onBack, jobs = [], initialJobId }: TopPic
             <div className="flex items-center gap-2.5 mb-2.5">
               <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gradient-to-r from-[#0DC2FF]/15 to-[#127EE3]/10 border border-[#0DC2FF]/25">
                 <Sparkles className="w-3 h-3 text-[#0DC2FF]" />
-                <span className="text-[10px] font-bold text-[#0277a8] tracking-widest uppercase">AI Curated · Live</span>
+                <span className="text-[11px] font-bold text-[#0277a8] tracking-widest uppercase">AI Curated · Live</span>
               </div>
-              <span className="text-[12px] text-gray-400">อัพเดทล่าสุด 2 ชั่วโมงที่แล้ว</span>
+              <span className="text-[14px] text-gray-400">อัพเดทล่าสุด 2 ชั่วโมงที่แล้ว</span>
             </div>
-            <h1 className="text-[28px] font-bold text-[#1A1A2E] leading-tight mb-1.5 tracking-tight">
+            <h1 className="text-[30px] font-bold text-[#1A1A2E] leading-tight mb-1.5 tracking-tight">
               Top Picks
               <span className="text-[#127EE3] font-semibold"> — {jobTitle}</span>
             </h1>
-            <p className="text-[14px] text-gray-400 mb-5 leading-relaxed">
+            <p className="text-[16px] text-gray-400 mb-5 leading-relaxed">
               AI วิเคราะห์ผู้สมัครหลายพันคน คัดมาให้แล้ว <span className="font-semibold text-[#1A1A2E]">{topPicksCount}</span> คนที่น่าคุยที่สุด — เรียงตามความตรงกับ JD และ culture signal
             </p>
-            <div className="flex items-center gap-4 text-[12.5px] text-gray-400 flex-wrap">
+            <div className="flex items-center gap-4 text-[14.5px] text-gray-400 flex-wrap">
               <div className="flex items-center gap-1.5 bg-[#F0F8FF] border border-[#0DC2FF]/20 px-3 py-1.5 rounded-full">
                 <Zap className="w-3 h-3 text-[#0DC2FF]" />
                 <span><strong className="text-[#1A1A2E]">{perfectFitCount} Perfectly Fit</strong> — คัดแล้วว่าตรงที่สุด</span>
@@ -1324,8 +1324,8 @@ export default function TopPicksPage({ onBack, jobs = [], initialJobId }: TopPic
             </div>
 
             <div className="mt-4 pt-4 border-t border-dashed border-gray-100 flex items-start gap-2.5">
-              <span className="text-[13px] flex-shrink-0 mt-0.5">💡</span>
-              <p className="text-[12.5px] text-gray-400 leading-relaxed">
+              <span className="text-[15px] flex-shrink-0 mt-0.5">💡</span>
+              <p className="text-[14.5px] text-gray-400 leading-relaxed">
                 <span className="font-semibold text-gray-500">Top Talent ต้องจีบ</span> — โทรไม่ติดหรือยังไม่ตอบ อย่าเพิ่งถอดใจ
                 {" "}ในทางปฏิบัติ ติดต่อ 10 คน มักได้คุยจริงๆ ประมาณ 2–3 คน ลองส่งหลายๆ คนพร้อมกันแล้วรอสัญญาณตอบรับ
               </p>
@@ -1339,13 +1339,13 @@ export default function TopPicksPage({ onBack, jobs = [], initialJobId }: TopPic
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`relative flex items-center gap-2 py-4 px-1 mr-6 text-[14px] font-medium transition-all ${
+                className={`relative flex items-center gap-2 py-4 px-1 mr-6 text-[16px] font-medium transition-all ${
                   activeTab === tab.key ? "text-[#127EE3]" : "text-gray-400 hover:text-gray-600"
                 }`}
               >
                 {tab.icon}
                 {tab.label}
-                <span className={`text-[12px] px-1.5 py-0.5 rounded-full font-bold ${
+                <span className={`text-[14px] px-1.5 py-0.5 rounded-full font-bold ${
                   activeTab === tab.key ? "bg-[#127EE3]/10 text-[#127EE3]" : "bg-gray-100 text-gray-400"
                 }`}>
                   {tab.count}
@@ -1362,12 +1362,12 @@ export default function TopPicksPage({ onBack, jobs = [], initialJobId }: TopPic
               <div className="flex items-center justify-between mb-6 px-1">
                 <div className="flex items-center gap-2">
                   <Sparkles className="w-3.5 h-3.5 text-[#0DC2FF]" />
-                  <span className="text-[13px] font-semibold text-[#0DC2FF]">
+                  <span className="text-[15px] font-semibold text-[#0DC2FF]">
                     {topPicksCount} ผู้สมัครใหม่ที่ AI แนะนำ
                   </span>
-                  <span className="text-[12px] text-gray-400">— ยังไม่เคยเปิดดู</span>
+                  <span className="text-[14px] text-gray-400">— ยังไม่เคยเปิดดู</span>
                 </div>
-                <div className="flex items-center gap-1.5 text-[11px] text-gray-400 bg-gray-50 border border-gray-100 px-2.5 py-1 rounded-full">
+                <div className="flex items-center gap-1.5 text-[13px] text-gray-400 bg-gray-50 border border-gray-100 px-2.5 py-1 rounded-full">
                   <TrendingUp className="w-3 h-3" />
                   เรียงตาม AI Score
                 </div>
@@ -1377,10 +1377,10 @@ export default function TopPicksPage({ onBack, jobs = [], initialJobId }: TopPic
                 <div className="flex items-center gap-3 mb-4 px-1">
                   <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-[#0DC2FF]/15 to-[#127EE3]/10 border border-[#0DC2FF]/30">
                     <Zap className="w-3.5 h-3.5 text-[#0DC2FF]" />
-                    <span className="text-[12px] font-bold text-[#0DC2FF] tracking-wide">PERFECTLY FIT</span>
-                    <span className="text-[11px] font-bold text-white bg-[#0DC2FF] rounded-full w-5 h-5 flex items-center justify-center">{perfectFitCount}</span>
+                    <span className="text-[14px] font-bold text-[#0DC2FF] tracking-wide">PERFECTLY FIT</span>
+                    <span className="text-[13px] font-bold text-white bg-[#0DC2FF] rounded-full w-5 h-5 flex items-center justify-center">{perfectFitCount}</span>
                   </div>
-                  <span className="text-[12.5px] text-gray-400">AI คัดแล้วว่าตรงที่สุดทั้ง experience, skills และ culture fit</span>
+                  <span className="text-[14.5px] text-gray-400">AI คัดแล้วว่าตรงที่สุดทั้ง experience, skills และ culture fit</span>
                 </div>
                 <div className="space-y-4">
                   {perfectFitCandidates.map((c, idx) => (
@@ -1393,10 +1393,10 @@ export default function TopPicksPage({ onBack, jobs = [], initialJobId }: TopPic
                 <div className="flex items-center gap-3 mb-5 px-1">
                   <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gray-100 border border-gray-200">
                     <Star className="w-3 h-3 text-amber-400 fill-amber-300" />
-                    <span className="text-[12px] font-bold text-gray-600 tracking-wide uppercase">Shortlist</span>
-                    <span className="text-[11px] font-bold text-gray-500 bg-white rounded-full w-7 h-5 flex items-center justify-center border border-gray-200">{runnerCount}</span>
+                    <span className="text-[14px] font-bold text-gray-600 tracking-wide uppercase">Shortlist</span>
+                    <span className="text-[13px] font-bold text-gray-500 bg-white rounded-full w-7 h-5 flex items-center justify-center border border-gray-200">{runnerCount}</span>
                   </div>
-                  <span className="text-[12.5px] text-gray-400">แต่ละคนมีจุดเด่นต่างกัน — ดูว่าคนไหนตรงทิศทางทีม</span>
+                  <span className="text-[14.5px] text-gray-400">แต่ละคนมีจุดเด่นต่างกัน — ดูว่าคนไหนตรงทิศทางทีม</span>
                 </div>
                 <div className="space-y-3.5">
                   {runnerUpCandidates.map((c) => (
@@ -1865,12 +1865,12 @@ function StatusCandidateCard({ candidate, tabType }: { candidate: StatusCandidat
             <div className="flex items-start gap-3 mb-5">
               <AnonymousAvatar size="lg" />
               <div className="min-w-0 flex-1">
-                <p className="text-[15px] text-[#111827] font-semibold leading-snug">{candidate.title}</p>
+                <p className="text-[17px] text-[#111827] font-semibold leading-snug">{candidate.title}</p>
               </div>
             </div>
 
             {/* Key info rows */}
-            <div className="space-y-2 text-[12.5px] mb-4">
+            <div className="space-y-2 text-[14.5px] mb-4">
               <div className="flex items-center gap-2">
                 <Briefcase className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
                 <span className="font-medium text-[#111827] leading-snug">{candidate.company}</span>
@@ -1889,16 +1889,16 @@ function StatusCandidateCard({ candidate, tabType }: { candidate: StatusCandidat
               </div>
               <div className="flex items-center gap-2 pt-2 border-t border-gray-100">
                 <Banknote className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
-                <span className="font-semibold text-[#111827] text-[13px]">{candidate.salary}</span>
+                <span className="font-semibold text-[#111827] text-[15px]">{candidate.salary}</span>
               </div>
             </div>
 
             {candidate.skills && candidate.skills.length > 0 && (
               <div className="pt-3 border-t border-gray-100">
-                <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-2">Skills</p>
+                <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-2">Skills</p>
                 <div className="flex flex-wrap gap-1">
                   {candidate.skills.map((s) => (
-                    <span key={s} className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-gray-100 text-gray-600">{s}</span>
+                    <span key={s} className="text-[13px] font-medium px-2 py-0.5 rounded-md bg-gray-100 text-gray-600">{s}</span>
                   ))}
                 </div>
               </div>
@@ -1906,10 +1906,10 @@ function StatusCandidateCard({ candidate, tabType }: { candidate: StatusCandidat
 
             {candidate.competencies && candidate.competencies.length > 0 && (
               <div className="pt-3 mt-3 border-t border-gray-100">
-                <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-2">Core Competencies</p>
+                <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-2">Core Competencies</p>
                 <div className="flex flex-wrap gap-1">
                   {candidate.competencies.map((c) => (
-                    <span key={c} className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-teal-50 text-teal-700">{c}</span>
+                    <span key={c} className="text-[13px] font-medium px-2 py-0.5 rounded-md bg-teal-50 text-teal-700">{c}</span>
                   ))}
                 </div>
               </div>
@@ -1921,19 +1921,19 @@ function StatusCandidateCard({ candidate, tabType }: { candidate: StatusCandidat
             {/* Tab-specific status badges */}
             <div className="flex items-center gap-2 mb-3 flex-wrap">
               {tabType === "read" && candidate.readAt && (
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 border border-blue-100 text-[11px] font-semibold text-blue-600">
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 border border-blue-100 text-[13px] font-semibold text-blue-600">
                   <Eye className="w-3 h-3" />
                   เปิดดูแล้ว {candidate.readAt}
                 </div>
               )}
               {tabType === "liked" && candidate.likedAt && (
                 <>
-                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-50 border border-rose-100 text-[11px] font-semibold text-rose-600">
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-50 border border-rose-100 text-[13px] font-semibold text-rose-600">
                     <Heart className="w-3 h-3 fill-rose-500" />
                     สนใจเมื่อ {candidate.likedAt}
                   </div>
                   {messageSent && (
-                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-[11px] font-semibold text-emerald-600">
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-[13px] font-semibold text-emerald-600">
                       <CheckCircle2 className="w-3 h-3" />
                       ส่งข้อความแล้ว
                     </div>
@@ -1942,12 +1942,12 @@ function StatusCandidateCard({ candidate, tabType }: { candidate: StatusCandidat
               )}
               {tabType === "snoozed" && candidate.snoozedAt && (
                 <>
-                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gray-100 border border-gray-200 text-[11px] font-semibold text-gray-500">
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gray-100 border border-gray-200 text-[13px] font-semibold text-gray-500">
                     <Clock className="w-3 h-3" />
                     ไว้ก่อนเมื่อ {candidate.snoozedAt}
                   </div>
                   {candidate.snoozeReason && (
-                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 border border-amber-100 text-[11px] text-amber-700">
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 border border-amber-100 text-[13px] text-amber-700">
                       {candidate.snoozeReason}
                     </div>
                   )}
@@ -1957,22 +1957,22 @@ function StatusCandidateCard({ candidate, tabType }: { candidate: StatusCandidat
 
             {tabType === "liked" && candidate.sentMessage && (
               <div className="mb-3 p-3 bg-[#F0F8FF] border border-[#0DC2FF]/20 rounded-xl">
-                <p className="text-[10.5px] font-bold text-[#127EE3] mb-1 flex items-center gap-1">
+                <p className="text-[12px] font-bold text-[#127EE3] mb-1 flex items-center gap-1">
                   <Send className="w-2.5 h-2.5" />
                   ข้อความที่ส่งไป
                 </p>
-                <p className="text-[12px] text-gray-600 leading-relaxed italic line-clamp-2">"{candidate.sentMessage}"</p>
+                <p className="text-[14px] text-gray-600 leading-relaxed italic line-clamp-2">"{candidate.sentMessage}"</p>
               </div>
             )}
 
             {/* Why label */}
-            <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-3">Why This Candidate Stands Out</p>
+            <p className="text-[13px] font-semibold text-gray-400 uppercase tracking-wider mb-3">Why This Candidate Stands Out</p>
 
             {/* Why insights */}
             <ul className="space-y-2.5 mb-5">
               {candidate.highlights.map((h, i) => (
-                <li key={i} className="flex gap-3 text-[13px] text-gray-700 leading-[1.65]">
-                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gray-100 text-gray-400 text-[10px] font-bold flex items-center justify-center mt-[1px]">{i + 1}</span>
+                <li key={i} className="flex gap-3 text-[15px] text-gray-700 leading-[1.65]">
+                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gray-100 text-gray-400 text-[11px] font-bold flex items-center justify-center mt-[1px]">{i + 1}</span>
                   <span>{h}</span>
                 </li>
               ))}
@@ -1986,12 +1986,12 @@ function StatusCandidateCard({ candidate, tabType }: { candidate: StatusCandidat
               <div className="mb-4 pt-3 border-t border-gray-100">
                 <div className="flex items-center gap-1.5 mb-2">
                   <Brain className="w-3 h-3 text-gray-400" />
-                  <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Behavioral Signals</span>
-                  <span className="text-[10px] text-gray-300 ml-1">· AI</span>
+                  <span className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Behavioral Signals</span>
+                  <span className="text-[11px] text-gray-300 ml-1">· AI</span>
                 </div>
                 <ul className="space-y-1.5">
                   {candidate.deepAnalysis.map((item, i) => (
-                    <li key={i} className="flex gap-2.5 text-[12px] leading-relaxed text-gray-500">
+                    <li key={i} className="flex gap-2.5 text-[14px] leading-relaxed text-gray-500">
                       <span className="flex-shrink-0 w-1 h-1 rounded-full bg-gray-300 mt-[7px]" />
                       <span><span className="font-medium text-gray-700">{item.label}</span> — {item.detail}</span>
                     </li>
@@ -2004,7 +2004,7 @@ function StatusCandidateCard({ candidate, tabType }: { candidate: StatusCandidat
             <div className="flex items-center gap-2 mt-auto pt-3 border-t border-gray-100 flex-wrap">
               <button
                 onClick={() => setResumeOpen(true)}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-[13px] font-semibold bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white hover:opacity-90 transition-opacity"
+                className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-[15px] font-semibold bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white hover:opacity-90 transition-opacity"
               >
                 <FileText className="w-3.5 h-3.5" />
                 ดูเรซูเม่
@@ -2014,21 +2014,21 @@ function StatusCandidateCard({ candidate, tabType }: { candidate: StatusCandidat
                 <>
                   <button
                     onClick={() => setMessageOpen(true)}
-                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-[13px] font-medium border border-gray-300 text-gray-600 hover:border-[#019EFC] hover:text-[#019EFC] transition-all"
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-[15px] font-medium border border-gray-300 text-gray-600 hover:border-[#019EFC] hover:text-[#019EFC] transition-all"
                   >
                     <MessageCircle className="w-3.5 h-3.5" />
                     ส่งข้อความสนใจ
                   </button>
                   <button
                     onClick={() => { setLikedBack(true); setMoved(true); }}
-                    className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[13px] font-medium border border-gray-200 text-gray-500 hover:border-rose-200 hover:text-rose-600 transition-all"
+                    className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[15px] font-medium border border-gray-200 text-gray-500 hover:border-rose-200 hover:text-rose-600 transition-all"
                   >
                     <Heart className="w-3.5 h-3.5" />
                     สนใจ
                   </button>
                   <button
                     onClick={() => setMoved(true)}
-                    className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-[12.5px] text-gray-400 hover:text-gray-600 transition-all ml-auto"
+                    className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-[14.5px] text-gray-400 hover:text-gray-600 transition-all ml-auto"
                   >
                     <Clock className="w-3.5 h-3.5" />
                     ไว้ก่อน
@@ -2041,7 +2041,7 @@ function StatusCandidateCard({ candidate, tabType }: { candidate: StatusCandidat
                   {!messageSent ? (
                     <button
                       onClick={() => setMessageOpen(true)}
-                      className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-[13px] font-medium border border-gray-300 text-gray-600 hover:border-[#019EFC] hover:text-[#019EFC] transition-all"
+                      className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-[15px] font-medium border border-gray-300 text-gray-600 hover:border-[#019EFC] hover:text-[#019EFC] transition-all"
                     >
                       <MessageCircle className="w-3.5 h-3.5" />
                       ส่งข้อความสนใจ
@@ -2049,7 +2049,7 @@ function StatusCandidateCard({ candidate, tabType }: { candidate: StatusCandidat
                   ) : (
                     <button
                       onClick={() => setMessageOpen(true)}
-                      className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-[13px] font-medium border border-emerald-200 text-emerald-600 bg-emerald-50 hover:bg-emerald-100 transition-all"
+                      className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-[15px] font-medium border border-emerald-200 text-emerald-600 bg-emerald-50 hover:bg-emerald-100 transition-all"
                     >
                       <CheckCircle2 className="w-3.5 h-3.5" />
                       ส่งแล้ว · ส่งอีกครั้ง
@@ -2057,14 +2057,14 @@ function StatusCandidateCard({ candidate, tabType }: { candidate: StatusCandidat
                   )}
                   <button
                     onClick={() => setMoved(true)}
-                    className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[13px] font-medium border border-gray-200 text-gray-500 hover:border-gray-300 transition-all"
+                    className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[15px] font-medium border border-gray-200 text-gray-500 hover:border-gray-300 transition-all"
                   >
                     <Calendar className="w-3.5 h-3.5" />
                     นัด Interview
                   </button>
                   <button
                     onClick={() => setMoved(true)}
-                    className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-[12.5px] text-gray-400 hover:text-red-400 transition-all ml-auto"
+                    className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-[14.5px] text-gray-400 hover:text-red-400 transition-all ml-auto"
                   >
                     <X className="w-3.5 h-3.5" />
                     ถอน
@@ -2076,21 +2076,21 @@ function StatusCandidateCard({ candidate, tabType }: { candidate: StatusCandidat
                 <>
                   <button
                     onClick={() => setMoved(true)}
-                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-[13px] font-medium border border-gray-300 text-gray-600 hover:border-[#019EFC] hover:text-[#019EFC] transition-all"
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-[15px] font-medium border border-gray-300 text-gray-600 hover:border-[#019EFC] hover:text-[#019EFC] transition-all"
                   >
                     <Undo2 className="w-3.5 h-3.5" />
                     นำกลับมาพิจารณา
                   </button>
                   <button
                     onClick={() => setMessageOpen(true)}
-                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-[13px] font-medium border border-gray-200 text-gray-500 hover:border-gray-300 transition-all"
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-[15px] font-medium border border-gray-200 text-gray-500 hover:border-gray-300 transition-all"
                   >
                     <MessageCircle className="w-3.5 h-3.5" />
                     ส่งข้อความสนใจ
                   </button>
                   <button
                     onClick={() => setMoved(true)}
-                    className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-[12.5px] text-gray-400 hover:text-red-400 transition-all ml-auto"
+                    className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-[14.5px] text-gray-400 hover:text-red-400 transition-all ml-auto"
                   >
                     <X className="w-3.5 h-3.5" />
                     ลบออก
@@ -2124,10 +2124,10 @@ function ReadTab() {
       <div className="flex items-center justify-between mb-5 px-1">
         <div className="flex items-center gap-2">
           <BookOpen className="w-4 h-4 text-blue-500" />
-          <span className="text-[14px] font-bold text-[#1A1A2E]">อ่านแล้ว</span>
-          <span className="text-[12px] text-gray-400 font-normal ml-1">— โปรไฟล์ที่คุณเปิดดูแล้วแต่ยังไม่ได้ตัดสินใจ</span>
+          <span className="text-[16px] font-bold text-[#1A1A2E]">อ่านแล้ว</span>
+          <span className="text-[14px] text-gray-400 font-normal ml-1">— โปรไฟล์ที่คุณเปิดดูแล้วแต่ยังไม่ได้ตัดสินใจ</span>
         </div>
-        <div className="flex items-center gap-1.5 text-[11.5px] text-gray-400 bg-gray-50 border border-gray-100 px-3 py-1.5 rounded-full">
+        <div className="flex items-center gap-1.5 text-[13.5px] text-gray-400 bg-gray-50 border border-gray-100 px-3 py-1.5 rounded-full">
           <RefreshCw className="w-3 h-3" />
           {readCandidates.length} รายการ
         </div>
@@ -2135,7 +2135,7 @@ function ReadTab() {
 
       <div className="mb-4 p-3.5 bg-blue-50 border border-blue-100 rounded-xl flex items-start gap-2.5">
         <BookOpen className="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5" />
-        <p className="text-[12.5px] text-blue-700 leading-relaxed">
+        <p className="text-[14.5px] text-blue-700 leading-relaxed">
           โปรไฟล์เหล่านี้คุณเปิดดูแล้ว ถ้าสนใจสามารถ <strong>กดสนใจ</strong> หรือ <strong>ส่งข้อความ</strong> ได้เลย ก่อนที่คนอื่นจะติดต่อไปก่อน
         </p>
       </div>
@@ -2155,10 +2155,10 @@ function ShortlistedTab() {
       <div className="flex items-center justify-between mb-5 px-1">
         <div className="flex items-center gap-2">
           <BookmarkPlus className="w-4 h-4 text-amber-500" />
-          <span className="text-[14px] font-bold text-[#1A1A2E]">ชอร์ตลิสต์</span>
-          <span className="text-[12px] text-gray-400 font-normal ml-1">— คนที่คุณสนใจและบันทึกไว้แล้ว</span>
+          <span className="text-[16px] font-bold text-[#1A1A2E]">ชอร์ตลิสต์</span>
+          <span className="text-[14px] text-gray-400 font-normal ml-1">— คนที่คุณสนใจและบันทึกไว้แล้ว</span>
         </div>
-        <div className="flex items-center gap-1.5 text-[11.5px] text-gray-400 bg-gray-50 border border-gray-100 px-3 py-1.5 rounded-full">
+        <div className="flex items-center gap-1.5 text-[13.5px] text-gray-400 bg-gray-50 border border-gray-100 px-3 py-1.5 rounded-full">
           <BookmarkPlus className="w-3 h-3" />
           {likedCandidates.length} รายการ
         </div>
@@ -2166,7 +2166,7 @@ function ShortlistedTab() {
 
       <div className="mb-4 p-3.5 bg-amber-50 border border-amber-100 rounded-xl flex items-start gap-2.5">
         <Send className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
-        <p className="text-[12.5px] text-amber-700 leading-relaxed">
+        <p className="text-[14.5px] text-amber-700 leading-relaxed">
           คนเหล่านี้คุณบันทึกไว้แล้ว — ถ้าพร้อมแล้วลองกด <strong>ส่งข้อความสนใจ</strong> เพื่อเปิดบทสนทนาก่อนที่คู่แข่งจะติดต่อไปก่อน
         </p>
       </div>
@@ -2186,10 +2186,10 @@ function LikedTab() {
       <div className="flex items-center justify-between mb-5 px-1">
         <div className="flex items-center gap-2">
           <Heart className="w-4 h-4 text-rose-500 fill-rose-400" />
-          <span className="text-[14px] font-bold text-[#1A1A2E]">สนใจแล้ว</span>
-          <span className="text-[12px] text-gray-400 font-normal ml-1">— คนที่คุณส่งข้อความสนใจไปแล้ว</span>
+          <span className="text-[16px] font-bold text-[#1A1A2E]">สนใจแล้ว</span>
+          <span className="text-[14px] text-gray-400 font-normal ml-1">— คนที่คุณส่งข้อความสนใจไปแล้ว</span>
         </div>
-        <div className="flex items-center gap-1.5 text-[11.5px] text-gray-400 bg-gray-50 border border-gray-100 px-3 py-1.5 rounded-full">
+        <div className="flex items-center gap-1.5 text-[13.5px] text-gray-400 bg-gray-50 border border-gray-100 px-3 py-1.5 rounded-full">
           <Heart className="w-3 h-3" />
           {likedCandidates.length} รายการ
         </div>
@@ -2197,7 +2197,7 @@ function LikedTab() {
 
       <div className="mb-4 p-3.5 bg-rose-50 border border-rose-100 rounded-xl flex items-start gap-2.5">
         <CheckCircle2 className="w-4 h-4 text-rose-500 flex-shrink-0 mt-0.5" />
-        <p className="text-[12.5px] text-rose-700 leading-relaxed">
+        <p className="text-[14.5px] text-rose-700 leading-relaxed">
           คุณส่งข้อความสนใจไปแล้ว — รอการตอบกลับ หรือ <strong>นัด Interview</strong> ได้เลยถ้าพร้อม
         </p>
       </div>
@@ -2217,10 +2217,10 @@ function SnoozedTab() {
       <div className="flex items-center justify-between mb-5 px-1">
         <div className="flex items-center gap-2">
           <Clock className="w-4 h-4 text-gray-400" />
-          <span className="text-[14px] font-bold text-[#1A1A2E]">ยังไม่สนใจ</span>
-          <span className="text-[12px] text-gray-400 font-normal ml-1">— AI เรียนรู้เหตุผลเพื่อแนะนำดีขึ้น</span>
+          <span className="text-[16px] font-bold text-[#1A1A2E]">ยังไม่สนใจ</span>
+          <span className="text-[14px] text-gray-400 font-normal ml-1">— AI เรียนรู้เหตุผลเพื่อแนะนำดีขึ้น</span>
         </div>
-        <div className="flex items-center gap-1.5 text-[11.5px] text-gray-400 bg-gray-50 border border-gray-100 px-3 py-1.5 rounded-full">
+        <div className="flex items-center gap-1.5 text-[13.5px] text-gray-400 bg-gray-50 border border-gray-100 px-3 py-1.5 rounded-full">
           <Clock className="w-3 h-3" />
           {snoozedCandidates.length} รายการ
         </div>
@@ -2228,7 +2228,7 @@ function SnoozedTab() {
 
       <div className="mb-4 p-3.5 bg-amber-50 border border-amber-100 rounded-xl flex items-start gap-2.5">
         <Brain className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
-        <p className="text-[12.5px] text-amber-700 leading-relaxed">
+        <p className="text-[14.5px] text-amber-700 leading-relaxed">
           AI บันทึกเหตุผลไว้แล้ว และจะนำเสนอโปรไฟล์ที่ตรงกว่าในครั้งหน้า ถ้าต้องการนำใครกลับมาพิจารณาก็สามารถทำได้ตลอดเวลา
         </p>
       </div>

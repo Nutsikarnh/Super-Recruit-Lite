@@ -69,8 +69,8 @@ export default function ReferToInput({ value, onChange, selectedContacts, onSele
       {selectedContacts.length > 0 && (
         <div className="flex flex-wrap gap-1.5">
           {selectedContacts.map((c) => (
-            <div key={c.id} className="flex items-center gap-1.5 pl-1.5 pr-2 py-1 rounded-lg bg-[#F0F8FF] border border-[#0DC2FF]/25 text-[12.5px]">
-              <div className={`w-5 h-5 rounded-md flex items-center justify-center text-[9px] font-bold flex-shrink-0 ${c.color}`}>
+            <div key={c.id} className="flex items-center gap-1.5 pl-1.5 pr-2 py-1 rounded-lg bg-[#F0F8FF] border border-[#0DC2FF]/25 text-[14.5px]">
+              <div className={`w-5 h-5 rounded-md flex items-center justify-center text-[10px] font-bold flex-shrink-0 ${c.color}`}>
                 {c.initials}
               </div>
               <div className="leading-tight">
@@ -99,7 +99,7 @@ export default function ReferToInput({ value, onChange, selectedContacts, onSele
             }}
             onFocus={() => setOpen(true)}
             placeholder="ค้นหาชื่อ, ตำแหน่ง หรือพิมพ์อีเมลเอง..."
-            className="flex-1 bg-transparent text-[13px] placeholder:text-gray-400 text-[#1A1A2E] focus:outline-none"
+            className="flex-1 bg-transparent text-[15px] placeholder:text-gray-400 text-[#1A1A2E] focus:outline-none"
           />
           <button
             onClick={() => setOpen((v) => !v)}
@@ -115,7 +115,7 @@ export default function ReferToInput({ value, onChange, selectedContacts, onSele
             <div className="flex items-center gap-1.5 px-3 pt-3 pb-2 overflow-x-auto">
               <button
                 onClick={() => setFilterDept(null)}
-                className={`flex-shrink-0 px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all ${!filterDept ? "bg-[#127EE3] text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
+                className={`flex-shrink-0 px-2.5 py-1 rounded-lg text-[13px] font-bold transition-all ${!filterDept ? "bg-[#127EE3] text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
               >
                 ทั้งหมด
               </button>
@@ -123,7 +123,7 @@ export default function ReferToInput({ value, onChange, selectedContacts, onSele
                 <button
                   key={d}
                   onClick={() => setFilterDept(filterDept === d ? null : d)}
-                  className={`flex-shrink-0 px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all ${filterDept === d ? "bg-[#127EE3] text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
+                  className={`flex-shrink-0 px-2.5 py-1 rounded-lg text-[13px] font-bold transition-all ${filterDept === d ? "bg-[#127EE3] text-white" : "bg-gray-100 text-gray-500 hover:bg-gray-200"}`}
                 >
                   {d}
                 </button>
@@ -134,7 +134,7 @@ export default function ReferToInput({ value, onChange, selectedContacts, onSele
               {filtered.length === 0 ? (
                 <div className="px-4 py-5 text-center">
                   <UserPlus className="w-5 h-5 text-gray-300 mx-auto mb-1.5" />
-                  <p className="text-[13px] text-gray-400">ไม่พบในสมุดรายชื่อ</p>
+                  <p className="text-[15px] text-gray-400">ไม่พบในสมุดรายชื่อ</p>
                   {value && (
                     <button
                       onClick={() => {
@@ -150,7 +150,7 @@ export default function ReferToInput({ value, onChange, selectedContacts, onSele
                         onChange("");
                         setOpen(false);
                       }}
-                      className="mt-2 text-[12.5px] text-[#127EE3] font-semibold hover:underline"
+                      className="mt-2 text-[14.5px] text-[#127EE3] font-semibold hover:underline"
                     >
                       เพิ่ม "{value}" โดยตรง
                     </button>
@@ -163,14 +163,14 @@ export default function ReferToInput({ value, onChange, selectedContacts, onSele
                     onClick={() => handleSelectContact(c)}
                     className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#F0F8FF] transition-colors text-left border-b border-gray-50 last:border-0"
                   >
-                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center text-[11px] font-bold flex-shrink-0 ${c.color}`}>
+                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center text-[13px] font-bold flex-shrink-0 ${c.color}`}>
                       {c.initials}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-[13px] font-semibold text-[#1A1A2E] truncate">{c.name}</p>
-                      <p className="text-[11.5px] text-gray-400 truncate">{c.title} · {c.email}</p>
+                      <p className="text-[15px] font-semibold text-[#1A1A2E] truncate">{c.name}</p>
+                      <p className="text-[13.5px] text-gray-400 truncate">{c.title} · {c.email}</p>
                     </div>
-                    <span className="text-[10.5px] font-medium px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 flex-shrink-0">{c.department}</span>
+                    <span className="text-[12px] font-medium px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 flex-shrink-0">{c.department}</span>
                   </button>
                 ))
               )}
@@ -179,7 +179,7 @@ export default function ReferToInput({ value, onChange, selectedContacts, onSele
         )}
       </div>
 
-      <p className="text-[11px] text-gray-400">เลือกจากสมุดรายชื่อ หรือพิมพ์อีเมลแล้วกด Enter</p>
+      <p className="text-[13px] text-gray-400">เลือกจากสมุดรายชื่อ หรือพิมพ์อีเมลแล้วกด Enter</p>
     </div>
   );
 }

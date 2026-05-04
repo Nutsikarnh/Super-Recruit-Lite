@@ -48,9 +48,9 @@ export default function TopPicksOverviewPage({ onSelectJob }: TopPicksOverviewPa
           <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#0DC2FF] to-[#127EE3] flex items-center justify-center shadow-sm shadow-[#127EE3]/20">
             <Sparkles className="w-[18px] h-[18px] text-white" />
           </div>
-          <h1 className="text-[28px] font-semibold text-[#1A1A2E] leading-tight">Top Picks</h1>
+          <h1 className="text-[30px] font-semibold text-[#1A1A2E] leading-tight">Top Picks</h1>
         </div>
-        <p className="text-[15px] text-gray-500 mt-1">
+        <p className="text-[17px] text-gray-500 mt-1">
           เลือกตำแหน่งงานที่ต้องการดูผู้สมัครที่ AI แนะนำ
         </p>
       </div>
@@ -65,7 +65,7 @@ export default function TopPicksOverviewPage({ onSelectJob }: TopPicksOverviewPa
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="ค้นหาตำแหน่งงาน..."
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 bg-white text-[14px] text-[#1A1A2E] placeholder-gray-400 focus:outline-none focus:border-[#127EE3]/50 focus:ring-2 focus:ring-[#127EE3]/10 shadow-sm transition-all"
+            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 bg-white text-[16px] text-[#1A1A2E] placeholder-gray-400 focus:outline-none focus:border-[#127EE3]/50 focus:ring-2 focus:ring-[#127EE3]/10 shadow-sm transition-all"
           />
         </div>
 
@@ -81,7 +81,7 @@ export default function TopPicksOverviewPage({ onSelectJob }: TopPicksOverviewPa
               <button
                 key={t.key}
                 onClick={() => setTab(t.key)}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-[13px] font-medium transition-all whitespace-nowrap ${
+                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-[15px] font-medium transition-all whitespace-nowrap ${
                   active
                     ? "bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white shadow-sm"
                     : "text-gray-500 hover:text-[#1A1A2E] hover:bg-gray-50"
@@ -89,7 +89,7 @@ export default function TopPicksOverviewPage({ onSelectJob }: TopPicksOverviewPa
               >
                 {t.label}
                 <span
-                  className={`text-[11px] font-bold px-1.5 py-0.5 rounded-full ${
+                  className={`text-[13px] font-bold px-1.5 py-0.5 rounded-full ${
                     active ? "bg-white/25 text-white" : "bg-gray-100 text-gray-500"
                   }`}
                 >
@@ -104,7 +104,7 @@ export default function TopPicksOverviewPage({ onSelectJob }: TopPicksOverviewPa
       {/* Job cards */}
       <div className="flex flex-col gap-3">
         {filtered.length === 0 ? (
-          <div className="text-center py-16 text-[14px] text-gray-400">
+          <div className="text-center py-16 text-[16px] text-gray-400">
             ไม่พบตำแหน่งงานที่ตรงกับเงื่อนไข
           </div>
         ) : (
@@ -122,9 +122,9 @@ export default function TopPicksOverviewPage({ onSelectJob }: TopPicksOverviewPa
               {/* Info */}
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
-                  <p className="text-[16px] font-semibold text-[#1A1A2E] leading-snug truncate">{job.title}</p>
+                  <p className="text-[18px] font-semibold text-[#1A1A2E] leading-snug truncate">{job.title}</p>
                   <span
-                    className={`flex-shrink-0 text-[10.5px] font-semibold px-2 py-0.5 rounded-full ${
+                    className={`flex-shrink-0 text-[12px] font-semibold px-2 py-0.5 rounded-full ${
                       job.status === "online"
                         ? "bg-emerald-50 text-emerald-600 border border-emerald-100"
                         : "bg-gray-100 text-gray-500 border border-gray-200"
@@ -134,7 +134,7 @@ export default function TopPicksOverviewPage({ onSelectJob }: TopPicksOverviewPa
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="flex items-center gap-1 text-[13px] text-[#127EE3] font-medium">
+                  <span className="flex items-center gap-1 text-[15px] text-[#127EE3] font-medium">
                     <Users className="w-3.5 h-3.5" />
                     {job.count} ผู้สมัครที่ AI แนะนำ
                     {job.newCount > 0 && (
@@ -147,7 +147,7 @@ export default function TopPicksOverviewPage({ onSelectJob }: TopPicksOverviewPa
                     )}
                   </span>
                   <span className="w-1 h-1 rounded-full bg-gray-300" />
-                  <span className="flex items-center gap-1 text-[12.5px] text-gray-400">
+                  <span className="flex items-center gap-1 text-[14.5px] text-gray-400">
                     <Clock className="w-3 h-3" />
                     {job.updatedAt}
                   </span>
@@ -155,7 +155,7 @@ export default function TopPicksOverviewPage({ onSelectJob }: TopPicksOverviewPa
               </div>
 
               {/* CTA */}
-              <div className="flex-shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[13px] font-semibold shadow-sm shadow-[#019EFC]/20 group-hover:opacity-90 transition-opacity">
+              <div className="flex-shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[15px] font-semibold shadow-sm shadow-[#019EFC]/20 group-hover:opacity-90 transition-opacity">
                 ดู Top Picks
                 <ChevronRight className="w-3.5 h-3.5" />
               </div>

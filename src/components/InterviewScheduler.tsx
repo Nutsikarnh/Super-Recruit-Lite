@@ -247,13 +247,13 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
         <div className="flex items-center gap-2.5 px-4 py-3 bg-[#F0F8FF] rounded-xl border border-[#0DC2FF]/30">
           <Calendar className="w-4 h-4 text-[#127EE3] flex-shrink-0" />
           <div className="flex-1">
-            <p className="text-[13px] font-bold text-[#1A1A2E]">
+            <p className="text-[15px] font-bold text-[#1A1A2E]">
               {toThaiDate(selectedDate)} · {selectedTime} น.
             </p>
           </div>
           <button
             onClick={() => setEditingDateTime(true)}
-            className="text-[12px] font-semibold text-[#127EE3] hover:text-[#0e6bc7] underline underline-offset-2 flex-shrink-0 transition-colors"
+            className="text-[14px] font-semibold text-[#127EE3] hover:text-[#0e6bc7] underline underline-offset-2 flex-shrink-0 transition-colors"
           >
             แก้ไข
           </button>
@@ -263,10 +263,10 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
       {/* Reviewer availability chips */}
       {hasAvailability && !showEmailStep && editingDateTime && (
         <div className="rounded-xl border border-gray-100 bg-gray-50/70 px-3.5 py-3 space-y-2.5">
-          <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">ช่วงเวลาที่ผู้พิจารณาสะดวก</p>
+          <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest">ช่วงเวลาที่ผู้พิจารณาสะดวก</p>
           {availabilitySlots!.filter((g) => g.slots.length > 0).map((group) => (
             <div key={group.reviewerName} className="space-y-1.5">
-              <p className="text-[11.5px] font-medium text-gray-500">{group.reviewerName}</p>
+              <p className="text-[13.5px] font-medium text-gray-500">{group.reviewerName}</p>
               <div className="flex flex-wrap gap-1.5">
                 {group.slots.map((s, i) => {
                   const chipKey = `${group.reviewerName}-${i}`;
@@ -275,7 +275,7 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
                     <button
                       key={i}
                       onClick={() => handleChipSelect(s, chipKey)}
-                      className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11.5px] font-medium transition-all cursor-pointer ${
+                      className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[13.5px] font-medium transition-all cursor-pointer ${
                         isChipSelected
                           ? "bg-[#E0F2FE] border-2 border-[#0DC2FF] text-[#0369a1] shadow-sm"
                           : "bg-white border border-sky-200 text-sky-700 hover:bg-sky-50 hover:border-sky-400"
@@ -294,14 +294,14 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
 
       {/* Date picker */}
       {editingDateTime && (<div>
-        <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2">เลือกวันที่</p>
+        <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-2">เลือกวันที่</p>
         <button
           onClick={() => setCalendarOpen((v) => !v)}
-          className={`w-full flex items-center gap-2.5 px-3.5 rounded-xl border text-[13px] font-medium transition-all text-left min-h-[42px] ${selectedDate ? "border-[#0DC2FF] bg-[#F0F8FF] text-[#1A1A2E] focus:outline-none focus:ring-2 focus:ring-[#0DC2FF]/50" : "border-gray-200 bg-[#F0F2F5] text-gray-400 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0DC2FF]/50"}`}
+          className={`w-full flex items-center gap-2.5 px-3.5 rounded-xl border text-[15px] font-medium transition-all text-left min-h-[42px] ${selectedDate ? "border-[#0DC2FF] bg-[#F0F8FF] text-[#1A1A2E] focus:outline-none focus:ring-2 focus:ring-[#0DC2FF]/50" : "border-gray-200 bg-[#F0F2F5] text-gray-400 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0DC2FF]/50"}`}
         >
           <span className="flex-1">{selectedDate ? toThaiDate(selectedDate) : "เลือกวันที่"}</span>
           {selectedDate
-            ? <span className="text-[12px] text-[#127EE3] flex-shrink-0">เปลี่ยนวัน</span>
+            ? <span className="text-[14px] text-[#127EE3] flex-shrink-0">เปลี่ยนวัน</span>
             : <Calendar className="w-4 h-4 flex-shrink-0 text-gray-400" />
           }
         </button>
@@ -312,7 +312,7 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
               <button onClick={() => setViewDate(new Date(year, month - 1, 1))} className="w-7 h-7 rounded-lg hover:bg-gray-100 flex items-center justify-center transition-colors">
                 <ChevronLeft className="w-4 h-4 text-gray-500" />
               </button>
-              <p className="text-[14px] font-bold text-[#1A1A2E]">{THAI_MONTHS_FULL[month]} {year + 543}</p>
+              <p className="text-[16px] font-bold text-[#1A1A2E]">{THAI_MONTHS_FULL[month]} {year + 543}</p>
               <button onClick={() => setViewDate(new Date(year, month + 1, 1))} className="w-7 h-7 rounded-lg hover:bg-gray-100 flex items-center justify-center transition-colors">
                 <ChevronRight className="w-4 h-4 text-gray-500" />
               </button>
@@ -320,7 +320,7 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
 
             <div className="grid grid-cols-7 px-3 pt-3 pb-1">
               {THAI_DOW.map((d, i) => (
-                <div key={d} className={`text-center text-[11px] font-bold pb-2 ${i === 0 ? "text-red-400" : "text-gray-400"}`}>{d}</div>
+                <div key={d} className={`text-center text-[13px] font-bold pb-2 ${i === 0 ? "text-red-400" : "text-gray-400"}`}>{d}</div>
               ))}
             </div>
 
@@ -342,7 +342,7 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
                       onMouseEnter={() => count > 0 && !past ? setHoveredDate(key) : undefined}
                       onMouseLeave={() => setHoveredDate(null)}
                       onClick={() => { setSelectedDate(cell); setSelectedTime(null); setCalendarOpen(false); setShowEmailStep(false); setSendEmail(null); setSelectedChipKey(null); }}
-                      className={`relative w-9 h-9 rounded-xl flex flex-col items-center justify-center transition-all text-[13px] font-medium ${
+                      className={`relative w-9 h-9 rounded-xl flex flex-col items-center justify-center transition-all text-[15px] font-medium ${
                         sel ? "bg-[#127EE3] text-white shadow-md shadow-[#127EE3]/30"
                         : past ? "text-gray-200 cursor-not-allowed"
                         : tod ? "ring-2 ring-[#0DC2FF] ring-inset text-[#127EE3] font-bold hover:bg-[#F0F8FF]"
@@ -363,11 +363,11 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
                     {isHov && (
                       <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 z-50 bg-[#1A1A2E] rounded-xl shadow-2xl px-3 py-2.5 min-w-[190px] pointer-events-none">
                         <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#1A1A2E] rotate-45 rounded-sm" />
-                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">นัดในวันนี้ {count} คน</p>
+                        <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">นัดในวันนี้ {count} คน</p>
                         {schList.map((s, i) => (
                           <div key={i} className="flex items-center gap-2 py-0.5">
-                            <span className="text-[11px] font-bold text-[#0DC2FF] w-9 flex-shrink-0">{s.time}</span>
-                            <span className="text-[11.5px] text-white font-medium leading-tight truncate">{s.candidateName}</span>
+                            <span className="text-[13px] font-bold text-[#0DC2FF] w-9 flex-shrink-0">{s.time}</span>
+                            <span className="text-[13.5px] text-white font-medium leading-tight truncate">{s.candidateName}</span>
                           </div>
                         ))}
                       </div>
@@ -377,7 +377,7 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
               })}
             </div>
 
-            <div className="px-4 pb-3 flex items-center gap-2 text-[11px] text-gray-400 border-t border-gray-50 pt-2">
+            <div className="px-4 pb-3 flex items-center gap-2 text-[13px] text-gray-400 border-t border-gray-50 pt-2">
               <span className="flex gap-0.5 flex-shrink-0">
                 {[0,1,2].map(i => <span key={i} className="w-1.5 h-1.5 rounded-full bg-amber-400" />)}
               </span>
@@ -390,19 +390,19 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
       {/* Time slots */}
       {editingDateTime && selectedDate && !showEmailStep && (
         <div>
-          <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2">เลือกเวลา</p>
+          <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-2">เลือกเวลา</p>
           {scheduledOnSelected.length > 0 && (
             <div className="mb-2.5 px-3.5 py-3 bg-amber-50 rounded-xl border border-amber-100">
-              <p className="text-[11px] font-bold text-amber-600 mb-2 flex items-center gap-1.5">
+              <p className="text-[13px] font-bold text-amber-600 mb-2 flex items-center gap-1.5">
                 <Clock className="w-3 h-3" />
                 มีนัดในวันนี้แล้ว {scheduledOnSelected.length} คน
               </p>
               <div className="space-y-1.5">
                 {scheduledOnSelected.map((s, i) => (
-                  <div key={i} className="flex items-center gap-2 text-[12px] text-amber-700">
+                  <div key={i} className="flex items-center gap-2 text-[14px] text-amber-700">
                     <span className="font-bold w-11 flex-shrink-0">{s.time}</span>
                     <span className="font-semibold">{s.candidateName}</span>
-                    <span className="text-amber-500 text-[11px]">· {s.candidateTitle} · {s.duration}น.</span>
+                    <span className="text-amber-500 text-[13px]">· {s.candidateTitle} · {s.duration}น.</span>
                   </div>
                 ))}
               </div>
@@ -413,7 +413,7 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
               const conflict = isConflict(t);
               return (
                 <button key={t} disabled={conflict} onClick={() => { setSelectedTime(t); setSelectedChipKey(null); }}
-                  className={`relative py-2 rounded-xl text-[13px] font-semibold border transition-all ${
+                  className={`relative py-2 rounded-xl text-[15px] font-semibold border transition-all ${
                     selectedTime === t ? "bg-[#127EE3] text-white border-[#127EE3] shadow-sm"
                     : conflict ? "bg-amber-50 text-amber-300 border-amber-100 cursor-not-allowed line-through"
                     : "bg-[#F0F2F5] text-gray-600 border-transparent hover:bg-[#E8EDF2] hover:border-gray-200"
@@ -436,11 +436,11 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
       {selectedDate && selectedTime && !showEmailStep && (
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2">ระยะเวลา</p>
+            <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-2">ระยะเวลา</p>
             <div className="flex flex-wrap gap-1.5">
               {DURATION_OPTIONS.map((d) => (
                 <button key={d} onClick={() => setDuration(d)}
-                  className={`px-3 py-1.5 rounded-lg text-[12px] font-semibold transition-all border ${duration === d ? "bg-[#127EE3] text-white border-[#127EE3]" : "bg-[#F0F2F5] text-gray-500 border-transparent hover:border-gray-200"}`}
+                  className={`px-3 py-1.5 rounded-lg text-[14px] font-semibold transition-all border ${duration === d ? "bg-[#127EE3] text-white border-[#127EE3]" : "bg-[#F0F2F5] text-gray-500 border-transparent hover:border-gray-200"}`}
                 >
                   {d < 60 ? `${d}น.` : `${d / 60}ชม.${d % 60 ? `${d % 60}น.` : ""}`}
                 </button>
@@ -448,11 +448,11 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
             </div>
           </div>
           <div>
-            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2">รูปแบบ</p>
+            <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-2">รูปแบบ</p>
             <div className="flex flex-wrap gap-1.5">
               {INTERVIEW_TYPES.map((t) => (
                 <button key={t.key} onClick={() => setInterviewType(t.key)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-semibold transition-all border ${interviewType === t.key ? "bg-[#127EE3] text-white border-[#127EE3]" : "bg-[#F0F2F5] text-gray-500 border-transparent hover:border-gray-200"}`}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[14px] font-semibold transition-all border ${interviewType === t.key ? "bg-[#127EE3] text-white border-[#127EE3]" : "bg-[#F0F2F5] text-gray-500 border-transparent hover:border-gray-200"}`}
                 >
                   <span>{t.icon}</span>{t.label}
                 </button>
@@ -465,12 +465,12 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
       {/* Interviewer selector */}
       {selectedDate && selectedTime && !showEmailStep && (
         <div ref={interviewerRef} className="relative">
-          <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2">ผู้สัมภาษณ์</p>
+          <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-2">ผู้สัมภาษณ์</p>
           {selectedInterviewers.length > 0 && (
             <div className="flex flex-wrap gap-1.5 mb-2">
               {selectedInterviewers.map((c) => (
-                <span key={c.id} className={`inline-flex items-center gap-1.5 pl-1.5 pr-1 py-0.5 rounded-full text-[11.5px] font-semibold border ${c.color} border-current/20`}>
-                  <span className={`w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-bold ${c.color}`}>{c.initials}</span>
+                <span key={c.id} className={`inline-flex items-center gap-1.5 pl-1.5 pr-1 py-0.5 rounded-full text-[13.5px] font-semibold border ${c.color} border-current/20`}>
+                  <span className={`w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-bold ${c.color}`}>{c.initials}</span>
                   {c.fullName}
                   <button onClick={() => setSelectedInterviewers((prev) => prev.filter((x) => x.id !== c.id))} className="w-3.5 h-3.5 rounded-full hover:bg-black/10 flex items-center justify-center transition-colors">
                     <X className="w-2.5 h-2.5" />
@@ -481,7 +481,7 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
           )}
           <button
             onClick={() => { setInterviewerDropdownOpen((v) => !v); setInterviewerQuery(""); }}
-            className="w-full flex items-center gap-2 px-3.5 py-2.5 rounded-xl border border-gray-200 bg-[#F0F2F5] text-[13px] text-gray-400 hover:border-gray-300 transition-colors text-left"
+            className="w-full flex items-center gap-2 px-3.5 py-2.5 rounded-xl border border-gray-200 bg-[#F0F2F5] text-[15px] text-gray-400 hover:border-gray-300 transition-colors text-left"
           >
             <UserPlus className="w-3.5 h-3.5 flex-shrink-0" />
             <span className="flex-1">{selectedInterviewers.length > 0 ? "เพิ่มผู้สัมภาษณ์" : "เลือกผู้สัมภาษณ์ (ไม่บังคับ)"}</span>
@@ -496,22 +496,22 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
                   value={interviewerQuery}
                   onChange={(e) => setInterviewerQuery(e.target.value)}
                   placeholder="ค้นหาชื่อหรือแผนก..."
-                  className="flex-1 text-[13px] focus:outline-none placeholder:text-gray-300"
+                  className="flex-1 text-[15px] focus:outline-none placeholder:text-gray-300"
                 />
               </div>
               <div className="max-h-[200px] overflow-y-auto">
                 {filteredInterviewers.length === 0 ? (
-                  <p className="text-[12.5px] text-gray-400 text-center py-4">ไม่พบรายชื่อ</p>
+                  <p className="text-[14.5px] text-gray-400 text-center py-4">ไม่พบรายชื่อ</p>
                 ) : filteredInterviewers.map((c) => (
                   <button
                     key={c.id}
                     onClick={() => { setSelectedInterviewers((prev) => [...prev, c]); setInterviewerQuery(""); setInterviewerDropdownOpen(false); }}
                     className="w-full flex items-center gap-3 px-3.5 py-2.5 hover:bg-[#F0F8FF] transition-colors text-left"
                   >
-                    <span className={`w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold flex-shrink-0 ${c.color}`}>{c.initials}</span>
+                    <span className={`w-7 h-7 rounded-full flex items-center justify-center text-[13px] font-bold flex-shrink-0 ${c.color}`}>{c.initials}</span>
                     <div className="flex-1 min-w-0">
-                      <p className="text-[13px] font-semibold text-[#1A1A2E] truncate">{c.fullName}</p>
-                      <p className="text-[11.5px] text-gray-400 truncate">{c.department} · {c.email}</p>
+                      <p className="text-[15px] font-semibold text-[#1A1A2E] truncate">{c.fullName}</p>
+                      <p className="text-[13.5px] text-gray-400 truncate">{c.department} · {c.email}</p>
                     </div>
                   </button>
                 ))}
@@ -527,18 +527,18 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
           <div className="flex items-start gap-2.5 px-4 py-3 bg-[#F0F8FF] rounded-xl border border-[#0DC2FF]/25 mb-2.5">
             <Zap className="w-4 h-4 text-[#127EE3] flex-shrink-0 mt-0.5" />
             <div className="flex-1">
-              <p className="text-[13px] font-bold text-[#1A1A2E]">
+              <p className="text-[15px] font-bold text-[#1A1A2E]">
                 {toThaiDate(selectedDate)} · {selectedTime} น. · {duration < 60 ? `${duration} นาที` : `${duration / 60} ชั่วโมง`}
               </p>
-              <p className="text-[12px] text-gray-500 mt-0.5">{typeLabel(interviewType)} · {candidateName}</p>
+              <p className="text-[14px] text-gray-500 mt-0.5">{typeLabel(interviewType)} · {candidateName}</p>
               {selectedInterviewers.length > 0 && (
-                <p className="text-[12px] text-[#127EE3] mt-0.5">
+                <p className="text-[14px] text-[#127EE3] mt-0.5">
                   ผู้สัมภาษณ์: {selectedInterviewers.map((c) => c.fullName).join(", ")}
                 </p>
               )}
             </div>
           </div>
-          <button onClick={handleProceed} className="w-full flex items-center justify-center gap-2 py-3 bg-[#127EE3] text-white text-[14px] font-bold rounded-xl hover:bg-[#0e6bc7] transition-colors shadow-sm shadow-[#127EE3]/25">
+          <button onClick={handleProceed} className="w-full flex items-center justify-center gap-2 py-3 bg-[#127EE3] text-white text-[16px] font-bold rounded-xl hover:bg-[#0e6bc7] transition-colors shadow-sm shadow-[#127EE3]/25">
             <Calendar className="w-4 h-4" />
             ดำเนินการต่อ
           </button>
@@ -551,35 +551,35 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
           <div className="flex items-start gap-2.5 px-4 py-3 bg-[#F0F8FF] rounded-xl border border-[#0DC2FF]/25">
             <CheckCircle2 className="w-4 h-4 text-[#127EE3] flex-shrink-0 mt-0.5" />
             <div className="flex-1">
-              <p className="text-[13px] font-bold text-[#1A1A2E]">
+              <p className="text-[15px] font-bold text-[#1A1A2E]">
                 {toThaiDate(selectedDate)} · {selectedTime} น. · {duration < 60 ? `${duration} นาที` : `${duration / 60} ชั่วโมง`}
               </p>
-              <p className="text-[12px] text-gray-500 mt-0.5">{typeLabel(interviewType)} · {candidateName}</p>
+              <p className="text-[14px] text-gray-500 mt-0.5">{typeLabel(interviewType)} · {candidateName}</p>
               {selectedInterviewers.length > 0 && (
-                <p className="text-[12px] text-[#127EE3] mt-0.5">
+                <p className="text-[14px] text-[#127EE3] mt-0.5">
                   ผู้สัมภาษณ์: {selectedInterviewers.map((c) => c.fullName).join(", ")}
                 </p>
               )}
             </div>
-            <button onClick={() => { setShowEmailStep(false); setSendEmail(null); setEditingDateTime(true); }} className="text-[11px] text-gray-400 hover:text-gray-600 underline underline-offset-2 flex-shrink-0">แก้ไข</button>
+            <button onClick={() => { setShowEmailStep(false); setSendEmail(null); setEditingDateTime(true); }} className="text-[13px] text-gray-400 hover:text-gray-600 underline underline-offset-2 flex-shrink-0">แก้ไข</button>
           </div>
 
           <div className="rounded-2xl border border-[#0DC2FF]/30 bg-[#F0F8FF] overflow-hidden">
             <div className="px-4 pt-4 pb-3.5">
               <div className="flex items-center gap-2 mb-1">
                 <Mail className="w-4 h-4 text-[#127EE3]" />
-                <p className="text-[13.5px] font-bold text-[#1A1A2E]">ขั้นตอนสุดท้าย: ส่งอีเมลยืนยันนัด</p>
+                <p className="text-[15.5px] font-bold text-[#1A1A2E]">ขั้นตอนสุดท้าย: ส่งอีเมลยืนยันนัด</p>
               </div>
-              <p className="text-[12px] text-gray-500 mb-3 pl-6">เลือกว่าจะส่งอีเมลยืนยันนัดให้ผู้สมัครตอนนี้ หรือข้ามไปก่อน</p>
-              <p className="text-[11px] font-bold text-[#127EE3] uppercase tracking-widest mb-2">เลือกหนึ่งตัวเลือกเพื่อจบการนัดสัมภาษณ์</p>
+              <p className="text-[14px] text-gray-500 mb-3 pl-6">เลือกว่าจะส่งอีเมลยืนยันนัดให้ผู้สมัครตอนนี้ หรือข้ามไปก่อน</p>
+              <p className="text-[13px] font-bold text-[#127EE3] uppercase tracking-widest mb-2">เลือกหนึ่งตัวเลือกเพื่อจบการนัดสัมภาษณ์</p>
               <div className="flex gap-2">
                 <button onClick={() => { setSendEmail(true); setEmailExpanded(true); }}
-                  className={`flex-1 py-2.5 rounded-xl text-[13px] font-semibold border-2 transition-all ${sendEmail === true ? "bg-[#127EE3] text-white border-[#127EE3] shadow-sm" : "bg-white text-[#127EE3] border-[#127EE3] hover:bg-[#127EE3] hover:text-white"}`}
+                  className={`flex-1 py-2.5 rounded-xl text-[15px] font-semibold border-2 transition-all ${sendEmail === true ? "bg-[#127EE3] text-white border-[#127EE3] shadow-sm" : "bg-white text-[#127EE3] border-[#127EE3] hover:bg-[#127EE3] hover:text-white"}`}
                 >
                   ส่งเลย
                 </button>
                 <button onClick={() => { setSendEmail(false); setEmailExpanded(false); }}
-                  className={`flex-1 py-2.5 rounded-xl text-[13px] font-semibold border-2 transition-all ${sendEmail === false ? "bg-gray-600 text-white border-gray-600" : "bg-white text-gray-500 border-gray-300 hover:border-gray-500 hover:text-gray-700"}`}
+                  className={`flex-1 py-2.5 rounded-xl text-[15px] font-semibold border-2 transition-all ${sendEmail === false ? "bg-gray-600 text-white border-gray-600" : "bg-white text-gray-500 border-gray-300 hover:border-gray-500 hover:text-gray-700"}`}
                 >
                   ข้ามไปก่อน
                 </button>
@@ -589,14 +589,14 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
             {sendEmail === true && (
               <div className="border-t border-[#0DC2FF]/20">
                 <button onClick={() => setEmailExpanded((v) => !v)} className="w-full flex items-center justify-between px-4 py-3 hover:bg-white/50 transition-colors">
-                  <span className="text-[12px] font-bold text-gray-500 uppercase tracking-wide">แก้ไขอีเมล</span>
+                  <span className="text-[14px] font-bold text-gray-500 uppercase tracking-wide">แก้ไขอีเมล</span>
                   {emailExpanded ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
                 </button>
                 {emailExpanded && (
                   <div className="px-4 pb-4 space-y-3">
                     {/* Template selector */}
                     <div>
-                      <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">เทมเพลตอีเมล</p>
+                      <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">เทมเพลตอีเมล</p>
                       <div className="relative">
                         <select
                           value={selectedTemplateId}
@@ -606,7 +606,7 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
                             const tpl = interviewEmailTemplates.find((t) => t.id === id);
                             if (tpl) { setEmailSubject(tpl.subject); setEmailBody(tpl.body); }
                           }}
-                          className="w-full appearance-none px-3.5 py-2.5 bg-white border border-[#0DC2FF]/30 rounded-xl text-[13px] text-[#1A1A2E] focus:outline-none focus:border-[#127EE3] transition-colors pr-9 cursor-pointer"
+                          className="w-full appearance-none px-3.5 py-2.5 bg-white border border-[#0DC2FF]/30 rounded-xl text-[15px] text-[#1A1A2E] focus:outline-none focus:border-[#127EE3] transition-colors pr-9 cursor-pointer"
                         >
                           {interviewEmailTemplates.map((t) => (
                             <option key={t.id} value={t.id}>{t.name}</option>
@@ -617,20 +617,20 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
                     </div>
                     {/* Subject */}
                     <div>
-                      <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">หัวข้ออีเมล</p>
+                      <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">หัวข้ออีเมล</p>
                       <input
                         value={emailSubject}
                         onChange={(e) => setEmailSubject(e.target.value)}
-                        className="w-full px-3.5 py-2.5 bg-white border border-[#0DC2FF]/30 rounded-xl text-[13px] text-[#1A1A2E] focus:outline-none focus:border-[#127EE3] transition-colors"
+                        className="w-full px-3.5 py-2.5 bg-white border border-[#0DC2FF]/30 rounded-xl text-[15px] text-[#1A1A2E] focus:outline-none focus:border-[#127EE3] transition-colors"
                       />
                     </div>
                     {/* Body */}
                     <div>
-                      <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">ข้อความอีเมล</p>
+                      <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">ข้อความอีเมล</p>
                       <textarea value={emailBody} onChange={(e) => setEmailBody(e.target.value)} rows={10}
-                        className="w-full text-[12.5px] text-gray-700 leading-[1.7] bg-white border border-[#0DC2FF]/30 rounded-xl px-3.5 py-3 resize-none focus:outline-none focus:border-[#127EE3] transition-colors font-mono"
+                        className="w-full text-[14.5px] text-gray-700 leading-[1.7] bg-white border border-[#0DC2FF]/30 rounded-xl px-3.5 py-3 resize-none focus:outline-none focus:border-[#127EE3] transition-colors font-mono"
                       />
-                      <p className="text-[11px] text-gray-400 mt-1">แก้ไขเนื้อหาได้ก่อนส่ง</p>
+                      <p className="text-[13px] text-gray-400 mt-1">แก้ไขเนื้อหาได้ก่อนส่ง</p>
                     </div>
                   </div>
                 )}
@@ -639,7 +639,7 @@ export default function InterviewScheduler({ candidateName = "ผู้สมั
           </div>
 
           {sendEmail !== null && (
-            <button onClick={handleConfirm} className="w-full flex items-center justify-center gap-2 py-3.5 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[14px] font-bold rounded-xl hover:opacity-90 transition-opacity shadow-md shadow-[#127EE3]/20">
+            <button onClick={handleConfirm} className="w-full flex items-center justify-center gap-2 py-3.5 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[16px] font-bold rounded-xl hover:opacity-90 transition-opacity shadow-md shadow-[#127EE3]/20">
               <CheckCircle2 className="w-4 h-4" />
               {sendEmail ? "ยืนยันนัดและส่งอีเมล" : "ยืนยันนัดสัมภาษณ์"}
             </button>

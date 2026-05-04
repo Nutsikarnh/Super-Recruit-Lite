@@ -356,13 +356,13 @@ function FilterSection({
     <div className={`border-b border-gray-100 last:border-0 ${isConflicted ? "bg-amber-50/40" : ""}`}>
       <button
         onClick={() => setOpen((v) => !v)}
-        className={`w-full flex items-center justify-between px-4 py-3 text-[13px] font-semibold hover:bg-gray-50 transition-colors ${isConflicted ? "text-amber-700" : "text-[#1A1A2E]"}`}
+        className={`w-full flex items-center justify-between px-4 py-3 text-[15px] font-semibold hover:bg-gray-50 transition-colors ${isConflicted ? "text-amber-700" : "text-[#1A1A2E]"}`}
       >
         <span className="flex items-center gap-2">
           {isConflicted && <AlertTriangle className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />}
           {title}
           {selected.length > 0 && (
-            <span className="w-5 h-5 rounded-full bg-[#127EE3] text-white text-[10px] font-bold flex items-center justify-center">
+            <span className="w-5 h-5 rounded-full bg-[#127EE3] text-white text-[11px] font-bold flex items-center justify-center">
               {selected.length}
             </span>
           )}
@@ -372,7 +372,7 @@ function FilterSection({
       {open && (
         <div className="px-4 pb-3 flex flex-col gap-1">
           {options.length === 0 && (
-            <p className="text-[12px] text-gray-400 italic py-1">พิมพ์ชื่อบริษัทในช่องค้นหา</p>
+            <p className="text-[14px] text-gray-400 italic py-1">พิมพ์ชื่อบริษัทในช่องค้นหา</p>
           )}
           {optionPreviews.map(({ opt, addCount }) => {
             const isChecked = selected.includes(opt);
@@ -391,12 +391,12 @@ function FilterSection({
                     onChange={() => onToggle(opt)}
                     className="w-4 h-4 rounded border-gray-300 text-[#127EE3] accent-[#127EE3] cursor-pointer flex-shrink-0"
                   />
-                  <span className={`text-[12.5px] transition-colors ${isChecked ? "text-[#127EE3] font-medium" : "text-gray-600 group-hover:text-[#1A1A2E]"}`}>
+                  <span className={`text-[14.5px] transition-colors ${isChecked ? "text-[#127EE3] font-medium" : "text-gray-600 group-hover:text-[#1A1A2E]"}`}>
                     {opt}
                   </span>
                 </span>
                 {!isChecked && (
-                  <span className={`text-[11px] font-medium flex-shrink-0 ${wouldBeEmpty ? "text-amber-500" : "text-gray-400"}`}>
+                  <span className={`text-[13px] font-medium flex-shrink-0 ${wouldBeEmpty ? "text-amber-500" : "text-gray-400"}`}>
                     +{formatCount(addCount)}
                   </span>
                 )}
@@ -446,7 +446,7 @@ function CandidateCard({
               {selected && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
             </button>
           )}
-          <div className={`w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center font-black text-[14px] ${revealed ? "bg-gradient-to-br from-[#0DC2FF] to-[#127EE3] text-white shadow-sm shadow-[#127EE3]/20" : "bg-[#F0F4F8] text-gray-300 border border-gray-200"}`}>
+          <div className={`w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center font-black text-[16px] ${revealed ? "bg-gradient-to-br from-[#0DC2FF] to-[#127EE3] text-white shadow-sm shadow-[#127EE3]/20" : "bg-[#F0F4F8] text-gray-300 border border-gray-200"}`}>
             {revealed && candidate.name ? candidate.name.charAt(0) : "?"}
           </div>
           <div className="flex-1 min-w-0">
@@ -454,20 +454,20 @@ function CandidateCard({
               <div className="min-w-0">
                 <div className="flex items-center gap-2 flex-wrap mb-0.5">
                   {revealed && (
-                    <span className="flex items-center gap-1 px-1.5 py-0.5 bg-emerald-50 border border-emerald-100 rounded-full text-[10px] font-bold text-emerald-600">
+                    <span className="flex items-center gap-1 px-1.5 py-0.5 bg-emerald-50 border border-emerald-100 rounded-full text-[11px] font-bold text-emerald-600">
                       <CheckCircle2 className="w-2.5 h-2.5" />เปิดดูแล้ว
                     </span>
                   )}
                 </div>
                 {revealed && candidate.name ? (
                   <div className="flex items-baseline gap-2 flex-wrap">
-                    <h3 className="text-[15.5px] font-bold text-[#1A1A2E]">{candidate.name}</h3>
-                    <span className="text-[12.5px] text-gray-500">{candidate.title}</span>
+                    <h3 className="text-[17.5px] font-bold text-[#1A1A2E]">{candidate.name}</h3>
+                    <span className="text-[14.5px] text-gray-500">{candidate.title}</span>
                   </div>
                 ) : (
-                  <h3 className="text-[14.5px] font-bold text-[#1A1A2E] leading-snug">{candidate.title}</h3>
+                  <h3 className="text-[16.5px] font-bold text-[#1A1A2E] leading-snug">{candidate.title}</h3>
                 )}
-                <p className="text-[12px] text-gray-400 mt-0.5">{candidate.company} · {candidate.period}</p>
+                <p className="text-[14px] text-gray-400 mt-0.5">{candidate.company} · {candidate.period}</p>
               </div>
             </div>
           </div>
@@ -482,8 +482,8 @@ function CandidateCard({
             { label: "เงินเดือน", value: candidate.salary, color: "text-[#127EE3] font-bold" },
           ].map((item, i) => (
             <div key={i} className={`px-3 py-2.5 bg-[#F8FAFC] ${i < 3 ? "border-r border-gray-100" : ""}`}>
-              <p className="text-[10px] text-gray-400 font-semibold uppercase tracking-wide mb-0.5">{item.label}</p>
-              <p className={`text-[12px] leading-tight ${item.color}`}>{item.value}</p>
+              <p className="text-[11px] text-gray-400 font-semibold uppercase tracking-wide mb-0.5">{item.label}</p>
+              <p className={`text-[14px] leading-tight ${item.color}`}>{item.value}</p>
             </div>
           ))}
         </div>
@@ -491,17 +491,17 @@ function CandidateCard({
         {/* Tags */}
         <div className="flex flex-wrap gap-1.5 mb-3.5">
           {candidate.languages.map((lang) => (
-            <span key={lang} className="flex items-center gap-1 px-2 py-0.5 bg-[#EBF5FF] border border-[#C7E3FA] rounded-full text-[11px] text-[#127EE3] font-semibold">
+            <span key={lang} className="flex items-center gap-1 px-2 py-0.5 bg-[#EBF5FF] border border-[#C7E3FA] rounded-full text-[13px] text-[#127EE3] font-semibold">
               <Languages className="w-2.5 h-2.5" />{lang}
             </span>
           ))}
           {candidate.skills.slice(0, 5).map((skill) => (
-            <span key={skill} className="px-2 py-0.5 bg-[#F0F2F5] rounded-full text-[11px] text-gray-600 font-medium">
+            <span key={skill} className="px-2 py-0.5 bg-[#F0F2F5] rounded-full text-[13px] text-gray-600 font-medium">
               {skill}
             </span>
           ))}
           {candidate.skills.length > 5 && (
-            <span className="px-2 py-0.5 bg-[#F0F2F5] rounded-full text-[11px] text-gray-400">
+            <span className="px-2 py-0.5 bg-[#F0F2F5] rounded-full text-[13px] text-gray-400">
               +{candidate.skills.length - 5}
             </span>
           )}
@@ -509,7 +509,7 @@ function CandidateCard({
 
         {/* Footer */}
         <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-          <div className="flex items-center gap-3 text-[11px] text-gray-400">
+          <div className="flex items-center gap-3 text-[13px] text-gray-400">
             <span className="flex items-center gap-1">
               <Clock className="w-3 h-3" />{candidate.lastActive}
             </span>
@@ -528,7 +528,7 @@ function CandidateCard({
             </button>
             <button
               onClick={onView}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-[12px] font-semibold transition-all ${interactable ? "bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white hover:opacity-90 shadow-sm shadow-[#019EFC]/25" : "bg-[#F0F2F5] text-gray-400 cursor-default"}`}
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-[14px] font-semibold transition-all ${interactable ? "bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white hover:opacity-90 shadow-sm shadow-[#019EFC]/25" : "bg-[#F0F2F5] text-gray-400 cursor-default"}`}
             >
               <Eye className="w-3.5 h-3.5" />ดูโปรไฟล์
             </button>
@@ -856,7 +856,7 @@ function LocationDropdown({
         placeholder="เลือกหรือค้นหาพื้นที่ทำงาน"
         onFocus={() => { setOpen(true); if (selected) { setQuery(""); } }}
         onChange={(e) => { setQuery(e.target.value); setSelected(""); setOpen(true); }}
-        className="w-full pl-8 pr-7 py-2 text-[12.5px] bg-[#F0F2F5] rounded-lg border border-transparent focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all placeholder:text-gray-400"
+        className="w-full pl-8 pr-7 py-2 text-[14.5px] bg-[#F0F2F5] rounded-lg border border-transparent focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all placeholder:text-gray-400"
       />
       <ChevronDown className={`absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none transition-transform ${open ? "rotate-180" : ""}`} />
       {open && (
@@ -1002,7 +1002,7 @@ function UniversityInsightPage({
       <div className="bg-white border-b border-gray-100 px-6 py-5">
         <button
           onClick={onBack}
-          className="flex items-center gap-1.5 text-[12.5px] text-[#127EE3] font-semibold hover:text-[#0f6bc7] transition-colors mb-4"
+          className="flex items-center gap-1.5 text-[14.5px] text-[#127EE3] font-semibold hover:text-[#0f6bc7] transition-colors mb-4"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           กลับไปหน้ารายชื่อมหาวิทยาลัย
@@ -1013,17 +1013,17 @@ function UniversityInsightPage({
               <GraduationCap className="w-6 h-6 text-[#127EE3]" />
             </div>
             <div>
-              <h1 className="text-[20px] font-bold text-[#1A1A2E] leading-snug">{university.name}</h1>
-              <p className="text-[12.5px] text-gray-400 mt-0.5 flex items-center gap-1.5">
+              <h1 className="text-[22px] font-bold text-[#1A1A2E] leading-snug">{university.name}</h1>
+              <p className="text-[14.5px] text-gray-400 mt-0.5 flex items-center gap-1.5">
                 <MapPin className="w-3 h-3" />{university.province}
                 <span className="text-gray-300">·</span>
-                <span className="px-2 py-0.5 bg-[#EBF5FF] text-[#127EE3] text-[11px] font-semibold rounded-full">{university.group}</span>
+                <span className="px-2 py-0.5 bg-[#EBF5FF] text-[#127EE3] text-[13px] font-semibold rounded-full">{university.group}</span>
               </p>
             </div>
           </div>
           <button
             onClick={onViewCandidates}
-            className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[13px] font-bold rounded-xl hover:opacity-90 transition-opacity shadow-sm shadow-[#019EFC]/20 flex-shrink-0 whitespace-nowrap"
+            className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[15px] font-bold rounded-xl hover:opacity-90 transition-opacity shadow-sm shadow-[#019EFC]/20 flex-shrink-0 whitespace-nowrap"
           >
             <Search className="w-4 h-4" />
             ดูผู้สมัคร
@@ -1034,12 +1034,12 @@ function UniversityInsightPage({
       <div className="px-6 py-6 space-y-6">
         {/* Count + description */}
         <div className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm">
-          <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-1">จำนวนผู้ศึกษาที่{university.name}</p>
+          <p className="text-[15px] font-bold text-gray-400 uppercase tracking-widest mb-1">จำนวนผู้ศึกษาที่{university.name}</p>
           <div className="flex items-baseline gap-2 mb-3">
-            <span className="text-[36px] font-black text-[#127EE3] leading-none">{university.count.toLocaleString()}</span>
-            <span className="text-[14px] text-gray-400 font-medium">คน</span>
+            <span className="text-[38px] font-black text-[#127EE3] leading-none">{university.count.toLocaleString()}</span>
+            <span className="text-[16px] text-gray-400 font-medium">คน</span>
           </div>
-          <p className="text-[13px] text-gray-500 leading-relaxed">
+          <p className="text-[15px] text-gray-500 leading-relaxed">
             ผู้หางานอนุญาตให้ดูข้อมูลการติดต่อได้{" "}
             <span className="font-bold text-[#1A1A2E]">{university.count.toLocaleString()} คน</span>{" "}
             (ผู้หางานที่เหลือจะได้รับการเสนอตำแหน่งงานผ่านอีเมล และส่งมาสมัครเองเท่านั้น)
@@ -1050,16 +1050,16 @@ function UniversityInsightPage({
         <div className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm">
           <div className="flex items-center gap-2 mb-4">
             <CalendarDays className="w-4 h-4 text-[#127EE3]" />
-            <span className="text-[14px] font-semibold text-[#1A1A2E]">ปีที่จบการศึกษา</span>
+            <span className="text-[16px] font-semibold text-[#1A1A2E]">ปีที่จบการศึกษา</span>
           </div>
           <div className="flex items-center gap-3">
             <div className="flex-1">
-              <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-1.5 block">เก่าสุด</label>
+              <label className="text-[13px] font-semibold text-gray-400 uppercase tracking-widest mb-1.5 block">เก่าสุด</label>
               <div className="relative">
                 <select
                   value={gradYearFrom}
                   onChange={(e) => setGradYearFrom(e.target.value)}
-                  className="w-full appearance-none pl-3 pr-8 py-2.5 text-[13px] bg-[#F4F7FA] border border-gray-200 rounded-xl focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/10 transition-all text-gray-700 cursor-pointer"
+                  className="w-full appearance-none pl-3 pr-8 py-2.5 text-[15px] bg-[#F4F7FA] border border-gray-200 rounded-xl focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/10 transition-all text-gray-700 cursor-pointer"
                 >
                   <option value="">เลือกปี</option>
                   {Array.from({ length: 30 }, (_, i) => 2568 - i).map((y) => (
@@ -1071,12 +1071,12 @@ function UniversityInsightPage({
             </div>
             <div className="text-gray-300 font-bold mt-5">—</div>
             <div className="flex-1">
-              <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-1.5 block">ล่าสุด</label>
+              <label className="text-[13px] font-semibold text-gray-400 uppercase tracking-widest mb-1.5 block">ล่าสุด</label>
               <div className="relative">
                 <select
                   value={gradYearTo}
                   onChange={(e) => setGradYearTo(e.target.value)}
-                  className="w-full appearance-none pl-3 pr-8 py-2.5 text-[13px] bg-[#F4F7FA] border border-gray-200 rounded-xl focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/10 transition-all text-gray-700 cursor-pointer"
+                  className="w-full appearance-none pl-3 pr-8 py-2.5 text-[15px] bg-[#F4F7FA] border border-gray-200 rounded-xl focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/10 transition-all text-gray-700 cursor-pointer"
                 >
                   <option value="">เลือกปี</option>
                   {Array.from({ length: 30 }, (_, i) => 2568 - i).map((y) => (
@@ -1092,7 +1092,7 @@ function UniversityInsightPage({
         {/* Insight cards carousel */}
         <div>
           <div className="flex items-center justify-between mb-4">
-            <p className="text-[14px] font-bold text-[#1A1A2E]">ข้อมูล Insight</p>
+            <p className="text-[16px] font-bold text-[#1A1A2E]">ข้อมูล Insight</p>
             <div className="flex items-center gap-2">
               <button
                 onClick={() => scroll("left")}
@@ -1124,17 +1124,17 @@ function UniversityInsightPage({
                     <div className="w-7 h-7 rounded-lg bg-[#EBF5FF] flex items-center justify-center flex-shrink-0">
                       {insight.icon}
                     </div>
-                    <p className="text-[13.5px] font-bold text-[#1A1A2E]">{insight.title}</p>
+                    <p className="text-[15.5px] font-bold text-[#1A1A2E]">{insight.title}</p>
                   </div>
-                  <p className="text-[11.5px] text-gray-400 mb-4">{insight.desc}</p>
+                  <p className="text-[13.5px] text-gray-400 mb-4">{insight.desc}</p>
                   <div className="space-y-3">
                     {insight.items.map((item) => {
                       const pct = Math.round((item.count / top) * 100);
                       return (
                         <div key={item.label}>
                           <div className="flex items-center justify-between mb-1">
-                            <span className="text-[12.5px] text-gray-700 font-medium leading-snug">{item.label}</span>
-                            <span className="text-[12px] font-bold text-[#127EE3] ml-2 flex-shrink-0">{item.count.toLocaleString()}</span>
+                            <span className="text-[14.5px] text-gray-700 font-medium leading-snug">{item.label}</span>
+                            <span className="text-[14px] font-bold text-[#127EE3] ml-2 flex-shrink-0">{item.count.toLocaleString()}</span>
                           </div>
                           <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
                             <div
@@ -1333,17 +1333,17 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
       <div className="bg-white border-b border-gray-100 px-6 pt-5 flex-shrink-0">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h1 className="text-[22px] font-bold text-[#1A1A2E] leading-tight">ค้นหาผู้หางาน</h1>
+            <h1 className="text-[24px] font-bold text-[#1A1A2E] leading-tight">ค้นหาผู้หางาน</h1>
             <div className="flex items-center gap-2.5 mt-1.5 flex-wrap">
-              <span className="text-[12.5px] text-gray-500">
+              <span className="text-[14.5px] text-gray-500">
                 พบ <span className="font-bold text-[#127EE3]">3,161,739</span> เรซูเม่
               </span>
               <span className="w-1 h-1 rounded-full bg-gray-300 flex-shrink-0" />
               <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#EBF5FF] border border-[#C7E3FA]">
                 <Zap className="w-3 h-3 text-[#127EE3]" />
-                <span className="text-[11.5px] font-bold text-[#127EE3]">48 / 100 เครดิต</span>
+                <span className="text-[13.5px] font-bold text-[#127EE3]">48 / 100 เครดิต</span>
               </div>
-              <span className="text-[11.5px] text-gray-400">เปิดเรซูเม่ไม่เสียเครดิต · ค้นจากตำแหน่งงานฟรี</span>
+              <span className="text-[13.5px] text-gray-400">เปิดเรซูเม่ไม่เสียเครดิต · ค้นจากตำแหน่งงานฟรี</span>
             </div>
           </div>
         </div>
@@ -1356,7 +1356,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                 setActiveTab(tab.key);
                 if (tab.key === "search") setSearchView("landing");
               }}
-              className={`relative px-4 py-2.5 text-[13px] font-medium transition-all border-b-2 -mb-px whitespace-nowrap ${
+              className={`relative px-4 py-2.5 text-[15px] font-medium transition-all border-b-2 -mb-px whitespace-nowrap ${
                 activeTab === tab.key
                   ? "border-[#127EE3] text-[#127EE3] font-semibold"
                   : "border-transparent text-gray-400 hover:text-[#1A1A2E] hover:border-gray-200"
@@ -1364,7 +1364,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
             >
               {tab.label}
               {tab.count !== undefined && tab.count > 0 && (
-                <span className={`ml-1.5 px-1.5 py-0.5 text-[10px] font-bold rounded-full ${activeTab === tab.key ? "bg-[#127EE3]/12 text-[#127EE3]" : "bg-gray-100 text-gray-500"}`}>
+                <span className={`ml-1.5 px-1.5 py-0.5 text-[11px] font-bold rounded-full ${activeTab === tab.key ? "bg-[#127EE3]/12 text-[#127EE3]" : "bg-gray-100 text-gray-500"}`}>
                   {tab.count}
                 </span>
               )}
@@ -1398,8 +1398,8 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                 <div>
                   <div className="flex items-center gap-2 mb-3">
                     <Pin className="w-4 h-4 text-[#127EE3]" />
-                    <p className="text-[14.5px] font-bold text-[#1A1A2E]">การค้นหาที่บันทึกไว้</p>
-                    <span className="text-[12px] text-gray-400 font-medium">{savedSearches.length} รายการ</span>
+                    <p className="text-[16.5px] font-bold text-[#1A1A2E]">การค้นหาที่บันทึกไว้</p>
+                    <span className="text-[14px] text-gray-400 font-medium">{savedSearches.length} รายการ</span>
                   </div>
                   <div className="space-y-2">
                     {savedSearches.map((item) => (
@@ -1412,13 +1412,13 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                             <Pin className="w-3.5 h-3.5 text-[#127EE3]" />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-[14px] font-semibold text-[#1A1A2E] truncate">{item.query}</p>
+                            <p className="text-[16px] font-semibold text-[#1A1A2E] truncate">{item.query}</p>
                             <div className="flex items-center gap-1.5 mt-0.5 flex-wrap">
-                              <span className="text-[12px] text-gray-400">{item.date} · ทั้งหมด {item.results.toLocaleString()} คน</span>
+                              <span className="text-[14px] text-gray-400">{item.date} · ทั้งหมด {item.results.toLocaleString()} คน</span>
                               {(item.newCount ?? 0) > 0 ? (
-                                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[#EBF5FF] text-[#127EE3] border border-[#C7E3FA]">ใหม่ {item.newCount} คน</span>
+                                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[13px] font-semibold bg-[#EBF5FF] text-[#127EE3] border border-[#C7E3FA]">ใหม่ {item.newCount} คน</span>
                               ) : (
-                                <span className="text-[12px] text-gray-400">· ไม่มีรายการใหม่</span>
+                                <span className="text-[14px] text-gray-400">· ไม่มีรายการใหม่</span>
                               )}
                             </div>
                           </div>
@@ -1430,14 +1430,14 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                               setSearchView("results");
                               setActiveTab("search");
                             }}
-                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#127EE3]/8 text-[#127EE3] text-[12px] font-semibold hover:bg-[#127EE3]/15 transition-colors"
+                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#127EE3]/8 text-[#127EE3] text-[14px] font-semibold hover:bg-[#127EE3]/15 transition-colors"
                           >
                             <Search className="w-3 h-3" />
                             ค้นหาอีกครั้ง
                           </button>
                           <button
                             onClick={() => handleUnpin(item.id)}
-                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-50 text-gray-500 text-[12px] font-medium hover:bg-red-50 hover:text-red-500 transition-colors border border-gray-100"
+                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-50 text-gray-500 text-[14px] font-medium hover:bg-red-50 hover:text-red-500 transition-colors border border-gray-100"
                           >
                             <PinOff className="w-3 h-3" />
                             ยกเลิกบันทึก
@@ -1453,14 +1453,14 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
               <div>
                 <div className="flex items-center gap-2 mb-3">
                   <History className="w-4 h-4 text-[#127EE3]" />
-                  <p className="text-[14.5px] font-bold text-[#1A1A2E]">ประวัติการค้นหา</p>
-                  <span className="text-[12px] text-gray-400 font-medium">{historyItems.length} รายการ</span>
+                  <p className="text-[16.5px] font-bold text-[#1A1A2E]">ประวัติการค้นหา</p>
+                  <span className="text-[14px] text-gray-400 font-medium">{historyItems.length} รายการ</span>
                 </div>
                 <div className="space-y-2">
                   {historyItems.length === 0 && (
                     <div className="bg-white rounded-2xl border border-gray-100 px-5 py-8 flex flex-col items-center justify-center gap-2 text-center">
                       <History className="w-8 h-8 text-gray-200" />
-                      <p className="text-[13px] text-gray-400">ยังไม่มีประวัติการค้นหา</p>
+                      <p className="text-[15px] text-gray-400">ยังไม่มีประวัติการค้นหา</p>
                     </div>
                   )}
                   {historyItems.map((item) => (
@@ -1473,13 +1473,13 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                           <Search className="w-3.5 h-3.5 text-gray-400" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-[14px] font-semibold text-[#1A1A2E] truncate">{item.query}</p>
+                          <p className="text-[16px] font-semibold text-[#1A1A2E] truncate">{item.query}</p>
                           <div className="flex items-center gap-1.5 mt-0.5 flex-wrap">
-                            <span className="text-[12px] text-gray-400">{item.date} · ทั้งหมด {item.results.toLocaleString()} คน</span>
+                            <span className="text-[14px] text-gray-400">{item.date} · ทั้งหมด {item.results.toLocaleString()} คน</span>
                             {item.newCount > 0 ? (
-                              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[#EBF5FF] text-[#127EE3] border border-[#C7E3FA]">ใหม่ {item.newCount} คน</span>
+                              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[13px] font-semibold bg-[#EBF5FF] text-[#127EE3] border border-[#C7E3FA]">ใหม่ {item.newCount} คน</span>
                             ) : (
-                              <span className="text-[12px] text-gray-400">· ไม่มีรายการใหม่</span>
+                              <span className="text-[14px] text-gray-400">· ไม่มีรายการใหม่</span>
                             )}
                           </div>
                         </div>
@@ -1491,7 +1491,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                             setSearchView("results");
                             setActiveTab("search");
                           }}
-                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#127EE3]/8 text-[#127EE3] text-[12px] font-semibold hover:bg-[#127EE3]/15 transition-colors"
+                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#127EE3]/8 text-[#127EE3] text-[14px] font-semibold hover:bg-[#127EE3]/15 transition-colors"
                         >
                           <Search className="w-3 h-3" />
                           ค้นหาอีกครั้ง
@@ -1499,7 +1499,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                         <button
                           onClick={() => handlePinFromHistory(item)}
                           disabled={savedSearchIds.has(item.id)}
-                          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-medium border transition-colors ${
+                          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[14px] font-medium border transition-colors ${
                             savedSearchIds.has(item.id)
                               ? "bg-[#127EE3]/8 text-[#127EE3] border-[#127EE3]/20 cursor-default"
                               : "bg-gray-50 text-gray-500 border-gray-100 hover:bg-[#127EE3]/8 hover:text-[#127EE3] hover:border-[#127EE3]/20"
@@ -1510,7 +1510,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                         </button>
                         <button
                           onClick={() => handleDeleteHistory(item.id)}
-                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-medium text-gray-500 hover:bg-red-50 hover:text-red-600 border border-transparent hover:border-red-100 transition-colors"
+                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[14px] font-medium text-gray-500 hover:bg-red-50 hover:text-red-600 border border-transparent hover:border-red-100 transition-colors"
                         >
                           <Trash2 className="w-3 h-3" />
                           ลบประวัติ
@@ -1572,16 +1572,16 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <Bookmark className="w-4 h-4 text-[#127EE3]" />
-                    <p className="text-[14.5px] font-bold text-[#1A1A2E]">บุ๊กมาร์กไว้</p>
-                    <span className="text-[12px] text-gray-400 font-medium">{filteredBookmarks.length} คน</span>
+                    <p className="text-[16.5px] font-bold text-[#1A1A2E]">บุ๊กมาร์กไว้</p>
+                    <span className="text-[14px] text-gray-400 font-medium">{filteredBookmarks.length} คน</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-[12px] text-gray-400">ผู้ที่บุ๊กมาร์ก:</span>
+                    <span className="text-[14px] text-gray-400">ผู้ที่บุ๊กมาร์ก:</span>
                     <div ref={bookmarkByRef} className="relative">
                       <button
                         type="button"
                         onClick={() => setBookmarkByDropdownOpen((o) => !o)}
-                        className={`flex items-center gap-2 pl-3 pr-2.5 py-1.5 text-[12.5px] bg-white border rounded-lg transition-all cursor-pointer ${bookmarkByDropdownOpen ? "border-[#0DC2FF]" : "border-gray-200 hover:border-[#127EE3]/40"} text-gray-700`}
+                        className={`flex items-center gap-2 pl-3 pr-2.5 py-1.5 text-[14.5px] bg-white border rounded-lg transition-all cursor-pointer ${bookmarkByDropdownOpen ? "border-[#0DC2FF]" : "border-gray-200 hover:border-[#127EE3]/40"} text-gray-700`}
                       >
                         <span className={bookmarkByFilter !== "ทั้งหมด" ? "text-blue-700 font-medium" : ""}>{bookmarkByFilter}</span>
                         <ChevronDown className={`w-3.5 h-3.5 text-gray-400 transition-transform ${bookmarkByDropdownOpen ? "rotate-180" : ""}`} />
@@ -1607,12 +1607,12 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                 {/* Bulk action bar */}
                 {selectedCount > 0 && (
                   <div className="flex items-center justify-between px-4 py-2.5 mb-3 bg-[#EBF5FF] border border-[#127EE3]/20 rounded-xl">
-                    <span className="text-[13px] font-medium text-[#127EE3]">เลือกแล้ว {selectedCount} รายการ</span>
+                    <span className="text-[15px] font-medium text-[#127EE3]">เลือกแล้ว {selectedCount} รายการ</span>
                     <div className="flex items-center gap-2">
                       <button
                         type="button"
                         onClick={() => { setForwardSource("bookmark"); setShowForwardModal(true); }}
-                        className="flex items-center gap-1.5 px-3 py-1.5 text-[12.5px] font-medium text-[#127EE3] bg-white border border-[#127EE3]/30 rounded-lg hover:bg-[#127EE3] hover:text-white transition-all"
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-[14.5px] font-medium text-[#127EE3] bg-white border border-[#127EE3]/30 rounded-lg hover:bg-[#127EE3] hover:text-white transition-all"
                       >
                         <Send className="w-3.5 h-3.5" />
                         ส่งต่อให้ผู้อื่น
@@ -1620,7 +1620,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                       <button
                         type="button"
                         onClick={handleBulkRemove}
-                        className="flex items-center gap-1.5 px-3 py-1.5 text-[12.5px] font-medium text-red-500 bg-white border border-red-200 rounded-lg hover:bg-red-500 hover:text-white transition-all"
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-[14.5px] font-medium text-red-500 bg-white border border-red-200 rounded-lg hover:bg-red-500 hover:text-white transition-all"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                         เอาบุ๊กมาร์กออก
@@ -1634,8 +1634,8 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                     <div className="w-14 h-14 rounded-2xl bg-white border border-gray-200 flex items-center justify-center mb-3 shadow-sm">
                       <BookmarkPlus className="w-6 h-6 text-gray-300" />
                     </div>
-                    <p className="text-[14px] font-semibold text-gray-400">ยังไม่มีบุ๊กมาร์ก</p>
-                    <p className="text-[12px] text-gray-400 mt-1">
+                    <p className="text-[16px] font-semibold text-gray-400">ยังไม่มีบุ๊กมาร์ก</p>
+                    <p className="text-[14px] text-gray-400 mt-1">
                       {bookmarkByFilter === "ทั้งหมด"
                         ? "กดไอคอนบุ๊กมาร์กที่ card ผู้สมัครเพื่อบันทึกไว้"
                         : `ไม่มีบุ๊กมาร์กจาก ${bookmarkByFilter}`}
@@ -1653,7 +1653,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                         {allSelected && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
                         {someSelected && !allSelected && <div className="w-2 h-0.5 bg-[#127EE3] rounded-full" />}
                       </button>
-                      <span className="text-[12.5px] text-gray-500 font-medium">เลือกทั้งหมด</span>
+                      <span className="text-[14.5px] text-gray-500 font-medium">เลือกทั้งหมด</span>
                     </label>
 
                     {filteredBookmarks.map((candidate) => (
@@ -1704,16 +1704,16 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <Eye className="w-4 h-4 text-[#127EE3]" />
-                    <p className="text-[14.5px] font-bold text-[#1A1A2E]">เปิดดูแล้ว</p>
-                    <span className="text-[12px] text-gray-400 font-medium">{filteredOpened.length} คน</span>
+                    <p className="text-[16.5px] font-bold text-[#1A1A2E]">เปิดดูแล้ว</p>
+                    <span className="text-[14px] text-gray-400 font-medium">{filteredOpened.length} คน</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-[12px] text-gray-400">ผู้ที่เปิดดู:</span>
+                    <span className="text-[14px] text-gray-400">ผู้ที่เปิดดู:</span>
                     <div ref={openedByRef} className="relative">
                       <button
                         type="button"
                         onClick={() => setOpenedByDropdownOpen((o) => !o)}
-                        className={`flex items-center gap-2 pl-3 pr-2.5 py-1.5 text-[12.5px] bg-white border rounded-lg transition-all cursor-pointer ${openedByDropdownOpen ? "border-[#0DC2FF]" : "border-gray-200 hover:border-[#127EE3]/40"} text-gray-700`}
+                        className={`flex items-center gap-2 pl-3 pr-2.5 py-1.5 text-[14.5px] bg-white border rounded-lg transition-all cursor-pointer ${openedByDropdownOpen ? "border-[#0DC2FF]" : "border-gray-200 hover:border-[#127EE3]/40"} text-gray-700`}
                       >
                         <span className={openedByFilter !== "ทั้งหมด" ? "text-blue-700 font-medium" : ""}>{openedByFilter}</span>
                         <ChevronDown className={`w-3.5 h-3.5 text-gray-400 transition-transform ${openedByDropdownOpen ? "rotate-180" : ""}`} />
@@ -1739,11 +1739,11 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                 {/* Bulk action bar */}
                 {selectedOpenedCount > 0 && (
                   <div className="flex items-center justify-between px-4 py-2.5 mb-3 bg-[#EBF5FF] border border-[#127EE3]/20 rounded-xl">
-                    <span className="text-[13px] font-medium text-[#127EE3]">เลือกแล้ว {selectedOpenedCount} รายการ</span>
+                    <span className="text-[15px] font-medium text-[#127EE3]">เลือกแล้ว {selectedOpenedCount} รายการ</span>
                     <button
                       type="button"
                       onClick={() => { setForwardSource("opened"); setShowForwardModal(true); }}
-                      className="flex items-center gap-1.5 px-3 py-1.5 text-[12.5px] font-medium text-[#127EE3] bg-white border border-[#127EE3]/30 rounded-lg hover:bg-[#127EE3] hover:text-white transition-all"
+                      className="flex items-center gap-1.5 px-3 py-1.5 text-[14.5px] font-medium text-[#127EE3] bg-white border border-[#127EE3]/30 rounded-lg hover:bg-[#127EE3] hover:text-white transition-all"
                     >
                       <Send className="w-3.5 h-3.5" />
                       ส่งต่อให้ผู้อื่น
@@ -1756,8 +1756,8 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                     <div className="w-14 h-14 rounded-2xl bg-white border border-gray-200 flex items-center justify-center mb-3 shadow-sm">
                       <Eye className="w-6 h-6 text-gray-300" />
                     </div>
-                    <p className="text-[14px] font-semibold text-gray-400">ไม่พบผู้สมัคร</p>
-                    <p className="text-[12px] text-gray-400 mt-1">
+                    <p className="text-[16px] font-semibold text-gray-400">ไม่พบผู้สมัคร</p>
+                    <p className="text-[14px] text-gray-400 mt-1">
                       {openedByFilter === "ทั้งหมด" ? "ยังไม่มีโปรไฟล์ที่เปิดดู" : `ไม่มีการเปิดดูจาก ${openedByFilter}`}
                     </p>
                   </div>
@@ -1773,7 +1773,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                         {allOpenedSelected && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
                         {someOpenedSelected && !allOpenedSelected && <div className="w-2 h-0.5 bg-[#127EE3] rounded-full" />}
                       </button>
-                      <span className="text-[12.5px] text-gray-500 font-medium">เลือกทั้งหมด</span>
+                      <span className="text-[14.5px] text-gray-500 font-medium">เลือกทั้งหมด</span>
                     </label>
 
                     {filteredOpened.map((candidate) => (
@@ -1803,7 +1803,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
           <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={() => setShowForwardModal(false)} />
           <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md p-6">
             <div className="flex items-center justify-between mb-5">
-              <h3 className="text-[17px] font-bold text-[#1A1A2E]">ส่งต่อเรซูเม่</h3>
+              <h3 className="text-[19px] font-bold text-[#1A1A2E]">ส่งต่อเรซูเม่</h3>
               <button
                 type="button"
                 onClick={() => setShowForwardModal(false)}
@@ -1812,30 +1812,30 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                 <X className="w-4 h-4" />
               </button>
             </div>
-            <p className="text-[12.5px] text-gray-400 mb-5">
+            <p className="text-[14.5px] text-gray-400 mb-5">
               ส่งต่อเรซูเม่ {forwardSource === "bookmark"
                 ? [...bookmarkSelected].filter((id) => bookmarkedCandidates.some((c) => c.id === id)).length
                 : openedSelected.size} คนให้ผู้รับที่เลือก
             </p>
             <div className="space-y-4">
               <div>
-                <label className="block text-[13px] font-semibold text-[#1A1A2E] mb-1.5">ผู้รับ / อีเมลผู้รับ <span className="text-red-400">*</span></label>
+                <label className="block text-[15px] font-semibold text-[#1A1A2E] mb-1.5">ผู้รับ / อีเมลผู้รับ <span className="text-red-400">*</span></label>
                 <input
                   type="text"
                   value={forwardRecipient}
                   onChange={(e) => setForwardRecipient(e.target.value)}
                   placeholder="ชื่อหรืออีเมลผู้รับ"
-                  className="w-full px-3.5 py-2.5 text-[13.5px] bg-[#F8F9FB] border border-gray-200 rounded-xl focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all placeholder:text-gray-400"
+                  className="w-full px-3.5 py-2.5 text-[15.5px] bg-[#F8F9FB] border border-gray-200 rounded-xl focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all placeholder:text-gray-400"
                 />
               </div>
               <div>
-                <label className="block text-[13px] font-semibold text-[#1A1A2E] mb-1.5">ข้อความเพิ่มเติม <span className="text-[12px] text-gray-400 font-normal">(ไม่บังคับ)</span></label>
+                <label className="block text-[15px] font-semibold text-[#1A1A2E] mb-1.5">ข้อความเพิ่มเติม <span className="text-[14px] text-gray-400 font-normal">(ไม่บังคับ)</span></label>
                 <textarea
                   value={forwardMessage}
                   onChange={(e) => setForwardMessage(e.target.value)}
                   placeholder="เพิ่มข้อความสั้น ๆ ให้ผู้รับ..."
                   rows={3}
-                  className="w-full px-3.5 py-2.5 text-[13.5px] bg-[#F8F9FB] border border-gray-200 rounded-xl focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all placeholder:text-gray-400 resize-none"
+                  className="w-full px-3.5 py-2.5 text-[15.5px] bg-[#F8F9FB] border border-gray-200 rounded-xl focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all placeholder:text-gray-400 resize-none"
                 />
               </div>
             </div>
@@ -1843,7 +1843,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
               <button
                 type="button"
                 onClick={() => setShowForwardModal(false)}
-                className="flex-1 py-2.5 text-[13.5px] font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded-xl hover:bg-gray-100 transition-colors"
+                className="flex-1 py-2.5 text-[15.5px] font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded-xl hover:bg-gray-100 transition-colors"
               >
                 ยกเลิก
               </button>
@@ -1856,7 +1856,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                   setForwardRecipient("");
                   setForwardMessage("");
                 }}
-                className="flex-1 py-2.5 text-[13.5px] font-medium text-white rounded-xl transition-all bg-gradient-to-r from-[#01BFF9] to-[#019EFC] hover:shadow-md hover:shadow-[#127EE3]/20 flex items-center justify-center gap-2"
+                className="flex-1 py-2.5 text-[15.5px] font-medium text-white rounded-xl transition-all bg-gradient-to-r from-[#01BFF9] to-[#019EFC] hover:shadow-md hover:shadow-[#127EE3]/20 flex items-center justify-center gap-2"
               >
                 <Send className="w-3.5 h-3.5" />
                 ส่งต่อ
@@ -1891,13 +1891,13 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="ชื่อตำแหน่งงาน เช่น Logistics Manager, Supply Chain"
-                  className="w-full pl-10 pr-4 py-3 text-[13.5px] bg-[#F4F7FA] border border-gray-200 rounded-xl focus:outline-none focus:border-[#0DC2FF] focus:bg-white focus:ring-2 focus:ring-[#0DC2FF]/10 transition-all placeholder:text-gray-400"
+                  className="w-full pl-10 pr-4 py-3 text-[15.5px] bg-[#F4F7FA] border border-gray-200 rounded-xl focus:outline-none focus:border-[#0DC2FF] focus:bg-white focus:ring-2 focus:ring-[#0DC2FF]/10 transition-all placeholder:text-gray-400"
                   onKeyDown={(e) => e.key === "Enter" && setSearchView("results")}
                 />
               </div>
               <button
                 onClick={() => setSearchView("results")}
-                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] hover:opacity-90 text-white text-[13.5px] font-bold rounded-xl transition-all shadow-sm shadow-[#019EFC]/20 flex-shrink-0"
+                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] hover:opacity-90 text-white text-[15.5px] font-bold rounded-xl transition-all shadow-sm shadow-[#019EFC]/20 flex-shrink-0"
               >
                 <Search className="w-4 h-4" />
                 ค้นหา
@@ -1909,7 +1909,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
           <div className="px-6 py-6">
             <div className="flex items-center gap-2 mb-4">
               <Filter className="w-4 h-4 text-gray-400" />
-              <p className="text-[13.5px] font-semibold text-[#1A1A2E]">เลือกดูผู้สมัครตามหมวดหมู่</p>
+              <p className="text-[15.5px] font-semibold text-[#1A1A2E]">เลือกดูผู้สมัครตามหมวดหมู่</p>
             </div>
 
             {/* Landing tabs */}
@@ -1918,7 +1918,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                 <button
                   key={t.key}
                   onClick={() => setLandingTab(t.key)}
-                  className={`px-4 py-1.5 rounded-full text-[12.5px] font-semibold border transition-all ${
+                  className={`px-4 py-1.5 rounded-full text-[14.5px] font-semibold border transition-all ${
                     landingTab === t.key
                       ? "bg-[#127EE3] text-white border-[#127EE3] shadow-sm shadow-[#127EE3]/20"
                       : "bg-white text-gray-600 border-gray-200 hover:border-[#127EE3]/50 hover:text-[#127EE3]"
@@ -1947,11 +1947,11 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                     }}
                     className="bg-white border border-gray-100 rounded-xl p-4 text-left hover:border-[#127EE3]/30 hover:shadow-md hover:-translate-y-0.5 transition-all group"
                   >
-                    <p className="text-[13px] font-semibold text-[#1A1A2E] mb-2 group-hover:text-[#127EE3] transition-colors leading-snug">
+                    <p className="text-[15px] font-semibold text-[#1A1A2E] mb-2 group-hover:text-[#127EE3] transition-colors leading-snug">
                       {item.label}
                     </p>
-                    <p className="text-[13px] font-bold text-[#127EE3]">
-                      {item.count.toLocaleString()} <span className="text-[11px] font-medium text-gray-400">คน</span>
+                    <p className="text-[15px] font-bold text-[#127EE3]">
+                      {item.count.toLocaleString()} <span className="text-[13px] font-medium text-gray-400">คน</span>
                     </p>
                   </button>
                 ))}
@@ -1963,7 +1963,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
               <div className="space-y-6">
                 {PREMIUM_SECTIONS.map((section) => (
                   <div key={section.title}>
-                    <p className="text-[12px] font-semibold text-gray-400 uppercase tracking-wider mb-3">{section.title}</p>
+                    <p className="text-[14px] font-semibold text-gray-400 uppercase tracking-wider mb-3">{section.title}</p>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                       {section.items.map((item) => (
                         <button
@@ -1974,11 +1974,11 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                           }}
                           className="bg-white border border-gray-100 rounded-xl p-4 text-left hover:border-[#127EE3]/30 hover:shadow-md hover:-translate-y-0.5 transition-all group"
                         >
-                          <p className="text-[13px] font-semibold text-[#1A1A2E] mb-2 group-hover:text-[#127EE3] transition-colors leading-snug">
+                          <p className="text-[15px] font-semibold text-[#1A1A2E] mb-2 group-hover:text-[#127EE3] transition-colors leading-snug">
                             {item.label}
                           </p>
-                          <p className="text-[13px] font-bold text-[#127EE3]">
-                            {item.count.toLocaleString()} <span className="text-[11px] font-medium text-gray-400">คน</span>
+                          <p className="text-[15px] font-bold text-[#127EE3]">
+                            {item.count.toLocaleString()} <span className="text-[13px] font-medium text-gray-400">คน</span>
                           </p>
                         </button>
                       ))}
@@ -2011,7 +2011,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                       <select
                         value={uniGroupFilter}
                         onChange={(e) => setUniGroupFilter(e.target.value as UniGroup | "")}
-                        className="appearance-none pl-3 pr-8 py-2.5 text-[13px] bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/10 transition-all text-gray-700 cursor-pointer hover:border-[#127EE3]/40"
+                        className="appearance-none pl-3 pr-8 py-2.5 text-[15px] bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/10 transition-all text-gray-700 cursor-pointer hover:border-[#127EE3]/40"
                       >
                         <option value="">ประเภท: ทั้งหมด</option>
                         {UNI_GROUPS.map((g) => <option key={g} value={g}>{g}</option>)}
@@ -2023,7 +2023,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                       <select
                         value={uniRegionFilter}
                         onChange={(e) => setUniRegionFilter(e.target.value as UniRegion | "")}
-                        className="appearance-none pl-3 pr-8 py-2.5 text-[13px] bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/10 transition-all text-gray-700 cursor-pointer hover:border-[#127EE3]/40"
+                        className="appearance-none pl-3 pr-8 py-2.5 text-[15px] bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/10 transition-all text-gray-700 cursor-pointer hover:border-[#127EE3]/40"
                       >
                         <option value="">ภูมิภาค: ทั้งหมด</option>
                         {UNI_REGIONS.map((r) => <option key={r} value={r}>{r}</option>)}
@@ -2038,20 +2038,20 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                         value={uniSearch}
                         onChange={(e) => setUniSearch(e.target.value)}
                         placeholder="ค้นหาชื่อมหาวิทยาลัย..."
-                        className="w-full pl-9 pr-3 py-2.5 text-[13px] bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/10 transition-all placeholder:text-gray-400"
+                        className="w-full pl-9 pr-3 py-2.5 text-[15px] bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-[#0DC2FF] focus:ring-2 focus:ring-[#0DC2FF]/10 transition-all placeholder:text-gray-400"
                       />
                     </div>
                     {hasFilters && (
                       <button
                         onClick={() => { setUniSearch(""); setUniGroupFilter(""); setUniRegionFilter(""); }}
-                        className="flex items-center gap-1 px-3 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-400 hover:text-[#127EE3] hover:border-[#127EE3]/30 text-[12px] transition-all"
+                        className="flex items-center gap-1 px-3 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-400 hover:text-[#127EE3] hover:border-[#127EE3]/30 text-[14px] transition-all"
                       >
                         <RotateCcw className="w-3.5 h-3.5" />
                         ล้าง
                       </button>
                     )}
                   </div>
-                  <p className="text-[12px] text-gray-400 mb-3">{filteredUnis.length} มหาวิทยาลัย</p>
+                  <p className="text-[14px] text-gray-400 mb-3">{filteredUnis.length} มหาวิทยาลัย</p>
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                     {filteredUnis.map((uni) => (
                       <button
@@ -2064,15 +2064,15 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                           <GraduationCap className="w-5 h-5 text-[#127EE3]" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-[12px] font-semibold text-[#1A1A2E] leading-snug group-hover:text-[#127EE3] transition-colors line-clamp-2 mb-1">
+                          <p className="text-[14px] font-semibold text-[#1A1A2E] leading-snug group-hover:text-[#127EE3] transition-colors line-clamp-2 mb-1">
                             {uni.name}
                           </p>
-                          <p className="text-[11px] text-gray-400 mb-1.5 flex items-center gap-1">
+                          <p className="text-[13px] text-gray-400 mb-1.5 flex items-center gap-1">
                             <MapPin className="w-3 h-3 flex-shrink-0" />
                             <span className="truncate">{uni.province}</span>
                           </p>
-                          <p className="text-[12px] font-bold text-[#127EE3]">
-                            {uni.count.toLocaleString()} <span className="text-[11px] font-medium text-gray-400">คน</span>
+                          <p className="text-[14px] font-bold text-[#127EE3]">
+                            {uni.count.toLocaleString()} <span className="text-[13px] font-medium text-gray-400">คน</span>
                           </p>
                         </div>
                       </button>
@@ -2092,9 +2092,9 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <SlidersHorizontal className="w-4 h-4 text-[#127EE3]" />
-                  <span className="text-[13.5px] font-bold text-[#1A1A2E]">ตัวกรอง</span>
+                  <span className="text-[15.5px] font-bold text-[#1A1A2E]">ตัวกรอง</span>
                   {totalActive > 0 && (
-                    <span className="w-5 h-5 rounded-full bg-[#127EE3] text-white text-[10px] font-bold flex items-center justify-center">
+                    <span className="w-5 h-5 rounded-full bg-[#127EE3] text-white text-[11px] font-bold flex items-center justify-center">
                       {totalActive}
                     </span>
                   )}
@@ -2102,7 +2102,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                 {totalActive > 0 && (
                   <button
                     onClick={clearAll}
-                    className="flex items-center gap-1 text-[11.5px] text-gray-400 hover:text-[#127EE3] transition-colors"
+                    className="flex items-center gap-1 text-[13.5px] text-gray-400 hover:text-[#127EE3] transition-colors"
                   >
                     <RotateCcw className="w-3.5 h-3.5" />
                     ล้างทั้งหมด
@@ -2112,31 +2112,31 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
             </div>
 
             <div className="px-4 py-3 border-b border-gray-100">
-              <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2">ชื่อตำแหน่ง</p>
+              <p className="text-[13px] font-bold text-gray-400 uppercase tracking-wider mb-2">ชื่อตำแหน่ง</p>
               <div className="relative">
                 <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" />
                 <input
                   type="text"
                   placeholder="เช่น Logistics Manager"
-                  className="w-full pl-8 pr-3 py-2 text-[12.5px] bg-[#F0F2F5] rounded-lg border border-transparent focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all placeholder:text-gray-400"
+                  className="w-full pl-8 pr-3 py-2 text-[14.5px] bg-[#F0F2F5] rounded-lg border border-transparent focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all placeholder:text-gray-400"
                 />
               </div>
             </div>
 
             <div className="px-4 py-3 border-b border-gray-100">
-              <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2">คำค้นหา</p>
+              <p className="text-[13px] font-bold text-gray-400 uppercase tracking-wider mb-2">คำค้นหา</p>
               <div className="relative">
                 <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" />
                 <input
                   type="text"
                   placeholder="ทักษะ, เครื่องมือ, ฯลฯ"
-                  className="w-full pl-8 pr-3 py-2 text-[12.5px] bg-[#F0F2F5] rounded-lg border border-transparent focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all placeholder:text-gray-400"
+                  className="w-full pl-8 pr-3 py-2 text-[14.5px] bg-[#F0F2F5] rounded-lg border border-transparent focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all placeholder:text-gray-400"
                 />
               </div>
             </div>
 
             <div className="px-4 py-3 border-b border-gray-100">
-              <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2">พื้นที่ทำงานที่ต้องการ</p>
+              <p className="text-[13px] font-bold text-gray-400 uppercase tracking-wider mb-2">พื้นที่ทำงานที่ต้องการ</p>
               <LocationDropdown
                 query={locationQuery}
                 setQuery={setLocationQuery}
@@ -2155,16 +2155,16 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                     <div className="rounded-lg bg-red-50 border border-red-200 px-3 py-2.5">
                       <div className="flex items-start gap-2 mb-2">
                         <AlertCircle className="w-3.5 h-3.5 text-red-500 flex-shrink-0 mt-0.5" />
-                        <p className="text-[12px] font-semibold text-red-700">Filter เข้มงวดเกินไป</p>
+                        <p className="text-[14px] font-semibold text-red-700">Filter เข้มงวดเกินไป</p>
                       </div>
-                      <p className="text-[11.5px] text-red-600 mb-2">เหลือผู้สมัครน้อยมาก ลองผ่อนคลาย filter เหล่านี้:</p>
+                      <p className="text-[13.5px] text-red-600 mb-2">เหลือผู้สมัครน้อยมาก ลองผ่อนคลาย filter เหล่านี้:</p>
                       <div className="space-y-1">
                         {topImpacts.map((imp) => (
                           <div key={imp.category} className="flex items-center justify-between">
-                            <span className="text-[11px] text-red-700 font-medium">{imp.label}</span>
+                            <span className="text-[13px] text-red-700 font-medium">{imp.label}</span>
                             <button
                               onClick={() => toggleFilter(imp.category, selectedFilters[imp.category]?.[0] ?? "")}
-                              className="text-[10.5px] text-red-500 hover:text-red-700 underline"
+                              className="text-[12px] text-red-500 hover:text-red-700 underline"
                             >
                               ผ่อนคลาย
                             </button>
@@ -2177,13 +2177,13 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                     <div className="rounded-lg bg-amber-50 border border-amber-200 px-3 py-2.5">
                       <div className="flex items-start gap-2 mb-1.5">
                         <AlertTriangle className="w-3.5 h-3.5 text-amber-500 flex-shrink-0 mt-0.5" />
-                        <p className="text-[12px] font-semibold text-amber-800">ผลลัพธ์น้อยกว่าที่ควร</p>
+                        <p className="text-[14px] font-semibold text-amber-800">ผลลัพธ์น้อยกว่าที่ควร</p>
                       </div>
                       <div className="space-y-1">
                         {topImpacts.map((imp) => (
                           <div key={imp.category} className="flex items-center gap-1.5">
                             <TrendingDown className="w-3 h-3 text-amber-500 flex-shrink-0" />
-                            <span className="text-[11.5px] text-amber-700">{imp.label} ตัดออก ~{imp.removedPct}%</span>
+                            <span className="text-[13.5px] text-amber-700">{imp.label} ตัดออก ~{imp.removedPct}%</span>
                           </div>
                         ))}
                       </div>
@@ -2192,14 +2192,14 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                   {conflicts.map((c, i) => (
                     <div key={i} className="rounded-lg bg-orange-50 border border-orange-200 px-3 py-2.5 flex items-start gap-2">
                       <Lightbulb className="w-3.5 h-3.5 text-orange-500 flex-shrink-0 mt-0.5" />
-                      <p className="text-[11.5px] text-orange-700">{c.message}</p>
+                      <p className="text-[13.5px] text-orange-700">{c.message}</p>
                     </div>
                   ))}
                 </div>
               )}
 
               <div className="px-4 pt-3 pb-1">
-                <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">ตัวกรองผลการค้นหา</p>
+                <p className="text-[13px] font-bold text-gray-400 uppercase tracking-wider">ตัวกรองผลการค้นหา</p>
               </div>
               <FilterSection
                 title="เงินเดือนปัจจุบัน"
@@ -2243,10 +2243,10 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
               />
 
               <div className="px-4 pt-4 pb-2 flex items-center justify-between">
-                <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">ตัวกรองขั้นสูง</p>
+                <p className="text-[13px] font-bold text-gray-400 uppercase tracking-wider">ตัวกรองขั้นสูง</p>
                 <button
                   onClick={() => setExpertMode((v) => !v)}
-                  className={`flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-full border transition-all ${
+                  className={`flex items-center gap-1.5 text-[13px] font-semibold px-2.5 py-1 rounded-full border transition-all ${
                     expertMode
                       ? "bg-[#127EE3] text-white border-[#127EE3]"
                       : "bg-white text-gray-500 border-gray-200 hover:border-[#127EE3] hover:text-[#127EE3]"
@@ -2259,7 +2259,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
               {!expertMode && (
                 <div className="mx-3 mb-3 rounded-lg bg-[#F0F2F5] px-3 py-2.5 flex items-start gap-2">
                   <Info className="w-3.5 h-3.5 text-gray-400 flex-shrink-0 mt-0.5" />
-                  <p className="text-[11.5px] text-gray-500">
+                  <p className="text-[13.5px] text-gray-500">
                     Filter ขั้นสูง เช่น สถาบัน, เกรด, งานอดิเรก — เปิดใช้เมื่อต้องการคัดเฉพาะเจาะจงมากขึ้น
                   </p>
                 </div>
@@ -2268,7 +2268,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
               {expertMode && (
                 <>
                   <div className="px-4 pt-1 pb-1">
-                    <p className="text-[11.5px] font-semibold text-gray-500">การศึกษา</p>
+                    <p className="text-[13.5px] font-semibold text-gray-500">การศึกษา</p>
                   </div>
                   <FilterSection
                     title="สถาบันการศึกษา (ในประเทศ)"
@@ -2312,7 +2312,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                   />
 
                   <div className="px-4 pt-3 pb-1">
-                    <p className="text-[11.5px] font-semibold text-gray-500">ข้อมูลส่วนตัว</p>
+                    <p className="text-[13.5px] font-semibold text-gray-500">ข้อมูลส่วนตัว</p>
                   </div>
                   <FilterSection
                     title="ทักษะภาษา"
@@ -2356,7 +2356,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                   />
 
                   <div className="px-4 pt-3 pb-1">
-                    <p className="text-[11.5px] font-semibold text-gray-500">อื่นๆ</p>
+                    <p className="text-[13.5px] font-semibold text-gray-500">อื่นๆ</p>
                   </div>
                   <FilterSection
                     title="รถส่วนตัว"
@@ -2393,7 +2393,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
             <div className="flex items-center gap-2 flex-wrap">
               <button
                 onClick={() => { setSearchView("landing"); clearAll(); }}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-gray-500 text-[12px] font-medium hover:border-[#127EE3]/50 hover:text-[#127EE3] transition-all flex-shrink-0"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-gray-500 text-[14px] font-medium hover:border-[#127EE3]/50 hover:text-[#127EE3] transition-all flex-shrink-0"
               >
                 <ArrowRight className="w-3.5 h-3.5 rotate-180" />
                 หมวดหมู่
@@ -2405,8 +2405,8 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                       key={chip.id}
                       className="flex items-center gap-1.5 px-2.5 py-1 bg-[#EBF5FF] rounded-full border border-[#C7E3FA]"
                     >
-                      <span className="text-[10px] text-[#127EE3]/60">{chip.category}</span>
-                      <span className="text-[11.5px] text-[#127EE3] font-semibold">{chip.label}</span>
+                      <span className="text-[11px] text-[#127EE3]/60">{chip.category}</span>
+                      <span className="text-[13.5px] text-[#127EE3] font-semibold">{chip.label}</span>
                       <button
                         onClick={() => removeChip(chip.id)}
                         className="text-[#127EE3]/50 hover:text-[#127EE3] ml-0.5 transition-colors"
@@ -2417,7 +2417,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                   ))}
                   <button
                     onClick={clearAll}
-                    className="text-[11.5px] text-gray-400 hover:text-gray-600 flex items-center gap-1 ml-1 transition-colors"
+                    className="text-[13.5px] text-gray-400 hover:text-gray-600 flex items-center gap-1 ml-1 transition-colors"
                   >
                     <RotateCcw className="w-3 h-3" />
                     ล้างทั้งหมด
@@ -2430,15 +2430,15 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
           <div className="flex-1 overflow-y-auto px-5 py-5">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <p className="text-[14px] font-semibold text-[#1A1A2E]">
+                <p className="text-[16px] font-semibold text-[#1A1A2E]">
                   <span className="text-[#127EE3] font-bold">{CANDIDATES.length.toLocaleString()}</span> ผู้สมัคร
-                  <span className="text-[12px] text-gray-400 font-normal ml-1.5">จากทั้งหมด 3,161,739 เรซูเม่</span>
+                  <span className="text-[14px] text-gray-400 font-normal ml-1.5">จากทั้งหมด 3,161,739 เรซูเม่</span>
                 </p>
               </div>
               <div className="flex items-center gap-2">
                 <button
                   onClick={handleSaveSearch}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-semibold border transition-all ${
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[14px] font-semibold border transition-all ${
                     searchJustSaved
                       ? "bg-green-50 border-green-200 text-green-600"
                       : "bg-white border-gray-200 text-gray-500 hover:border-[#127EE3]/50 hover:text-[#127EE3]"
@@ -2447,8 +2447,8 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
                   <Pin className="w-3 h-3" />
                   {searchJustSaved ? "บันทึกแล้ว" : "บันทึกการค้นหา"}
                 </button>
-                <span className="text-[12px] text-gray-400">เรียงตาม</span>
-                <select className="text-[12px] border border-gray-200 rounded-lg px-2.5 py-1.5 bg-white focus:outline-none focus:border-[#0DC2FF] text-gray-600 font-medium cursor-pointer">
+                <span className="text-[14px] text-gray-400">เรียงตาม</span>
+                <select className="text-[14px] border border-gray-200 rounded-lg px-2.5 py-1.5 bg-white focus:outline-none focus:border-[#0DC2FF] text-gray-600 font-medium cursor-pointer">
                   <option>เข้าสู่ระบบล่าสุด</option>
                   <option>ประสบการณ์มากสุด</option>
                   <option>เงินเดือนน้อยสุด</option>
@@ -2473,7 +2473,7 @@ export default function CandidateSearchPage({ onBack }: CandidateSearchPageProps
               {[1, 2, 3, "...", 12].map((p, i) => (
                 <button
                   key={i}
-                  className={`w-8 h-8 rounded-lg text-[13px] font-medium transition-colors ${
+                  className={`w-8 h-8 rounded-lg text-[15px] font-medium transition-colors ${
                     p === 1
                       ? "bg-[#127EE3] text-white shadow-sm shadow-[#127EE3]/30"
                       : typeof p === "number" ? "bg-white text-gray-500 border border-gray-200 hover:border-[#127EE3]/40 hover:text-[#127EE3]" : "text-gray-400 cursor-default"

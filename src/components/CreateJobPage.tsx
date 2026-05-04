@@ -65,7 +65,7 @@ function RichTextEditor({ value, onChange, placeholder = "พิมพ์ที�
         suppressContentEditableWarning
         onInput={handleInput}
         data-placeholder={placeholder}
-        className="px-4 py-3 text-[13.5px] text-[#1A1A2E] focus:outline-none leading-relaxed empty:before:content-[attr(data-placeholder)] empty:before:text-gray-400"
+        className="px-4 py-3 text-[15.5px] text-[#1A1A2E] focus:outline-none leading-relaxed empty:before:content-[attr(data-placeholder)] empty:before:text-gray-400"
         style={{ minHeight }}
       />
     </div>
@@ -205,7 +205,7 @@ function StepIndicator({ step }: { step: Step }) {
           <div key={s.key} className="flex items-center">
             <div className="flex items-center gap-2.5">
               <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center text-[12px] font-bold transition-all flex-shrink-0 ${
+                className={`w-8 h-8 rounded-full flex items-center justify-center text-[14px] font-bold transition-all flex-shrink-0 ${
                   isCompleted
                     ? "bg-emerald-500 text-white shadow-sm shadow-emerald-200"
                     : isActive
@@ -217,14 +217,14 @@ function StepIndicator({ step }: { step: Step }) {
               </div>
               <div className="flex flex-col">
                 <span
-                  className={`text-[13px] font-semibold whitespace-nowrap leading-tight ${
+                  className={`text-[15px] font-semibold whitespace-nowrap leading-tight ${
                     isActive ? "text-[#1A1A2E]" : isCompleted ? "text-emerald-600" : "text-gray-400"
                   }`}
                 >
                   {s.label}
                 </span>
-                {isActive && <span className="text-[10px] text-[#0DC2FF] font-medium">กำลังดำเนินการ</span>}
-                {isCompleted && <span className="text-[10px] text-emerald-500 font-medium">เสร็จแล้ว</span>}
+                {isActive && <span className="text-[11px] text-[#0DC2FF] font-medium">กำลังดำเนินการ</span>}
+                {isCompleted && <span className="text-[11px] text-emerald-500 font-medium">เสร็จแล้ว</span>}
               </div>
             </div>
             {i < steps.length - 1 && (
@@ -331,7 +331,7 @@ function PhotoGallery({
               <div className="relative aspect-[16/9] rounded-xl overflow-hidden border border-gray-200">
                 <img src={photo.url} alt="" className="w-full h-full object-cover" />
                 {i === 0 && (
-                  <div className="absolute top-1.5 left-1.5 bg-[#127EE3] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-md flex items-center gap-0.5">
+                  <div className="absolute top-1.5 left-1.5 bg-[#127EE3] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-md flex items-center gap-0.5">
                     <Star className="w-2.5 h-2.5 fill-white" />
                     หลัก
                   </div>
@@ -357,13 +357,13 @@ function PhotoGallery({
                 className="w-full aspect-[16/9] rounded-xl border-2 border-dashed border-gray-200 hover:border-[#0DC2FF] hover:bg-[#0DC2FF]/3 transition-all flex flex-col items-center justify-center gap-1 text-gray-300 hover:text-[#0DC2FF]"
               >
                 <Plus className="w-4 h-4" />
-                {i === 0 && <span className="text-[9px] font-semibold">หลัก</span>}
+                {i === 0 && <span className="text-[10px] font-semibold">หลัก</span>}
               </button>
             )}
           </div>
         ))}
       </div>
-      <p className="text-[11px] text-gray-400 mt-2">
+      <p className="text-[13px] text-gray-400 mt-2">
         รูปแรกจะเป็น cover หลัก · รองรับสูงสุด 3 รูป · แนะนำอัตราส่วน 16:9
       </p>
     </div>
@@ -403,7 +403,7 @@ function CustomDropdown({
 
   return (
     <div>
-      <label className="block text-[13px] font-semibold text-[#1A1A2E] mb-1.5">{label}</label>
+      <label className="block text-[15px] font-semibold text-[#1A1A2E] mb-1.5">{label}</label>
       <div ref={ref} className="relative">
         <button
           type="button"
@@ -420,7 +420,7 @@ function CustomDropdown({
           {icon && (
             <span className={`absolute left-3.5 top-1/2 -translate-y-1/2 flex-shrink-0 ${disabled ? "text-gray-300" : "text-gray-400"}`}>{icon}</span>
           )}
-          <span className={`flex-1 text-[14px] font-normal truncate ${value ? (disabled ? "text-gray-300" : "text-[#1A1A2E]") : "text-gray-400"}`}>
+          <span className={`flex-1 text-[16px] font-normal truncate ${value ? (disabled ? "text-gray-300" : "text-[#1A1A2E]") : "text-gray-400"}`}>
             {value || placeholder}
           </span>
           <ChevronDown
@@ -469,11 +469,11 @@ function BulletHighlights({
       <div className="flex items-center justify-between mb-1">
         <div className="flex items-center gap-2">
           <Sparkles className="w-3.5 h-3.5 text-[#0DC2FF]" />
-          <span className="text-[12px] font-bold text-[#127EE3]">AI แนะนำ — แก้ไขได้</span>
+          <span className="text-[14px] font-bold text-[#127EE3]">AI แนะนำ — แก้ไขได้</span>
         </div>
         <button
           onClick={onRegenerate}
-          className="flex items-center gap-1 text-[11px] text-gray-400 hover:text-[#127EE3] transition-colors"
+          className="flex items-center gap-1 text-[13px] text-gray-400 hover:text-[#127EE3] transition-colors"
         >
           <RefreshCw className="w-3 h-3" />
           สร้างใหม่
@@ -481,14 +481,14 @@ function BulletHighlights({
       </div>
       {bullets.map((b, i) => (
         <div key={i} className="flex items-start gap-2.5">
-          <div className="w-5 h-5 rounded-full bg-[#127EE3] text-white text-[10px] font-bold flex items-center justify-center flex-shrink-0 mt-1.5">
+          <div className="w-5 h-5 rounded-full bg-[#127EE3] text-white text-[11px] font-bold flex items-center justify-center flex-shrink-0 mt-1.5">
             {i + 1}
           </div>
           <input
             type="text"
             value={b}
             onChange={(e) => onChange(bullets.map((x, idx) => (idx === i ? e.target.value : x)))}
-            className="flex-1 bg-[#F8F9FB] border border-gray-200 rounded-lg px-3 py-2 text-[13px] text-[#1A1A2E] focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all"
+            className="flex-1 bg-[#F8F9FB] border border-gray-200 rounded-lg px-3 py-2 text-[15px] text-[#1A1A2E] focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all"
           />
         </div>
       ))}
@@ -523,16 +523,16 @@ function BenefitsSelector({
     <div>
       {/* Selected benefits */}
       <div className="mb-4">
-        <p className="text-[12px] font-semibold text-gray-500 mb-2">สวัสดิการที่เลือกแล้ว</p>
+        <p className="text-[14px] font-semibold text-gray-500 mb-2">สวัสดิการที่เลือกแล้ว</p>
         {selected.length === 0 ? (
-          <p className="text-[12px] text-gray-400 italic">ยังไม่ได้เลือกสวัสดิการ</p>
+          <p className="text-[14px] text-gray-400 italic">ยังไม่ได้เลือกสวัสดิการ</p>
         ) : (
           <div className="flex flex-wrap gap-1.5">
             {selected.map((b) => (
               <button
                 key={b}
                 onClick={() => toggle(b)}
-                className="inline-flex items-center gap-1 text-[12px] font-medium px-2.5 py-1 rounded-full border bg-blue-50 border-blue-500 text-blue-700 transition-all hover:bg-blue-100"
+                className="inline-flex items-center gap-1 text-[14px] font-medium px-2.5 py-1 rounded-full border bg-blue-50 border-blue-500 text-blue-700 transition-all hover:bg-blue-100"
               >
                 <Check className="w-2.5 h-2.5" />
                 {b}
@@ -545,7 +545,7 @@ function BenefitsSelector({
 
       <button
         onClick={() => setIsExpanded((v) => !v)}
-        className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#127EE3] hover:text-[#0e6bc7] transition-colors mb-3"
+        className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#127EE3] hover:text-[#0e6bc7] transition-colors mb-3"
       >
         <Plus className={`w-3.5 h-3.5 transition-transform ${isExpanded ? "rotate-45" : ""}`} />
         เพิ่มสวัสดิการ
@@ -561,7 +561,7 @@ function BenefitsSelector({
             value={benefitSearch}
             onChange={(e) => setBenefitSearch(e.target.value)}
             placeholder="ค้นหาสวัสดิการ เช่น ประกัน, โบนัส"
-            className="w-full pl-8 pr-3 py-2 bg-white border border-gray-200 rounded-lg text-[13px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] transition-all"
+            className="w-full pl-8 pr-3 py-2 bg-white border border-gray-200 rounded-lg text-[15px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] transition-all"
           />
         </div>
 
@@ -574,7 +574,7 @@ function BenefitsSelector({
           if (filtered.length === 0) return null;
           return (
             <div>
-              <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wide mb-2">สวัสดิการที่ถูกใช้บ่อย</p>
+              <p className="text-[13px] font-semibold text-gray-400 uppercase tracking-wide mb-2">สวัสดิการที่ถูกใช้บ่อย</p>
               <div className="flex flex-wrap gap-2">
                 {visible.map((b) => {
                   const active = selected.includes(b);
@@ -582,7 +582,7 @@ function BenefitsSelector({
                     <button
                       key={b}
                       onClick={() => toggle(b)}
-                      className={`text-[12px] font-medium px-3 py-1.5 rounded-full border transition-all ${
+                      className={`text-[14px] font-medium px-3 py-1.5 rounded-full border transition-all ${
                         active
                           ? "bg-blue-50 border-blue-500 text-blue-700"
                           : "bg-white border-gray-300 text-gray-800 hover:border-blue-400 hover:text-blue-600"
@@ -597,7 +597,7 @@ function BenefitsSelector({
               {!showAllMostUsed && filtered.length > 10 && (
                 <button
                   onClick={() => setShowAllMostUsed(true)}
-                  className="mt-2 text-[12px] text-[#127EE3] hover:text-[#0e6bc7] font-medium transition-colors"
+                  className="mt-2 text-[14px] text-[#127EE3] hover:text-[#0e6bc7] font-medium transition-colors"
                 >
                   ดูเพิ่มเติม ({filtered.length - 10})
                 </button>
@@ -614,7 +614,7 @@ function BenefitsSelector({
           if (filtered.length === 0) return null;
           return (
             <div>
-              <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wide mb-2">สวัสดิการอื่นๆ</p>
+              <p className="text-[13px] font-semibold text-gray-400 uppercase tracking-wide mb-2">สวัสดิการอื่นๆ</p>
               <div className="flex flex-wrap gap-2">
                 {filtered.map((b) => {
                   const active = selected.includes(b);
@@ -622,7 +622,7 @@ function BenefitsSelector({
                     <button
                       key={b}
                       onClick={() => toggle(b)}
-                      className={`text-[12px] font-medium px-3 py-1.5 rounded-full border transition-all ${
+                      className={`text-[14px] font-medium px-3 py-1.5 rounded-full border transition-all ${
                         active
                           ? "bg-blue-50 border-blue-500 text-blue-700"
                           : "bg-white border-gray-300 text-gray-800 hover:border-blue-400 hover:text-blue-600"
@@ -640,7 +640,7 @@ function BenefitsSelector({
                     <button
                       key={b}
                       onClick={() => toggle(b)}
-                      className="text-[12px] font-medium px-3 py-1.5 rounded-full border bg-blue-50 border-blue-500 text-blue-700 transition-all"
+                      className="text-[14px] font-medium px-3 py-1.5 rounded-full border bg-blue-50 border-blue-500 text-blue-700 transition-all"
                     >
                       <Check className="w-2.5 h-2.5 inline mr-1" />
                       {b}
@@ -660,7 +660,7 @@ function BenefitsSelector({
           onChange={(e) => setCustomInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && addCustom()}
           placeholder="เพิ่มสวัสดิการอื่นๆ..."
-          className="flex-1 bg-[#F8F9FB] border border-gray-200 rounded-lg px-3 py-2 text-[13px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all"
+          className="flex-1 bg-[#F8F9FB] border border-gray-200 rounded-lg px-3 py-2 text-[15px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all"
         />
         <button
           onClick={addCustom}
@@ -689,8 +689,8 @@ function SaveBenefitSetModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm mx-4">
         <div className="px-6 pt-6 pb-2">
-          <h2 className="text-[16px] font-bold text-[#1A1A2E] mb-4">บันทึกชุดสวัสดิการ</h2>
-          <label className="block text-[12px] font-semibold text-gray-500 mb-1.5">ชื่อชุดสวัสดิการ</label>
+          <h2 className="text-[18px] font-bold text-[#1A1A2E] mb-4">บันทึกชุดสวัสดิการ</h2>
+          <label className="block text-[14px] font-semibold text-gray-500 mb-1.5">ชื่อชุดสวัสดิการ</label>
           <input
             autoFocus
             type="text"
@@ -698,20 +698,20 @@ function SaveBenefitSetModal({
             onChange={(e) => onChange(e.target.value)}
             onKeyDown={(e) => { if (e.key === "Enter" && value.trim()) onSave(); if (e.key === "Escape") onCancel(); }}
             placeholder="เช่น Sales Team Premium"
-            className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-3 py-2.5 text-[13px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all"
+            className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-3 py-2.5 text-[15px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all"
           />
         </div>
         <div className="flex gap-2 px-6 py-5">
           <button
             onClick={onCancel}
-            className="flex-1 border border-gray-200 text-gray-500 text-[13px] font-semibold py-2.5 rounded-xl hover:bg-gray-50 transition-colors"
+            className="flex-1 border border-gray-200 text-gray-500 text-[15px] font-semibold py-2.5 rounded-xl hover:bg-gray-50 transition-colors"
           >
             ยกเลิก
           </button>
           <button
             onClick={onSave}
             disabled={!value.trim()}
-            className="flex-1 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[13px] font-semibold py-2.5 rounded-xl hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
+            className="flex-1 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[15px] font-semibold py-2.5 rounded-xl hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
           >
             Save
           </button>
@@ -736,26 +736,26 @@ function EditAboutModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4">
         <div className="px-6 pt-6 pb-2">
-          <h2 className="text-[16px] font-bold text-[#1A1A2E] mb-4">แก้ไขเกี่ยวกับบริษัท</h2>
-          <label className="block text-[12px] font-semibold text-gray-500 mb-1.5">เกี่ยวกับบริษัท</label>
+          <h2 className="text-[18px] font-bold text-[#1A1A2E] mb-4">แก้ไขเกี่ยวกับบริษัท</h2>
+          <label className="block text-[14px] font-semibold text-gray-500 mb-1.5">เกี่ยวกับบริษัท</label>
           <textarea
             autoFocus
             rows={7}
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-3 py-2.5 text-[13px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all resize-none"
+            className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-3 py-2.5 text-[15px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all resize-none"
           />
         </div>
         <div className="flex gap-2 px-6 py-5">
           <button
             onClick={onCancel}
-            className="flex-1 border border-gray-200 text-gray-500 text-[13px] font-semibold py-2.5 rounded-xl hover:bg-gray-50 transition-colors"
+            className="flex-1 border border-gray-200 text-gray-500 text-[15px] font-semibold py-2.5 rounded-xl hover:bg-gray-50 transition-colors"
           >
             ยกเลิก
           </button>
           <button
             onClick={onSave}
-            className="flex-1 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[13px] font-semibold py-2.5 rounded-xl hover:opacity-90 transition-opacity"
+            className="flex-1 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[15px] font-semibold py-2.5 rounded-xl hover:opacity-90 transition-opacity"
           >
             บันทึก
           </button>
@@ -784,39 +784,39 @@ function AddAboutSetModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4">
         <div className="px-6 pt-6 pb-2 space-y-4">
-          <h2 className="text-[16px] font-bold text-[#1A1A2E]">สร้างชุดเกี่ยวกับบริษัท</h2>
+          <h2 className="text-[18px] font-bold text-[#1A1A2E]">สร้างชุดเกี่ยวกับบริษัท</h2>
           <div>
-            <label className="block text-[12px] font-semibold text-gray-500 mb-1.5">ชื่อ Template</label>
+            <label className="block text-[14px] font-semibold text-gray-500 mb-1.5">ชื่อ Template</label>
             <input
               autoFocus
               type="text"
               value={name}
               onChange={(e) => onChangeName(e.target.value)}
               placeholder="เช่น TechVibe Solutions - Tech Hiring"
-              className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-3 py-2.5 text-[13px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all"
+              className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-3 py-2.5 text-[15px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all"
             />
           </div>
           <div>
-            <label className="block text-[12px] font-semibold text-gray-500 mb-1.5">เกี่ยวกับบริษัท</label>
+            <label className="block text-[14px] font-semibold text-gray-500 mb-1.5">เกี่ยวกับบริษัท</label>
             <textarea
               rows={5}
               value={desc}
               onChange={(e) => onChangeDesc(e.target.value)}
-              className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-3 py-2.5 text-[13px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all resize-none"
+              className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-3 py-2.5 text-[15px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all resize-none"
             />
           </div>
         </div>
         <div className="flex gap-2 px-6 py-5">
           <button
             onClick={onCancel}
-            className="flex-1 border border-gray-200 text-gray-500 text-[13px] font-semibold py-2.5 rounded-xl hover:bg-gray-50 transition-colors"
+            className="flex-1 border border-gray-200 text-gray-500 text-[15px] font-semibold py-2.5 rounded-xl hover:bg-gray-50 transition-colors"
           >
             ยกเลิก
           </button>
           <button
             onClick={onSave}
             disabled={!name.trim()}
-            className="flex-1 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[13px] font-semibold py-2.5 rounded-xl hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
+            className="flex-1 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[15px] font-semibold py-2.5 rounded-xl hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
           >
             Save
           </button>
@@ -1037,12 +1037,12 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
               <div className="w-14 h-14 bg-emerald-50 border-2 border-emerald-200 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Check className="w-7 h-7 text-emerald-500" strokeWidth={2.5} />
               </div>
-              <h2 className="text-[22px] font-bold text-[#1A1A2E] mb-1.5">ประกาศงานถูกสร้างเรียบร้อยแล้ว</h2>
-              <p className="text-[14px] text-gray-600">
+              <h2 className="text-[24px] font-bold text-[#1A1A2E] mb-1.5">ประกาศงานถูกสร้างเรียบร้อยแล้ว</h2>
+              <p className="text-[16px] text-gray-600">
                 <span className="font-semibold text-[#1A1A2E]">{title || "ตำแหน่งงาน"}</span>{" "}
                 ถูกเผยแพร่เรียบร้อยแล้ว
               </p>
-              <p className="text-[12.5px] text-gray-400 mt-1">
+              <p className="text-[14.5px] text-gray-400 mt-1">
                 AI กำลังสแกนหาผู้สมัคร Top Picks — จะแสดงผลภายใน 24 ชั่วโมง
               </p>
             </div>
@@ -1052,13 +1052,13 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                 <Building2 style={{ width: 18, height: 18 }} className="text-[#0277B5]" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-[11px] font-medium text-[#0277B5] uppercase tracking-wide leading-none mb-1">ขั้นตอนถัดไป</p>
-                <p className="text-[13.5px] font-semibold text-[#1A1A2E] leading-snug">เพิ่ม Branding ให้ประกาศนี้ ฟรี</p>
-                <p className="text-[12px] text-gray-500 mt-0.5 max-w-sm leading-relaxed">เพิ่ม YOU SAY / HR SAY และ Dream Company เพื่อช่วยให้ผู้สมัคร Top Picks เลือกคุณก่อนคู่แข่ง</p>
+                <p className="text-[13px] font-medium text-[#0277B5] uppercase tracking-wide leading-none mb-1">ขั้นตอนถัดไป</p>
+                <p className="text-[15.5px] font-semibold text-[#1A1A2E] leading-snug">เพิ่ม Branding ให้ประกาศนี้ ฟรี</p>
+                <p className="text-[14px] text-gray-500 mt-0.5 max-w-sm leading-relaxed">เพิ่ม YOU SAY / HR SAY และ Dream Company เพื่อช่วยให้ผู้สมัคร Top Picks เลือกคุณก่อนคู่แข่ง</p>
               </div>
               <button
                 onClick={onBack}
-                className="flex-shrink-0 px-4 py-2 border border-[#00ADEF] text-[#00ADEF] hover:bg-[#EBF6FF] text-[12.5px] font-semibold rounded-lg transition-all whitespace-nowrap"
+                className="flex-shrink-0 px-4 py-2 border border-[#00ADEF] text-[#00ADEF] hover:bg-[#EBF6FF] text-[14.5px] font-semibold rounded-lg transition-all whitespace-nowrap"
               >
                 สร้าง Branding
               </button>
@@ -1070,10 +1070,10 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
             <div className="px-6 pt-5 pb-4 border-b border-gray-100">
               <div className="flex items-center gap-2 mb-0.5">
                 <Zap className="w-3.5 h-3.5 text-[#0DC2FF]" />
-                <h3 className="text-[15px] font-bold text-[#1A1A2E]">Top Picks สำหรับตำแหน่งนี้</h3>
-                <span className="text-[10px] font-semibold text-[#0DC2FF] bg-[#EBF8FF] px-2 py-0.5 rounded-full ml-1">AI Preview</span>
+                <h3 className="text-[17px] font-bold text-[#1A1A2E]">Top Picks สำหรับตำแหน่งนี้</h3>
+                <span className="text-[11px] font-semibold text-[#0DC2FF] bg-[#EBF8FF] px-2 py-0.5 rounded-full ml-1">AI Preview</span>
               </div>
-              <p className="text-[12px] text-gray-400">
+              <p className="text-[14px] text-gray-400">
                 ตัวอย่างผู้สมัครที่ AI แนะนำ — ผลลัพธ์จริงจะแสดงภายใน 24 ชั่วโมง
               </p>
             </div>
@@ -1095,20 +1095,20 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                       <div className={c.isPerfect ? "flex items-start gap-3 mb-5" : "flex items-start gap-3 mb-4"}>
                         {/* Anonymous avatar — lg = w-12 h-12 rounded-2xl */}
                         <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#EBF6FF] to-[#D6EDFF] flex items-center justify-center flex-shrink-0">
-                          <span className="text-[#127EE3] text-[15px] font-black">{c.name.charAt(0)}</span>
+                          <span className="text-[#127EE3] text-[17px] font-black">{c.name.charAt(0)}</span>
                         </div>
                         <div className="min-w-0 flex-1">
                           <p className={c.isPerfect
-                            ? "text-[15px] text-[#111827] font-semibold leading-snug mb-1"
-                            : "text-[14px] text-[#111827] font-semibold leading-snug mb-1"
+                            ? "text-[17px] text-[#111827] font-semibold leading-snug mb-1"
+                            : "text-[16px] text-[#111827] font-semibold leading-snug mb-1"
                           }>{c.name}</p>
                           {c.isPerfect ? (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#EBF8FF] text-[#0277a8] tracking-wide uppercase">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#EBF8FF] text-[#0277a8] tracking-wide uppercase">
                               <Zap className="w-2.5 h-2.5" />
                               Perfectly Fit
                             </span>
                           ) : (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-semibold border bg-emerald-50 text-emerald-700 border-emerald-200">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-semibold border bg-emerald-50 text-emerald-700 border-emerald-200">
                               {c.fitLabel}
                             </span>
                           )}
@@ -1116,7 +1116,7 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                       </div>
 
                       {/* Info rows */}
-                      <div className={c.isPerfect ? "space-y-2 text-[12.5px] mb-4" : "space-y-2 text-[12px]"}>
+                      <div className={c.isPerfect ? "space-y-2 text-[14.5px] mb-4" : "space-y-2 text-[14px]"}>
                         <div className="flex items-center gap-2">
                           <Briefcase className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
                           <span className="font-medium text-[#111827] leading-snug">{c.company}</span>
@@ -1136,7 +1136,7 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                         <div className="flex items-center gap-2 pt-2 border-t border-gray-100">
                           <DollarSign className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
                           <span className={c.isPerfect
-                            ? "font-semibold text-[#111827] text-[13px]"
+                            ? "font-semibold text-[#111827] text-[15px]"
                             : "font-semibold text-[#111827]"
                           }>{c.salary}</span>
                         </div>
@@ -1146,14 +1146,14 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                       {c.competencies.length > 0 && (
                         <div className={c.isPerfect ? "pt-3 mt-3 border-t border-gray-100" : "mt-3 pt-3 border-t border-gray-100"}>
                           <p className={c.isPerfect
-                            ? "text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-2"
-                            : "text-[9px] font-semibold text-gray-400 uppercase tracking-wider mb-1.5"
+                            ? "text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-2"
+                            : "text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1.5"
                           }>Core Competencies</p>
                           <div className="flex flex-wrap gap-1">
                             {c.competencies.map((comp) => (
                               <span key={comp} className={c.isPerfect
-                                ? "text-[11px] font-medium px-2 py-0.5 rounded-md bg-teal-50 text-teal-700"
-                                : "text-[10px] font-medium px-1.5 py-0.5 rounded bg-teal-50 text-teal-600"
+                                ? "text-[13px] font-medium px-2 py-0.5 rounded-md bg-teal-50 text-teal-700"
+                                : "text-[11px] font-medium px-1.5 py-0.5 rounded bg-teal-50 text-teal-600"
                               }>{comp}</span>
                             ))}
                           </div>
@@ -1165,18 +1165,18 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                     <div className="flex-1 min-w-0 flex flex-col">
                       {/* Why This Candidate Stands Out */}
                       <p className={c.isPerfect
-                        ? "text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-3"
-                        : "text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-3"
+                        ? "text-[13px] font-semibold text-gray-400 uppercase tracking-wider mb-3"
+                        : "text-[13px] font-semibold text-gray-400 uppercase tracking-wider mb-3"
                       }>Why This Candidate Stands Out</p>
                       <ul className={c.isPerfect ? "space-y-2.5 mb-5" : "space-y-2.5 mb-4"}>
                         {c.whyYoullLike.map((item, idx) => (
                           <li key={idx} className={c.isPerfect
-                            ? "flex gap-3 text-[13px] text-gray-700 leading-[1.65]"
-                            : "flex gap-3 text-[12.5px] text-gray-700 leading-[1.65]"
+                            ? "flex gap-3 text-[15px] text-gray-700 leading-[1.65]"
+                            : "flex gap-3 text-[14.5px] text-gray-700 leading-[1.65]"
                           }>
                             <span className={c.isPerfect
-                              ? "flex-shrink-0 w-5 h-5 rounded-full bg-gray-100 text-gray-400 text-[10px] font-bold flex items-center justify-center mt-[1px]"
-                              : "flex-shrink-0 w-4 h-4 rounded-full bg-gray-100 text-gray-400 text-[9px] font-bold flex items-center justify-center mt-[2px]"
+                              ? "flex-shrink-0 w-5 h-5 rounded-full bg-gray-100 text-gray-400 text-[11px] font-bold flex items-center justify-center mt-[1px]"
+                              : "flex-shrink-0 w-4 h-4 rounded-full bg-gray-100 text-gray-400 text-[10px] font-bold flex items-center justify-center mt-[2px]"
                             }>{idx + 1}</span>
                             <span>{item}</span>
                           </li>
@@ -1186,8 +1186,8 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                       {/* Character section — same as RunnerUpCard inline style */}
                       <div className="mb-4 pt-3 border-t border-gray-100">
                         <p className={c.isPerfect
-                          ? "text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-2.5"
-                          : "text-[9px] font-semibold text-gray-400 uppercase tracking-wider mb-2"
+                          ? "text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-2.5"
+                          : "text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-2"
                         }>ตัวตน (Character)</p>
                         <div className="flex items-stretch gap-2">
                           <div className={c.isPerfect
@@ -1195,28 +1195,28 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                             : "flex-1 rounded-lg bg-blue-50 border border-blue-100 px-2.5 py-2"
                           }>
                             <p className={c.isPerfect
-                              ? "text-[9px] font-medium text-gray-400 mb-1.5"
-                              : "text-[9px] font-medium text-gray-400 mb-1"
+                              ? "text-[10px] font-medium text-gray-400 mb-1.5"
+                              : "text-[10px] font-medium text-gray-400 mb-1"
                             }>Hobbies</p>
                             <span className={c.isPerfect
-                              ? "text-[12px] font-semibold text-gray-700 leading-tight"
-                              : "text-[11.5px] font-semibold text-gray-700"
+                              ? "text-[14px] font-semibold text-gray-700 leading-tight"
+                              : "text-[13.5px] font-semibold text-gray-700"
                             }>{c.hobbies.join(", ")}</span>
-                            <p className="text-[11px] text-gray-500 mt-0.5 leading-relaxed">{c.hobbyDescription}</p>
+                            <p className="text-[13px] text-gray-500 mt-0.5 leading-relaxed">{c.hobbyDescription}</p>
                           </div>
                           <div className={c.isPerfect
                             ? "flex-1 rounded-lg bg-pink-50 border border-pink-100 px-3 py-2.5"
                             : "flex-1 rounded-lg bg-pink-50 border border-pink-100 px-2.5 py-2"
                           }>
                             <p className={c.isPerfect
-                              ? "text-[9px] font-medium text-gray-400 mb-1.5"
-                              : "text-[9px] font-medium text-gray-400 mb-1"
+                              ? "text-[10px] font-medium text-gray-400 mb-1.5"
+                              : "text-[10px] font-medium text-gray-400 mb-1"
                             }>Strengths</p>
                             <span className={c.isPerfect
-                              ? "text-[12px] font-semibold text-gray-700 leading-tight block mb-1"
-                              : "text-[11.5px] font-semibold text-gray-700"
+                              ? "text-[14px] font-semibold text-gray-700 leading-tight block mb-1"
+                              : "text-[13.5px] font-semibold text-gray-700"
                             }>{c.strengths.join(", ")}</span>
-                            <p className="text-[11px] text-gray-500 mt-0.5 leading-relaxed">{c.strengthDescription}</p>
+                            <p className="text-[13px] text-gray-500 mt-0.5 leading-relaxed">{c.strengthDescription}</p>
                           </div>
                         </div>
                       </div>
@@ -1226,16 +1226,16 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                         <div className="flex items-center gap-1.5 mb-2">
                           <Brain className="w-3 h-3 text-gray-400" />
                           <span className={c.isPerfect
-                            ? "text-[10px] font-semibold text-gray-400 uppercase tracking-wider"
-                            : "text-[9px] font-semibold text-gray-400 uppercase tracking-wider"
+                            ? "text-[11px] font-semibold text-gray-400 uppercase tracking-wider"
+                            : "text-[10px] font-semibold text-gray-400 uppercase tracking-wider"
                           }>Behavioral Signals</span>
-                          <span className="text-[9px] text-gray-300 ml-1">· AI</span>
+                          <span className="text-[10px] text-gray-300 ml-1">· AI</span>
                         </div>
                         <ul className="space-y-1.5">
                           {c.deepAnalysis.map((item, idx) => (
                             <li key={idx} className={c.isPerfect
-                              ? "flex gap-2.5 text-[12px] leading-relaxed text-gray-500"
-                              : "flex gap-2 text-[11.5px] leading-relaxed text-gray-500"
+                              ? "flex gap-2.5 text-[14px] leading-relaxed text-gray-500"
+                              : "flex gap-2 text-[13.5px] leading-relaxed text-gray-500"
                             }>
                               <span className="flex-shrink-0 w-1 h-1 rounded-full bg-gray-300 mt-[7px]" />
                               <span><span className="font-medium text-gray-700">{item.label}</span> — {item.detail}</span>
@@ -1247,8 +1247,8 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                       {/* CTA */}
                       <div className="flex items-center gap-2 mt-auto pt-3 border-t border-gray-100">
                         <button className={c.isPerfect
-                          ? "flex items-center gap-1.5 px-4 py-2 rounded-lg text-[13px] font-semibold bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white hover:opacity-90 transition-opacity"
-                          : "flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[12.5px] font-semibold bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white hover:opacity-90 transition-opacity"
+                          ? "flex items-center gap-1.5 px-4 py-2 rounded-lg text-[15px] font-semibold bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white hover:opacity-90 transition-opacity"
+                          : "flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[14.5px] font-semibold bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white hover:opacity-90 transition-opacity"
                         }>
                           <FileText className="w-3.5 h-3.5" />
                           ดูโปรไฟล์
@@ -1263,7 +1263,7 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
             <div className="px-6 py-4 border-t border-gray-100">
               <button
                 onClick={onBack}
-                className="w-full py-2.5 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] hover:opacity-90 text-white text-[13.5px] font-semibold rounded-xl transition-all flex items-center justify-center gap-2"
+                className="w-full py-2.5 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] hover:opacity-90 text-white text-[15.5px] font-semibold rounded-xl transition-all flex items-center justify-center gap-2"
               >
                 <Star className="w-3.5 h-3.5" />
                 ดู Top Picks ทั้งหมด
@@ -1275,7 +1275,7 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
           <div className="flex justify-center pb-2">
             <button
               onClick={onBack}
-              className="flex items-center gap-2 px-5 py-2 text-gray-400 hover:text-gray-600 text-[13px] transition-colors"
+              className="flex items-center gap-2 px-5 py-2 text-gray-400 hover:text-gray-600 text-[15px] transition-colors"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               กลับหน้าหลัก
@@ -1302,9 +1302,9 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-1.5 mb-0.5">
               <Zap className="w-3 h-3 text-[#0DC2FF]" />
-              <p className="text-[10px] font-bold text-[#0DC2FF] uppercase tracking-widest">Super Recruit</p>
+              <p className="text-[11px] font-bold text-[#0DC2FF] uppercase tracking-widest">Super Recruit</p>
             </div>
-            <h1 className="text-[18px] font-bold text-[#1A1A2E] leading-tight truncate">
+            <h1 className="text-[20px] font-bold text-[#1A1A2E] leading-tight truncate">
               สร้างประกาศงานใหม่
             </h1>
           </div>
@@ -1329,13 +1329,13 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                     <Briefcase className="w-4 h-4 text-[#127EE3]" />
                   </div>
                   <div>
-                    <h2 className="text-[15px] font-bold text-[#1A1A2E] leading-tight">ข้อมูลพื้นฐาน</h2>
-                    <p className="text-[11.5px] text-gray-400 mt-0.5">กรอกข้อมูลที่จำเป็นสำหรับประกาศงาน</p>
+                    <h2 className="text-[17px] font-bold text-[#1A1A2E] leading-tight">ข้อมูลพื้นฐาน</h2>
+                    <p className="text-[13.5px] text-gray-400 mt-0.5">กรอกข้อมูลที่จำเป็นสำหรับประกาศงาน</p>
                   </div>
                 </div>
                 <div className="px-7 pt-6 pb-6 space-y-5">
                   <div>
-                    <label className="block text-[13px] font-semibold text-[#1A1A2E] mb-1.5">
+                    <label className="block text-[15px] font-semibold text-[#1A1A2E] mb-1.5">
                       ชื่อตำแหน่งงาน
                     </label>
                     <input
@@ -1343,20 +1343,20 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
                       placeholder="เช่น Senior Product Designer, Marketing Manager"
-                      className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-4 py-2.5 text-[14px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all"
+                      className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-4 py-2.5 text-[16px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all"
                     />
                     {aiSuggestion && (
                       <div className="mt-2 flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-[#EBF6FF] to-[#F0FBFF] border border-[#0DC2FF]/25 rounded-xl">
                         <div className="w-5 h-5 rounded-full bg-[#0DC2FF]/15 flex items-center justify-center flex-shrink-0">
                           <Sparkles className="w-2.5 h-2.5 text-[#0DC2FF]" />
                         </div>
-                        <span className="text-[11.5px] text-gray-500 flex-1">
+                        <span className="text-[13.5px] text-gray-500 flex-1">
                           AI แนะนำสายอาชีพ:
                           <span className="font-semibold text-[#127EE3] mx-1">{aiSuggestion.field}</span>
                           <span className="text-gray-300 mr-1">/</span>
                           <span className="font-semibold text-[#127EE3]">{aiSuggestion.subfield}</span>
                         </span>
-                        <span className="text-[10px] text-[#0DC2FF] bg-[#0DC2FF]/10 px-2 py-0.5 rounded-full font-semibold whitespace-nowrap">AI</span>
+                        <span className="text-[11px] text-[#0DC2FF] bg-[#0DC2FF]/10 px-2 py-0.5 rounded-full font-semibold whitespace-nowrap">AI</span>
                       </div>
                     )}
                   </div>
@@ -1403,16 +1403,16 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                     />
                   </div>
                   <div className="rounded-xl border border-gray-100 bg-[#FAFBFC] p-4 space-y-3">
-                    <label className="block text-[13px] font-semibold text-[#1A1A2E]">เงินเดือน (บาท/เดือน)</label>
+                    <label className="block text-[15px] font-semibold text-[#1A1A2E]">เงินเดือน (บาท/เดือน)</label>
                     <div className="flex items-center gap-2">
                       <div className="relative flex-1">
                         <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                        <input type="number" value={salaryMin} onChange={(e) => setSalaryMin(e.target.value)} placeholder="ต่ำสุด" className="w-full bg-white border border-gray-200 rounded-xl pl-9 pr-3 py-2.5 text-[14px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all" />
+                        <input type="number" value={salaryMin} onChange={(e) => setSalaryMin(e.target.value)} placeholder="ต่ำสุด" className="w-full bg-white border border-gray-200 rounded-xl pl-9 pr-3 py-2.5 text-[16px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all" />
                       </div>
-                      <span className="text-gray-300 text-[18px] font-light">–</span>
+                      <span className="text-gray-300 text-[20px] font-light">–</span>
                       <div className="relative flex-1">
                         <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                        <input type="number" value={salaryMax} onChange={(e) => setSalaryMax(e.target.value)} placeholder="สูงสุด" className="w-full bg-white border border-gray-200 rounded-xl pl-9 pr-3 py-2.5 text-[14px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all" />
+                        <input type="number" value={salaryMax} onChange={(e) => setSalaryMax(e.target.value)} placeholder="สูงสุด" className="w-full bg-white border border-gray-200 rounded-xl pl-9 pr-3 py-2.5 text-[16px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all" />
                       </div>
                     </div>
                     {title && location && jobType && (
@@ -1420,13 +1420,13 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                         <div className="w-5 h-5 rounded-full bg-[#0DC2FF]/15 flex items-center justify-center flex-shrink-0">
                           <Sparkles className="w-2.5 h-2.5 text-[#0DC2FF]" />
                         </div>
-                        <span className="flex-1 text-[11.5px] text-gray-500">
+                        <span className="flex-1 text-[13.5px] text-gray-500">
                           AI แนะนำ: <span className="font-semibold text-[#127EE3]">35,000 – 45,000 บาท/เดือน</span>
                         </span>
                         <button
                           type="button"
                           onClick={() => { setSalaryMin("35000"); setSalaryMax("45000"); }}
-                          className="text-[11px] font-bold text-white bg-[#127EE3] hover:bg-[#0e6bc7] px-2.5 py-1 rounded-lg whitespace-nowrap flex-shrink-0 transition-colors"
+                          className="text-[13px] font-bold text-white bg-[#127EE3] hover:bg-[#0e6bc7] px-2.5 py-1 rounded-lg whitespace-nowrap flex-shrink-0 transition-colors"
                         >
                           ใช้เลย
                         </button>
@@ -1439,12 +1439,12 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                         onChange={(e) => setShowSalary(e.target.checked)}
                         className="w-4 h-4 rounded border-gray-300 text-[#127EE3] accent-[#127EE3] cursor-pointer"
                       />
-                      <span className="text-[12.5px] text-gray-500">แสดงเงินเดือนในหน้าประกาศ</span>
+                      <span className="text-[14.5px] text-gray-500">แสดงเงินเดือนในหน้าประกาศ</span>
                     </label>
                     {!showSalary && (
                       <div className="flex items-center gap-2 px-3 py-2 bg-amber-50 border border-amber-100 rounded-xl">
                         <Lightbulb className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />
-                        <span className="text-[11.5px] text-amber-700">การแสดงเงินเดือนช่วยเพิ่มโอกาสให้ผู้สมัครสนใจและสมัครงานมากขึ้น</span>
+                        <span className="text-[13.5px] text-amber-700">การแสดงเงินเดือนช่วยเพิ่มโอกาสให้ผู้สมัครสนใจและสมัครงานมากขึ้น</span>
                       </div>
                     )}
                   </div>
@@ -1456,14 +1456,14 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
             <div className="space-y-4">
               {/* Company card */}
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-                <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-3">บริษัทของคุณ</p>
+                <p className="text-[13px] font-bold text-gray-400 uppercase tracking-wider mb-3">บริษัทของคุณ</p>
                 <div className="flex items-center gap-3">
                   <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#0DC2FF] to-[#127EE3] flex items-center justify-center flex-shrink-0 shadow-md shadow-[#127EE3]/20">
-                    <span className="text-white text-[11px] font-black">TV</span>
+                    <span className="text-white text-[13px] font-black">TV</span>
                   </div>
                   <div>
-                    <p className="text-[14px] font-bold text-[#1A1A2E]">TechVibe Solutions</p>
-                    <p className="text-[12px] text-gray-400 mt-0.5">Technology · กรุงเทพฯ</p>
+                    <p className="text-[16px] font-bold text-[#1A1A2E]">TechVibe Solutions</p>
+                    <p className="text-[14px] text-gray-400 mt-0.5">Technology · กรุงเทพฯ</p>
                   </div>
                 </div>
               </div>
@@ -1471,10 +1471,10 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
               {/* Quota card */}
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
                 <div className="mb-1">
-                  <p className="text-[12px] font-semibold text-gray-500">ตำแหน่งคงเหลือ</p>
+                  <p className="text-[14px] font-semibold text-gray-500">ตำแหน่งคงเหลือ</p>
                 </div>
-                <p className="text-[26px] font-black text-[#1A1A2E] leading-none mb-2">
-                  5 <span className="text-[15px] font-normal text-gray-400">/ 10 ตำแหน่ง</span>
+                <p className="text-[28px] font-black text-[#1A1A2E] leading-none mb-2">
+                  5 <span className="text-[17px] font-normal text-gray-400">/ 10 ตำแหน่ง</span>
                 </p>
                 <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
                   <div className="w-[50%] h-full bg-gradient-to-r from-[#0DC2FF] to-[#127EE3] rounded-full" />
@@ -1499,10 +1499,10 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                     <Brain className="w-3.5 h-3.5 text-[#127EE3]" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-[13.5px] font-semibold text-[#1A1A2E] leading-tight">
+                    <p className="text-[15.5px] font-semibold text-[#1A1A2E] leading-tight">
                       ให้ AI ช่วยเขียน <span className="text-gray-400 font-normal">(ถ้าต้องการ)</span>
                     </p>
-                    <p className="text-[11.5px] text-gray-400 mt-0.5">มี JD อยู่แล้ว? กรอกเองด้านล่างได้เลย หรือกดเปิดให้ AI ช่วยร่าง</p>
+                    <p className="text-[13.5px] text-gray-400 mt-0.5">มี JD อยู่แล้ว? กรอกเองด้านล่างได้เลย หรือกดเปิดให้ AI ช่วยร่าง</p>
                   </div>
                   {aiHelperOpen
                     ? <ChevronUp className="w-4 h-4 text-gray-400 flex-shrink-0" />
@@ -1517,7 +1517,7 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                         value={rawNotes}
                         onChange={(e) => setRawNotes(e.target.value)}
                         placeholder="เช่น ลักษณะงานคร่าวๆ, สิ่งที่อยากได้จากผู้สมัคร, จุดเด่นของตำแหน่งนี้"
-                        className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-[14px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] transition-all resize-y leading-relaxed"
+                        className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-[16px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] transition-all resize-y leading-relaxed"
                         style={{ minHeight: "72px", maxHeight: "160px" }}
                       />
                     </div>
@@ -1535,7 +1535,7 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                       <button
                         onClick={handleGenerateAI}
                         disabled={aiLoading}
-                        className="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-[#127EE3] to-[#0DC2FF] hover:from-[#0e6bc7] hover:to-[#0ab8f5] disabled:opacity-50 disabled:cursor-not-allowed text-white text-[13.5px] font-bold rounded-xl transition-all shadow-md shadow-[#127EE3]/20 whitespace-nowrap mb-0.5"
+                        className="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-[#127EE3] to-[#0DC2FF] hover:from-[#0e6bc7] hover:to-[#0ab8f5] disabled:opacity-50 disabled:cursor-not-allowed text-white text-[15.5px] font-bold rounded-xl transition-all shadow-md shadow-[#127EE3]/20 whitespace-nowrap mb-0.5"
                       >
                         {aiLoading ? (
                           <>
@@ -1565,7 +1565,7 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                             <div className="w-6 h-6 rounded-md bg-gray-100 group-hover:bg-[#EBF6FF] flex items-center justify-center transition-colors">
                               <Briefcase className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#127EE3] transition-colors" />
                             </div>
-                            <span className="text-[14px] font-semibold text-[#1A1A2E]">หน้าที่รับผิดชอบ</span>
+                            <span className="text-[16px] font-semibold text-[#1A1A2E]">หน้าที่รับผิดชอบ</span>
                           </div>
                           {expandedSections.responsibilities ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
                         </button>
@@ -1588,7 +1588,7 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                             <div className="w-6 h-6 rounded-md bg-gray-100 group-hover:bg-[#EBF6FF] flex items-center justify-center transition-colors">
                               <Users className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#127EE3] transition-colors" />
                             </div>
-                            <span className="text-[14px] font-semibold text-[#1A1A2E]">คุณสมบัติที่ต้องการ</span>
+                            <span className="text-[16px] font-semibold text-[#1A1A2E]">คุณสมบัติที่ต้องการ</span>
                           </div>
                           {expandedSections.qualifications ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
                         </button>
@@ -1611,13 +1611,13 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                             <div className="w-6 h-6 rounded-md bg-gray-100 group-hover:bg-[#EBF6FF] flex items-center justify-center transition-colors">
                               <FileText className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#127EE3] transition-colors" />
                             </div>
-                            <span className="text-[14px] font-semibold text-[#1A1A2E]">Job Summary</span>
+                            <span className="text-[16px] font-semibold text-[#1A1A2E]">Job Summary</span>
                           </div>
                           {expandedSections.summary ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
                         </button>
                         {expandedSections.summary && (
                           <div className="px-6 pb-5">
-                            <textarea value={editedSummary} onChange={(e) => setEditedSummary(e.target.value)} placeholder="เขียนสรุปเกี่ยวกับตำแหน่งงานนี้..." className="w-full h-28 bg-[#F8F9FB] border border-gray-200 rounded-xl px-4 py-3 text-[14px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all resize-none leading-relaxed" />
+                            <textarea value={editedSummary} onChange={(e) => setEditedSummary(e.target.value)} placeholder="เขียนสรุปเกี่ยวกับตำแหน่งงานนี้..." className="w-full h-28 bg-[#F8F9FB] border border-gray-200 rounded-xl px-4 py-3 text-[16px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all resize-none leading-relaxed" />
                           </div>
                         )}
                       </div>
@@ -1629,35 +1629,35 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
             <div className="space-y-4">
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
                 <div className="px-5 pt-5 pb-3">
-                  <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">สรุปตำแหน่ง</p>
+                  <p className="text-[13px] font-bold text-gray-400 uppercase tracking-wider">สรุปตำแหน่ง</p>
                 </div>
                 <div className="px-5 pb-5 space-y-2.5">
                   <div className="flex items-center gap-2.5">
                     <div className="w-6 h-6 rounded-md bg-[#EBF6FF] flex items-center justify-center flex-shrink-0">
                       <Briefcase className="w-3 h-3 text-[#127EE3]" />
                     </div>
-                    <span className="text-[13px] font-semibold text-[#1A1A2E] truncate">{title || "—"}</span>
+                    <span className="text-[15px] font-semibold text-[#1A1A2E] truncate">{title || "—"}</span>
                   </div>
                   {jobField && (
                     <div className="flex items-center gap-2.5">
                       <div className="w-6 h-6 rounded-md bg-gray-50 flex items-center justify-center flex-shrink-0">
                         <Users className="w-3 h-3 text-gray-400" />
                       </div>
-                      <span className="text-[13px] text-gray-500 truncate">{jobField}{jobSubfield ? ` · ${jobSubfield}` : ""}</span>
+                      <span className="text-[15px] text-gray-500 truncate">{jobField}{jobSubfield ? ` · ${jobSubfield}` : ""}</span>
                     </div>
                   )}
                   <div className="flex items-center gap-2.5">
                     <div className="w-6 h-6 rounded-md bg-gray-50 flex items-center justify-center flex-shrink-0">
                       <MapPin className="w-3 h-3 text-gray-400" />
                     </div>
-                    <span className="text-[13px] text-gray-500">{location || "—"}</span>
+                    <span className="text-[15px] text-gray-500">{location || "—"}</span>
                   </div>
                   {(salaryMin || salaryMax) && (
                     <div className="flex items-center gap-2.5">
                       <div className="w-6 h-6 rounded-md bg-emerald-50 flex items-center justify-center flex-shrink-0">
                         <DollarSign className="w-3 h-3 text-emerald-500" />
                       </div>
-                      <span className="text-[13px] text-gray-500">
+                      <span className="text-[15px] text-gray-500">
                         {salaryMin && salaryMax
                           ? `${Number(salaryMin).toLocaleString()} – ${Number(salaryMax).toLocaleString()} บาท`
                           : salaryMin
@@ -1670,7 +1670,7 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                     <div className="w-6 h-6 rounded-md bg-gray-50 flex items-center justify-center flex-shrink-0">
                       <Clock className="w-3 h-3 text-gray-400" />
                     </div>
-                    <span className="text-[13px] text-gray-500">{jobType || "—"}</span>
+                    <span className="text-[15px] text-gray-500">{jobType || "—"}</span>
                   </div>
                 </div>
               </div>
@@ -1682,7 +1682,7 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
           <div className="mt-6 bg-white border border-gray-100 rounded-2xl shadow-sm px-6 py-4 flex items-center justify-between gap-4">
             <button
               onClick={() => { setStep("form"); scrollToTop(); }}
-              className="flex items-center gap-2 px-5 py-2.5 border border-gray-200 text-gray-500 font-semibold rounded-xl hover:border-[#127EE3] hover:text-[#127EE3] hover:bg-[#EBF6FF] transition-all text-[13.5px]"
+              className="flex items-center gap-2 px-5 py-2.5 border border-gray-200 text-gray-500 font-semibold rounded-xl hover:border-[#127EE3] hover:text-[#127EE3] hover:bg-[#EBF6FF] transition-all text-[15.5px]"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               ย้อนกลับ
@@ -1691,14 +1691,14 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
               <button
                 onClick={handleGenerateAI}
                 disabled={aiLoading}
-                className="flex items-center gap-2 px-5 py-2.5 border border-[#0DC2FF]/40 text-[#127EE3] font-semibold rounded-xl hover:bg-[#EBF6FF] disabled:opacity-50 disabled:cursor-not-allowed transition-all text-[13.5px]"
+                className="flex items-center gap-2 px-5 py-2.5 border border-[#0DC2FF]/40 text-[#127EE3] font-semibold rounded-xl hover:bg-[#EBF6FF] disabled:opacity-50 disabled:cursor-not-allowed transition-all text-[15.5px]"
               >
                 {aiLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <RefreshCw className="w-3.5 h-3.5" />}
                 Re-generate
               </button>
               <button
                 onClick={() => { setStep("review"); scrollToTop(); }}
-                className="flex items-center gap-2.5 px-8 py-3 bg-gradient-to-r from-[#127EE3] to-[#0DC2FF] hover:from-[#0e6bc7] hover:to-[#0ab8f5] text-white font-bold rounded-xl transition-all shadow-md shadow-[#127EE3]/25 text-[14px] whitespace-nowrap"
+                className="flex items-center gap-2.5 px-8 py-3 bg-gradient-to-r from-[#127EE3] to-[#0DC2FF] hover:from-[#0e6bc7] hover:to-[#0ab8f5] text-white font-bold rounded-xl transition-all shadow-md shadow-[#127EE3]/25 text-[16px] whitespace-nowrap"
               >
                 <Eye className="w-4 h-4" />
                 ตรวจสอบก่อนเผยแพร่
@@ -1715,20 +1715,20 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                 <div className="bg-white border-b border-gray-100 px-8 pt-7 pb-6">
                   <div className="flex items-start gap-4">
                     <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0DC2FF] to-[#127EE3] border border-[#0DC2FF]/20 flex items-center justify-center flex-shrink-0 shadow-md shadow-[#127EE3]/15">
-                      <span className="text-white text-[13px] font-black">TV</span>
+                      <span className="text-white text-[15px] font-black">TV</span>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h2 className="text-[22px] font-bold text-[#1A1A2E] leading-tight">{title || "ชื่อตำแหน่ง"}</h2>
-                      <p className="text-[14px] font-semibold text-[#127EE3] mt-0.5">TechVibe Solutions</p>
+                      <h2 className="text-[24px] font-bold text-[#1A1A2E] leading-tight">{title || "ชื่อตำแหน่ง"}</h2>
+                      <p className="text-[16px] font-semibold text-[#127EE3] mt-0.5">TechVibe Solutions</p>
                       <div className="flex items-center gap-2.5 mt-3 flex-wrap">
-                        <span className="flex items-center gap-1.5 text-[12px] text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
+                        <span className="flex items-center gap-1.5 text-[14px] text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
                           <MapPin className="w-3 h-3 text-gray-400" />{location || "—"}
                         </span>
-                        <span className="flex items-center gap-1.5 text-[12px] text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
+                        <span className="flex items-center gap-1.5 text-[14px] text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
                           <Briefcase className="w-3 h-3 text-gray-400" />{jobType || "—"}
                         </span>
                         {(salaryMin || salaryMax) && (
-                          <span className="flex items-center gap-1.5 text-[12px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-full">
+                          <span className="flex items-center gap-1.5 text-[14px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-full">
                             <DollarSign className="w-3 h-3 text-emerald-500" />
                             {salaryMin && salaryMax
                               ? `${Number(salaryMin).toLocaleString()} – ${Number(salaryMax).toLocaleString()} บาท`
@@ -1747,8 +1747,8 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                   <div>
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-1 h-4 bg-[#0DC2FF] rounded-full" />
-                      <h3 className="text-[14px] font-bold text-[#1A1A2E]">รูปภาพประกาศงาน</h3>
-                      <span className="text-[11px] text-gray-400 ml-1">แก้ไขได้</span>
+                      <h3 className="text-[16px] font-bold text-[#1A1A2E]">รูปภาพประกาศงาน</h3>
+                      <span className="text-[13px] text-gray-400 ml-1">แก้ไขได้</span>
                     </div>
                     <PhotoGallery photos={photos} onChange={setPhotos} />
                   </div>
@@ -1757,10 +1757,10 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                   <div className="border-t border-gray-50 pt-6">
                     <div className="flex items-center gap-2 mb-1">
                       <div className="w-1 h-4 bg-[#127EE3] rounded-full" />
-                      <h3 className="text-[14px] font-bold text-[#1A1A2E]">3 จุดเด่นสำหรับ Job Card</h3>
-                      <span className="ml-1 text-[10px] bg-[#0DC2FF]/10 text-[#127EE3] font-semibold px-2 py-0.5 rounded-full">Jobtopgun</span>
+                      <h3 className="text-[16px] font-bold text-[#1A1A2E]">3 จุดเด่นสำหรับ Job Card</h3>
+                      <span className="ml-1 text-[11px] bg-[#0DC2FF]/10 text-[#127EE3] font-semibold px-2 py-0.5 rounded-full">Jobtopgun</span>
                     </div>
-                    <p className="text-[12px] text-gray-400 mb-3 pl-3">แสดงบน Job Card เพื่อดึงดูดผู้สมัครก่อนคลิกเข้า</p>
+                    <p className="text-[14px] text-gray-400 mb-3 pl-3">แสดงบน Job Card เพื่อดึงดูดผู้สมัครก่อนคลิกเข้า</p>
                     <BulletHighlights
                       bullets={highlights}
                       onChange={setHighlights}
@@ -1772,19 +1772,19 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                   <div className="border-t border-gray-50 pt-6">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-1 h-4 bg-gray-300 rounded-full" />
-                      <h3 className="text-[14px] font-bold text-[#1A1A2E]">เกี่ยวกับตำแหน่ง</h3>
+                      <h3 className="text-[16px] font-bold text-[#1A1A2E]">เกี่ยวกับตำแหน่ง</h3>
                     </div>
-                    <p className="text-[14px] text-gray-600 leading-[1.8] pl-3" dangerouslySetInnerHTML={{ __html: editedSummary }} />
+                    <p className="text-[16px] text-gray-600 leading-[1.8] pl-3" dangerouslySetInnerHTML={{ __html: editedSummary }} />
                   </div>
 
                   {/* Responsibilities */}
                   <div className="border-t border-gray-50 pt-6">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-1 h-4 bg-gray-300 rounded-full" />
-                      <h3 className="text-[14px] font-bold text-[#1A1A2E]">หน้าที่รับผิดชอบ</h3>
+                      <h3 className="text-[16px] font-bold text-[#1A1A2E]">หน้าที่รับผิดชอบ</h3>
                     </div>
                     <div
-                      className="text-[14px] text-gray-600 leading-[1.8] rich-content pl-3"
+                      className="text-[16px] text-gray-600 leading-[1.8] rich-content pl-3"
                       dangerouslySetInnerHTML={{ __html: responsibilitiesHtml }}
                     />
                   </div>
@@ -1793,10 +1793,10 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                   <div className="border-t border-gray-50 pt-6">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-1 h-4 bg-gray-300 rounded-full" />
-                      <h3 className="text-[14px] font-bold text-[#1A1A2E]">คุณสมบัติที่ต้องการ</h3>
+                      <h3 className="text-[16px] font-bold text-[#1A1A2E]">คุณสมบัติที่ต้องการ</h3>
                     </div>
                     <div
-                      className="text-[14px] text-gray-600 leading-[1.8] rich-content pl-3"
+                      className="text-[16px] text-gray-600 leading-[1.8] rich-content pl-3"
                       dangerouslySetInnerHTML={{ __html: qualificationsHtml }}
                     />
                   </div>
@@ -1805,8 +1805,8 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                   <div className="border-t border-gray-50 pt-6">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-1 h-4 bg-emerald-400 rounded-full" />
-                      <h3 className="text-[14px] font-bold text-[#1A1A2E]">สวัสดิการและสิทธิประโยชน์</h3>
-                      <span className="text-[11px] text-gray-400 ml-1">เลือก / แก้ไขได้</span>
+                      <h3 className="text-[16px] font-bold text-[#1A1A2E]">สวัสดิการและสิทธิประโยชน์</h3>
+                      <span className="text-[13px] text-gray-400 ml-1">เลือก / แก้ไขได้</span>
                     </div>
                     {/* Benefit set selector */}
                     <div className="mb-5">
@@ -1824,7 +1824,7 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                             setBenefitSetId(id);
                             setSelectedBenefits(benefitPresets[id] ?? []);
                           }}
-                          className="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-[13px] text-[#1A1A2E] focus:outline-none focus:border-[#0DC2FF] transition-all appearance-none cursor-pointer pr-8 shadow-sm"
+                          className="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-[15px] text-[#1A1A2E] focus:outline-none focus:border-[#0DC2FF] transition-all appearance-none cursor-pointer pr-8 shadow-sm"
                         >
                           {benefitSetOptions.length === 0 && (
                             <option value="" disabled>ยังไม่มีชุดสวัสดิการที่บันทึกไว้</option>
@@ -1843,10 +1843,10 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                       const isDirty = selectedBenefits.length !== preset.length || selectedBenefits.some((b) => !preset.includes(b));
                       return isDirty ? (
                         <div className="flex items-center justify-between gap-3 mb-3 px-3 py-2 bg-amber-50 border border-amber-200 rounded-xl">
-                          <span className="text-[12px] text-amber-700">มีการปรับจากชุดสวัสดิการต้นแบบ</span>
+                          <span className="text-[14px] text-amber-700">มีการปรับจากชุดสวัสดิการต้นแบบ</span>
                           <button
                             onClick={() => { setNewSetName(""); setShowSaveSetModal(true); }}
-                            className="text-[11px] font-semibold text-[#127EE3] border border-[#127EE3]/40 px-2.5 py-1 rounded-lg hover:bg-[#127EE3]/5 transition-colors whitespace-nowrap flex-shrink-0"
+                            className="text-[13px] font-semibold text-[#127EE3] border border-[#127EE3]/40 px-2.5 py-1 rounded-lg hover:bg-[#127EE3]/5 transition-colors whitespace-nowrap flex-shrink-0"
                           >
                             บันทึกเป็นชุดใหม่
                           </button>
@@ -1865,59 +1865,59 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                     <div className="w-8 h-8 rounded-lg bg-[#127EE3]/10 flex items-center justify-center flex-shrink-0">
                       <Users className="w-4 h-4 text-[#127EE3]" />
                     </div>
-                    <h2 className="text-[15px] font-bold text-[#1A1A2E] leading-tight">ข้อมูลติดต่อบนประกาศ</h2>
+                    <h2 className="text-[17px] font-bold text-[#1A1A2E] leading-tight">ข้อมูลติดต่อบนประกาศ</h2>
                   </div>
                   {!editingContact && (
                     <button
                       onClick={() => { setContactDraft({ ...contactInfo }); setEditingContact(true); }}
-                      className="text-[12px] text-[#127EE3] hover:text-[#0e6bc7] font-medium transition-colors flex-shrink-0"
+                      className="text-[14px] text-[#127EE3] hover:text-[#0e6bc7] font-medium transition-colors flex-shrink-0"
                     >
                       แก้ไขข้อมูลติดต่อ
                     </button>
                   )}
                 </div>
-                <p className="text-[11.5px] text-[#127EE3] bg-[#127EE3]/6 border border-[#127EE3]/15 rounded-lg px-3 py-2 mb-4 mt-3">
+                <p className="text-[13.5px] text-[#127EE3] bg-[#127EE3]/6 border border-[#127EE3]/15 rounded-lg px-3 py-2 mb-4 mt-3">
                   ข้อมูลนี้ดึงจากข้อมูลกลางของบริษัท และสามารถแก้เฉพาะประกาศนี้ได้
                 </p>
                 {!editingContact ? (
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2.5">
-                      <span className="text-[12px] text-gray-400 w-28 flex-shrink-0">ชื่อผู้ติดต่อ</span>
-                      <span className="text-[13px] font-medium text-[#1A1A2E]">{contactInfo.person}</span>
+                      <span className="text-[14px] text-gray-400 w-28 flex-shrink-0">ชื่อผู้ติดต่อ</span>
+                      <span className="text-[15px] font-medium text-[#1A1A2E]">{contactInfo.person}</span>
                     </div>
                     <div className="flex items-center gap-2.5">
-                      <span className="text-[12px] text-gray-400 w-28 flex-shrink-0">อีเมล</span>
-                      <span className="text-[13px] font-medium text-[#1A1A2E]">{contactInfo.email}</span>
+                      <span className="text-[14px] text-gray-400 w-28 flex-shrink-0">อีเมล</span>
+                      <span className="text-[15px] font-medium text-[#1A1A2E]">{contactInfo.email}</span>
                     </div>
                     <div className="flex items-center gap-2.5">
-                      <span className="text-[12px] text-gray-400 w-28 flex-shrink-0">เบอร์โทรศัพท์</span>
-                      <span className="text-[13px] font-medium text-[#1A1A2E]">{contactInfo.phone}</span>
+                      <span className="text-[14px] text-gray-400 w-28 flex-shrink-0">เบอร์โทรศัพท์</span>
+                      <span className="text-[15px] font-medium text-[#1A1A2E]">{contactInfo.phone}</span>
                     </div>
                   </div>
                 ) : (
                   <div className="space-y-3">
                     <div>
-                      <label className="block text-[12px] font-semibold text-gray-500 mb-1">ชื่อผู้ติดต่อ</label>
+                      <label className="block text-[14px] font-semibold text-gray-500 mb-1">ชื่อผู้ติดต่อ</label>
                       <input type="text" value={contactDraft.person} onChange={(e) => setContactDraft((c) => ({ ...c, person: e.target.value }))}
-                        className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-4 py-2.5 text-[14px] text-[#1A1A2E] focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all" />
+                        className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-4 py-2.5 text-[16px] text-[#1A1A2E] focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all" />
                     </div>
                     <div>
-                      <label className="block text-[12px] font-semibold text-gray-500 mb-1">อีเมล</label>
+                      <label className="block text-[14px] font-semibold text-gray-500 mb-1">อีเมล</label>
                       <input type="email" value={contactDraft.email} onChange={(e) => setContactDraft((c) => ({ ...c, email: e.target.value }))}
-                        className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-4 py-2.5 text-[14px] text-[#1A1A2E] focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all" />
+                        className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-4 py-2.5 text-[16px] text-[#1A1A2E] focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all" />
                     </div>
                     <div>
-                      <label className="block text-[12px] font-semibold text-gray-500 mb-1">เบอร์โทรศัพท์</label>
+                      <label className="block text-[14px] font-semibold text-gray-500 mb-1">เบอร์โทรศัพท์</label>
                       <input type="tel" value={contactDraft.phone} onChange={(e) => setContactDraft((c) => ({ ...c, phone: e.target.value }))}
-                        className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-4 py-2.5 text-[14px] text-[#1A1A2E] focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all" />
+                        className="w-full bg-[#F8F9FB] border border-gray-200 rounded-xl px-4 py-2.5 text-[16px] text-[#1A1A2E] focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all" />
                     </div>
                     <div className="flex gap-2 pt-1">
                       <button onClick={() => { setContactInfo({ ...contactDraft }); setEditingContact(false); }}
-                        className="px-4 py-1.5 rounded-lg text-[13px] font-semibold text-white bg-gradient-to-r from-[#01BFF9] to-[#019EFC] hover:opacity-90 transition-opacity">
+                        className="px-4 py-1.5 rounded-lg text-[15px] font-semibold text-white bg-gradient-to-r from-[#01BFF9] to-[#019EFC] hover:opacity-90 transition-opacity">
                         บันทึก
                       </button>
                       <button onClick={() => setEditingContact(false)}
-                        className="px-4 py-1.5 rounded-lg text-[13px] font-medium text-gray-500 border border-gray-200 hover:border-gray-300 hover:text-gray-700 transition-all">
+                        className="px-4 py-1.5 rounded-lg text-[15px] font-medium text-gray-500 border border-gray-200 hover:border-gray-300 hover:text-gray-700 transition-all">
                         ยกเลิก
                       </button>
                     </div>
@@ -1932,17 +1932,17 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                     <Clock className="w-4 h-4 text-[#127EE3]" />
                   </div>
                   <div>
-                    <h2 className="text-[15px] font-bold text-[#1A1A2E] leading-tight">วันที่ประกาศงาน</h2>
-                    <p className="text-[11.5px] text-gray-400 mt-0.5">กำหนดวันที่ต้องการให้ประกาศนี้เผยแพร่</p>
+                    <h2 className="text-[17px] font-bold text-[#1A1A2E] leading-tight">วันที่ประกาศงาน</h2>
+                    <p className="text-[13.5px] text-gray-400 mt-0.5">กำหนดวันที่ต้องการให้ประกาศนี้เผยแพร่</p>
                   </div>
                 </div>
                 <div className="mt-5">
-                  <label className="block text-[13px] font-semibold text-[#1A1A2E] mb-1.5">วันที่ประกาศงาน</label>
+                  <label className="block text-[15px] font-semibold text-[#1A1A2E] mb-1.5">วันที่ประกาศงาน</label>
                   <input
                     type="date"
                     value={publishDate}
                     onChange={(e) => setPublishDate(e.target.value)}
-                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-[14px] text-[#1A1A2E] focus:outline-none focus:border-[#0DC2FF] transition-all"
+                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-[16px] text-[#1A1A2E] focus:outline-none focus:border-[#0DC2FF] transition-all"
                   />
                 </div>
               </div>
@@ -1956,11 +1956,11 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                   <div className="w-7 h-7 rounded-lg bg-[#127EE3]/10 flex items-center justify-center flex-shrink-0">
                     <Building2 className="w-3.5 h-3.5 text-[#127EE3]" />
                   </div>
-                  <h3 className="text-[13px] font-bold text-[#1A1A2E]">เกี่ยวกับบริษัท</h3>
+                  <h3 className="text-[15px] font-bold text-[#1A1A2E]">เกี่ยวกับบริษัท</h3>
                 </div>
                 {/* Set selector */}
                 <div className="mb-3">
-                  <label className="block text-[11px] font-semibold text-gray-400 mb-1">ชุดเกี่ยวกับบริษัท</label>
+                  <label className="block text-[13px] font-semibold text-gray-400 mb-1">ชุดเกี่ยวกับบริษัท</label>
                   <div className="relative">
                     <select
                       value={aboutSetId}
@@ -1979,7 +1979,7 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                           setAboutExpanded(false);
                         }
                       }}
-                      className="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-[13px] text-[#1A1A2E] focus:outline-none focus:border-[#0DC2FF] transition-all appearance-none cursor-pointer pr-8 shadow-sm"
+                      className="w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5 text-[15px] text-[#1A1A2E] focus:outline-none focus:border-[#0DC2FF] transition-all appearance-none cursor-pointer pr-8 shadow-sm"
                     >
                       {aboutSets.map((s) => (
                         <option key={s.id} value={s.id}>{s.label}</option>
@@ -1992,21 +1992,21 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                 {/* Content box */}
                 <div className="rounded-lg border border-gray-200 bg-gray-50 overflow-hidden">
                   <div className="flex items-center justify-between px-3 py-2 border-b border-gray-200">
-                    <span className="text-[11px] font-semibold text-gray-500">เนื้อหา</span>
+                    <span className="text-[13px] font-semibold text-gray-500">เนื้อหา</span>
                     <button
                       onClick={() => { setAboutDraftText(aboutDescription); setShowEditAboutModal(true); }}
-                      className="text-[11px] font-medium text-[#127EE3] hover:text-[#0e6bc7] transition-colors"
+                      className="text-[13px] font-medium text-[#127EE3] hover:text-[#0e6bc7] transition-colors"
                     >
                       แก้ไข
                     </button>
                   </div>
                   <div className="px-3 py-2.5">
-                    <p className={`text-[12px] text-[#374151] leading-relaxed whitespace-pre-line ${!aboutExpanded ? "line-clamp-3" : ""}`}>
+                    <p className={`text-[14px] text-[#374151] leading-relaxed whitespace-pre-line ${!aboutExpanded ? "line-clamp-3" : ""}`}>
                       {aboutDescription}
                     </p>
                     <button
                       onClick={() => setAboutExpanded((v) => !v)}
-                      className="mt-1.5 text-[11px] font-medium text-gray-500 hover:text-gray-700 transition-colors"
+                      className="mt-1.5 text-[13px] font-medium text-gray-500 hover:text-gray-700 transition-colors"
                     >
                       {aboutExpanded ? "ย่อกลับ" : "ดูเพิ่มเติม"}
                     </button>
@@ -2016,32 +2016,32 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
 
               {/* Job card preview */}
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-                <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">ตัวอย่าง Job Card</p>
+                <p className="text-[13px] font-bold text-gray-400 uppercase tracking-wider">ตัวอย่าง Job Card</p>
                 <div className="mt-4">
                   <div className="border border-gray-100 rounded-xl p-3 bg-[#F8F9FB]">
                     <div className="flex items-center gap-2.5 mb-2.5">
                       <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#0DC2FF] to-[#127EE3] flex items-center justify-center flex-shrink-0 shadow-sm">
-                        <span className="text-white text-[9px] font-black">TV</span>
+                        <span className="text-white text-[10px] font-black">TV</span>
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[12px] font-bold text-[#1A1A2E] leading-tight truncate">{title || "ชื่อตำแหน่ง"}</p>
-                        <p className="text-[10.5px] text-gray-400">TechVibe Solutions</p>
+                        <p className="text-[14px] font-bold text-[#1A1A2E] leading-tight truncate">{title || "ชื่อตำแหน่ง"}</p>
+                        <p className="text-[12px] text-gray-400">TechVibe Solutions</p>
                       </div>
                     </div>
                     <div className="space-y-1.5">
                       {highlights.slice(0, 3).map((h, i) => (
                         <div key={i} className="flex items-start gap-2">
                           <div className="w-4 h-4 rounded-full bg-[#127EE3] flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <span className="text-white text-[8px] font-bold">{i + 1}</span>
+                            <span className="text-white text-[9px] font-bold">{i + 1}</span>
                           </div>
-                          <p className="text-[10.5px] text-gray-500 leading-snug">{h || "—"}</p>
+                          <p className="text-[12px] text-gray-500 leading-snug">{h || "—"}</p>
                         </div>
                       ))}
                     </div>
                   </div>
                   <button
                     onClick={() => setShowPreviewModal(true)}
-                    className="mt-3 flex items-center gap-1.5 px-3 py-1.5 border border-gray-200 text-gray-500 text-[12px] font-medium rounded-lg hover:border-[#0DC2FF] hover:text-[#127EE3] hover:bg-[#F0FBFF] transition-all"
+                    className="mt-3 flex items-center gap-1.5 px-3 py-1.5 border border-gray-200 text-gray-500 text-[14px] font-medium rounded-lg hover:border-[#0DC2FF] hover:text-[#127EE3] hover:bg-[#F0FBFF] transition-all"
                   >
                     <Eye className="w-3.5 h-3.5" />
                     Preview หน้าประกาศ
@@ -2064,22 +2064,22 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
               <div className="flex items-center justify-between px-6 py-3.5 border-b border-gray-100 flex-shrink-0 gap-4">
                 <div className="flex items-center gap-2">
                   <Eye className="w-4 h-4 text-[#127EE3]" />
-                  <span className="text-[14px] font-bold text-[#1A1A2E]">Preview หน้าประกาศ</span>
-                  <span className="text-[10px] bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full font-medium">ตัวอย่าง</span>
+                  <span className="text-[16px] font-bold text-[#1A1A2E]">Preview หน้าประกาศ</span>
+                  <span className="text-[11px] bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full font-medium">ตัวอย่าง</span>
                 </div>
 
                 {/* Desktop / Mobile toggle */}
                 <div className="flex items-center bg-gray-100 rounded-lg p-0.5 gap-0.5">
                   <button
                     onClick={() => setPreviewMode("desktop")}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[12px] font-medium transition-all ${previewMode === "desktop" ? "bg-white text-[#127EE3] shadow-sm" : "text-gray-500 hover:text-gray-700"}`}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[14px] font-medium transition-all ${previewMode === "desktop" ? "bg-white text-[#127EE3] shadow-sm" : "text-gray-500 hover:text-gray-700"}`}
                   >
                     <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="1" y="2" width="14" height="10" rx="1.5"/><path d="M5 14h6M8 12v2"/></svg>
                     Desktop
                   </button>
                   <button
                     onClick={() => setPreviewMode("mobile")}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[12px] font-medium transition-all ${previewMode === "mobile" ? "bg-white text-[#127EE3] shadow-sm" : "text-gray-500 hover:text-gray-700"}`}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[14px] font-medium transition-all ${previewMode === "mobile" ? "bg-white text-[#127EE3] shadow-sm" : "text-gray-500 hover:text-gray-700"}`}
                   >
                     <svg className="w-3 h-3.5" viewBox="0 0 12 16" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="1" y="1" width="10" height="14" rx="2"/><circle cx="6" cy="13" r="0.75" fill="currentColor" stroke="none"/></svg>
                     Mobile
@@ -2090,7 +2090,7 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                 <div className="flex items-center gap-2 ml-auto">
                   <button
                     onClick={() => window.print()}
-                    className="flex items-center gap-1.5 px-3 py-1.5 border border-gray-200 text-gray-500 text-[12px] font-medium rounded-lg hover:border-gray-300 hover:text-gray-700 transition-all"
+                    className="flex items-center gap-1.5 px-3 py-1.5 border border-gray-200 text-gray-500 text-[14px] font-medium rounded-lg hover:border-gray-300 hover:text-gray-700 transition-all"
                   >
                     <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 6V2h8v4"/><rect x="1" y="6" width="14" height="7" rx="1.5"/><path d="M4 10h8M4 13h8"/></svg>
                     พิมพ์
@@ -2101,7 +2101,7 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                       setLinkCopied(true);
                       setTimeout(() => setLinkCopied(false), 2500);
                     }}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 border text-[12px] font-medium rounded-lg transition-all ${linkCopied ? "border-emerald-300 text-emerald-600 bg-emerald-50" : "border-gray-200 text-gray-500 hover:border-gray-300 hover:text-gray-700"}`}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 border text-[14px] font-medium rounded-lg transition-all ${linkCopied ? "border-emerald-300 text-emerald-600 bg-emerald-50" : "border-gray-200 text-gray-500 hover:border-gray-300 hover:text-gray-700"}`}
                   >
                     {linkCopied ? (
                       <>
@@ -2130,20 +2130,20 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                       {/* Header */}
                       <div className="flex items-start gap-4">
                         <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0DC2FF] to-[#127EE3] flex items-center justify-center flex-shrink-0 shadow-md shadow-[#127EE3]/15">
-                          <span className="text-white text-[13px] font-black">TV</span>
+                          <span className="text-white text-[15px] font-black">TV</span>
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h2 className="text-[20px] font-bold text-[#1A1A2E] leading-tight">{title || "ชื่อตำแหน่ง"}</h2>
-                          <p className="text-[13px] font-semibold text-[#127EE3] mt-0.5">TechVibe Solutions</p>
+                          <h2 className="text-[22px] font-bold text-[#1A1A2E] leading-tight">{title || "ชื่อตำแหน่ง"}</h2>
+                          <p className="text-[15px] font-semibold text-[#127EE3] mt-0.5">TechVibe Solutions</p>
                           <div className="flex items-center gap-2 mt-2.5 flex-wrap">
-                            <span className="flex items-center gap-1.5 text-[12px] text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
+                            <span className="flex items-center gap-1.5 text-[14px] text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
                               <MapPin className="w-3 h-3 text-gray-400" />{location || "—"}
                             </span>
-                            <span className="flex items-center gap-1.5 text-[12px] text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
+                            <span className="flex items-center gap-1.5 text-[14px] text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
                               <Briefcase className="w-3 h-3 text-gray-400" />{jobType || "—"}
                             </span>
                             {showSalary && (salaryMin || salaryMax) && (
-                              <span className="flex items-center gap-1.5 text-[12px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-full">
+                              <span className="flex items-center gap-1.5 text-[14px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-full">
                                 <DollarSign className="w-3 h-3 text-emerald-500" />
                                 {salaryMin && salaryMax
                                   ? `${Number(salaryMin).toLocaleString()} – ${Number(salaryMax).toLocaleString()} บาท`
@@ -2161,9 +2161,9 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                           {highlights.slice(0, 3).map((h, i) => (
                             <div key={i} className="flex items-start gap-2.5">
                               <div className="w-5 h-5 rounded-full bg-[#127EE3] flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <span className="text-white text-[9px] font-bold">{i + 1}</span>
+                                <span className="text-white text-[10px] font-bold">{i + 1}</span>
                               </div>
-                              <p className="text-[13px] text-gray-700 leading-snug">{h}</p>
+                              <p className="text-[15px] text-gray-700 leading-snug">{h}</p>
                             </div>
                           ))}
                         </div>
@@ -2171,31 +2171,31 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                       {/* Summary */}
                       {editedSummary && (
                         <div>
-                          <h3 className="text-[14px] font-bold text-[#1A1A2E] mb-2">เกี่ยวกับตำแหน่ง</h3>
-                          <p className="text-[13.5px] text-gray-600 leading-[1.8]" dangerouslySetInnerHTML={{ __html: editedSummary }} />
+                          <h3 className="text-[16px] font-bold text-[#1A1A2E] mb-2">เกี่ยวกับตำแหน่ง</h3>
+                          <p className="text-[15.5px] text-gray-600 leading-[1.8]" dangerouslySetInnerHTML={{ __html: editedSummary }} />
                         </div>
                       )}
                       {/* Responsibilities */}
                       {responsibilitiesHtml && (
                         <div>
-                          <h3 className="text-[14px] font-bold text-[#1A1A2E] mb-2">หน้าที่รับผิดชอบ</h3>
-                          <div className="text-[13.5px] text-gray-600 leading-[1.8] rich-content" dangerouslySetInnerHTML={{ __html: responsibilitiesHtml }} />
+                          <h3 className="text-[16px] font-bold text-[#1A1A2E] mb-2">หน้าที่รับผิดชอบ</h3>
+                          <div className="text-[15.5px] text-gray-600 leading-[1.8] rich-content" dangerouslySetInnerHTML={{ __html: responsibilitiesHtml }} />
                         </div>
                       )}
                       {/* Qualifications */}
                       {qualificationsHtml && (
                         <div>
-                          <h3 className="text-[14px] font-bold text-[#1A1A2E] mb-2">คุณสมบัติที่ต้องการ</h3>
-                          <div className="text-[13.5px] text-gray-600 leading-[1.8] rich-content" dangerouslySetInnerHTML={{ __html: qualificationsHtml }} />
+                          <h3 className="text-[16px] font-bold text-[#1A1A2E] mb-2">คุณสมบัติที่ต้องการ</h3>
+                          <div className="text-[15.5px] text-gray-600 leading-[1.8] rich-content" dangerouslySetInnerHTML={{ __html: qualificationsHtml }} />
                         </div>
                       )}
                       {/* Benefits */}
                       {selectedBenefits.length > 0 && (
                         <div>
-                          <h3 className="text-[14px] font-bold text-[#1A1A2E] mb-2.5">สวัสดิการและสิทธิประโยชน์</h3>
+                          <h3 className="text-[16px] font-bold text-[#1A1A2E] mb-2.5">สวัสดิการและสิทธิประโยชน์</h3>
                           <div className="flex flex-wrap gap-2">
                             {selectedBenefits.map((b) => (
-                              <span key={b} className="text-[12px] bg-emerald-50 border border-emerald-100 text-emerald-700 px-3 py-1 rounded-full font-medium">
+                              <span key={b} className="text-[14px] bg-emerald-50 border border-emerald-100 text-emerald-700 px-3 py-1 rounded-full font-medium">
                                 {b}
                               </span>
                             ))}
@@ -2204,10 +2204,10 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                       )}
                       {/* Apply button */}
                       <div className="pt-2 border-t border-gray-100">
-                        <button className="w-full py-3 bg-gradient-to-r from-[#127EE3] to-[#0DC2FF] text-white text-[14px] font-bold rounded-xl shadow-md shadow-[#127EE3]/20 pointer-events-none opacity-80">
+                        <button className="w-full py-3 bg-gradient-to-r from-[#127EE3] to-[#0DC2FF] text-white text-[16px] font-bold rounded-xl shadow-md shadow-[#127EE3]/20 pointer-events-none opacity-80">
                           สมัครงานนี้
                         </button>
-                        <p className="text-center text-[11px] text-gray-400 mt-2">ปุ่มนี้จะใช้งานได้หลังเผยแพร่ประกาศ</p>
+                        <p className="text-center text-[13px] text-gray-400 mt-2">ปุ่มนี้จะใช้งานได้หลังเผยแพร่ประกาศ</p>
                       </div>
                     </div>
                   );
@@ -2217,7 +2217,7 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                       <div className="w-[375px] flex-shrink-0 bg-white rounded-[2rem] border border-gray-300 shadow-xl overflow-hidden flex flex-col" style={{ maxHeight: "calc(88vh - 120px)" }}>
                         {/* Phone status bar */}
                         <div className="bg-gray-50 px-5 py-2.5 flex items-center justify-between flex-shrink-0 border-b border-gray-100">
-                          <span className="text-[11px] font-semibold text-gray-500">9:41</span>
+                          <span className="text-[13px] font-semibold text-gray-500">9:41</span>
                           <div className="w-24 h-4 bg-gray-200 rounded-full" />
                           <div className="flex items-center gap-1">
                             <div className="w-3.5 h-2.5 border border-gray-400 rounded-sm relative"><div className="absolute inset-[1.5px] bg-gray-500 rounded-[1px]" /></div>
@@ -2227,7 +2227,7 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
                         <div className="bg-white px-4 py-2 border-b border-gray-100 flex-shrink-0">
                           <div className="bg-gray-100 rounded-lg px-3 py-1.5 flex items-center gap-1.5">
                             <svg className="w-3 h-3 text-gray-400 flex-shrink-0" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="5" width="12" height="9" rx="1.5"/><path d="M5 5V4a3 3 0 0 1 6 0v1"/></svg>
-                            <span className="text-[10.5px] text-gray-500 truncate">superrecruit.example.com/jobs/preview</span>
+                            <span className="text-[12px] text-gray-500 truncate">superrecruit.example.com/jobs/preview</span>
                           </div>
                         </div>
                         <div className="overflow-y-auto flex-1 px-5 py-5">
@@ -2247,14 +2247,14 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
           <div className="mt-6 bg-white border border-gray-100 rounded-2xl shadow-sm px-6 py-4 flex items-center justify-between gap-4">
             <button
               onClick={() => { setStep("ai-preview"); scrollToTop(); }}
-              className="flex items-center gap-2 px-5 py-2.5 border border-gray-200 text-gray-500 font-semibold rounded-xl hover:border-[#127EE3] hover:text-[#127EE3] hover:bg-[#EBF6FF] transition-all text-[13.5px]"
+              className="flex items-center gap-2 px-5 py-2.5 border border-gray-200 text-gray-500 font-semibold rounded-xl hover:border-[#127EE3] hover:text-[#127EE3] hover:bg-[#EBF6FF] transition-all text-[15.5px]"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               ย้อนกลับ
             </button>
             <button
               onClick={() => { setStep("done"); scrollToTop(); }}
-              className="flex items-center gap-2.5 px-8 py-3 bg-gradient-to-r from-[#127EE3] to-[#0DC2FF] hover:from-[#0e6bc7] hover:to-[#0ab8f5] text-white font-bold rounded-xl transition-all shadow-md shadow-[#127EE3]/25 text-[14px] whitespace-nowrap"
+              className="flex items-center gap-2.5 px-8 py-3 bg-gradient-to-r from-[#127EE3] to-[#0DC2FF] hover:from-[#0e6bc7] hover:to-[#0ab8f5] text-white font-bold rounded-xl transition-all shadow-md shadow-[#127EE3]/25 text-[16px] whitespace-nowrap"
             >
               <Send className="w-4 h-4" />
               เผยแพร่ประกาศงาน
@@ -2264,14 +2264,14 @@ export default function CreateJobPage({ onBack }: CreateJobPageProps) {
 
         {step === "form" && (
           <div className="mt-6 bg-white border border-gray-100 rounded-2xl shadow-sm px-6 py-4 flex items-center justify-between gap-4">
-            <div className="flex items-center gap-2 text-[12.5px] text-gray-400">
+            <div className="flex items-center gap-2 text-[14.5px] text-gray-400">
               <div className={`w-2 h-2 rounded-full ${canProceed ? "bg-emerald-400" : "bg-gray-200"}`} />
               {canProceed ? "พร้อมไปขั้นตอนถัดไป" : "กรอกชื่อตำแหน่ง, สถานที่, และประเภทการจ้างงาน"}
             </div>
             <button
               onClick={() => { setStep("ai-preview"); scrollToTop(); }}
               disabled={!canProceed}
-              className="flex items-center gap-2.5 px-8 py-3 bg-gradient-to-r from-[#127EE3] to-[#0DC2FF] hover:from-[#0e6bc7] hover:to-[#0ab8f5] disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all shadow-md shadow-[#127EE3]/25 text-[14.5px] whitespace-nowrap"
+              className="flex items-center gap-2.5 px-8 py-3 bg-gradient-to-r from-[#127EE3] to-[#0DC2FF] hover:from-[#0e6bc7] hover:to-[#0ab8f5] disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all shadow-md shadow-[#127EE3]/25 text-[16.5px] whitespace-nowrap"
             >
               ถัดไป
             </button>

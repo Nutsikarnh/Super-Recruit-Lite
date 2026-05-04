@@ -35,7 +35,7 @@ function NavItem({ icon, label, active, collapsed, badge, onClick }: NavItemProp
       <button
         onClick={onClick}
         title={collapsed ? label : undefined}
-        className={`w-full flex items-center gap-3 rounded-xl text-[13.5px] font-medium transition-all relative group ${
+        className={`w-full flex items-center gap-3 rounded-xl text-[15.5px] font-medium transition-all relative group ${
           collapsed ? "px-0 py-2.5 justify-center" : "px-3 py-2.5"
         } ${
           active
@@ -46,12 +46,12 @@ function NavItem({ icon, label, active, collapsed, badge, onClick }: NavItemProp
         <span className={`flex-shrink-0 ${active ? "text-[#0DC2FF]" : ""}`}>{icon}</span>
         {!collapsed && <span className="truncate">{label}</span>}
         {badge !== undefined && badge > 0 && (
-          <span className={`min-w-[18px] h-[18px] bg-[#127EE3] text-white text-[9px] font-bold rounded-full flex items-center justify-center px-1 flex-shrink-0 ${collapsed ? "absolute top-1 right-1" : "ml-auto"}`}>
+          <span className={`min-w-[18px] h-[18px] bg-[#127EE3] text-white text-[10px] font-bold rounded-full flex items-center justify-center px-1 flex-shrink-0 ${collapsed ? "absolute top-1 right-1" : "ml-auto"}`}>
             {badge}
           </span>
         )}
         {collapsed && (
-          <span className="absolute left-full ml-3 px-2.5 py-1.5 rounded-lg bg-[#1A1A2E] text-white text-[12px] font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-150 pointer-events-none z-50 shadow-lg">
+          <span className="absolute left-full ml-3 px-2.5 py-1.5 rounded-lg bg-[#1A1A2E] text-white text-[14px] font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-150 pointer-events-none z-50 shadow-lg">
             {label}
             <span className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1.5 w-2 h-2 bg-[#1A1A2E] rotate-45" />
           </span>
@@ -67,7 +67,7 @@ function SectionLabel({ label, collapsed }: { label: string; collapsed: boolean 
   }
   return (
     <div className="mt-5 mb-1.5 px-3">
-      <p className="text-[10.5px] font-bold text-gray-400 uppercase tracking-widest">{label}</p>
+      <p className="text-[12px] font-bold text-gray-400 uppercase tracking-widest">{label}</p>
     </div>
   );
 }
@@ -83,7 +83,7 @@ export default function Sidebar({ activePage, onNavigate, collapsed, onToggle }:
             <div className="w-7 h-7 bg-[#0DC2FF] rounded-lg flex items-center justify-center flex-shrink-0">
               <Zap className="w-4 h-4 text-white" />
             </div>
-            <span className="text-[#1A1A2E] font-bold text-[15px] tracking-tight">Super Recruit</span>
+            <span className="text-[#1A1A2E] font-bold text-[17px] tracking-tight">Super Recruit</span>
           </div>
         )}
         {collapsed && (

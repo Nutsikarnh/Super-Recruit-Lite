@@ -124,11 +124,11 @@ export default function FloatingChat() {
           <div className="bg-gradient-to-r from-[#0B1D3A] to-[#1a3560] px-4 py-3 flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-2.5">
               <div className={`w-8 h-8 rounded-xl ${currentTabConfig.color} flex items-center justify-center flex-shrink-0 shadow-sm`}>
-                <span className="text-white text-[11px] font-black">{currentTabConfig.initials}</span>
+                <span className="text-white text-[13px] font-black">{currentTabConfig.initials}</span>
               </div>
               <div>
-                <p className="text-white font-bold text-[13px] leading-tight">{currentTabConfig.title}</p>
-                <p className="text-white/60 text-[10.5px]">{currentTabConfig.subtitle}</p>
+                <p className="text-white font-bold text-[15px] leading-tight">{currentTabConfig.title}</p>
+                <p className="text-white/60 text-[12px]">{currentTabConfig.subtitle}</p>
               </div>
             </div>
             <button
@@ -147,7 +147,7 @@ export default function FloatingChat() {
                 <button
                   key={tab.id}
                   onClick={() => handleTabChange(tab.id)}
-                  className={`flex-1 flex items-center justify-center gap-1 py-2.5 text-[11px] font-semibold transition-all border-b-2 relative ${
+                  className={`flex-1 flex items-center justify-center gap-1 py-2.5 text-[13px] font-semibold transition-all border-b-2 relative ${
                     isActive
                       ? "border-[#127EE3] text-[#127EE3]"
                       : "border-transparent text-gray-400 hover:text-gray-600"
@@ -156,7 +156,7 @@ export default function FloatingChat() {
                   {tab.icon}
                   {tab.label}
                   {unread[tab.id] > 0 && (
-                    <span className="absolute top-1 right-1.5 w-4 h-4 bg-red-500 text-white text-[9px] font-bold rounded-full flex items-center justify-center border border-white">
+                    <span className="absolute top-1 right-1.5 w-4 h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border border-white">
                       {unread[tab.id]}
                     </span>
                   )}
@@ -173,17 +173,17 @@ export default function FloatingChat() {
                 <div key={msg.id} className={`flex items-end gap-2 ${isUser ? "flex-row-reverse" : ""}`}>
                   {!isUser && (
                     <div className={`w-6 h-6 rounded-full ${msg.senderColor ?? "bg-gray-300"} flex items-center justify-center flex-shrink-0 shadow-sm`}>
-                      <span className="text-white text-[8px] font-black">{msg.senderInitials}</span>
+                      <span className="text-white text-[9px] font-black">{msg.senderInitials}</span>
                     </div>
                   )}
                   <div className={`max-w-[78%] flex flex-col gap-0.5 ${isUser ? "items-end" : "items-start"}`}>
                     {!isUser && msg.senderName && (
-                      <span className="text-[9.5px] text-gray-400 px-1 font-medium">{msg.senderName}</span>
+                      <span className="text-[10.5px] text-gray-400 px-1 font-medium">{msg.senderName}</span>
                     )}
-                    <div className={`px-3 py-2 rounded-2xl text-[12.5px] leading-relaxed ${isUser ? "bg-gradient-to-br from-[#01BFF9] to-[#019EFC] text-white rounded-br-sm shadow-sm" : "bg-white text-[#1A1A2E] rounded-bl-sm shadow-sm border border-gray-100"}`}>
+                    <div className={`px-3 py-2 rounded-2xl text-[14.5px] leading-relaxed ${isUser ? "bg-gradient-to-br from-[#01BFF9] to-[#019EFC] text-white rounded-br-sm shadow-sm" : "bg-white text-[#1A1A2E] rounded-bl-sm shadow-sm border border-gray-100"}`}>
                       {msg.text}
                     </div>
-                    <span className="text-[9.5px] text-gray-400 px-1">{msg.time}</span>
+                    <span className="text-[10.5px] text-gray-400 px-1">{msg.time}</span>
                   </div>
                 </div>
               );
@@ -203,7 +203,7 @@ export default function FloatingChat() {
                 onChange={(e) => setNewMessage(e.target.value)}
                 onKeyDown={(e) => { if (e.key === "Enter") sendMessage(); }}
                 placeholder="Write a message..."
-                className="flex-1 bg-transparent text-[12.5px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none"
+                className="flex-1 bg-transparent text-[14.5px] text-[#1A1A2E] placeholder:text-gray-400 focus:outline-none"
               />
               <button className="flex-shrink-0 text-gray-300 hover:text-gray-500 transition-colors">
                 <Smile className="w-3.5 h-3.5" />
@@ -230,7 +230,7 @@ export default function FloatingChat() {
           <MessageSquare className="w-6 h-6 text-white" />
         )}
         {!expanded && totalUnread > 0 && (
-          <span className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center shadow-sm border-2 border-white">
+          <span className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-500 text-white text-[11px] font-bold rounded-full flex items-center justify-center shadow-sm border-2 border-white">
             {totalUnread > 9 ? "9+" : totalUnread}
           </span>
         )}

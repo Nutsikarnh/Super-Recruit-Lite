@@ -44,7 +44,7 @@ function StageProgressBar({ current }: { current: PipelineStage }) {
         return (
           <div key={stage} className="flex items-center gap-1">
             <span
-              className={`px-2 py-1 rounded-lg text-[10.5px] font-semibold ${
+              className={`px-2 py-1 rounded-lg text-[12px] font-semibold ${
                 isRejected
                   ? "bg-gray-50 text-gray-300"
                   : isPast
@@ -89,7 +89,7 @@ function CollapsibleSection({
       >
         <div className="flex items-center gap-2">
           {icon}
-          <span className="text-[13px] font-bold text-[#1A1A2E]">{title}</span>
+          <span className="text-[15px] font-bold text-[#1A1A2E]">{title}</span>
         </div>
         {open ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
       </button>
@@ -130,16 +130,16 @@ function ResumeContent({ applicant }: { applicant: ApplicantRow }) {
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between gap-2 mb-2">
               <div>
-                <h3 className="text-[20px] font-bold text-[#1A1A2E] leading-tight">{applicant.name}</h3>
+                <h3 className="text-[22px] font-bold text-[#1A1A2E] leading-tight">{applicant.name}</h3>
                 <div className="flex items-center gap-2 mt-1 flex-wrap">
-                  <span className="text-[13.5px] font-semibold text-[#127EE3]">{applicant.currentCompany}</span>
-                  <span className="text-gray-300 text-[11px]">·</span>
-                  <span className="px-2 py-0.5 bg-blue-50 border border-blue-100 rounded-full text-[10.5px] font-bold text-blue-600">{applicant.experience}</span>
+                  <span className="text-[15.5px] font-semibold text-[#127EE3]">{applicant.currentCompany}</span>
+                  <span className="text-gray-300 text-[13px]">·</span>
+                  <span className="px-2 py-0.5 bg-blue-50 border border-blue-100 rounded-full text-[12px] font-bold text-blue-600">{applicant.experience}</span>
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-[12.5px] text-gray-500 mb-3">
+            <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-[14.5px] text-gray-500 mb-3">
               <span className="flex items-center gap-1.5 text-[#1A1A2E] font-medium">
                 <Phone className="w-3.5 h-3.5 text-[#0DC2FF]" />
                 {applicant.name.split(" ")[0].toLowerCase()}-direct@gmail.com
@@ -154,13 +154,13 @@ function ResumeContent({ applicant }: { applicant: ApplicantRow }) {
 
             <div className="flex items-center gap-2 flex-wrap">
               <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-white border border-gray-200 shadow-sm">
-                <span className="text-[10px] font-bold text-gray-400 uppercase">ปัจจุบัน</span>
-                <span className="text-[12.5px] font-bold text-[#1A1A2E]">{applicant.salaryExpect}</span>
+                <span className="text-[11px] font-bold text-gray-400 uppercase">ปัจจุบัน</span>
+                <span className="text-[14.5px] font-bold text-[#1A1A2E]">{applicant.salaryExpect}</span>
               </div>
               <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-gradient-to-r from-[#01BFF9]/10 to-[#019EFC]/10 border border-[#0DC2FF]/20">
-                <span className="text-[10px] font-bold text-[#127EE3] uppercase">คาดหวัง</span>
-                <span className="text-[12.5px] font-bold text-[#127EE3]">{applicant.salaryExpect}</span>
-                <span className="text-[10px] text-[#127EE3]/70">บาท/เดือน</span>
+                <span className="text-[11px] font-bold text-[#127EE3] uppercase">คาดหวัง</span>
+                <span className="text-[14.5px] font-bold text-[#127EE3]">{applicant.salaryExpect}</span>
+                <span className="text-[11px] text-[#127EE3]/70">บาท/เดือน</span>
               </div>
             </div>
           </div>
@@ -176,7 +176,7 @@ function ResumeContent({ applicant }: { applicant: ApplicantRow }) {
             { label: "Hobbies", bg: "from-rose-100 to-rose-200" },
           ].map((item, i) => (
             <div key={i} className={`aspect-square rounded-xl bg-gradient-to-br ${item.bg} flex items-end p-2.5`}>
-              <span className="text-[10px] font-medium text-gray-600 leading-tight">{item.label}</span>
+              <span className="text-[11px] font-medium text-gray-600 leading-tight">{item.label}</span>
             </div>
           ))}
         </div>
@@ -185,46 +185,46 @@ function ResumeContent({ applicant }: { applicant: ApplicantRow }) {
       <CollapsibleSection title="What Drives Me" icon={<Star className="w-4 h-4 text-[#0DC2FF]" />} defaultOpen>
         <ul className="space-y-2 mb-3 mt-1">
           {applicant.strengths.slice(0, 2).map((s, i) => (
-            <li key={i} className="flex gap-2.5 text-[13.5px] text-gray-700">
+            <li key={i} className="flex gap-2.5 text-[15.5px] text-gray-700">
               <span className="w-1.5 h-1.5 rounded-full bg-[#0DC2FF] flex-shrink-0 mt-[7px]" />
               {s}
             </li>
           ))}
         </ul>
-        <p className="text-[13px] text-gray-600 leading-[1.7] bg-gray-50 rounded-xl p-4">{applicant.aiSummary}</p>
+        <p className="text-[15px] text-gray-600 leading-[1.7] bg-gray-50 rounded-xl p-4">{applicant.aiSummary}</p>
       </CollapsibleSection>
 
       <CollapsibleSection title="Experience" icon={<Briefcase className="w-4 h-4 text-gray-400" />} defaultOpen>
         <div className="space-y-5 mt-1">
           <div className="flex gap-4">
             <div
-              className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-[9px] font-black text-white"
+              className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-[10px] font-black text-white"
               style={{ backgroundColor: applicant.avatarColor }}
             >
               {initials2}
             </div>
             <div className="flex-1">
-              <p className="text-[14px] font-bold text-[#1A1A2E]">{applicant.currentTitle}</p>
-              <p className="text-[12.5px] text-[#127EE3] font-semibold mt-0.5">{applicant.currentCompany}</p>
-              <p className="text-[11.5px] text-gray-400 mt-1">Full Time · {expYears} ปี · {applicant.salaryExpect}/เดือน</p>
+              <p className="text-[16px] font-bold text-[#1A1A2E]">{applicant.currentTitle}</p>
+              <p className="text-[14.5px] text-[#127EE3] font-semibold mt-0.5">{applicant.currentCompany}</p>
+              <p className="text-[13.5px] text-gray-400 mt-1">Full Time · {expYears} ปี · {applicant.salaryExpect}/เดือน</p>
               <div className="mt-3 space-y-1.5">
-                <p className="flex gap-2 text-[12.5px] text-gray-700"><span className="w-1 h-1 rounded-full bg-gray-400 flex-shrink-0 mt-[7px]" />ออกแบบ UX/UI end-to-end ตั้งแต่ discovery ถึง delivery ร่วมกับ PM และ Engineering</p>
-                <p className="flex gap-2 text-[12.5px] text-gray-700"><span className="w-1 h-1 rounded-full bg-gray-400 flex-shrink-0 mt-[7px]" />ดูแลและพัฒนา design system รวมกว่า 80+ components</p>
-                <p className="flex gap-2 text-[12.5px] text-gray-700"><span className="w-1 h-1 rounded-full bg-gray-400 flex-shrink-0 mt-[7px]" />วาง user research framework ลด design rework ลง 30%</p>
+                <p className="flex gap-2 text-[14.5px] text-gray-700"><span className="w-1 h-1 rounded-full bg-gray-400 flex-shrink-0 mt-[7px]" />ออกแบบ UX/UI end-to-end ตั้งแต่ discovery ถึง delivery ร่วมกับ PM และ Engineering</p>
+                <p className="flex gap-2 text-[14.5px] text-gray-700"><span className="w-1 h-1 rounded-full bg-gray-400 flex-shrink-0 mt-[7px]" />ดูแลและพัฒนา design system รวมกว่า 80+ components</p>
+                <p className="flex gap-2 text-[14.5px] text-gray-700"><span className="w-1 h-1 rounded-full bg-gray-400 flex-shrink-0 mt-[7px]" />วาง user research framework ลด design rework ลง 30%</p>
               </div>
             </div>
           </div>
 
           {expYears >= 3 && (
             <div className="flex gap-4">
-              <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center flex-shrink-0 text-[9px] font-black text-amber-600">PRV</div>
+              <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center flex-shrink-0 text-[10px] font-black text-amber-600">PRV</div>
               <div className="flex-1">
-                <p className="text-[14px] font-bold text-[#1A1A2E]">UX / Product Designer</p>
-                <p className="text-[12.5px] text-[#127EE3] font-semibold mt-0.5">บริษัทก่อนหน้า</p>
-                <p className="text-[11.5px] text-gray-400 mt-1">Full Time · {prevExpYears} ปี</p>
+                <p className="text-[16px] font-bold text-[#1A1A2E]">UX / Product Designer</p>
+                <p className="text-[14.5px] text-[#127EE3] font-semibold mt-0.5">บริษัทก่อนหน้า</p>
+                <p className="text-[13.5px] text-gray-400 mt-1">Full Time · {prevExpYears} ปี</p>
                 <div className="mt-2.5 space-y-1.5">
-                  <p className="flex gap-2 text-[12.5px] text-gray-700"><span className="w-1 h-1 rounded-full bg-gray-400 flex-shrink-0 mt-[7px]" />ออกแบบ user flows และ wireframes สำหรับ mobile app</p>
-                  <p className="flex gap-2 text-[12.5px] text-gray-700"><span className="w-1 h-1 rounded-full bg-gray-400 flex-shrink-0 mt-[7px]" />ทำ A/B test ร่วมกับ data team วัดผล conversion</p>
+                  <p className="flex gap-2 text-[14.5px] text-gray-700"><span className="w-1 h-1 rounded-full bg-gray-400 flex-shrink-0 mt-[7px]" />ออกแบบ user flows และ wireframes สำหรับ mobile app</p>
+                  <p className="flex gap-2 text-[14.5px] text-gray-700"><span className="w-1 h-1 rounded-full bg-gray-400 flex-shrink-0 mt-[7px]" />ทำ A/B test ร่วมกับ data team วัดผล conversion</p>
                 </div>
               </div>
             </div>
@@ -232,14 +232,14 @@ function ResumeContent({ applicant }: { applicant: ApplicantRow }) {
         </div>
 
         <div className="mt-5">
-          <p className="text-[12.5px] font-bold text-[#1A1A2E] mb-2.5">My Career in Action</p>
+          <p className="text-[14.5px] font-bold text-[#1A1A2E] mb-2.5">My Career in Action</p>
           <div className="grid grid-cols-2 gap-2">
             {[
               { label: "Design Conference", bg: "from-sky-100 to-sky-200" },
               { label: "Workshop & Meetup", bg: "from-teal-100 to-teal-200" },
             ].map((item, i) => (
               <div key={i} className={`h-24 rounded-xl bg-gradient-to-br ${item.bg} flex items-end p-3`}>
-                <span className="text-[11px] font-medium text-gray-600">{item.label}</span>
+                <span className="text-[13px] font-medium text-gray-600">{item.label}</span>
               </div>
             ))}
           </div>
@@ -248,10 +248,10 @@ function ResumeContent({ applicant }: { applicant: ApplicantRow }) {
 
       <CollapsibleSection title="Education" icon={<GraduationCap className="w-4 h-4 text-gray-400" />} defaultOpen>
         <div className="flex gap-4 mt-1">
-          <div className="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center flex-shrink-0 text-[10px] font-black text-rose-500">EDU</div>
+          <div className="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center flex-shrink-0 text-[11px] font-black text-rose-500">EDU</div>
           <div>
-            <p className="text-[14px] font-bold text-[#1A1A2E]">{applicant.education.split(" ").slice(-2).join(" ")}</p>
-            <p className="text-[12.5px] text-gray-600 mt-0.5">{applicant.education}</p>
+            <p className="text-[16px] font-bold text-[#1A1A2E]">{applicant.education.split(" ").slice(-2).join(" ")}</p>
+            <p className="text-[14.5px] text-gray-600 mt-0.5">{applicant.education}</p>
           </div>
         </div>
       </CollapsibleSection>
@@ -259,21 +259,21 @@ function ResumeContent({ applicant }: { applicant: ApplicantRow }) {
       <CollapsibleSection title="Skills and Languages" icon={<Star className="w-4 h-4 text-gray-400" />} defaultOpen>
         <div className="space-y-4 mt-1">
           <div>
-            <p className="text-[12.5px] font-bold text-[#1A1A2E] mb-2 flex items-center gap-2"><Dumbbell className="w-3.5 h-3.5 text-gray-400" />My Skills</p>
-            <p className="text-[13.5px] text-gray-700">{applicant.skills.join(", ")}</p>
+            <p className="text-[14.5px] font-bold text-[#1A1A2E] mb-2 flex items-center gap-2"><Dumbbell className="w-3.5 h-3.5 text-gray-400" />My Skills</p>
+            <p className="text-[15.5px] text-gray-700">{applicant.skills.join(", ")}</p>
           </div>
           <div>
-            <p className="text-[12.5px] font-bold text-[#1A1A2E] mb-2 flex items-center gap-2"><Music className="w-3.5 h-3.5 text-gray-400" />Music I Love</p>
-            <p className="text-[13.5px] text-gray-700">Indie · Lo-Fi · Jazz · Electronic · Acoustic</p>
+            <p className="text-[14.5px] font-bold text-[#1A1A2E] mb-2 flex items-center gap-2"><Music className="w-3.5 h-3.5 text-gray-400" />Music I Love</p>
+            <p className="text-[15.5px] text-gray-700">Indie · Lo-Fi · Jazz · Electronic · Acoustic</p>
           </div>
           <div>
-            <p className="text-[12.5px] font-bold text-[#1A1A2E] mb-2 flex items-center gap-2"><Languages className="w-3.5 h-3.5 text-gray-400" />Languages</p>
+            <p className="text-[14.5px] font-bold text-[#1A1A2E] mb-2 flex items-center gap-2"><Languages className="w-3.5 h-3.5 text-gray-400" />Languages</p>
             <div className="space-y-2.5">
-              <div><p className="text-[14px] font-semibold text-[#1A1A2E]">ภาษาไทย</p><p className="text-[12px] text-gray-400 mt-0.5">Native</p></div>
+              <div><p className="text-[16px] font-semibold text-[#1A1A2E]">ภาษาไทย</p><p className="text-[14px] text-gray-400 mt-0.5">Native</p></div>
               <div>
-                <p className="text-[14px] font-semibold text-[#1A1A2E]">English</p>
-                <p className="text-[13px] text-gray-600 mt-0.5">Listening: Advanced · Speaking: Upper-Intermediate · Reading: Advanced</p>
-                <p className="text-[13px] text-[#0DC2FF] font-semibold mt-1">TOEIC: 800+</p>
+                <p className="text-[16px] font-semibold text-[#1A1A2E]">English</p>
+                <p className="text-[15px] text-gray-600 mt-0.5">Listening: Advanced · Speaking: Upper-Intermediate · Reading: Advanced</p>
+                <p className="text-[15px] text-[#0DC2FF] font-semibold mt-1">TOEIC: 800+</p>
               </div>
             </div>
           </div>
@@ -302,11 +302,11 @@ function AIAnalysisContent({ applicant }: { applicant: ApplicantRow }) {
             <div className="w-7 h-7 rounded-xl bg-[#127EE3]/25 flex items-center justify-center">
               <Sparkles className="w-3.5 h-3.5 text-[#0DC2FF]" />
             </div>
-            <span className="text-[11px] font-bold text-[#0DC2FF] uppercase tracking-widest">AI ANALYSIS</span>
+            <span className="text-[13px] font-bold text-[#0DC2FF] uppercase tracking-widest">AI ANALYSIS</span>
           </div>
-          <h4 className="text-[20px] font-black text-white">{applicant.name}</h4>
-          <p className="text-[13px] text-white/50 mt-0.5 mb-3">{applicant.currentTitle} · {applicant.currentCompany} · {applicant.experience}</p>
-          <p className="text-[13.5px] text-white/80 leading-[1.75]">{applicant.aiSummary}</p>
+          <h4 className="text-[22px] font-black text-white">{applicant.name}</h4>
+          <p className="text-[15px] text-white/50 mt-0.5 mb-3">{applicant.currentTitle} · {applicant.currentCompany} · {applicant.experience}</p>
+          <p className="text-[15.5px] text-white/80 leading-[1.75]">{applicant.aiSummary}</p>
         </div>
       </div>
 
@@ -316,7 +316,7 @@ function AIAnalysisContent({ applicant }: { applicant: ApplicantRow }) {
       <div className="px-7 py-5">
         <div className="flex items-center gap-2 mb-4">
           <div className="w-3.5 h-3.5 rounded-full bg-gray-200 flex-shrink-0" />
-          <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">เส้นทางอาชีพ</span>
+          <span className="text-[13px] font-bold text-gray-400 uppercase tracking-widest">เส้นทางอาชีพ</span>
         </div>
         <div className="space-y-3">
           {[
@@ -327,7 +327,7 @@ function AIAnalysisContent({ applicant }: { applicant: ApplicantRow }) {
           ].map((item, i) => (
             <div key={i} className="flex items-start gap-3">
               <CheckCircle2 className={`w-4 h-4 flex-shrink-0 mt-0.5 ${item.ok ? "text-emerald-500" : "text-amber-400"}`} />
-              <p className="text-[13.5px] text-gray-700 leading-snug">{item.text}</p>
+              <p className="text-[15.5px] text-gray-700 leading-snug">{item.text}</p>
             </div>
           ))}
         </div>
@@ -339,7 +339,7 @@ function AIAnalysisContent({ applicant }: { applicant: ApplicantRow }) {
       <div className="px-7 py-5">
         <div className="flex items-center gap-2 mb-4">
           <div className="w-3.5 h-3.5 rounded-full bg-gray-200 flex-shrink-0" />
-          <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">WHY THIS CANDIDATE STANDS OUT</span>
+          <span className="text-[13px] font-bold text-gray-400 uppercase tracking-widest">WHY THIS CANDIDATE STANDS OUT</span>
         </div>
         <div className="space-y-5">
           {[
@@ -363,19 +363,19 @@ function AIAnalysisContent({ applicant }: { applicant: ApplicantRow }) {
             <div key={i} className="flex items-start gap-3">
               <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-[13.5px] font-bold text-[#1A1A2E] leading-snug">{item.headline}</p>
-                <p className="text-[13px] text-gray-500 mt-1 leading-relaxed">{item.detail}</p>
+                <p className="text-[15.5px] font-bold text-[#1A1A2E] leading-snug">{item.headline}</p>
+                <p className="text-[15px] text-gray-500 mt-1 leading-relaxed">{item.detail}</p>
               </div>
             </div>
           ))}
         </div>
         {applicant.concerns.length > 0 && (
           <div className="mt-5 space-y-3">
-            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">ข้อควรระวัง</p>
+            <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest">ข้อควรระวัง</p>
             {applicant.concerns.map((c, i) => (
               <div key={i} className="flex items-start gap-3">
                 <AlertCircle className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
-                <p className="text-[13.5px] text-gray-700 leading-snug">{c}</p>
+                <p className="text-[15.5px] text-gray-700 leading-snug">{c}</p>
               </div>
             ))}
           </div>
@@ -388,16 +388,16 @@ function AIAnalysisContent({ applicant }: { applicant: ApplicantRow }) {
       <div className="px-7 py-5">
         <div className="flex items-center gap-2 mb-4">
           <div className="w-3.5 h-3.5 rounded-full bg-gray-200 flex-shrink-0" />
-          <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">ตัวตน</span>
+          <span className="text-[13px] font-bold text-gray-400 uppercase tracking-widest">ตัวตน</span>
         </div>
         <div className="grid grid-cols-2 gap-3 mb-3">
           <div className="bg-gray-50 rounded-2xl p-5 border border-gray-100">
-            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">จากจุดแข็ง</p>
+            <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">จากจุดแข็ง</p>
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#127EE3]/10 mb-3">
               <Zap className="w-3 h-3 text-[#127EE3]" />
-              <span className="text-[11px] font-black text-[#127EE3] tracking-wide">The Strategic Executor</span>
+              <span className="text-[13px] font-black text-[#127EE3] tracking-wide">The Strategic Executor</span>
             </div>
-            <p className="text-[13px] font-bold text-[#1A1A2E] mb-4 leading-snug">"{firstName}คือคนที่ทำงานได้กว้าง รับผิดชอบสูง และมีภาวะผู้นำที่ไม่ต้องรอให้คนอื่นชี้ทาง"</p>
+            <p className="text-[15px] font-bold text-[#1A1A2E] mb-4 leading-snug">"{firstName}คือคนที่ทำงานได้กว้าง รับผิดชอบสูง และมีภาวะผู้นำที่ไม่ต้องรอให้คนอื่นชี้ทาง"</p>
             <div className="space-y-2.5">
               {[
                 { label: "CAREER GROWTH", icon: <TrendingUp className="w-3.5 h-3.5 text-[#127EE3]" />, value: "เติบโตทุก role — ไม่หยุดนิ่ง" },
@@ -408,20 +408,20 @@ function AIAnalysisContent({ applicant }: { applicant: ApplicantRow }) {
                 <div key={i} className="flex items-start gap-2">
                   <div className="w-5 h-5 rounded-lg bg-white flex items-center justify-center flex-shrink-0 border border-gray-100 mt-0.5">{item.icon}</div>
                   <div>
-                    <span className="text-[9.5px] font-bold text-gray-400 uppercase tracking-wide">{item.label} </span>
-                    <span className="text-[11.5px] text-gray-600">{item.value}</span>
+                    <span className="text-[10.5px] font-bold text-gray-400 uppercase tracking-wide">{item.label} </span>
+                    <span className="text-[13.5px] text-gray-600">{item.value}</span>
                   </div>
                 </div>
               ))}
             </div>
           </div>
           <div className="bg-gray-50 rounded-2xl p-5 border border-gray-100">
-            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">จาก HOBBIES & LIFE</p>
+            <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">จาก HOBBIES & LIFE</p>
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 border border-emerald-100 mb-3">
               <Star className="w-3 h-3 text-emerald-500" />
-              <span className="text-[11px] font-black text-emerald-600 tracking-wide">The Deliberate Creator</span>
+              <span className="text-[13px] font-black text-emerald-600 tracking-wide">The Deliberate Creator</span>
             </div>
-            <p className="text-[13px] font-bold text-[#1A1A2E] mb-4 leading-snug">"ข้างในมีทั้งความอดทนและความสุขในการทำอะไรช้าๆ อย่างตั้งใจ — ไม่ใช่แค่คนขับเคลื่อนด้วยความเร็ว"</p>
+            <p className="text-[15px] font-bold text-[#1A1A2E] mb-4 leading-snug">"ข้างในมีทั้งความอดทนและความสุขในการทำอะไรช้าๆ อย่างตั้งใจ — ไม่ใช่แค่คนขับเคลื่อนด้วยความเร็ว"</p>
             <div className="space-y-3">
               {[
                 { label: "กิจกรรมที่ต้องอดทน", insight: "ทำงานได้นานในสถานการณ์ที่ผลลัพธ์ยังไม่ชัด — ไม่หมดแรงเมื่อความสำเร็จช้า" },
@@ -429,19 +429,19 @@ function AIAnalysisContent({ applicant }: { applicant: ApplicantRow }) {
                 { label: "กิจกรรมทีม / สังคม", insight: "เคยคุ้นกับพลวัตของกลุ่ม รู้ว่าต้องอ่านคนและจังหวะให้ถูก" },
               ].map((item, i) => (
                 <div key={i} className="border-l-2 border-gray-200 pl-3">
-                  <p className="text-[11px] font-bold text-[#1A1A2E] leading-tight">{item.label}</p>
-                  <p className="text-[11.5px] text-gray-600 mt-0.5 leading-relaxed">{item.insight}</p>
+                  <p className="text-[13px] font-bold text-[#1A1A2E] leading-tight">{item.label}</p>
+                  <p className="text-[13.5px] text-gray-600 mt-0.5 leading-relaxed">{item.insight}</p>
                 </div>
               ))}
             </div>
           </div>
         </div>
         <div className="bg-gray-50 rounded-2xl px-5 py-5 border border-gray-100">
-          <p className="text-[11px] text-gray-400 mb-3">เมื่อผสานกัน — {firstName}เป็นคนแบบไหน</p>
-          <p className="text-[15px] font-bold text-[#1A1A2E] leading-[1.75]">
+          <p className="text-[13px] text-gray-400 mb-3">เมื่อผสานกัน — {firstName}เป็นคนแบบไหน</p>
+          <p className="text-[17px] font-bold text-[#1A1A2E] leading-[1.75]">
             คนที่ <span className="font-black">ขับเคลื่อนได้แรงเมื่อจำเป็น</span> แต่ยัง<span className="font-black">อดทนรอได้เมื่อสถานการณ์ต้องการ</span> — ไม่ใช่คนที่ทำงานหนักเพื่อพิสูจน์ตัวเอง แต่ทำเพราะอยากเห็นผลลัพธ์ที่ดีจริงๆ
           </p>
-          <p className="text-[13px] text-gray-500 mt-2">ให้งานที่มีทั้งความท้าทายเชิงกลยุทธ์และการลงมือทำจริง — จะได้เห็น{firstName}ในเวอร์ชันที่ดีที่สุด</p>
+          <p className="text-[15px] text-gray-500 mt-2">ให้งานที่มีทั้งความท้าทายเชิงกลยุทธ์และการลงมือทำจริง — จะได้เห็น{firstName}ในเวอร์ชันที่ดีที่สุด</p>
         </div>
       </div>
 
@@ -451,9 +451,9 @@ function AIAnalysisContent({ applicant }: { applicant: ApplicantRow }) {
       <div className="px-7 py-5">
         <div className="flex items-center gap-2 mb-1">
           <div className="w-3.5 h-3.5 rounded-full bg-gray-200 flex-shrink-0" />
-          <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">BEHAVIORAL SIGNALS</span>
+          <span className="text-[13px] font-bold text-gray-400 uppercase tracking-widest">BEHAVIORAL SIGNALS</span>
         </div>
-        <p className="text-[12.5px] text-gray-400 mb-5">วิเคราะห์เชิงลึกจาก AI — อ้างอิงจากประสบการณ์ทำงาน, จุดแข็ง, สไตล์การทำงาน และกิจกรรมในชีวิต</p>
+        <p className="text-[14.5px] text-gray-400 mb-5">วิเคราะห์เชิงลึกจาก AI — อ้างอิงจากประสบการณ์ทำงาน, จุดแข็ง, สไตล์การทำงาน และกิจกรรมในชีวิต</p>
         <div className="space-y-5">
           {[
             { title: "วิธีทำงานร่วมกับผู้อื่น", desc: `${firstName}เข้าร่วมทีมเพื่อผลักดันความคืบหน้า ไม่ใช่รับบทบาทตั้งรับ — แบ่งงานชัด คาดหวังให้ทุกคนรับผิดชอบในส่วนของตัวเอง`, note: "มิตรในแบบที่ช่วยให้งานเดิน ทำงานดีที่สุดกับเพื่อนร่วมทีมที่มีความสามารถ ตอบสนองไว และบริหารตัวเองได้" },
@@ -465,9 +465,9 @@ function AIAnalysisContent({ applicant }: { applicant: ApplicantRow }) {
             <div key={i} className="flex items-start gap-3">
               <span className="w-2.5 h-2.5 rounded-full bg-[#127EE3] flex-shrink-0 mt-1.5" />
               <div>
-                <p className="text-[13.5px] font-bold text-[#1A1A2E] leading-snug">{item.title}</p>
-                <p className="text-[13.5px] text-gray-700 mt-0.5 leading-relaxed">{item.desc}</p>
-                <p className="text-[13px] text-gray-400 italic mt-1">{item.note}</p>
+                <p className="text-[15.5px] font-bold text-[#1A1A2E] leading-snug">{item.title}</p>
+                <p className="text-[15.5px] text-gray-700 mt-0.5 leading-relaxed">{item.desc}</p>
+                <p className="text-[15px] text-gray-400 italic mt-1">{item.note}</p>
               </div>
             </div>
           ))}
@@ -478,8 +478,8 @@ function AIAnalysisContent({ applicant }: { applicant: ApplicantRow }) {
 
       {/* สรุปสำหรับ HR */}
       <div className="px-7 py-5">
-        <p className="text-[13px] font-bold text-gray-400 mb-3">สรุปสำหรับ HR</p>
-        <p className="text-[16px] font-bold text-[#1A1A2E] leading-[1.75]">
+        <p className="text-[15px] font-bold text-gray-400 mb-3">สรุปสำหรับ HR</p>
+        <p className="text-[18px] font-bold text-[#1A1A2E] leading-[1.75]">
           {firstName}คือคนที่ <span className="font-black">"ลงมือได้กว้าง ทำได้จริง และไม่หยุดจนกว่างานจะเสร็จ"</span> — เอาใส่ role ที่ต้องการคนเชื่อมการวางแผนกับการลงมือทำ จะได้เห็นของจริง
         </p>
       </div>
@@ -490,7 +490,7 @@ function AIAnalysisContent({ applicant }: { applicant: ApplicantRow }) {
       <div className="px-7 py-5">
         <div className="flex items-center gap-2 mb-4">
           <div className="w-3.5 h-3.5 rounded-full bg-gray-200 flex-shrink-0" />
-          <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">คำถามสัมภาษณ์ (AI แนะนำ)</span>
+          <span className="text-[13px] font-bold text-gray-400 uppercase tracking-widest">คำถามสัมภาษณ์ (AI แนะนำ)</span>
         </div>
         <div className="space-y-3">
           {[
@@ -501,8 +501,8 @@ function AIAnalysisContent({ applicant }: { applicant: ApplicantRow }) {
             { category: "Ambition", q: "ใน 2–3 ปีข้างหน้า คุณอยากเติบโตไปในทิศทางไหน" },
           ].map((item, i) => (
             <div key={i} className="flex items-start gap-3">
-              <span className="text-[10px] font-bold text-[#127EE3] bg-[#127EE3]/10 px-2.5 py-1 rounded-lg flex-shrink-0 mt-0.5 whitespace-nowrap min-w-[120px] text-center">{item.category}</span>
-              <p className="text-[13px] text-gray-600 leading-relaxed">{item.q}</p>
+              <span className="text-[11px] font-bold text-[#127EE3] bg-[#127EE3]/10 px-2.5 py-1 rounded-lg flex-shrink-0 mt-0.5 whitespace-nowrap min-w-[120px] text-center">{item.category}</span>
+              <p className="text-[15px] text-gray-600 leading-relaxed">{item.q}</p>
             </div>
           ))}
         </div>
@@ -510,10 +510,10 @@ function AIAnalysisContent({ applicant }: { applicant: ApplicantRow }) {
 
       {/* Disclaimer */}
       <div className="mx-7 mb-6 mt-2 bg-amber-50 border border-amber-100 rounded-2xl px-5 py-4">
-        <p className="text-[13px] font-bold text-amber-800 mb-2">เกี่ยวกับการวิเคราะห์ด้วย AI</p>
-        <p className="text-[12.5px] text-amber-700/80 leading-[1.7] mb-2">การวิเคราะห์นี้มองเห็น <strong>potential</strong> และจุดแข็งเป็นหลัก — เราตั้งใจไม่ตัดสินในเชิงลบ เพราะเชื่อว่าแต่ละคนมีคุณค่าในบริบทที่เหมาะสม</p>
-        <p className="text-[12.5px] text-amber-700/80 leading-[1.7] mb-2">ก่อนตัดสินใจ ให้ดูเรซูเม่จริงประกอบ พิจารณาความเหมาะสมกับตำแหน่งและช่วงเงินเดือนด้วยตัวเอง</p>
-        <p className="text-[12.5px] text-amber-700/80 leading-[1.7]">AI อาจมีความคลาดเคลื่อนได้ โปรดใช้วิจารณญาณของคุณในการตัดสินใจเสมอ</p>
+        <p className="text-[15px] font-bold text-amber-800 mb-2">เกี่ยวกับการวิเคราะห์ด้วย AI</p>
+        <p className="text-[14.5px] text-amber-700/80 leading-[1.7] mb-2">การวิเคราะห์นี้มองเห็น <strong>potential</strong> และจุดแข็งเป็นหลัก — เราตั้งใจไม่ตัดสินในเชิงลบ เพราะเชื่อว่าแต่ละคนมีคุณค่าในบริบทที่เหมาะสม</p>
+        <p className="text-[14.5px] text-amber-700/80 leading-[1.7] mb-2">ก่อนตัดสินใจ ให้ดูเรซูเม่จริงประกอบ พิจารณาความเหมาะสมกับตำแหน่งและช่วงเงินเดือนด้วยตัวเอง</p>
+        <p className="text-[14.5px] text-amber-700/80 leading-[1.7]">AI อาจมีความคลาดเคลื่อนได้ โปรดใช้วิจารณญาณของคุณในการตัดสินใจเสมอ</p>
       </div>
     </div>
   );
@@ -562,18 +562,18 @@ function DocsContent({ applicant }: { applicant: ApplicantRow }) {
         <div className="fixed inset-0 z-[70] flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm" onClick={() => setPreviewFile(null)}>
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
-              <div className="flex items-center gap-3">{fileIcon(previewFile.type)}<span className="text-[14px] font-semibold text-[#1A1A2E] truncate max-w-[340px]">{previewFile.name}</span></div>
+              <div className="flex items-center gap-3">{fileIcon(previewFile.type)}<span className="text-[16px] font-semibold text-[#1A1A2E] truncate max-w-[340px]">{previewFile.name}</span></div>
               <div className="flex items-center gap-2">
-                <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 text-[12.5px] text-gray-600 hover:bg-gray-50 transition-colors"><Download className="w-3.5 h-3.5" />ดาวน์โหลด</button>
+                <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 text-[14.5px] text-gray-600 hover:bg-gray-50 transition-colors"><Download className="w-3.5 h-3.5" />ดาวน์โหลด</button>
                 <button onClick={() => setPreviewFile(null)} className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"><X className="w-4 h-4 text-gray-500" /></button>
               </div>
             </div>
             <div className="h-[480px] bg-gray-50 flex flex-col items-center justify-center gap-3">
               {fileIcon(previewFile.type)}
-              <p className="text-[14px] font-semibold text-gray-600">{previewFile.name}</p>
-              <p className="text-[12.5px] text-gray-400">{previewFile.size}</p>
-              <p className="text-[12px] text-gray-400 mt-2">Preview ไม่พร้อมใช้งานในโหมด Demo</p>
-              <button className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#127EE3] text-white text-[13px] font-semibold hover:bg-[#0f6bc7] transition-colors mt-1">
+              <p className="text-[16px] font-semibold text-gray-600">{previewFile.name}</p>
+              <p className="text-[14.5px] text-gray-400">{previewFile.size}</p>
+              <p className="text-[14px] text-gray-400 mt-2">Preview ไม่พร้อมใช้งานในโหมด Demo</p>
+              <button className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#127EE3] text-white text-[15px] font-semibold hover:bg-[#0f6bc7] transition-colors mt-1">
                 <ExternalLink className="w-3.5 h-3.5" />เปิดในแท็บใหม่
               </button>
             </div>
@@ -583,13 +583,13 @@ function DocsContent({ applicant }: { applicant: ApplicantRow }) {
 
       {files[0] && (
         <div>
-          <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-3">ล่าสุด</p>
+          <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-3">ล่าสุด</p>
           <button onClick={() => setPreviewFile(files[0])}
             className="w-full flex items-center gap-4 p-4 rounded-2xl border border-[#127EE3]/20 bg-[#127EE3]/[0.03] hover:bg-[#127EE3]/[0.06] transition-all group text-left">
             {fileIcon(files[0].type)}
             <div className="flex-1 min-w-0">
-              <p className="text-[13.5px] font-semibold text-[#127EE3] truncate group-hover:underline">{files[0].name}</p>
-              <p className="text-[11.5px] text-gray-400 mt-0.5">{files[0].size} · {files[0].uploadedBy} · {files[0].uploadedAt}</p>
+              <p className="text-[15.5px] font-semibold text-[#127EE3] truncate group-hover:underline">{files[0].name}</p>
+              <p className="text-[13.5px] text-gray-400 mt-0.5">{files[0].size} · {files[0].uploadedBy} · {files[0].uploadedAt}</p>
             </div>
             <ExternalLink className="w-4 h-4 text-[#127EE3]/50 group-hover:text-[#127EE3] flex-shrink-0 transition-colors" />
           </button>
@@ -598,11 +598,11 @@ function DocsContent({ applicant }: { applicant: ApplicantRow }) {
 
       <div>
         <div className="flex items-center justify-between mb-3">
-          <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">ไฟล์ทั้งหมด ({files.length})</p>
+          <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest">ไฟล์ทั้งหมด ({files.length})</p>
           <div>
             <input ref={fileInputRef} type="file" multiple className="hidden" onChange={(e) => { if (e.target.files) addFiles(Array.from(e.target.files)); }} />
             <button onClick={() => fileInputRef.current?.click()}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 text-[12px] font-semibold text-gray-500 hover:border-[#127EE3]/40 hover:text-[#127EE3] transition-colors">
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 text-[14px] font-semibold text-gray-500 hover:border-[#127EE3]/40 hover:text-[#127EE3] transition-colors">
               <Upload className="w-3.5 h-3.5" />อัปโหลด
             </button>
           </div>
@@ -616,8 +616,8 @@ function DocsContent({ applicant }: { applicant: ApplicantRow }) {
             <div key={f.id} className="flex items-center gap-3 p-3.5 rounded-xl border border-gray-100 bg-white hover:border-gray-200 transition-all group">
               {fileIcon(f.type)}
               <div className="flex-1 min-w-0">
-                <p className="text-[13px] font-medium text-[#1A1A2E] truncate">{f.name}</p>
-                <p className="text-[11.5px] text-gray-400 mt-0.5">
+                <p className="text-[15px] font-medium text-[#1A1A2E] truncate">{f.name}</p>
+                <p className="text-[13.5px] text-gray-400 mt-0.5">
                   {f.size} · {f.isCandidate ? <span className="text-emerald-600 font-medium">จากผู้สมัคร</span> : <span className="text-[#127EE3] font-medium">{f.uploadedBy}</span>} · {f.uploadedAt}
                 </p>
               </div>
@@ -627,19 +627,19 @@ function DocsContent({ applicant }: { applicant: ApplicantRow }) {
               </div>
             </div>
           ))}
-          {dragging && <div className="flex items-center justify-center py-6 rounded-xl border-2 border-dashed border-[#127EE3]/40 text-[13px] text-[#127EE3] font-medium">วางไฟล์ที่นี่</div>}
+          {dragging && <div className="flex items-center justify-center py-6 rounded-xl border-2 border-dashed border-[#127EE3]/40 text-[15px] text-[#127EE3] font-medium">วางไฟล์ที่นี่</div>}
         </div>
       </div>
 
       <div className="rounded-2xl border border-gray-100 p-4 flex items-center gap-4">
         <div className="w-9 h-9 rounded-xl bg-gray-100 flex items-center justify-center flex-shrink-0"><Search className="w-4 h-4 text-gray-500" /></div>
         <div className="flex-1 min-w-0">
-          <p className="text-[13px] font-semibold text-[#1A1A2E]">ค้นหาข้อมูลเพิ่มเติมของผู้สมัคร</p>
-          <p className="text-[11.5px] text-gray-400 mt-0.5">เช็ค LinkedIn, Instagram, Behance, ผลงาน หรือ personal site บน Google</p>
+          <p className="text-[15px] font-semibold text-[#1A1A2E]">ค้นหาข้อมูลเพิ่มเติมของผู้สมัคร</p>
+          <p className="text-[13.5px] text-gray-400 mt-0.5">เช็ค LinkedIn, Instagram, Behance, ผลงาน หรือ personal site บน Google</p>
         </div>
         <button
           onClick={() => window.open(`https://www.google.com/search?q=${encodeURIComponent(`${applicant.name} ${applicant.currentTitle} site:linkedin.com OR site:behance.net OR site:dribbble.com`)}`, "_blank")}
-          className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-[#127EE3]/30 text-[#127EE3] text-[12.5px] font-semibold hover:bg-[#127EE3]/5 transition-colors flex-shrink-0">
+          className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-[#127EE3]/30 text-[#127EE3] text-[14.5px] font-semibold hover:bg-[#127EE3]/5 transition-colors flex-shrink-0">
           <Globe className="w-3.5 h-3.5" />ค้นหาเลย
         </button>
       </div>
@@ -710,24 +710,24 @@ function NotesContent({ applicant, store }: { applicant: ApplicantRow; store: Ac
   return (
     <div className="px-7 py-6 space-y-5">
       <div>
-        <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-3">Key Notes</p>
+        <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-3">Key Notes</p>
         <div className="rounded-2xl border border-gray-200 bg-white overflow-hidden focus-within:border-[#0DC2FF] transition-colors">
           <textarea value={note} onChange={(e) => setNote(e.target.value)}
             placeholder="บันทึกความเห็น, คะแนนหลังสัมภาษณ์, หรือ note เพิ่มเติม..."
             rows={3}
-            className="w-full px-4 py-3 text-[13px] focus:outline-none resize-none placeholder:text-gray-400" />
+            className="w-full px-4 py-3 text-[15px] focus:outline-none resize-none placeholder:text-gray-400" />
           <div className="flex items-center justify-between px-3 py-2 border-t border-gray-100 bg-gray-50/70">
             <div className="flex items-center gap-2">
               <input ref={noteFileRef} type="file" className="hidden" onChange={(e) => e.target.files && setAttachFile(e.target.files[0])} />
               <button onClick={() => noteFileRef.current?.click()}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[12px] text-gray-500 hover:bg-white hover:text-[#127EE3] transition-colors border border-transparent hover:border-gray-200">
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[14px] text-gray-500 hover:bg-white hover:text-[#127EE3] transition-colors border border-transparent hover:border-gray-200">
                 <Paperclip className="w-3.5 h-3.5" />
                 {attachFile ? <span className="text-[#127EE3] font-medium max-w-[120px] truncate">{attachFile.name}</span> : "แนบไฟล์"}
               </button>
               {attachFile && <button onClick={() => setAttachFile(null)} className="text-gray-300 hover:text-red-400 transition-colors"><X className="w-3 h-3" /></button>}
             </div>
             <button onClick={handleSaveNote} disabled={!note.trim() && !attachFile}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#127EE3] text-white text-[12.5px] font-semibold hover:bg-[#0f6bc7] transition-colors disabled:opacity-40">
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#127EE3] text-white text-[14.5px] font-semibold hover:bg-[#0f6bc7] transition-colors disabled:opacity-40">
               <Plus className="w-3.5 h-3.5" />บันทึก
             </button>
           </div>
@@ -740,12 +740,12 @@ function NotesContent({ applicant, store }: { applicant: ApplicantRow; store: Ac
             <div key={n.id} className="rounded-2xl border border-gray-100 bg-white p-4 hover:border-gray-200 transition-colors">
               <div className="flex items-center gap-2.5 mb-2">
                 <div className={`w-7 h-7 rounded-full ${n.actorColor} flex items-center justify-center flex-shrink-0`}>
-                  <span className="text-[9px] font-black text-white">{n.actorInitials}</span>
+                  <span className="text-[10px] font-black text-white">{n.actorInitials}</span>
                 </div>
-                <span className="text-[13px] font-semibold text-[#1A1A2E]">{n.actor}</span>
-                <span className="ml-auto text-[11px] text-gray-400 flex items-center gap-1 flex-shrink-0"><Clock className="w-3 h-3" />{n.time}</span>
+                <span className="text-[15px] font-semibold text-[#1A1A2E]">{n.actor}</span>
+                <span className="ml-auto text-[13px] text-gray-400 flex items-center gap-1 flex-shrink-0"><Clock className="w-3 h-3" />{n.time}</span>
               </div>
-              {n.detail && <p className="text-[13px] text-gray-600 leading-relaxed pl-[38px]">{n.detail}</p>}
+              {n.detail && <p className="text-[15px] text-gray-600 leading-relaxed pl-[38px]">{n.detail}</p>}
             </div>
           ))}
         </div>
@@ -753,7 +753,7 @@ function NotesContent({ applicant, store }: { applicant: ApplicantRow; store: Ac
 
       <div className="border-t border-gray-100 pt-4">
         <button onClick={() => setShowActivity(!showActivity)}
-          className="flex items-center gap-2 text-[11px] font-semibold text-gray-400 uppercase tracking-widest hover:text-gray-500 transition-colors w-full text-left mb-1">
+          className="flex items-center gap-2 text-[13px] font-semibold text-gray-400 uppercase tracking-widest hover:text-gray-500 transition-colors w-full text-left mb-1">
           <ChevronDown className={`w-3.5 h-3.5 transition-transform ${showActivity ? "rotate-180" : ""}`} />
           Activity ({allActivities.length}{emailActivities.length > 0 ? ` · ${emailActivities.length} อีเมล` : ""})
         </button>
@@ -768,30 +768,30 @@ function NotesContent({ applicant, store }: { applicant: ApplicantRow; store: Ac
                 <div className="pb-3 flex-1 min-w-0">
                   <div className="flex items-center gap-1.5 flex-wrap">
                     <div className={`w-4 h-4 rounded-full ${act.actorColor} flex items-center justify-center flex-shrink-0`}>
-                      <span className="text-[7px] font-black text-white">{act.actorInitials}</span>
+                      <span className="text-[8px] font-black text-white">{act.actorInitials}</span>
                     </div>
-                    <span className="text-[12px] font-semibold text-gray-500">{act.actor}</span>
-                    <span className="text-[12px] text-gray-400">{act.type === "email" ? `ส่งอีเมล "${act.emailSubject}"` : act.text}</span>
-                    <span className="ml-auto text-[11px] text-gray-300 flex items-center gap-1 flex-shrink-0"><Clock className="w-3 h-3" />{act.time}</span>
+                    <span className="text-[14px] font-semibold text-gray-500">{act.actor}</span>
+                    <span className="text-[14px] text-gray-400">{act.type === "email" ? `ส่งอีเมล "${act.emailSubject}"` : act.text}</span>
+                    <span className="ml-auto text-[13px] text-gray-300 flex items-center gap-1 flex-shrink-0"><Clock className="w-3 h-3" />{act.time}</span>
                   </div>
                   {act.type === "email" && act.emailBody && (
                     <div className="mt-1 ml-5">
                       <button onClick={() => setExpandedEmail(expandedEmail === act.id ? null : act.id)}
-                        className="text-[11.5px] text-[#127EE3] hover:underline flex items-center gap-1">
+                        className="text-[13.5px] text-[#127EE3] hover:underline flex items-center gap-1">
                         {expandedEmail === act.id ? "ซ่อนเนื้อหา" : "ดูเนื้อหาอีเมล"}
                         <ChevronDown className={`w-3 h-3 transition-transform ${expandedEmail === act.id ? "rotate-180" : ""}`} />
                       </button>
                       {expandedEmail === act.id && (
                         <div className="mt-1.5 bg-gray-50 rounded-xl px-3.5 py-3 border border-gray-100">
-                          <p className="text-[12px] text-gray-500 mb-1">ถึง: {act.emailTo}</p>
-                          <p className="text-[12.5px] text-gray-600 leading-relaxed whitespace-pre-wrap">{act.emailBody}</p>
+                          <p className="text-[14px] text-gray-500 mb-1">ถึง: {act.emailTo}</p>
+                          <p className="text-[14.5px] text-gray-600 leading-relaxed whitespace-pre-wrap">{act.emailBody}</p>
                         </div>
                       )}
                     </div>
                   )}
                   {act.type !== "email" && act.detail && (
                     <div className="mt-1 ml-5 px-2.5 py-1.5 rounded-lg bg-gray-50">
-                      <p className="text-[11.5px] text-gray-400 leading-relaxed">{act.detail}</p>
+                      <p className="text-[13.5px] text-gray-400 leading-relaxed">{act.detail}</p>
                     </div>
                   )}
                 </div>
@@ -802,14 +802,14 @@ function NotesContent({ applicant, store }: { applicant: ApplicantRow; store: Ac
       </div>
 
       <div className="border-t border-gray-100 pt-4">
-        <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-3">Super Chat</p>
+        <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-3">Super Chat</p>
         <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-sky-50 border border-sky-100">
           <MessageCircle className="w-4 h-4 text-sky-500 flex-shrink-0" />
           <div className="flex-1 min-w-0">
-            <p className="text-[12.5px] font-semibold text-sky-800">เคยคุยกันแล้ว 3 ข้อความ</p>
-            <p className="text-[11.5px] text-sky-600 mt-0.5">ล่าสุด: "สนใจตำแหน่งนี้ รอฟังข่าวอยู่ครับ" · 25 เม.ย.</p>
+            <p className="text-[14.5px] font-semibold text-sky-800">เคยคุยกันแล้ว 3 ข้อความ</p>
+            <p className="text-[13.5px] text-sky-600 mt-0.5">ล่าสุด: "สนใจตำแหน่งนี้ รอฟังข่าวอยู่ครับ" · 25 เม.ย.</p>
           </div>
-          <button className="text-[12px] font-semibold text-sky-600 hover:text-sky-800 transition-colors flex-shrink-0 whitespace-nowrap">ดูแชท →</button>
+          <button className="text-[14px] font-semibold text-sky-600 hover:text-sky-800 transition-colors flex-shrink-0 whitespace-nowrap">ดูแชท →</button>
         </div>
       </div>
 
@@ -919,13 +919,13 @@ function TimelineContent({ store, applicant }: { store: ActivityStore; applicant
     <div className="flex flex-col h-full">
       {/* Progress bar */}
       <div className="px-6 py-4 border-b border-gray-100 bg-[#F7F9FC] flex-shrink-0">
-        <p className="text-[10.5px] font-bold text-gray-400 uppercase tracking-widest mb-3">ความคืบหน้า</p>
+        <p className="text-[12px] font-bold text-gray-400 uppercase tracking-widest mb-3">ความคืบหน้า</p>
         <StageProgressBar current={applicant.stage} />
       </div>
 
       {/* Timeline list */}
       <div className="flex-1 overflow-y-auto px-6 py-5">
-        <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-4">
+        <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-4">
           ประวัติทั้งหมด ({allItems.length} รายการ)
         </p>
 
@@ -934,7 +934,7 @@ function TimelineContent({ store, applicant }: { store: ActivityStore; applicant
             <div key={group.label}>
               {/* Date group header */}
               <div className="flex items-center gap-2.5 mb-3">
-                <span className="text-[12px] font-semibold text-gray-500">{group.label}</span>
+                <span className="text-[14px] font-semibold text-gray-500">{group.label}</span>
                 <div className="flex-1 border-t border-gray-100" />
               </div>
 
@@ -957,7 +957,7 @@ function TimelineContent({ store, applicant }: { store: ActivityStore; applicant
                         {/* Card */}
                         <div className="flex-1 min-w-0 bg-[#F7F9FC] rounded-xl px-3.5 py-2.5 mb-1.5">
                           <div className="flex items-start justify-between gap-2">
-                            <p className="text-[12.5px] font-semibold text-[#1A1A2E] leading-snug">
+                            <p className="text-[14.5px] font-semibold text-[#1A1A2E] leading-snug">
                               {item.type === "stage"
                                 ? <>เปลี่ยนสถานะเป็น{" "}
                                     <span style={{ color: dot }}>
@@ -968,18 +968,18 @@ function TimelineContent({ store, applicant }: { store: ActivityStore; applicant
                               }
                             </p>
                             {timeLabel && (
-                              <span className="text-[11px] text-gray-400 whitespace-nowrap flex-shrink-0 mt-0.5 tabular-nums">
+                              <span className="text-[13px] text-gray-400 whitespace-nowrap flex-shrink-0 mt-0.5 tabular-nums">
                                 {timeLabel}
                               </span>
                             )}
                           </div>
                           {item.detail && (
-                            <p className="text-[11.5px] text-gray-500 mt-0.5 leading-relaxed">{item.detail}</p>
+                            <p className="text-[13.5px] text-gray-500 mt-0.5 leading-relaxed">{item.detail}</p>
                           )}
                           {item.emailTo && !item.detail && (
-                            <p className="text-[11.5px] text-gray-400 mt-0.5">ถึง: {item.emailTo}</p>
+                            <p className="text-[13.5px] text-gray-400 mt-0.5">ถึง: {item.emailTo}</p>
                           )}
-                          <p className="text-[11px] text-gray-400 mt-1">โดย {item.actor}</p>
+                          <p className="text-[13px] text-gray-400 mt-1">โดย {item.actor}</p>
                         </div>
                       </div>
                     );
@@ -1001,7 +1001,7 @@ function TimelineContent({ store, applicant }: { store: ActivityStore; applicant
               className="w-2 h-2 rounded-full flex-shrink-0"
               style={{ backgroundColor: TYPE_COLOR[l.type] }}
             />
-            <span className="text-[11px] text-gray-500">{l.label}</span>
+            <span className="text-[13px] text-gray-500">{l.label}</span>
           </div>
         ))}
         <div className="flex-1" />
@@ -1018,7 +1018,7 @@ function ActionBtn({ icon, label, primary, destructive, onClick }: {
   primary?: boolean; destructive?: boolean;
   onClick?: () => void;
 }) {
-  const base = "flex flex-col items-center justify-center gap-1.5 px-2 py-2.5 rounded-xl border text-[11.5px] font-medium transition-all text-center leading-tight";
+  const base = "flex flex-col items-center justify-center gap-1.5 px-2 py-2.5 rounded-xl border text-[13.5px] font-medium transition-all text-center leading-tight";
   const variant = destructive
     ? "border-red-200 text-red-500 bg-white hover:bg-red-50"
     : primary
@@ -1303,8 +1303,8 @@ function ManageContent({
         {isRejectedStage ? (
           <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-red-50 border border-red-100">
             <ThumbsDown className="w-3.5 h-3.5 text-red-400 flex-shrink-0" />
-            <span className="text-[12.5px] font-semibold text-red-600">ไม่ผ่าน / ยกเลิก</span>
-            {rejectionReason && <span className="text-[12px] text-red-400 ml-1">— {rejectionReason}</span>}
+            <span className="text-[14.5px] font-semibold text-red-600">ไม่ผ่าน / ยกเลิก</span>
+            {rejectionReason && <span className="text-[14px] text-red-400 ml-1">— {rejectionReason}</span>}
           </div>
         ) : (
           <div className="flex items-center gap-0">
@@ -1334,11 +1334,11 @@ function ManageContent({
                       {isPast ? (
                         <CheckCircle2 className="w-3.5 h-3.5" />
                       ) : (
-                        <span className="text-[9px] font-bold">{i + 1}</span>
+                        <span className="text-[10px] font-bold">{i + 1}</span>
                       )}
                     </div>
                     {/* Label */}
-                    <span className={`text-[10px] font-semibold leading-tight text-center max-w-[48px] whitespace-nowrap ${
+                    <span className={`text-[11px] font-semibold leading-tight text-center max-w-[48px] whitespace-nowrap ${
                       isCurrent ? cfg.color : isPast ? "text-emerald-600" : "text-gray-400"
                     }`}>
                       {STEPPER_LABELS[stage]}
@@ -1363,19 +1363,19 @@ function ManageContent({
 
       {/* Toast / Alert banner */}
       {alertMsg && !alertMsg.startsWith("__stage__") && alertMsg !== "__undo__" && (
-        <div className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-white border border-gray-200 shadow-sm text-[12.5px]">
+        <div className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-white border border-gray-200 shadow-sm text-[14.5px]">
           <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-emerald-500" />
           <span className="text-gray-700">{alertMsg}</span>
         </div>
       )}
       {alertMsg && alertMsg.startsWith("__stage__") && (
-        <div className="flex items-center justify-between gap-2 px-4 py-3 rounded-xl bg-white border border-gray-200 shadow-sm text-[12.5px]">
+        <div className="flex items-center justify-between gap-2 px-4 py-3 rounded-xl bg-white border border-gray-200 shadow-sm text-[14.5px]">
           <div className="flex items-center gap-2 text-gray-700">
             <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-emerald-500" />
             <span>{alertMsg.replace("__stage__", "")}</span>
           </div>
           {prevStage && (
-            <button onClick={handleUndo} className="shrink-0 text-[12px] font-semibold text-[#127EE3] hover:underline transition-colors">
+            <button onClick={handleUndo} className="shrink-0 text-[14px] font-semibold text-[#127EE3] hover:underline transition-colors">
               ย้อนกลับ
             </button>
           )}
@@ -1385,9 +1385,9 @@ function ManageContent({
       {/* Reviewer status panel — review stage only */}
       {localStage === "review" && (
         <div>
-          <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2.5">สถานะการพิจารณา</p>
+          <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-2.5">สถานะการพิจารณา</p>
           {reviewers.length === 0 ? (
-              <div className="rounded-xl border border-gray-200 px-4 py-5 text-[12.5px] text-gray-400 text-center bg-white">ยังไม่มีการส่งต่อให้ผู้พิจารณา</div>
+              <div className="rounded-xl border border-gray-200 px-4 py-5 text-[14.5px] text-gray-400 text-center bg-white">ยังไม่มีการส่งต่อให้ผู้พิจารณา</div>
             ) : (
               <div className="space-y-3">
                 {reviewers.map((r) => {
@@ -1402,11 +1402,11 @@ function ManageContent({
                     <div key={r.id} className="bg-white rounded-xl border border-gray-200 px-4 py-3.5 space-y-2.5">
                       {/* Name + badge */}
                       <div className="flex items-center justify-between gap-2">
-                        <p className="text-[13.5px] font-semibold text-[#1A1A2E] truncate">{r.name}</p>
-                        <span className={`shrink-0 inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${badge}`}>{r.status}</span>
+                        <p className="text-[15.5px] font-semibold text-[#1A1A2E] truncate">{r.name}</p>
+                        <span className={`shrink-0 inline-flex items-center px-2.5 py-0.5 rounded-full text-[13px] font-semibold border ${badge}`}>{r.status}</span>
                       </div>
                       {/* Meta: email · dept · ส่งเมื่อ · ตอบเมื่อ */}
-                      <p className="text-[11.5px] text-gray-400 leading-relaxed flex flex-wrap items-center gap-x-1.5 gap-y-0">
+                      <p className="text-[13.5px] text-gray-400 leading-relaxed flex flex-wrap items-center gap-x-1.5 gap-y-0">
                         <Mail className="w-3 h-3 flex-shrink-0" />
                         <span>{r.email}</span>
                         <span className="text-gray-300">·</span>
@@ -1420,15 +1420,15 @@ function ManageContent({
                       </p>
                       {/* Note */}
                       {r.note && (
-                        <p className="text-[12px] text-gray-600 bg-gray-50 rounded-lg px-3 py-2 leading-relaxed border border-gray-100">"{r.note}"</p>
+                        <p className="text-[14px] text-gray-600 bg-gray-50 rounded-lg px-3 py-2 leading-relaxed border border-gray-100">"{r.note}"</p>
                       )}
                       {/* Availability chips */}
                       {r.status === "สนใจเรียกสัมภาษณ์" && r.availabilitySlots && r.availabilitySlots.length > 0 && (
                         <div className="space-y-1.5">
-                          <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wide">ช่วงเวลาที่สะดวก</p>
+                          <p className="text-[13px] font-bold text-gray-400 uppercase tracking-wide">ช่วงเวลาที่สะดวก</p>
                           <div className="flex flex-wrap gap-1.5">
                             {r.availabilitySlots.map((s, i) => (
-                              <span key={i} className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white border border-gray-200 text-[11.5px] font-medium text-gray-600">
+                              <span key={i} className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white border border-gray-200 text-[13.5px] font-medium text-gray-600">
                                 <Clock className="w-3 h-3 flex-shrink-0 text-gray-400" />{s.date} {s.time}
                               </span>
                             ))}
@@ -1441,25 +1441,25 @@ function ManageContent({
                           {r.status === "รอพิจารณา" ? (
                             <>
                               <button onClick={() => openRecordModal(r.id)}
-                                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#00ADEF] text-[#00ADEF] text-[11.5px] font-semibold hover:bg-sky-50 transition-colors">
+                                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#00ADEF] text-[#00ADEF] text-[13.5px] font-semibold hover:bg-sky-50 transition-colors">
                                 <FileText className="w-3.5 h-3.5" />ระบุผล
                               </button>
                               <button onClick={() => {
                                 store.addActivity({ id: `a${Date.now()}`, actor: "สมศรี HR", actorInitials: "สร", actorColor: "bg-[#127EE3]", type: "email", text: `ส่งอีเมลเตือนผู้พิจารณา ${r.name}`, time: "เพิ่งเมื่อกี้" });
                                 setAlertMsg("ส่งอีเมลเตือนเรียบร้อยแล้ว");
-                              }} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 text-gray-500 text-[11.5px] font-medium hover:bg-gray-50 transition-colors">
+                              }} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 text-gray-500 text-[13.5px] font-medium hover:bg-gray-50 transition-colors">
                                 <Send className="w-3.5 h-3.5" />ส่งอีเมลเตือนอีกครั้ง
                               </button>
                               <button onClick={() => {
                                 navigator.clipboard.writeText(`https://superrecruit.example.com/review/${applicant.id}/${r.id}`);
                                 setAlertMsg("คัดลอกลิงก์พิจารณาเรียบร้อยแล้ว");
-                              }} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 text-gray-500 text-[11.5px] font-medium hover:bg-gray-50 transition-colors">
+                              }} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 text-gray-500 text-[13.5px] font-medium hover:bg-gray-50 transition-colors">
                                 <Copy className="w-3.5 h-3.5" />คัดลอกลิงก์พิจารณา
                               </button>
                             </>
                           ) : (
                             <button onClick={() => openRecordModal(r.id, r)}
-                              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-300 text-gray-600 text-[11.5px] font-semibold hover:bg-gray-50 transition-colors">
+                              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-300 text-gray-600 text-[13.5px] font-semibold hover:bg-gray-50 transition-colors">
                               <FileText className="w-3.5 h-3.5" />แก้ไขผล
                             </button>
                           )}
@@ -1469,16 +1469,16 @@ function ManageContent({
                       {isRecording && (
                         <div className="rounded-xl border border-gray-200 bg-white overflow-hidden mt-1">
                           <div className="px-4 py-2.5 bg-gray-50 border-b border-gray-100">
-                            <p className="text-[12.5px] font-bold text-[#1A1A2E]">{recordIsEdit ? "แก้ไขผลการพิจารณา" : "ระบุผลการพิจารณา"} — {r.name}</p>
+                            <p className="text-[14.5px] font-bold text-[#1A1A2E]">{recordIsEdit ? "แก้ไขผลการพิจารณา" : "ระบุผลการพิจารณา"} — {r.name}</p>
                           </div>
                           <div className="px-4 py-3 space-y-3">
                             {/* Status select */}
                             <div>
-                              <p className="text-[11.5px] font-semibold text-gray-500 mb-1.5">ผลการพิจารณา</p>
+                              <p className="text-[13.5px] font-semibold text-gray-500 mb-1.5">ผลการพิจารณา</p>
                               <div className="flex gap-2">
                                 {(["สนใจเรียกสัมภาษณ์", "ไม่สนใจเรียกสัมภาษณ์"] as const).map((s) => (
                                   <button key={s} onClick={() => setRecordStatus(s)}
-                                    className={`flex-1 py-2 rounded-xl border text-[12px] font-semibold transition-all ${recordStatus === s
+                                    className={`flex-1 py-2 rounded-xl border text-[14px] font-semibold transition-all ${recordStatus === s
                                       ? s === "สนใจเรียกสัมภาษณ์" ? "bg-emerald-50 border-emerald-400 text-emerald-700" : "bg-red-50 border-red-400 text-red-600"
                                       : "border-gray-200 text-gray-500 hover:border-gray-300"}`}>
                                     {s}
@@ -1489,33 +1489,33 @@ function ManageContent({
                             {/* Availability slots — shown only when interested */}
                             {recordStatus === "สนใจเรียกสัมภาษณ์" && (
                               <div className="space-y-2">
-                                <p className="text-[11.5px] font-semibold text-gray-500">ช่วงเวลาที่สะดวกนัดสัมภาษณ์</p>
+                                <p className="text-[13.5px] font-semibold text-gray-500">ช่วงเวลาที่สะดวกนัดสัมภาษณ์</p>
                                 {recordSlots.map((slot, i) => (
                                   <div key={i} className="flex gap-2 items-center">
-                                    <span className="text-[11px] text-gray-400 w-4 shrink-0">{i + 1}.</span>
+                                    <span className="text-[13px] text-gray-400 w-4 shrink-0">{i + 1}.</span>
                                     <input type="date" value={slot.date}
                                       onChange={(e) => setRecordSlots((prev) => prev.map((s, idx) => idx === i ? { ...s, date: e.target.value } : s))}
-                                      className="flex-1 px-2.5 py-1.5 text-[12px] bg-[#F0F2F5] rounded-lg border border-transparent focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all" />
+                                      className="flex-1 px-2.5 py-1.5 text-[14px] bg-[#F0F2F5] rounded-lg border border-transparent focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all" />
                                     <input type="time" value={slot.time}
                                       onChange={(e) => setRecordSlots((prev) => prev.map((s, idx) => idx === i ? { ...s, time: e.target.value } : s))}
-                                      className="w-24 px-2.5 py-1.5 text-[12px] bg-[#F0F2F5] rounded-lg border border-transparent focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all" />
+                                      className="w-24 px-2.5 py-1.5 text-[14px] bg-[#F0F2F5] rounded-lg border border-transparent focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all" />
                                   </div>
                                 ))}
                               </div>
                             )}
                             {/* Note */}
                             <div>
-                              <p className="text-[11.5px] font-semibold text-gray-500 mb-1.5">หมายเหตุ <span className="font-normal text-gray-400">(ไม่บังคับ)</span></p>
+                              <p className="text-[13.5px] font-semibold text-gray-500 mb-1.5">หมายเหตุ <span className="font-normal text-gray-400">(ไม่บังคับ)</span></p>
                               <textarea value={recordNote} onChange={(e) => setRecordNote(e.target.value)} rows={2}
                                 placeholder="บันทึกข้อความเพิ่มเติม..."
-                                className="w-full px-3 py-2 text-[12px] bg-[#F0F2F5] rounded-xl border border-transparent focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all placeholder:text-gray-400 resize-none" />
+                                className="w-full px-3 py-2 text-[14px] bg-[#F0F2F5] rounded-xl border border-transparent focus:outline-none focus:border-[#0DC2FF] focus:bg-white transition-all placeholder:text-gray-400 resize-none" />
                             </div>
                           </div>
                           <div className="flex justify-end gap-2 px-4 py-2.5 bg-gray-50 border-t border-gray-100">
                             <button onClick={() => setRecordingId(null)}
-                              className="px-3.5 py-1.5 rounded-lg border border-gray-200 text-[12px] text-gray-500 hover:bg-gray-100 transition-colors">ยกเลิก</button>
+                              className="px-3.5 py-1.5 rounded-lg border border-gray-200 text-[14px] text-gray-500 hover:bg-gray-100 transition-colors">ยกเลิก</button>
                             <button onClick={handleRecordSave} disabled={!recordStatus}
-                              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#127EE3] text-white text-[12px] font-bold hover:bg-[#0f6bc7] transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
+                              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#127EE3] text-white text-[14px] font-bold hover:bg-[#0f6bc7] transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
                               <CheckCircle2 className="w-3.5 h-3.5" />บันทึก
                             </button>
                           </div>
@@ -1534,13 +1534,13 @@ function ManageContent({
         <div className="space-y-3 mt-1">
           {reviewers.some((r) => r.status === "สนใจเรียกสัมภาษณ์" && r.availabilitySlots && r.availabilitySlots.length > 0) && (
             <div className="rounded-xl border border-gray-200 bg-white px-4 py-3 space-y-2">
-              <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">ช่วงเวลาที่ผู้พิจารณาสะดวก</p>
+              <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest">ช่วงเวลาที่ผู้พิจารณาสะดวก</p>
               {reviewers.filter((r) => r.status === "สนใจเรียกสัมภาษณ์" && r.availabilitySlots && r.availabilitySlots.length > 0).map((r) => (
                 <div key={r.id} className="space-y-1.5">
-                  <p className="text-[11.5px] font-medium text-gray-500">{r.name}</p>
+                  <p className="text-[13.5px] font-medium text-gray-500">{r.name}</p>
                   <div className="flex flex-wrap gap-1.5">
                     {r.availabilitySlots!.map((s, i) => (
-                      <span key={i} className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white border border-gray-200 text-[11.5px] font-medium text-gray-600">
+                      <span key={i} className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white border border-gray-200 text-[13.5px] font-medium text-gray-600">
                         <Clock className="w-3 h-3 flex-shrink-0 text-gray-400" />{s.date} {s.time}
                       </span>
                     ))}
@@ -1550,14 +1550,14 @@ function ManageContent({
             </div>
           )}
           <div className="rounded-xl border border-gray-200 bg-white px-4 py-3">
-            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2">ติดต่อผู้สมัคร</p>
-            <p className="text-[13px] font-semibold text-[#1A1A2E] mb-2">{applicant.name}</p>
+            <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-2">ติดต่อผู้สมัคร</p>
+            <p className="text-[15px] font-semibold text-[#1A1A2E] mb-2">{applicant.name}</p>
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="flex items-center gap-1.5 text-[12.5px] text-gray-700 font-medium">
+              <span className="flex items-center gap-1.5 text-[14.5px] text-gray-700 font-medium">
                 <Phone className="w-3.5 h-3.5 text-[#0DC2FF]" />เบอร์โทร: 081-234-5678
               </span>
               <button onClick={() => { navigator.clipboard.writeText("081-234-5678"); setAlertMsg("คัดลอกเบอร์โทรเรียบร้อยแล้ว"); }}
-                className="flex items-center gap-1 px-2 py-0.5 rounded-md border border-gray-200 text-[11px] text-gray-400 hover:bg-gray-50 transition-colors">
+                className="flex items-center gap-1 px-2 py-0.5 rounded-md border border-gray-200 text-[13px] text-gray-400 hover:bg-gray-50 transition-colors">
                 <Copy className="w-3 h-3" />คัดลอก
               </button>
               <button onClick={() => {
@@ -1569,16 +1569,16 @@ function ManageContent({
                   type: "note", text: "ติดต่อผู้สมัครไม่ได้ (ไม่รับสาย)", time: "เพิ่งเมื่อกี้",
                 });
                 setAlertMsg("บันทึกแล้ว");
-              }} className="flex items-center gap-1 px-2 py-0.5 rounded-md border border-red-200 text-[11px] text-red-400 hover:bg-red-50 transition-colors">
+              }} className="flex items-center gap-1 px-2 py-0.5 rounded-md border border-red-200 text-[13px] text-red-400 hover:bg-red-50 transition-colors">
                 <PhoneOff className="w-3 h-3" />ไม่รับสาย
               </button>
             </div>
             {callLogs.length > 0 && (
               <div className="mt-3 pt-3 border-t border-gray-100">
-                <p className="text-[10.5px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">ประวัติการติดต่อ</p>
+                <p className="text-[12px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">ประวัติการติดต่อ</p>
                 <ul className="space-y-1">
                   {callLogs.map((entry, i) => (
-                    <li key={entry.id} className="flex items-center gap-1.5 text-[11.5px] text-gray-400">
+                    <li key={entry.id} className="flex items-center gap-1.5 text-[13.5px] text-gray-400">
                       <PhoneOff className="w-3 h-3 flex-shrink-0 text-red-300" />
                       <span>โทรเมื่อ {entry.label} — <span className="text-red-400">ไม่รับสาย</span> · <button
                         onClick={() => {
@@ -1591,7 +1591,7 @@ function ManageContent({
                             setAlertMsg(null);
                           }, 3000);
                         }}
-                        className="text-[10.5px] text-gray-400 hover:text-red-500 transition-colors underline-offset-2 hover:underline"
+                        className="text-[12px] text-gray-400 hover:text-red-500 transition-colors underline-offset-2 hover:underline"
                       >ลบ</button></span>
                     </li>
                   ))}
@@ -1599,7 +1599,7 @@ function ManageContent({
               </div>
             )}
             {undoEntry && alertMsg === "__undo__" && (
-              <div className="mt-2 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-gray-200 shadow-sm text-[11.5px]">
+              <div className="mt-2 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-gray-200 shadow-sm text-[13.5px]">
                 <span className="flex-1 text-gray-600">ลบแล้ว</span>
                 <button
                   onClick={() => {
@@ -1622,7 +1622,7 @@ function ManageContent({
 
       {/* Actions */}
       <div>
-        <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-3">ดำเนินการ</p>
+        <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-3">ดำเนินการ</p>
 
         {/* ใหม่ */}
         {localStage === "new" && (
@@ -1686,16 +1686,16 @@ function ManageContent({
                   <div className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
                     <div className="flex-1">
-                      <p className="text-[13.5px] font-bold text-gray-900">นัดสัมภาษณ์เรียบร้อยแล้ว</p>
-                      <p className="text-[13px] text-gray-600 mt-0.5">
+                      <p className="text-[15.5px] font-bold text-gray-900">นัดสัมภาษณ์เรียบร้อยแล้ว</p>
+                      <p className="text-[15px] text-gray-600 mt-0.5">
                         {toThaiDate(scheduledInfo.date)} · {scheduledInfo.time}–{endTime} น. · {scheduledInfo.duration} นาที · {typeLabel(scheduledInfo.type)}
                       </p>
                       {scheduledInfo.interviewers.length > 0 && (
                         <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
-                          <span className="text-[12px] text-gray-500 font-medium">ผู้สัมภาษณ์:</span>
+                          <span className="text-[14px] text-gray-500 font-medium">ผู้สัมภาษณ์:</span>
                           {scheduledInfo.interviewers.map((iv) => (
-                            <span key={iv.id} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium border border-gray-200 bg-gray-50 text-gray-700">
-                              <span className={`w-3.5 h-3.5 rounded-full flex items-center justify-center text-[8px] font-bold ${iv.color}`}>{iv.initials}</span>
+                            <span key={iv.id} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[13px] font-medium border border-gray-200 bg-gray-50 text-gray-700">
+                              <span className={`w-3.5 h-3.5 rounded-full flex items-center justify-center text-[9px] font-bold ${iv.color}`}>{iv.initials}</span>
                               {iv.fullName}
                             </span>
                           ))}
@@ -1704,16 +1704,16 @@ function ManageContent({
                       {scheduledInfo.emailSent && (
                         <div className="flex items-center gap-1.5 mt-1.5">
                           <Mail className="w-3.5 h-3.5 text-gray-400" />
-                          <p className="text-[12px] text-gray-500">ส่งอีเมลแล้ว</p>
+                          <p className="text-[14px] text-gray-500">ส่งอีเมลแล้ว</p>
                         </div>
                       )}
                       <div className="mt-3 flex gap-2 flex-wrap">
-                        <a href={googleLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-[12px] font-medium text-gray-700 hover:border-[#127EE3] hover:text-[#127EE3] transition-colors">
+                        <a href={googleLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-[14px] font-medium text-gray-700 hover:border-[#127EE3] hover:text-[#127EE3] transition-colors">
                           <img src="https://www.google.com/favicon.ico" alt="" className="w-3.5 h-3.5 rounded-sm" />
                           เพิ่มใน Google Calendar
                           <ExternalLink className="w-3 h-3" />
                         </a>
-                        <a href={outlookLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-[12px] font-medium text-gray-700 hover:border-blue-500 hover:text-blue-600 transition-colors">
+                        <a href={outlookLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-gray-200 text-[14px] font-medium text-gray-700 hover:border-blue-500 hover:text-blue-600 transition-colors">
                           <svg viewBox="0 0 32 32" className="w-3.5 h-3.5" fill="none"><rect width="32" height="32" rx="4" fill="#0078D4" /><path d="M6 10h12v12H6z" fill="white" opacity="0.9" /><path d="M20 8h6v16h-6z" fill="white" opacity="0.6" /></svg>
                           เพิ่มใน Outlook
                           <ExternalLink className="w-3 h-3" />
@@ -1742,40 +1742,40 @@ function ManageContent({
               <div className="px-4 py-3 bg-gray-50 border-b border-gray-100 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-gray-400" />
-                  <span className="text-[12.5px] font-bold text-gray-900">บันทึกผลสัมภาษณ์</span>
+                  <span className="text-[14.5px] font-bold text-gray-900">บันทึกผลสัมภาษณ์</span>
                 </div>
                 <button onClick={() => handleOpenResult()}
-                  className="flex items-center gap-1 px-2.5 py-1 rounded-lg border border-gray-200 text-[11.5px] text-gray-500 hover:border-[#127EE3] hover:text-[#127EE3] transition-colors bg-white">
+                  className="flex items-center gap-1 px-2.5 py-1 rounded-lg border border-gray-200 text-[13.5px] text-gray-500 hover:border-[#127EE3] hover:text-[#127EE3] transition-colors bg-white">
                   <Edit2 className="w-3 h-3" />แก้ไขผลสัมภาษณ์
                 </button>
               </div>
               {savedResult ? (
                 <div className="px-4 py-4 space-y-3">
                   <div className="flex items-center gap-2">
-                    <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest w-24 flex-shrink-0">ผลสัมภาษณ์</span>
+                    <span className="text-[13px] font-bold text-gray-400 uppercase tracking-widest w-24 flex-shrink-0">ผลสัมภาษณ์</span>
                     {savedResult.outcome === "passed" && (
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-semibold bg-teal-50 text-teal-700 border border-teal-100">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[14px] font-semibold bg-teal-50 text-teal-700 border border-teal-100">
                         <CheckCircle2 className="w-3 h-3" />ผ่านสัมภาษณ์
                       </span>
                     )}
                     {savedResult.outcome === "wait_compare" && (
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-semibold bg-amber-50 text-amber-700 border border-amber-100">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[14px] font-semibold bg-amber-50 text-amber-700 border border-amber-100">
                         <Clock className="w-3 h-3" />รอเปรียบเทียบ
                       </span>
                     )}
                     {savedResult.outcome === "rejected" && (
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-semibold bg-red-50 text-red-600 border border-red-100">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[14px] font-semibold bg-red-50 text-red-600 border border-red-100">
                         <ThumbsDown className="w-3 h-3" />ไม่ผ่านสัมภาษณ์
                       </span>
                     )}
                   </div>
                   {savedResult.interviewers.length > 0 && (
                     <div className="flex items-start gap-2">
-                      <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest w-24 flex-shrink-0 mt-0.5">ผู้สัมภาษณ์</span>
+                      <span className="text-[13px] font-bold text-gray-400 uppercase tracking-widest w-24 flex-shrink-0 mt-0.5">ผู้สัมภาษณ์</span>
                       <div className="flex flex-wrap gap-1.5">
                         {savedResult.interviewers.map((iv) => (
-                          <span key={iv.id} className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11.5px] font-medium border ${iv.color} border-current/20`}>
-                            <span className={`w-3.5 h-3.5 rounded-full flex items-center justify-center text-[8px] font-bold ${iv.color}`}>{iv.initials}</span>
+                          <span key={iv.id} className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[13.5px] font-medium border ${iv.color} border-current/20`}>
+                            <span className={`w-3.5 h-3.5 rounded-full flex items-center justify-center text-[9px] font-bold ${iv.color}`}>{iv.initials}</span>
                             {iv.fullName}
                           </span>
                         ))}
@@ -1784,16 +1784,16 @@ function ManageContent({
                   )}
                   {savedResult.comments && (
                     <div className="flex items-start gap-2">
-                      <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest w-24 flex-shrink-0 mt-0.5">ความคิดเห็น</span>
-                      <p className="text-[12.5px] text-gray-700 leading-relaxed flex-1">{savedResult.comments}</p>
+                      <span className="text-[13px] font-bold text-gray-400 uppercase tracking-widest w-24 flex-shrink-0 mt-0.5">ความคิดเห็น</span>
+                      <p className="text-[14.5px] text-gray-700 leading-relaxed flex-1">{savedResult.comments}</p>
                     </div>
                   )}
                   {savedResult.attachmentNames.length > 0 && (
                     <div className="flex items-start gap-2">
-                      <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest w-24 flex-shrink-0 mt-0.5">ไฟล์แนบ</span>
+                      <span className="text-[13px] font-bold text-gray-400 uppercase tracking-widest w-24 flex-shrink-0 mt-0.5">ไฟล์แนบ</span>
                       <div className="flex flex-col gap-1">
                         {savedResult.attachmentNames.map((name, i) => (
-                          <span key={i} className="flex items-center gap-1.5 text-[12px] text-[#127EE3]">
+                          <span key={i} className="flex items-center gap-1.5 text-[14px] text-[#127EE3]">
                             <Paperclip className="w-3 h-3 flex-shrink-0" />{name}
                           </span>
                         ))}
@@ -1801,15 +1801,15 @@ function ManageContent({
                     </div>
                   )}
                   <div className="flex items-center gap-2">
-                    <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest w-24 flex-shrink-0">บันทึกเมื่อ</span>
-                    <span className="text-[12px] text-gray-400">{savedResult.savedAt}</span>
+                    <span className="text-[13px] font-bold text-gray-400 uppercase tracking-widest w-24 flex-shrink-0">บันทึกเมื่อ</span>
+                    <span className="text-[14px] text-gray-400">{savedResult.savedAt}</span>
                   </div>
                 </div>
               ) : (
                 <div className="px-4 py-5 text-center">
-                  <p className="text-[12.5px] text-gray-400">ยังไม่มีบันทึกผลสัมภาษณ์</p>
+                  <p className="text-[14.5px] text-gray-400">ยังไม่มีบันทึกผลสัมภาษณ์</p>
                   <button onClick={handleOpenResult}
-                    className="mt-2 text-[12px] font-semibold text-[#127EE3] hover:text-[#0f6bc7] transition-colors">
+                    className="mt-2 text-[14px] font-semibold text-[#127EE3] hover:text-[#0f6bc7] transition-colors">
                     + บันทึกผลสัมภาษณ์
                   </button>
                 </div>
@@ -1837,7 +1837,7 @@ function ManageContent({
         {localStage === "hired" && (
           <div className="flex items-center gap-2.5 px-4 py-3.5 rounded-xl bg-white border border-gray-200">
             <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-            <p className="text-[13px] text-gray-700 font-medium">ผู้สมัครรายนี้ถูกบันทึกเป็นพนักงานเรียบร้อยแล้ว</p>
+            <p className="text-[15px] text-gray-700 font-medium">ผู้สมัครรายนี้ถูกบันทึกเป็นพนักงานเรียบร้อยแล้ว</p>
           </div>
         )}
 
@@ -1847,9 +1847,9 @@ function ManageContent({
             <div className="flex items-start gap-2.5 px-4 py-3 rounded-xl bg-white border border-gray-200">
               <ThumbsDown className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-[13px] text-gray-700 font-medium">ไม่ผ่าน / ยกเลิก</p>
+                <p className="text-[15px] text-gray-700 font-medium">ไม่ผ่าน / ยกเลิก</p>
                 {rejectionReason && (
-                  <p className="text-[12px] text-gray-500 mt-0.5">เหตุผล: {rejectionReason}</p>
+                  <p className="text-[14px] text-gray-500 mt-0.5">เหตุผล: {rejectionReason}</p>
                 )}
               </div>
             </div>
@@ -1867,12 +1867,12 @@ function ManageContent({
       {activeAction === "refer" && (
         <div className="rounded-2xl border border-gray-200">
           <div className="px-4 py-3 bg-gray-50 border-b border-gray-100 rounded-t-2xl">
-            <span className="text-[12.5px] font-bold text-[#1A1A2E]">ส่งต่อให้พิจารณา</span>
+            <span className="text-[14.5px] font-bold text-[#1A1A2E]">ส่งต่อให้พิจารณา</span>
           </div>
           <div className="divide-y divide-gray-100">
             <div className="px-4 py-3">
               <div className="flex items-start gap-3">
-                <span className="text-[11.5px] font-bold text-gray-400 uppercase tracking-wide w-10 flex-shrink-0 mt-2.5">ถึง</span>
+                <span className="text-[13.5px] font-bold text-gray-400 uppercase tracking-wide w-10 flex-shrink-0 mt-2.5">ถึง</span>
                 <div className="flex-1">
                   <ReferToInput
                     value={referQuery}
@@ -1885,7 +1885,7 @@ function ManageContent({
               </div>
             </div>
             <div className="flex items-center gap-3 px-4 py-3">
-              <span className="text-[11.5px] font-bold text-gray-400 uppercase tracking-wide w-10 flex-shrink-0">เทมเพลต</span>
+              <span className="text-[13.5px] font-bold text-gray-400 uppercase tracking-wide w-10 flex-shrink-0">เทมเพลต</span>
               <select
                 value={referTemplateId}
                 onChange={(e) => {
@@ -1896,7 +1896,7 @@ function ManageContent({
                     if (tpl) { setReferEmailSubject(tpl.subject); setReferEmailBody(tpl.body); }
                   }
                 }}
-                className="flex-1 text-[13px] focus:outline-none bg-transparent text-[#1A1A2E] cursor-pointer"
+                className="flex-1 text-[15px] focus:outline-none bg-transparent text-[#1A1A2E] cursor-pointer"
               >
                 <option value="">— เลือกเทมเพลต (ไม่บังคับ) —</option>
                 {emailTemplates.map((t) => (
@@ -1905,17 +1905,17 @@ function ManageContent({
               </select>
             </div>
             <div className="flex items-center gap-3 px-4 py-3">
-              <span className="text-[11.5px] font-bold text-gray-400 uppercase tracking-wide w-10 flex-shrink-0">เรื่อง</span>
-              <input value={referEmailSubject} onChange={(e) => setReferEmailSubject(e.target.value)} placeholder="หัวข้ออีเมล..." className="flex-1 text-[13px] focus:outline-none placeholder:text-gray-300" />
+              <span className="text-[13.5px] font-bold text-gray-400 uppercase tracking-wide w-10 flex-shrink-0">เรื่อง</span>
+              <input value={referEmailSubject} onChange={(e) => setReferEmailSubject(e.target.value)} placeholder="หัวข้ออีเมล..." className="flex-1 text-[15px] focus:outline-none placeholder:text-gray-300" />
             </div>
-            <textarea value={referEmailBody} onChange={(e) => setReferEmailBody(e.target.value)} rows={5} placeholder="เนื้อหาอีเมล..." className="w-full px-4 py-3 text-[13px] focus:outline-none resize-none placeholder:text-gray-300" />
+            <textarea value={referEmailBody} onChange={(e) => setReferEmailBody(e.target.value)} rows={5} placeholder="เนื้อหาอีเมล..." className="w-full px-4 py-3 text-[15px] focus:outline-none resize-none placeholder:text-gray-300" />
           </div>
           <div className="flex items-center justify-between px-4 py-3 bg-gray-50 border-t border-gray-100 rounded-b-2xl">
-            <p className="text-[11.5px] text-gray-400">จาก: HR Team</p>
+            <p className="text-[13.5px] text-gray-400">จาก: HR Team</p>
             <div className="flex items-center gap-2">
-              <button onClick={() => setActiveAction(null)} className="px-4 py-2 rounded-xl border border-gray-200 text-[12.5px] text-gray-500 hover:bg-gray-100 transition-colors">ยกเลิก</button>
+              <button onClick={() => setActiveAction(null)} className="px-4 py-2 rounded-xl border border-gray-200 text-[14.5px] text-gray-500 hover:bg-gray-100 transition-colors">ยกเลิก</button>
               <button onClick={handleReferSend} disabled={referContacts.length === 0}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#127EE3] text-white text-[12.5px] font-bold hover:bg-[#0f6bc7] transition-colors disabled:opacity-40">
+                className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#127EE3] text-white text-[14.5px] font-bold hover:bg-[#0f6bc7] transition-colors disabled:opacity-40">
                 <Send className="w-3.5 h-3.5" />ส่งและย้ายสถานะ
               </button>
             </div>
@@ -1927,7 +1927,7 @@ function ManageContent({
       {activeAction === "schedule" && (
         <div className="rounded-2xl border border-gray-200 overflow-hidden">
           <div className="px-4 py-3 bg-gray-50 border-b border-gray-100 flex items-center justify-between">
-            <span className="text-[12.5px] font-bold text-[#1A1A2E]">นัดสัมภาษณ์</span>
+            <span className="text-[14.5px] font-bold text-[#1A1A2E]">นัดสัมภาษณ์</span>
             <button onClick={() => setActiveAction(null)} className="w-6 h-6 flex items-center justify-center rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-200 transition-colors">
               <X className="w-3.5 h-3.5" />
             </button>
@@ -1950,7 +1950,7 @@ function ManageContent({
       {activeAction === "reschedule" && (
         <div className="rounded-2xl border border-gray-200 overflow-hidden">
           <div className="px-4 py-3 bg-gray-50 border-b border-gray-100 flex items-center justify-between">
-            <span className="text-[12.5px] font-bold text-gray-900">เปลี่ยนวันนัดสัมภาษณ์</span>
+            <span className="text-[14.5px] font-bold text-gray-900">เปลี่ยนวันนัดสัมภาษณ์</span>
             <button onClick={() => setActiveAction(null)} className="w-6 h-6 flex items-center justify-center rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-200 transition-colors">
               <X className="w-3.5 h-3.5" />
             </button>
@@ -1986,7 +1986,7 @@ function ManageContent({
         return (
           <div className="rounded-2xl border border-gray-200 overflow-hidden">
             <div className="px-4 py-3 bg-gray-50 border-b border-gray-100 flex items-center justify-between">
-              <span className="text-[12.5px] font-bold text-[#1A1A2E]">บันทึกผลสัมภาษณ์</span>
+              <span className="text-[14.5px] font-bold text-[#1A1A2E]">บันทึกผลสัมภาษณ์</span>
               <button onClick={() => setActiveAction(null)} className="w-6 h-6 rounded-lg hover:bg-gray-200 flex items-center justify-center transition-colors">
                 <X className="w-3.5 h-3.5 text-gray-400" />
               </button>
@@ -1994,13 +1994,13 @@ function ManageContent({
             <div className="px-4 py-4 space-y-4">
               {/* Result outcome */}
               <div>
-                <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2">ผลการสัมภาษณ์</p>
+                <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-2">ผลการสัมภาษณ์</p>
                 <div className="grid grid-cols-3 gap-2">
                   {[{ v: "passed" as const, label: "ผ่านสัมภาษณ์", color: "border-emerald-300 text-emerald-700 bg-emerald-50" },
                     { v: "wait_compare" as const, label: "รอเปรียบเทียบ", color: "border-amber-300 text-amber-700 bg-amber-50" },
                     { v: "rejected" as const, label: "ไม่ผ่าน", color: "border-red-300 text-red-600 bg-red-50" }].map(({ v, label, color }) => (
                     <button key={v} onClick={() => setInterviewResult(v)}
-                      className={`flex items-center gap-2 px-3 py-3 rounded-xl border text-[12.5px] font-medium transition-all ${interviewResult === v ? color : "border-gray-200 text-gray-500 bg-white hover:border-gray-300"}`}>
+                      className={`flex items-center gap-2 px-3 py-3 rounded-xl border text-[14.5px] font-medium transition-all ${interviewResult === v ? color : "border-gray-200 text-gray-500 bg-white hover:border-gray-300"}`}>
                       <div className={`w-4 h-4 rounded-full border-2 flex-shrink-0 ${interviewResult === v ? "border-current bg-current" : "border-gray-300"}`} />
                       {label}
                     </button>
@@ -2010,11 +2010,11 @@ function ManageContent({
 
               {/* Interviewers */}
               <div className="relative">
-                <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2">ผู้สัมภาษณ์</p>
+                <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-2">ผู้สัมภาษณ์</p>
                 {resultInterviewers.length > 0 && (
                   <div className="flex flex-wrap gap-1.5 mb-2">
                     {resultInterviewers.map((c) => (
-                      <span key={c.id} className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-medium ${c.color}`}>
+                      <span key={c.id} className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[14px] font-medium ${c.color}`}>
                         {c.fullName} · {c.department}
                         <button onClick={() => setResultInterviewers((prev) => prev.filter((x) => x.id !== c.id))} className="w-3.5 h-3.5 rounded-full hover:bg-black/10 flex items-center justify-center transition-colors">
                           <X className="w-2.5 h-2.5" />
@@ -2025,7 +2025,7 @@ function ManageContent({
                 )}
                 <button
                   onClick={() => { setResultInterviewerDropdownOpen((v) => !v); setResultInterviewerQuery(""); }}
-                  className="w-full flex items-center gap-2 px-3.5 py-2.5 rounded-xl border border-gray-200 bg-[#F0F2F5] text-[13px] text-gray-400 hover:border-gray-300 transition-colors text-left"
+                  className="w-full flex items-center gap-2 px-3.5 py-2.5 rounded-xl border border-gray-200 bg-[#F0F2F5] text-[15px] text-gray-400 hover:border-gray-300 transition-colors text-left"
                 >
                   <Search className="w-3.5 h-3.5 flex-shrink-0" />
                   <span className="flex-1">{resultInterviewers.length > 0 ? "เพิ่มผู้สัมภาษณ์" : "เลือกผู้สัมภาษณ์"}</span>
@@ -2036,20 +2036,20 @@ function ManageContent({
                     <div className="flex items-center gap-2 px-3 py-2.5 border-b border-gray-100">
                       <Search className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
                       <input autoFocus value={resultInterviewerQuery} onChange={(e) => setResultInterviewerQuery(e.target.value)}
-                        placeholder="ค้นหาชื่อหรือแผนก..." className="flex-1 text-[13px] focus:outline-none placeholder:text-gray-300" />
+                        placeholder="ค้นหาชื่อหรือแผนก..." className="flex-1 text-[15px] focus:outline-none placeholder:text-gray-300" />
                     </div>
                     <div className="max-h-[180px] overflow-y-auto">
                       {filteredResultInterviewers.length === 0 ? (
-                        <p className="text-[12.5px] text-gray-400 text-center py-4">ไม่พบรายชื่อ</p>
+                        <p className="text-[14.5px] text-gray-400 text-center py-4">ไม่พบรายชื่อ</p>
                       ) : filteredResultInterviewers.map((c) => (
                         <button key={c.id}
                           onClick={() => { setResultInterviewers((prev) => [...prev, c]); setResultInterviewerQuery(""); setResultInterviewerDropdownOpen(false); }}
                           className="w-full flex items-center gap-3 px-3.5 py-2.5 hover:bg-[#F0F8FF] transition-colors text-left"
                         >
-                          <span className={`w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold flex-shrink-0 ${c.color}`}>{c.initials}</span>
+                          <span className={`w-7 h-7 rounded-full flex items-center justify-center text-[13px] font-bold flex-shrink-0 ${c.color}`}>{c.initials}</span>
                           <div className="flex-1 min-w-0">
-                            <p className="text-[13px] font-semibold text-[#1A1A2E] truncate">{c.fullName}</p>
-                            <p className="text-[11.5px] text-gray-400 truncate">{c.department} · {c.title}</p>
+                            <p className="text-[15px] font-semibold text-[#1A1A2E] truncate">{c.fullName}</p>
+                            <p className="text-[13.5px] text-gray-400 truncate">{c.department} · {c.title}</p>
                           </div>
                         </button>
                       ))}
@@ -2060,45 +2060,45 @@ function ManageContent({
 
               {/* Comments */}
               <div>
-                <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2">ความคิดเห็นจากการสัมภาษณ์</p>
+                <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-2">ความคิดเห็นจากการสัมภาษณ์</p>
                 <textarea
                   value={resultComments}
                   onChange={(e) => setResultComments(e.target.value)}
                   rows={4}
                   placeholder="เช่น จุดแข็ง จุดที่ควรพัฒนา ความเหมาะสมกับตำแหน่ง"
-                  className="w-full text-[13px] text-gray-700 bg-[#F0F2F5] border border-transparent rounded-xl px-3.5 py-3 resize-none focus:outline-none focus:border-[#127EE3] focus:bg-white transition-all placeholder:text-gray-300"
+                  className="w-full text-[15px] text-gray-700 bg-[#F0F2F5] border border-transparent rounded-xl px-3.5 py-3 resize-none focus:outline-none focus:border-[#127EE3] focus:bg-white transition-all placeholder:text-gray-300"
                 />
               </div>
 
               {/* Attachments */}
               <div>
-                <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2">ไฟล์แนบ</p>
+                <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-2">ไฟล์แนบ</p>
                 {resultAttachments.length > 0 && (
                   <div className="space-y-1.5 mb-2">
                     {resultAttachments.map((f, i) => (
                       <div key={i} className="flex items-center gap-2 px-3 py-2 bg-gray-50 rounded-xl border border-gray-200">
                         <Paperclip className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
-                        <span className="flex-1 text-[12.5px] text-[#1A1A2E] truncate">{f.name}</span>
+                        <span className="flex-1 text-[14.5px] text-[#1A1A2E] truncate">{f.name}</span>
                         <button onClick={() => setResultAttachments((prev) => prev.filter((_, j) => j !== i))}
-                          className="text-[11px] text-red-400 hover:text-red-600 font-medium flex-shrink-0 transition-colors">ลบ</button>
+                          className="text-[13px] text-red-400 hover:text-red-600 font-medium flex-shrink-0 transition-colors">ลบ</button>
                       </div>
                     ))}
                   </div>
                 )}
-                <label className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl border border-dashed border-gray-300 text-[12.5px] text-gray-500 hover:border-[#127EE3] hover:text-[#127EE3] cursor-pointer transition-colors bg-white">
+                <label className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl border border-dashed border-gray-300 text-[14.5px] text-gray-500 hover:border-[#127EE3] hover:text-[#127EE3] cursor-pointer transition-colors bg-white">
                   <Upload className="w-3.5 h-3.5 flex-shrink-0" />
                   + แนบไฟล์
                   <input type="file" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" className="hidden"
                     onChange={(e) => { if (e.target.files) setResultAttachments((prev) => [...prev, ...Array.from(e.target.files!)]); e.target.value = ""; }} />
                 </label>
-                <p className="text-[11px] text-gray-400 mt-1">รองรับ PDF, รูปภาพ, DOC</p>
+                <p className="text-[13px] text-gray-400 mt-1">รองรับ PDF, รูปภาพ, DOC</p>
               </div>
             </div>
 
             <div className="flex justify-end gap-2 px-4 py-3 bg-gray-50 border-t border-gray-100">
-              <button onClick={() => setActiveAction(null)} className="px-4 py-2 rounded-xl border border-gray-200 text-[12.5px] text-gray-500 hover:bg-gray-100 transition-colors">ยกเลิก</button>
+              <button onClick={() => setActiveAction(null)} className="px-4 py-2 rounded-xl border border-gray-200 text-[14.5px] text-gray-500 hover:bg-gray-100 transition-colors">ยกเลิก</button>
               <button onClick={handleResultSave} disabled={!interviewResult}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#127EE3] text-white text-[12.5px] font-bold hover:bg-[#0f6bc7] transition-colors disabled:opacity-40">
+                className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#127EE3] text-white text-[14.5px] font-bold hover:bg-[#0f6bc7] transition-colors disabled:opacity-40">
                 <CheckCircle2 className="w-3.5 h-3.5" />บันทึกผล
               </button>
             </div>
@@ -2110,14 +2110,14 @@ function ManageContent({
       {activeAction === "offer" && (
         <div className="rounded-2xl border border-gray-200 overflow-hidden">
           <div className="px-4 py-3 bg-gray-50 border-b border-gray-100">
-            <span className="text-[12.5px] font-bold text-[#1A1A2E]">ยืนยันการส่ง Offer</span>
+            <span className="text-[14.5px] font-bold text-[#1A1A2E]">ยืนยันการส่ง Offer</span>
           </div>
           <div className="px-4 py-4">
-            <p className="text-[13px] text-gray-600">ยืนยันที่จะย้ายผู้สมัครรายนี้ไปสถานะ <span className="font-semibold text-[#1A1A2E]">Offer</span>?</p>
+            <p className="text-[15px] text-gray-600">ยืนยันที่จะย้ายผู้สมัครรายนี้ไปสถานะ <span className="font-semibold text-[#1A1A2E]">Offer</span>?</p>
           </div>
           <div className="flex justify-end gap-2 px-4 py-3 bg-gray-50 border-t border-gray-100">
-            <button onClick={() => setActiveAction(null)} className="px-4 py-2 rounded-xl border border-gray-200 text-[12.5px] text-gray-500 hover:bg-gray-100 transition-colors">ยกเลิก</button>
-            <button onClick={handleOfferConfirm} className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#127EE3] text-white text-[12.5px] font-bold hover:bg-[#0f6bc7] transition-colors">
+            <button onClick={() => setActiveAction(null)} className="px-4 py-2 rounded-xl border border-gray-200 text-[14.5px] text-gray-500 hover:bg-gray-100 transition-colors">ยกเลิก</button>
+            <button onClick={handleOfferConfirm} className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#127EE3] text-white text-[14.5px] font-bold hover:bg-[#0f6bc7] transition-colors">
               <CheckCircle2 className="w-3.5 h-3.5" />ยืนยัน
             </button>
           </div>
@@ -2128,14 +2128,14 @@ function ManageContent({
       {activeAction === "hire" && (
         <div className="rounded-2xl border border-gray-200 overflow-hidden">
           <div className="px-4 py-3 bg-gray-50 border-b border-gray-100">
-            <span className="text-[12.5px] font-bold text-[#1A1A2E]">ยืนยันรับเข้าทำงาน</span>
+            <span className="text-[14.5px] font-bold text-[#1A1A2E]">ยืนยันรับเข้าทำงาน</span>
           </div>
           <div className="px-4 py-4">
-            <p className="text-[13px] text-gray-600">ยืนยันที่จะบันทึกสถานะ <span className="font-semibold text-[#1A1A2E]">{applicant.name}</span> เป็น <span className="font-semibold text-emerald-700">รับเข้าทำงาน</span>?</p>
+            <p className="text-[15px] text-gray-600">ยืนยันที่จะบันทึกสถานะ <span className="font-semibold text-[#1A1A2E]">{applicant.name}</span> เป็น <span className="font-semibold text-emerald-700">รับเข้าทำงาน</span>?</p>
           </div>
           <div className="flex justify-end gap-2 px-4 py-3 bg-gray-50 border-t border-gray-100">
-            <button onClick={() => setActiveAction(null)} className="px-4 py-2 rounded-xl border border-gray-200 text-[12.5px] text-gray-500 hover:bg-gray-100 transition-colors">ยกเลิก</button>
-            <button onClick={handleHireConfirm} className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-500 text-white text-[12.5px] font-bold hover:bg-emerald-600 transition-colors">
+            <button onClick={() => setActiveAction(null)} className="px-4 py-2 rounded-xl border border-gray-200 text-[14.5px] text-gray-500 hover:bg-gray-100 transition-colors">ยกเลิก</button>
+            <button onClick={handleHireConfirm} className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-500 text-white text-[14.5px] font-bold hover:bg-emerald-600 transition-colors">
               <CheckCircle2 className="w-3.5 h-3.5" />ยืนยันรับเข้าทำงาน
             </button>
           </div>
@@ -2146,14 +2146,14 @@ function ManageContent({
       {activeAction === "emailCompose" && (
         <div className="rounded-2xl border border-gray-200 overflow-hidden">
           <div className="px-4 py-3 bg-gray-50 border-b border-gray-100">
-            <span className="text-[12.5px] font-bold text-[#1A1A2E]">ส่งอีเมลหาผู้สมัคร</span>
+            <span className="text-[14.5px] font-bold text-[#1A1A2E]">ส่งอีเมลหาผู้สมัคร</span>
           </div>
           <div className="px-4 py-3 border-b border-gray-100 bg-white">
-            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wide mb-2">เลือก Template</p>
+            <p className="text-[13px] font-bold text-gray-400 uppercase tracking-wide mb-2">เลือก Template</p>
             <div className="flex flex-wrap gap-1.5">
               {EMAIL_TEMPLATES_MANAGE.map((t) => (
                 <button key={t.key} onClick={() => applyTemplate(t.key)}
-                  className={`px-3 py-1.5 rounded-lg text-[12px] font-semibold transition-all border ${selectedTemplate === t.key ? "bg-[#127EE3] text-white border-[#127EE3]" : "bg-white border-gray-200 text-gray-500 hover:border-[#127EE3]/40 hover:text-[#127EE3]"}`}>
+                  className={`px-3 py-1.5 rounded-lg text-[14px] font-semibold transition-all border ${selectedTemplate === t.key ? "bg-[#127EE3] text-white border-[#127EE3]" : "bg-white border-gray-200 text-gray-500 hover:border-[#127EE3]/40 hover:text-[#127EE3]"}`}>
                   {t.label}
                 </button>
               ))}
@@ -2161,23 +2161,23 @@ function ManageContent({
           </div>
           <div className="divide-y divide-gray-100">
             <div className="flex items-center gap-3 px-4 py-3">
-              <span className="text-[11.5px] font-bold text-gray-400 uppercase tracking-wide w-10 flex-shrink-0">ถึง</span>
-              <input value={emailTo} onChange={(e) => setEmailTo(e.target.value)} className="flex-1 text-[13px] text-[#1A1A2E] focus:outline-none" />
+              <span className="text-[13.5px] font-bold text-gray-400 uppercase tracking-wide w-10 flex-shrink-0">ถึง</span>
+              <input value={emailTo} onChange={(e) => setEmailTo(e.target.value)} className="flex-1 text-[15px] text-[#1A1A2E] focus:outline-none" />
             </div>
             <div className="flex items-center gap-3 px-4 py-3">
-              <span className="text-[11.5px] font-bold text-gray-400 uppercase tracking-wide w-10 flex-shrink-0">เรื่อง</span>
-              <input value={emailSubject} onChange={(e) => setEmailSubject(e.target.value)} placeholder="หัวข้ออีเมล" className="flex-1 text-[13px] focus:outline-none placeholder:text-gray-300" />
+              <span className="text-[13.5px] font-bold text-gray-400 uppercase tracking-wide w-10 flex-shrink-0">เรื่อง</span>
+              <input value={emailSubject} onChange={(e) => setEmailSubject(e.target.value)} placeholder="หัวข้ออีเมล" className="flex-1 text-[15px] focus:outline-none placeholder:text-gray-300" />
             </div>
             <textarea value={emailBody} onChange={(e) => setEmailBody(e.target.value)}
               placeholder="เขียนข้อความ..." rows={6}
-              className="w-full px-4 py-3 text-[13px] focus:outline-none resize-none placeholder:text-gray-300" />
+              className="w-full px-4 py-3 text-[15px] focus:outline-none resize-none placeholder:text-gray-300" />
           </div>
           <div className="flex items-center justify-between px-4 py-3 bg-gray-50 border-t border-gray-100">
-            <p className="text-[11.5px] text-gray-400">จาก: HR Team</p>
+            <p className="text-[13.5px] text-gray-400">จาก: HR Team</p>
             <div className="flex items-center gap-2">
-              <button onClick={() => setActiveAction(null)} className="px-4 py-2 rounded-xl border border-gray-200 text-[12.5px] text-gray-500 hover:bg-gray-100 transition-colors">ยกเลิก</button>
+              <button onClick={() => setActiveAction(null)} className="px-4 py-2 rounded-xl border border-gray-200 text-[14.5px] text-gray-500 hover:bg-gray-100 transition-colors">ยกเลิก</button>
               <button onClick={handleSendEmail} disabled={!emailSubject.trim() || !emailBody.trim()}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#127EE3] text-white text-[12.5px] font-bold hover:bg-[#0f6bc7] transition-colors disabled:opacity-40">
+                className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#127EE3] text-white text-[14.5px] font-bold hover:bg-[#0f6bc7] transition-colors disabled:opacity-40">
                 <Send className="w-3.5 h-3.5" />ส่งอีเมล
               </button>
             </div>
@@ -2188,7 +2188,7 @@ function ManageContent({
       {/* Refer */}
       {localStage === "offer" && (
         <div>
-          <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2">ส่งต่อให้</p>
+          <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-2">ส่งต่อให้</p>
           <ReferToInput
             value={referQuery}
             onChange={setReferQuery}
@@ -2199,15 +2199,15 @@ function ManageContent({
           {referContacts.length > 0 && (
             <>
               <button onClick={() => setShowReferPreview(!showReferPreview)}
-                className="mt-3 w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-sky-200 text-sky-600 text-[13px] font-semibold hover:bg-sky-50 transition-colors">
+                className="mt-3 w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-sky-200 text-sky-600 text-[15px] font-semibold hover:bg-sky-50 transition-colors">
                 <Eye className="w-3.5 h-3.5" />{showReferPreview ? "ซ่อน Preview" : "ดู Preview อีเมล"}
               </button>
               {showReferPreview && (
                 <div className="mt-3 rounded-2xl border border-gray-200 overflow-hidden">
                   <div className="px-4 py-3 bg-gray-50 border-b border-gray-100">
-                    <p className="text-[11.5px] font-bold text-gray-400 uppercase tracking-wide">Preview อีเมลที่จะส่ง</p>
+                    <p className="text-[13.5px] font-bold text-gray-400 uppercase tracking-wide">Preview อีเมลที่จะส่ง</p>
                   </div>
-                  <div className="px-5 py-4 space-y-2.5 text-[13px]">
+                  <div className="px-5 py-4 space-y-2.5 text-[15px]">
                     <div className="flex gap-3"><span className="text-gray-400 w-12 flex-shrink-0">ถึง</span><span className="text-[#1A1A2E] font-medium">{referContacts.map((c) => c.name).join(", ")}</span></div>
                     <div className="flex gap-3"><span className="text-gray-400 w-12 flex-shrink-0">เรื่อง</span><span className="text-[#1A1A2E] font-medium">ขอส่งโปรไฟล์ผู้สมัคร — {applicant.currentTitle}</span></div>
                     <div className="border-t border-gray-100 pt-3">
@@ -2215,14 +2215,14 @@ function ManageContent({
                     </div>
                   </div>
                   <div className="px-5 py-3 bg-gray-50 border-t border-gray-100 flex justify-end">
-                    <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-sky-500 text-white text-[13px] font-bold hover:bg-sky-600 transition-colors">
+                    <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-sky-500 text-white text-[15px] font-bold hover:bg-sky-600 transition-colors">
                       <Send className="w-3.5 h-3.5" />ส่งต่อพร้อม AI Summary
                     </button>
                   </div>
                 </div>
               )}
               {!showReferPreview && (
-                <button className="mt-2 w-full flex items-center justify-center gap-2 py-2.5 bg-sky-500 text-white text-[13px] font-bold rounded-xl hover:bg-sky-600 transition-colors">
+                <button className="mt-2 w-full flex items-center justify-center gap-2 py-2.5 bg-sky-500 text-white text-[15px] font-bold rounded-xl hover:bg-sky-600 transition-colors">
                   <Send className="w-3.5 h-3.5" />ส่งต่อพร้อม AI Summary
                 </button>
               )}
@@ -2234,12 +2234,12 @@ function ManageContent({
       {/* Hired — note section */}
       {localStage === "hired" && (
         <div>
-          <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-2">บันทึกเพิ่มเติม</p>
+          <p className="text-[13px] font-bold text-gray-400 uppercase tracking-widest mb-2">บันทึกเพิ่มเติม</p>
           {hiredNote && !hiredNoteEditing ? (
             <div className="rounded-xl border border-gray-200 bg-white px-4 py-3 space-y-2">
-              <p className="text-[13px] text-gray-700 whitespace-pre-wrap">{hiredNote}</p>
+              <p className="text-[15px] text-gray-700 whitespace-pre-wrap">{hiredNote}</p>
               <button onClick={() => { setHiredNoteDraft(hiredNote); setHiredNoteEditing(true); }}
-                className="flex items-center gap-1 text-[12px] font-semibold text-[#127EE3] hover:underline transition-colors">
+                className="flex items-center gap-1 text-[14px] font-semibold text-[#127EE3] hover:underline transition-colors">
                 <Edit2 className="w-3 h-3" />แก้ไข
               </button>
             </div>
@@ -2248,9 +2248,9 @@ function ManageContent({
               <textarea rows={3} value={hiredNoteDraft}
                 onChange={(e) => setHiredNoteDraft(e.target.value)}
                 placeholder="เช่น เริ่มงานวันที่..., เงินเดือนที่ตกลง..., เงื่อนไขพิเศษ..."
-                className="w-full px-3.5 py-2.5 text-[13px] bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:border-[#127EE3] focus:bg-white transition-all placeholder:text-gray-400 resize-none" />
+                className="w-full px-3.5 py-2.5 text-[15px] bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:border-[#127EE3] focus:bg-white transition-all placeholder:text-gray-400 resize-none" />
               <button onClick={() => { setHiredNote(hiredNoteDraft); setHiredNoteEditing(false); setAlertMsg("บันทึกข้อมูลเรียบร้อยแล้ว"); }}
-                className="flex items-center gap-1.5 px-4 py-2 border border-[#127EE3] text-[#127EE3] text-[12.5px] font-semibold rounded-xl hover:bg-blue-50 transition-colors">
+                className="flex items-center gap-1.5 px-4 py-2 border border-[#127EE3] text-[#127EE3] text-[14.5px] font-semibold rounded-xl hover:bg-blue-50 transition-colors">
                 บันทึกโน้ต
               </button>
             </div>
@@ -2303,13 +2303,13 @@ export default function ApplicantDetailPanel({ applicant, onClose, onStageChange
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1.5">
               <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-[#0DC2FF] to-[#127EE3] flex items-center justify-center flex-shrink-0">
-                <span className="text-[7px] font-black text-white leading-none">SR</span>
+                <span className="text-[8px] font-black text-white leading-none">SR</span>
               </div>
-              <span className="text-[11px] font-bold text-[#127EE3] uppercase tracking-widest">Super Resume</span>
+              <span className="text-[13px] font-bold text-[#127EE3] uppercase tracking-widest">Super Resume</span>
             </div>
             <div className="w-px h-4 bg-gray-200" />
-            <h2 className="text-[16px] font-bold text-[#1A1A2E]">{applicant.name}</h2>
-            <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 border border-emerald-100 text-[10.5px] font-bold text-emerald-600">
+            <h2 className="text-[18px] font-bold text-[#1A1A2E]">{applicant.name}</h2>
+            <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 border border-emerald-100 text-[12px] font-bold text-emerald-600">
               <CheckCircle2 className="w-3 h-3" />เปิดเผยแล้ว
             </div>
           </div>
@@ -2332,7 +2332,7 @@ export default function ApplicantDetailPanel({ applicant, onClose, onStageChange
             <button
               key={t.key}
               onClick={() => setTab(t.key)}
-              className={`flex items-center gap-1.5 px-3.5 py-2.5 text-[12.5px] font-semibold transition-all whitespace-nowrap border-b-2 -mb-px ${
+              className={`flex items-center gap-1.5 px-3.5 py-2.5 text-[14.5px] font-semibold transition-all whitespace-nowrap border-b-2 -mb-px ${
                 tab === t.key
                   ? "border-[#127EE3] text-[#127EE3]"
                   : "border-transparent text-gray-400 hover:text-gray-700"
@@ -2360,19 +2360,19 @@ export default function ApplicantDetailPanel({ applicant, onClose, onStageChange
         <div className="flex-shrink-0 border-t border-gray-100 bg-white px-6 py-3">
           <div className="flex items-center gap-2">
             <button onClick={() => { handleSetStage("shortlist"); setTab("manage"); }}
-              className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[13px] font-bold rounded-xl hover:opacity-90 transition-opacity shadow-sm shadow-[#019EFC]/20">
+              className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r from-[#01BFF9] to-[#019EFC] text-white text-[15px] font-bold rounded-xl hover:opacity-90 transition-opacity shadow-sm shadow-[#019EFC]/20">
               <ThumbsUp className="w-4 h-4" />Shortlist
             </button>
             <button onClick={() => setTab("manage")}
-              className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 border border-gray-200 text-gray-600 text-[12.5px] font-medium rounded-xl hover:bg-gray-50 transition-colors whitespace-nowrap">
+              className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 border border-gray-200 text-gray-600 text-[14.5px] font-medium rounded-xl hover:bg-gray-50 transition-colors whitespace-nowrap">
               <Mail className="w-3.5 h-3.5" />ส่งอีเมล
             </button>
             <button onClick={() => setTab("manage")}
-              className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 border border-gray-200 text-gray-600 text-[12.5px] font-medium rounded-xl hover:bg-gray-50 transition-colors whitespace-nowrap">
+              className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 border border-gray-200 text-gray-600 text-[14.5px] font-medium rounded-xl hover:bg-gray-50 transition-colors whitespace-nowrap">
               <Calendar className="w-3.5 h-3.5" />ลงตารางนัดสัมภาษณ์
             </button>
             <button onClick={() => setTab("manage")}
-              className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 border border-gray-200 text-gray-600 text-[12.5px] font-medium rounded-xl hover:bg-gray-50 transition-colors whitespace-nowrap">
+              className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 border border-gray-200 text-gray-600 text-[14.5px] font-medium rounded-xl hover:bg-gray-50 transition-colors whitespace-nowrap">
               <Users className="w-3.5 h-3.5" />ส่งต่อ
             </button>
           </div>
