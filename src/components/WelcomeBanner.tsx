@@ -38,7 +38,6 @@ const SERVICE_MESSAGES = [
 
 const QUICK_STATS = [
   { icon: TrendingUp, label: "ผู้สมัครใหม่", value: "45", unit: "ราย", color: "text-[#127EE3]", bg: "bg-[#EBF5FF]" },
-  { icon: Calendar, label: "สัมภาษณ์วันนี้", value: "3", unit: "ท่าน", color: "text-emerald-600", bg: "bg-emerald-50" },
 ];
 
 export default function WelcomeBanner({ onCreateJob, onSearchTalent }: WelcomeBannerProps) {
@@ -84,7 +83,7 @@ export default function WelcomeBanner({ onCreateJob, onSearchTalent }: WelcomeBa
             สวัสดี, คุณอลิสา
           </h1>
           <p className="text-[14px] text-gray-500 mt-0.5">
-            นี่คือภาพรวมการสรรหาของคุณวันนี้
+            นี่คือภาพรวมการสรรหาของคุณวันนี้ · วันนี้มีสัมภาษณ์ 3 คน
           </p>
         </div>
 
@@ -108,7 +107,7 @@ export default function WelcomeBanner({ onCreateJob, onSearchTalent }: WelcomeBa
       </div>
 
       {/* KPI stat row */}
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 gap-3 max-w-xs">
         {QUICK_STATS.map((stat) => (
           <div
             key={stat.label}

@@ -234,10 +234,10 @@ export default function RecruitmentSummary({
         <table className="w-full">
           <thead>
             <tr className="border-b border-gray-100">
-              <th className="text-left py-3.5 text-[12px] font-semibold text-gray-400 uppercase tracking-wider w-[34%]">
+              <th className="text-left py-3.5 text-[12px] font-semibold text-gray-400 uppercase tracking-wider w-[38%]">
                 ตำแหน่งงาน
               </th>
-              <th className="text-center py-3.5 w-[14%]">
+              <th className="text-center py-3.5 w-[16%]">
                 {isSearchTab ? (
                   <span className="text-[12px] font-semibold text-amber-600 uppercase tracking-wider">
                     Shortlist
@@ -257,11 +257,11 @@ export default function RecruitmentSummary({
                   </div>
                 )}
               </th>
-              <th className="text-center py-3.5 text-[12px] font-semibold text-gray-400 uppercase tracking-wider">
+              <th className="text-center py-3.5 px-4 text-[12px] font-semibold text-gray-400 uppercase tracking-wider">
                 {isSearchTab ? "สัมภาษณ์" : "สมัครเอง"}
               </th>
               {!isSearchTab && (
-                <th className="text-center py-3.5 w-[12%]">
+                <th className="text-center py-3.5 px-4 w-[13%]">
                   <div className="relative flex items-center justify-center gap-1 group/slheader">
                     <span className="text-[12px] font-semibold text-emerald-600 uppercase tracking-wider">Shortlist</span>
                     <Info className="w-3 h-3 text-emerald-500/60 cursor-default" />
@@ -273,7 +273,7 @@ export default function RecruitmentSummary({
                   </div>
                 </th>
               )}
-              <th className="text-center py-3.5 text-[12px] font-semibold text-gray-400 uppercase tracking-wider">
+              <th className="text-center py-3.5 px-4 text-[12px] font-semibold text-gray-400 uppercase tracking-wider">
                 {isSearchTab ? "รับเข้าทำงาน" : "สัมภาษณ์"}
               </th>
               {isJobFairTab && (
@@ -350,7 +350,7 @@ export default function RecruitmentSummary({
                     </div>
                   )}
                 </td>
-                <td className="py-4 text-center">
+                <td className="py-4 px-4 text-center">
                   {isSearchTab ? (
                     <span className={`text-[14px] font-semibold ${job.interviews > 0 ? "text-amber-600" : "text-gray-300"}`}>
                       {job.interviews}
@@ -365,7 +365,7 @@ export default function RecruitmentSummary({
                   )}
                 </td>
                 {!isSearchTab && (
-                  <td className="py-4 text-center">
+                  <td className="py-4 px-4 text-center">
                     <button
                       onClick={() => (job.shortlist ?? 0) > 0 ? onViewApplicantsShortlist(job.id, job.title) : undefined}
                       className={`inline-flex items-center justify-center min-w-[40px] h-8 px-3 rounded-full text-[15px] font-bold transition-all ${
@@ -378,7 +378,7 @@ export default function RecruitmentSummary({
                     </button>
                   </td>
                 )}
-                <td className="py-4 text-center">
+                <td className="py-4 px-4 text-center">
                   {isSearchTab ? (
                     <span className={`text-[14px] font-semibold ${(job.hired ?? 0) > 0 ? "text-emerald-600" : "text-gray-300"}`}>
                       {job.hired ?? 0}
