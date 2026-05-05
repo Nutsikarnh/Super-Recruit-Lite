@@ -687,7 +687,6 @@ function NotesContent({ applicant, store }: { applicant: ApplicantRow; store: Ac
   const [attachFile, setAttachFile] = useState<File | null>(null);
   const [notes, setNotes] = useState<ActivityItem[]>(INITIAL_NOTES);
   const [showActivity, setShowActivity] = useState(false);
-  const [expandedEmail, setExpandedEmail] = useState<string | null>(null);
   const noteFileRef = useRef<HTMLInputElement>(null);
 
   const handleSaveNote = () => {
@@ -705,7 +704,6 @@ function NotesContent({ applicant, store }: { applicant: ApplicantRow; store: Ac
   };
 
   const allActivities = store.activities;
-  const emailActivities = allActivities.filter((a) => a.type === "email");
 
   return (
     <div className="px-7 py-6 space-y-5">
@@ -755,49 +753,10 @@ function NotesContent({ applicant, store }: { applicant: ApplicantRow; store: Ac
         <button onClick={() => setShowActivity(!showActivity)}
           className="flex items-center gap-2 text-[11px] font-semibold text-gray-400 uppercase tracking-widest hover:text-gray-500 transition-colors w-full text-left mb-1">
           <ChevronDown className={`w-3.5 h-3.5 transition-transform ${showActivity ? "rotate-180" : ""}`} />
-          Activity ({allActivities.length}{emailActivities.length > 0 ? ` · ${emailActivities.length} อีเมล` : ""})
+          ประวัติทั้งหมด
         </button>
         {showActivity && (
-          <div className="mt-3 space-y-0">
-            {allActivities.map((act, i) => (
-              <div key={act.id} className="flex gap-3">
-                <div className="flex flex-col items-center">
-                  {activityIcon(act.type)}
-                  {i < allActivities.length - 1 && <div className="w-px flex-1 bg-gray-100 min-h-[14px] my-0.5" />}
-                </div>
-                <div className="pb-3 flex-1 min-w-0">
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    <div className={`w-4 h-4 rounded-full ${act.actorColor} flex items-center justify-center flex-shrink-0`}>
-                      <span className="text-[7px] font-black text-white">{act.actorInitials}</span>
-                    </div>
-                    <span className="text-[12px] font-semibold text-gray-500">{act.actor}</span>
-                    <span className="text-[12px] text-gray-400">{act.type === "email" ? `ส่งอีเมล "${act.emailSubject}"` : act.text}</span>
-                    <span className="ml-auto text-[11px] text-gray-300 flex items-center gap-1 flex-shrink-0"><Clock className="w-3 h-3" />{act.time}</span>
-                  </div>
-                  {act.type === "email" && act.emailBody && (
-                    <div className="mt-1 ml-5">
-                      <button onClick={() => setExpandedEmail(expandedEmail === act.id ? null : act.id)}
-                        className="text-[11.5px] text-[#127EE3] hover:underline flex items-center gap-1">
-                        {expandedEmail === act.id ? "ซ่อนเนื้อหา" : "ดูเนื้อหาอีเมล"}
-                        <ChevronDown className={`w-3 h-3 transition-transform ${expandedEmail === act.id ? "rotate-180" : ""}`} />
-                      </button>
-                      {expandedEmail === act.id && (
-                        <div className="mt-1.5 bg-gray-50 rounded-xl px-3.5 py-3 border border-gray-100">
-                          <p className="text-[12px] text-gray-500 mb-1">ถึง: {act.emailTo}</p>
-                          <p className="text-[12.5px] text-gray-600 leading-relaxed whitespace-pre-wrap">{act.emailBody}</p>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                  {act.type !== "email" && act.detail && (
-                    <div className="mt-1 ml-5 px-2.5 py-1.5 rounded-lg bg-gray-50">
-                      <p className="text-[11.5px] text-gray-400 leading-relaxed">{act.detail}</p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
+          <TimelineInline store={store} applicant={applicant} />
         )}
       </div>
 
@@ -849,6 +808,112 @@ function timelineIconAdp(type: ActivityItem["type"], text: string) {
     return <div className="w-8 h-8 rounded-full bg-blue-50 border-2 border-white shadow-sm flex items-center justify-center flex-shrink-0"><CheckCircle2 className="w-3.5 h-3.5 text-[#127EE3]" /></div>;
   }
   return <div className="w-8 h-8 rounded-full bg-gray-100 border-2 border-white shadow-sm flex items-center justify-center flex-shrink-0"><MoreHorizontal className="w-3.5 h-3.5 text-gray-400" /></div>;
+}
+
+const TYPE_COLOR: Record<ActivityItem["type"], string> = {
+  stage:  "#3B82F6",
+  note:   "#F59E0B",
+  file:   "#6B7280",
+  reveal: "#6B7280",
+  email:  "#10B981",
+  chat:   "#10B981",
+};
+
+function groupByDate(items: ActivityItem[]): { label: string; items: ActivityItem[] }[] {
+  const groups: Map<string, ActivityItem[]> = new Map();
+  for (const item of items) {
+    const timeStr = item.time ?? "";
+    let label = "ก่อนหน้า";
+    if (timeStr.startsWith("วันนี้")) label = "วันนี้";
+    else if (timeStr.startsWith("เมื่อวาน")) label = "เมื่อวาน";
+    else {
+      const match = timeStr.match(/^(\d{1,2}\s[\u0E00-\u0E7F.]+(?:\s\d{4})?)/);
+      label = match ? match[1] : timeStr.split(" ").slice(0, 2).join(" ");
+    }
+    if (!groups.has(label)) groups.set(label, []);
+    groups.get(label)!.push(item);
+  }
+  return Array.from(groups.entries()).map(([label, items]) => ({ label, items }));
+}
+
+function extractTime(timeStr: string): string {
+  const match = timeStr.match(/(\d{1,2}:\d{2})/);
+  return match ? match[1] : timeStr.includes("เมื่อกี้") ? "เพิ่งเมื่อกี้" : "";
+}
+
+function TimelineInline({ store, applicant }: { store: ActivityStore; applicant: ApplicantRow }) {
+  const mockBase: ActivityItem[] = [
+    { id: "tlb4", actor: "สมศรี HR", actorInitials: "สร", actorColor: "bg-[#127EE3]", type: "stage",  text: "เปลี่ยนสถานะเป็น สัมภาษณ์", time: "วันนี้ เพิ่งเมื่อกี้" },
+    { id: "tlb5", actor: "สมศรี HR", actorInitials: "สร", actorColor: "bg-[#127EE3]", type: "email",  text: "ส่งอีเมลนัดสัมภาษณ์", detail: "ถึง anant.suriyaporn@gmail.com", time: "วันนี้ 10:05" },
+    { id: "tlb6", actor: "วิชัย Manager", actorInitials: "วช", actorColor: "bg-emerald-500", type: "note", text: "โน้ตจาก วิชัย Manager", detail: "\"Portfolio ดีมาก น่าสนใจ ลองนัดคุยดู\"", time: "วันนี้ 11:20" },
+    { id: "tlb3", actor: "สมศรี HR", actorInitials: "สร", actorColor: "bg-[#127EE3]", type: "stage",  text: "เปลี่ยนสถานะเป็น ขอร์ตลิสต์", time: "วันนี้ 09:43" },
+    { id: "tlb2", actor: "สมศรี HR", actorInitials: "สร", actorColor: "bg-[#127EE3]", type: "reveal", text: "เปิดดูข้อมูลการติดต่อ", time: "วันนี้ 09:42" },
+    { id: "tlb7", actor: "สมศรี HR", actorInitials: "สร", actorColor: "bg-[#127EE3]", type: "file",   text: "อัปโหลดไฟล์ Portfolio", detail: "Portfolio_Anant_Design.pdf", time: "เมื่อวาน 15:30" },
+    { id: "tlb8", actor: "คุณแพม HR", actorInitials: "พม", actorColor: "bg-sky-500",   type: "email",  text: "ส่งต่อให้ Hiring Manager", detail: "ส่งโปรไฟล์ให้คุณวิชัย Manager เพื่อพิจารณา", time: "28 เม.ย. 14:15" },
+    { id: "tlb1", actor: "ระบบ", actorInitials: "ระ", actorColor: "bg-gray-400", type: "chat", text: "ผู้สมัครส่งใบสมัคร", detail: `ตำแหน่ง ${applicant.currentTitle} — ${applicant.location}`, time: "25 เม.ย. 2568" },
+  ];
+  const allItems = [...store.activities, ...mockBase];
+  const groups = groupByDate(allItems);
+
+  const legendItems: { type: ActivityItem["type"]; label: string }[] = [
+    { type: "stage", label: "เปลี่ยนสถานะ" },
+    { type: "note",  label: "โน้ต" },
+    { type: "file",  label: "ไฟล์" },
+    { type: "email", label: "อีเมล/ส่งต่อ" },
+  ];
+
+  return (
+    <div className="mt-3">
+      <p className="text-[11px] text-gray-400 mb-4">{allItems.length} รายการ</p>
+      <div className="space-y-5">
+        {groups.map((group) => (
+          <div key={group.label}>
+            <div className="flex items-center gap-2.5 mb-2.5">
+              <span className="text-[12px] font-semibold text-gray-500">{group.label}</span>
+              <div className="flex-1 border-t border-gray-100" />
+            </div>
+            <div className="relative">
+              <div className="absolute left-[13px] top-3 bottom-3 w-px bg-gray-100" />
+              <div className="space-y-1">
+                {group.items.map((item) => {
+                  const dot = TYPE_COLOR[item.type];
+                  const timeLabel = extractTime(item.time);
+                  return (
+                    <div key={item.id} className="relative flex gap-3.5">
+                      <div className="relative z-10 mt-3 flex-shrink-0">
+                        <div className="w-[11px] h-[11px] rounded-full border-2 border-white shadow-sm" style={{ backgroundColor: dot }} />
+                      </div>
+                      <div className="flex-1 min-w-0 bg-[#F7F9FC] rounded-xl px-3 py-2.5 mb-1.5">
+                        <div className="flex items-start justify-between gap-2">
+                          <p className="text-[13px] font-semibold text-[#1A1A2E] leading-snug">
+                            {item.type === "stage"
+                              ? <><span>เปลี่ยนสถานะเป็น </span><span style={{ color: dot }}>{item.text.replace(/.*เป็น\s?/, "")}</span></>
+                              : item.text}
+                          </p>
+                          {timeLabel && <span className="text-[11px] text-gray-400 whitespace-nowrap flex-shrink-0 mt-0.5 tabular-nums">{timeLabel}</span>}
+                        </div>
+                        {item.detail && <p className="text-[12px] text-gray-500 mt-0.5 leading-relaxed">{item.detail}</p>}
+                        {item.emailTo && !item.detail && <p className="text-[12px] text-gray-400 mt-0.5">ถึง: {item.emailTo}</p>}
+                        <p className="text-[11px] text-gray-400 mt-1">โดย {item.actor}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="flex items-center gap-4 flex-wrap mt-4 pt-3 border-t border-gray-100">
+        {legendItems.map((l) => (
+          <div key={l.type} className="flex items-center gap-1.5">
+            <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: TYPE_COLOR[l.type] }} />
+            <span className="text-[11px] text-gray-500">{l.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 function TimelineContent({ store, applicant }: { store: ActivityStore; applicant: ApplicantRow }) {
@@ -2110,7 +2175,7 @@ function ManageContent({
 /* Root component                                                        */
 /* ------------------------------------------------------------------ */
 export default function ApplicantDetailPanel({ applicant, onClose, onStageChange }: ApplicantDetailPanelProps) {
-  const [tab, setTab] = useState<"resume" | "ai" | "docs" | "notes" | "manage" | "timeline">("resume");
+  const [tab, setTab] = useState<"resume" | "ai" | "docs" | "notes" | "manage">("resume");
   const [localStage, setLocalStage] = useState<PipelineStage>(applicant.stage);
   const [activities, setActivities] = useState<ActivityItem[]>([
     { id: "a1", actor: "สมศรี HR", actorInitials: "สร", actorColor: "bg-[#127EE3]", type: "reveal", text: "เปิดดูข้อมูลการติดต่อ", time: "วันนี้ 09:42" },
@@ -2132,7 +2197,6 @@ export default function ApplicantDetailPanel({ applicant, onClose, onStageChange
     { key: "ai" as const, label: "AI วิเคราะห์", icon: <Sparkles className="w-3.5 h-3.5" /> },
     { key: "docs" as const, label: "เอกสาร", icon: <Paperclip className="w-3.5 h-3.5" /> },
     { key: "manage" as const, label: "จัดการ", icon: <UserCheck className="w-3.5 h-3.5" /> },
-    { key: "timeline" as const, label: "ไทม์ไลน์", icon: <Clock className="w-3.5 h-3.5" /> },
     { key: "notes" as const, label: "โน้ต", icon: <MessageCircle className="w-3.5 h-3.5" /> },
   ];
 
@@ -2194,7 +2258,6 @@ export default function ApplicantDetailPanel({ applicant, onClose, onStageChange
         {tab === "docs" && <DocsContent applicant={applicant} />}
         {tab === "notes" && <NotesContent applicant={applicant} store={store} />}
         {tab === "manage" && <ManageContent applicant={applicant} localStage={localStage} onSetStage={handleSetStage} store={store} />}
-        {tab === "timeline" && <TimelineContent store={store} applicant={applicant} />}
       </div>
 
       {/* Bottom bar — matching ResumePanel (resume tab only) */}
